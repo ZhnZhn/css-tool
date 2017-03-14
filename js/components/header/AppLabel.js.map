@@ -1,0 +1,17 @@
+)]}
+{
+ "version": 3,
+ "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\header\\AppLabel.jsx",
+ "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\header\\AppLabel.js",
+ "sourceRoot": "",
+ "names": [
+  "AppLabel",
+  "className",
+  "style",
+  "caption",
+  "propTypes",
+  "string",
+  "object"
+ ],
+ "mappings": ";;;;;;AAAA;;;;;;AAEA,IAAMA,WAAW,SAAXA,QAAW;AAAA,MAAGC,SAAH,QAAGA,SAAH;AAAA,MAAcC,KAAd,QAAcA,KAAd;AAAA,MAAqBC,OAArB,QAAqBA,OAArB;AAAA,SACf;AAAA;AAAA,MAAM,WAAWF,SAAjB,EAA4B,OAAOC,KAAnC;AACGC;AADH,GADe;AAAA,CAAjB;;AAMAH,SAASI,SAAT,GAAqB;AACnBH,aAAW,iBAAUI,MADF;AAEnBH,SAAO,iBAAUI,MAFE;AAGnBH,WAAS,iBAAUE;AAHA,CAArB;;kBAMeL,Q"
+}

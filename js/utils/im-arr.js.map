@@ -1,0 +1,18 @@
+)]}
+{
+ "version": 3,
+ "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\utils\\im-arr.js",
+ "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\utils\\im-arr.js",
+ "sourceRoot": "",
+ "names": [
+  "imArr",
+  "insert",
+  "arr",
+  "index",
+  "value",
+  "slice",
+  "update",
+  "remove"
+ ],
+ "mappings": ";;;;;;;;AACA,IAAMA,QAAQ;AACZC,QADY,oBACqB;AAAA,QAA1BC,GAA0B,uEAAtB,EAAsB;AAAA,QAAlBC,KAAkB,uEAAZ,CAAY;AAAA,QAATC,KAAS,uEAAH,EAAG;;AAC/B,wCACKF,IAAIG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,IAEEC,KAFF,sBAGKF,IAAIG,KAAJ,CAAUF,KAAV,CAHL;AAKD,GAPW;AASZG,QATY,oBASgB;AAAA,QAArBJ,GAAqB,uEAAjB,EAAiB;AAAA,QAAbC,KAAa;AAAA,QAANC,KAAM;;AAC1BF,QAAIC,KAAJ,IAAaC,KAAb;AACA,wCAAWF,GAAX;AACD,GAZW;AAcZK,QAdY,oBAcS;AAAA,QAAdL,GAAc,uEAAV,EAAU;AAAA,QAANC,KAAM;;AACnB,wCACKD,IAAIG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,sBAEKD,IAAIG,KAAJ,CAAUF,QAAM,CAAhB,CAFL;AAID;AAnBW,CAAd;;kBAsBeH,K"
+}

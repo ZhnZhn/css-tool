@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3">
+  <title>Box Shadow v0.1.0</title>
+  <link rel="shortcut icon" href="/css/favicon.png" type="image/png">
+  <base target="_blank">
+
+
+  <script>
+     var process = {
+       env : {
+         NODE_ENV : 'development'
+       }
+     };
+  </script>
+
+
+  <link  href="css/reset.css" rel="stylesheet">
+  <link  href="css/bt.css" rel="stylesheet">
+  <link  href="css/containers.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+ <div id="app">
+ </div>
+
+
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script src="dependency-bundle.js"></script>
+  <script>
+     System.import('js/index.js')
+  </script>
+
+</body>
+</html>

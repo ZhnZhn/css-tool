@@ -1,0 +1,16 @@
+)]}
+{
+ "version": 3,
+ "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\utils\\im-obj.js",
+ "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\utils\\im-obj.js",
+ "sourceRoot": "",
+ "names": [
+  "imObj",
+  "create",
+  "obj",
+  "update",
+  "propName",
+  "propValue"
+ ],
+ "mappings": ";;;;;;;;AACA,IAAMA,QAAQ;AACZC,QADY,kBACLC,GADK,EACD;AACT,wBAAWA,GAAX;AACD,GAHW;AAKZC,QALY,kBAKLD,GALK,EAKAE,QALA,EAKUC,SALV,EAKoB;AAC9BH,QAAIE,QAAJ,IAAgBC,SAAhB;AACA,wBAAYH,GAAZ;AACD;AARW,CAAd;;kBAWeF,K"
+}

@@ -1,0 +1,26 @@
+)]}
+{
+ "version": 3,
+ "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\box-shadow\\ViewBoxShadow.jsx",
+ "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\box-shadow\\ViewBoxShadow.js",
+ "sourceRoot": "",
+ "names": [
+  "ViewBoxShadow",
+  "nextProps",
+  "nextState",
+  "props",
+  "boxShadows",
+  "currentIndex",
+  "configStyle",
+  "style",
+  "onAdd",
+  "onEdit",
+  "onRemove",
+  "propTypes",
+  "object",
+  "arrayOf",
+  "number",
+  "func"
+ ],
+ "mappings": ";;;;;;;;AAAA;;;;AAEA;;;;AACA;;;;;;;;;;;;IAEMA,a;;;;;;;;;;;0CAWkBC,S,EAAWC,S,EAAU;AACzC,UAAI,KAAKC,KAAL,KAAeF,SAAf,IACA,KAAKE,KAAL,CAAWC,UAAX,KAA0BH,UAAUG,UADpC,IAEA,KAAKD,KAAL,CAAWE,YAAX,KAA4BJ,UAAUI,YAFtC,IAGA,KAAKF,KAAL,CAAWG,WAAX,KAA2BL,UAAUK,WAHzC,EAGsD;AACpD,eAAO,KAAP;AACD;AACD,aAAO,IAAP;AACD;;;6BAEO;AAAA,mBAKI,KAAKH,KALT;AAAA,UAEEI,KAFF,UAEEA,KAFF;AAAA,UAESH,UAFT,UAESA,UAFT;AAAA,UAEqBC,YAFrB,UAEqBA,YAFrB;AAAA,UAGEC,WAHF,UAGEA,WAHF;AAAA,UAIEE,KAJF,UAIEA,KAJF;AAAA,UAISC,MAJT,UAISA,MAJT;AAAA,UAIiBC,QAJjB,UAIiBA,QAJjB;;AAMN,aACE;AAAA;AAAA,UAAK,OAAOH,KAAZ;AACE;AACG,wBAAcF,YADjB;AAEG,sBAAYD,UAFf;AAGG,iBAAOI,KAHV;AAIG,kBAAQC,MAJX;AAKG,oBAAUC;AALb,UADF;AAQE;AACG,sBAAYN,UADf;AAEG,uBAAaE;AAFhB;AARF,OADF;AAeD;;;;;;AA1CGN,a,CACGW,S,GAAY;AACjBJ,SAAO,iBAAUK,MADA;AAEjBR,cAAY,iBAAUS,OAAV,CAAkB,iBAAUD,MAA5B,CAFK;AAGjBP,gBAAc,iBAAUS,MAHP;AAIjBR,eAAa,iBAAUM,MAJN;AAKjBJ,SAAO,iBAAUO,IALA;AAMjBN,UAAQ,iBAAUM,IAND;AAOjBL,YAAU,iBAAUK;AAPH,C;kBA4CNf,a"
+}
