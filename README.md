@@ -1,4 +1,4 @@
-# [CSS Tool] (https://zhnzhn.github.io/css-tool)
+# CSS Tool (https://zhnzhn.github.io/css-tool)
 CSS Tool is a SPA.
 
 ## License
