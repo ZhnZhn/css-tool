@@ -4,7 +4,7 @@ It give opportunity to edit css **box-shadow** properties visually.
 
 ![alt text](screenshots/css-tool.png?raw=true "CSS Tool: Box Shadow")
 
-Inspired by [CSSmatic](http://www.cssmatic.com/box-shadow)
+Inspired by [CSSmatic](http://www.cssmatic.com/box-shadow).
 
 ## License
 CSS-Tool is available under [MIT license](https://opensource.org/licenses/MIT).
