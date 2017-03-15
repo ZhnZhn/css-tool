@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 
 const S = {
   INPUT_TEXT : {
+    display : 'inline',
     background: 'transparent none repeat scroll 0 0',
     border: 'medium none',
     outline: 'medium none',
-    //height: '26px',
     height: '32px',
     paddingLeft: '5px',
     color: 'green',
@@ -15,7 +15,7 @@ const S = {
     backgroundColor : '#E1E1CB',
     marginLeft : '5px',
     marginRight : '5px',
-    display : 'inline'
+    boxShadow: '0 2px 2px 0 rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1)'
   }
 }
 
