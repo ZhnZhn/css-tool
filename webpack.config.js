@@ -8,6 +8,7 @@ module.exports = {
   entry: {
      lib: [
             "react", "react-dom",
+            "tinycolor2",
             "babel-runtime/helpers/classCallCheck",
             "babel-runtime/helpers/createClass",
             "babel-runtime/helpers/possibleConstructorReturn",

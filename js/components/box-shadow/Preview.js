@@ -33,8 +33,10 @@ var STYLE = {
   INNER: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    width: '70%',
-    height: '250px'
+    width: '50%',
+    height: '250px',
+    resize: 'both',
+    overflow: 'auto'
   }
 };
 

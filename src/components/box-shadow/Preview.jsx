@@ -11,8 +11,10 @@ const STYLE = {
   INNER : {
     marginLeft: 'auto',
     marginRight: 'auto',
-    width: '70%',
-    height: '250px'
+    width: '50%',
+    height: '250px',
+    resize: 'both',
+    overflow: 'auto'
   }
 }
 
@@ -52,7 +54,7 @@ class Preview extends Component {
         , _boxStyle = {
              backgroundColor: configStyle.boxColor,
              borderRadius: configStyle.boxBorderRadius
-           };
+           };        
     return (
       <div style={{ ...STYLE.ROOT, ..._rootStyle}}>
         <div style={{ ...STYLE.INNER, ..._boxStyle, ..._style }}>

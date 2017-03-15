@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+
+import tinycolor from 'tinycolor2';
 
 import RowInputType1 from '../zhn-moleculs/RowInputType1'
 import RowInputType2 from '../zhn-moleculs/RowInputType2'
@@ -34,14 +36,31 @@ const inputRows = [
 
 
 class InputBoxShadow extends Component {
+   static propTypes = {
+      initValue: PropTypes.shape({
+        vLength: PropTypes.number,
+        gLength: PropTypes.number,
+        blurR: PropTypes.number,
+        spreadR: PropTypes.number,
+        color: PropTypes.string,
+        opacity: PropTypes.number
+      }),
+      onChange: PropTypes.func,
+      onEnter: PropTypes.func
+   }
+   static defaultProps = {
+     onChange: () => {},
+     onEnter: () => {}
+   }
 
   constructor(props){
     super()
-    const { vLength, gLength, blurR, spreadR, opacity } = props.initValue
+    const { vLength, gLength, blurR, spreadR, color, opacity } = props.initValue
     this.vLength = vLength
     this.gLength = gLength
     this.blurR = blurR
     this.spreadR = spreadR
+    this.color = color
     this.opacity = opacity
   }
 
@@ -51,6 +70,7 @@ class InputBoxShadow extends Component {
       gLength: this.gLength,
       blurR: this.blurR,
       spreadR: this.spreadR,
+      color: this.color,
       opacity: this.opacity
     }
   }
@@ -58,11 +78,12 @@ class InputBoxShadow extends Component {
   componentWillReceiveProps(nextProps){
     if (this.props !== nextProps &&
         this.props.initValue !== nextProps.initValue ) {
-          const { vLength, gLength, blurR, spreadR, opacity } = nextProps.initValue
+          const { vLength, gLength, blurR, spreadR, color, opacity } = nextProps.initValue
           this.vLength = vLength
           this.gLength = gLength
           this.blurR = blurR
           this.spreadR = spreadR
+          this.color = color
           this.opacity = opacity
     }
   }
@@ -78,17 +99,18 @@ class InputBoxShadow extends Component {
 
   _handleChangeInput = (propName, value) => {
      this[propName] = value
-     if (this.props.onChange){
-      this.props.onChange(this._getBoxShadow())
-     }
+     this.props.onChange(this._getBoxShadow())
   }
 
   _handleEnter = (propName, value) => {
-    console.log(propName)
-    console.log(value)
-    if (this.props.onEnter){
-      this.props.onEnter(propName, value)
-    }
+     this.props.onEnter(propName, value)
+  }
+  _handleEnterColor = (value) => {
+     const color = tinycolor(value);
+     if (color.isValid()){
+       this.color = color.toHexString()
+       this.props.onChange(this._getBoxShadow())
+     }
   }
 
   render(){
@@ -128,6 +150,7 @@ class InputBoxShadow extends Component {
            style={STYLE.ROW_INPUT}
            caption="Shadow Color"
            initValue="#000000"
+           onEnter={this._handleEnterColor}
         />
         <RowInputType1
            {...inputRows[4]}
@@ -137,14 +160,14 @@ class InputBoxShadow extends Component {
         <RowInputType2
            style={STYLE.ROW_INPUT}
            styleInput={STYLE.BOX_INPUT}
-           caption="Background Color"
+           caption="Wrapper Background"
            initValue={bgColor}
            onEnter={this._handleEnter.bind(this, 'bgColor')}
         />
         <RowInputType2
            style={STYLE.ROW_INPUT}
            styleInput={STYLE.BOX_INPUT}
-           caption="Box Color"
+           caption="Box Background"
            initValue={boxColor}
            onEnter={this._handleEnter.bind(this, 'boxColor')}
         />

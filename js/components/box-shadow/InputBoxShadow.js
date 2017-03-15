@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _tinycolor = require('tinycolor2');
+
+var _tinycolor2 = _interopRequireDefault(_tinycolor);
+
 var _RowInputType = require('../zhn-moleculs/RowInputType1');
 
 var _RowInputType2 = _interopRequireDefault(_RowInputType);
@@ -63,42 +67,21 @@ var InputBoxShadow = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (InputBoxShadow.__proto__ || Object.getPrototypeOf(InputBoxShadow)).call(this));
 
-    _this._getBoxShadow = function () {
-      return {
-        vLength: _this.vLength,
-        gLength: _this.gLength,
-        blurR: _this.blurR,
-        spreadR: _this.spreadR,
-        opacity: _this.opacity
-      };
-    };
-
-    _this._handleChangeInput = function (propName, value) {
-      _this[propName] = value;
-      if (_this.props.onChange) {
-        _this.props.onChange(_this._getBoxShadow());
-      }
-    };
-
-    _this._handleEnter = function (propName, value) {
-      console.log(propName);
-      console.log(value);
-      if (_this.props.onEnter) {
-        _this.props.onEnter(propName, value);
-      }
-    };
+    _initialiseProps.call(_this);
 
     var _props$initValue = props.initValue,
         vLength = _props$initValue.vLength,
         gLength = _props$initValue.gLength,
         blurR = _props$initValue.blurR,
         spreadR = _props$initValue.spreadR,
+        color = _props$initValue.color,
         opacity = _props$initValue.opacity;
 
     _this.vLength = vLength;
     _this.gLength = gLength;
     _this.blurR = blurR;
     _this.spreadR = spreadR;
+    _this.color = color;
     _this.opacity = opacity;
     return _this;
   }
@@ -112,12 +95,14 @@ var InputBoxShadow = function (_Component) {
             gLength = _nextProps$initValue.gLength,
             blurR = _nextProps$initValue.blurR,
             spreadR = _nextProps$initValue.spreadR,
+            color = _nextProps$initValue.color,
             opacity = _nextProps$initValue.opacity;
 
         this.vLength = vLength;
         this.gLength = gLength;
         this.blurR = blurR;
         this.spreadR = spreadR;
+        this.color = color;
         this.opacity = opacity;
       }
     }
@@ -168,7 +153,8 @@ var InputBoxShadow = function (_Component) {
         _react2.default.createElement(_RowInputType4.default, {
           style: STYLE.ROW_INPUT,
           caption: 'Shadow Color',
-          initValue: '#000000'
+          initValue: '#000000',
+          onEnter: this._handleEnterColor
         }),
         _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[4], {
           initValue: opacity,
@@ -177,14 +163,14 @@ var InputBoxShadow = function (_Component) {
         _react2.default.createElement(_RowInputType4.default, {
           style: STYLE.ROW_INPUT,
           styleInput: STYLE.BOX_INPUT,
-          caption: 'Background Color',
+          caption: 'Wrapper Background',
           initValue: bgColor,
           onEnter: this._handleEnter.bind(this, 'bgColor')
         }),
         _react2.default.createElement(_RowInputType4.default, {
           style: STYLE.ROW_INPUT,
           styleInput: STYLE.BOX_INPUT,
-          caption: 'Box Color',
+          caption: 'Box Background',
           initValue: boxColor,
           onEnter: this._handleEnter.bind(this, 'boxColor')
         }),
@@ -201,6 +187,55 @@ var InputBoxShadow = function (_Component) {
 
   return InputBoxShadow;
 }(_react.Component);
+
+InputBoxShadow.propTypes = {
+  initValue: _react.PropTypes.shape({
+    vLength: _react.PropTypes.number,
+    gLength: _react.PropTypes.number,
+    blurR: _react.PropTypes.number,
+    spreadR: _react.PropTypes.number,
+    color: _react.PropTypes.string,
+    opacity: _react.PropTypes.number
+  }),
+  onChange: _react.PropTypes.func,
+  onEnter: _react.PropTypes.func
+};
+InputBoxShadow.defaultProps = {
+  onChange: function onChange() {},
+  onEnter: function onEnter() {}
+};
+
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this._getBoxShadow = function () {
+    return {
+      vLength: _this2.vLength,
+      gLength: _this2.gLength,
+      blurR: _this2.blurR,
+      spreadR: _this2.spreadR,
+      color: _this2.color,
+      opacity: _this2.opacity
+    };
+  };
+
+  this._handleChangeInput = function (propName, value) {
+    _this2[propName] = value;
+    _this2.props.onChange(_this2._getBoxShadow());
+  };
+
+  this._handleEnter = function (propName, value) {
+    _this2.props.onEnter(propName, value);
+  };
+
+  this._handleEnterColor = function (value) {
+    var color = (0, _tinycolor2.default)(value);
+    if (color.isValid()) {
+      _this2.color = color.toHexString();
+      _this2.props.onChange(_this2._getBoxShadow());
+    }
+  };
+};
 
 exports.default = InputBoxShadow;
 //# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\box-shadow\InputBoxShadow.js.map

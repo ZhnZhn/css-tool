@@ -42,7 +42,7 @@ var STYLE = {
     display: 'inline-block',
     fontWeight: 'bold',
     width: '25%',
-    minWidth: '245px',
+    minWidth: '255px',
     height: '90%'
   },
   RESULT: {
@@ -59,6 +59,7 @@ var _initValue = {
   vLength: 10,
   blurR: 5,
   spreadR: 0,
+  color: '#000000',
   opacity: 0.75
 };
 
