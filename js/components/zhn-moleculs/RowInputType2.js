@@ -55,17 +55,21 @@ var RowInputType2 = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { style: _extends({}, STYLE.ROOT, style) },
+        { style: style },
         _react2.default.createElement(
-          'span',
-          null,
-          caption
-        ),
-        _react2.default.createElement(_InputText2.default, {
-          style: _extends({}, STYLE.TEXT, styleInput),
-          initValue: initValue,
-          onEnter: onEnter
-        })
+          'label',
+          { style: _extends({}, STYLE.ROOT) },
+          _react2.default.createElement(
+            'span',
+            null,
+            caption
+          ),
+          _react2.default.createElement(_InputText2.default, {
+            style: _extends({}, STYLE.TEXT, styleInput),
+            initValue: initValue,
+            onEnter: onEnter
+          })
+        )
       );
     }
   }]);

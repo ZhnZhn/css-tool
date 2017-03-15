@@ -89,7 +89,7 @@ var RowInputType1 = function (_Component) {
         'div',
         { style: style },
         _react2.default.createElement(
-          'div',
+          'label',
           { style: { lineHeight: 1.8 } },
           _react2.default.createElement(
             'span',

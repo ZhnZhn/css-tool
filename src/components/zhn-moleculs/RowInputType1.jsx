@@ -53,7 +53,7 @@ class RowInputType1 extends Component {
     const { style, caption, initValue, unit, ...rest } = this.props
     return (
       <div style={style} >
-        <div style={{ lineHeight: 1.8 }}>
+        <label style={{ lineHeight: 1.8 }}>
           <span>{caption}</span>
           <span style={STYLE.RIGHT}>{unit}</span>
           <InputText
@@ -62,7 +62,7 @@ class RowInputType1 extends Component {
              initValue={initValue}
              onChange={this._handleChangeText}
           />
-        </div>
+        </label>
 
         <InputSlider
            ref={c => this.sliderComp = c}

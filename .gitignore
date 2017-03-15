@@ -7,8 +7,8 @@ bundle.min.js.map
 config.js
 dependency-bundle.js
 dependency-bundle.js.map
-github.html
-github-hot.html
+box-shadow.html
+box-shadow-hot.html
 index_jspm.html
 lint.txt
 npm-debug.log

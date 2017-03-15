@@ -27,14 +27,16 @@ class RowInputType2 extends Component {
   render(){
     const { style, styleInput, caption, initValue, onEnter } = this.props
     return (
-       <div style={{ ...STYLE.ROOT, ...style }}>
-         <span>{caption}</span>
-         <InputText
-           style={{ ...STYLE.TEXT, ...styleInput }}
-           initValue={initValue}
-           onEnter={onEnter}
-          />
-       </div>
+      <div style={style}>
+         <label style={{ ...STYLE.ROOT }}>
+           <span>{caption}</span>
+           <InputText
+             style={{ ...STYLE.TEXT, ...styleInput }}
+             initValue={initValue}
+             onEnter={onEnter}
+            />
+         </label>
+      </div>
     );
   }
 }

@@ -67,7 +67,7 @@ class InputText extends Component {
     const {style} = this.props
         , {value} = this.state;
     return (
-      <input
+      <input        
         name="text"
         autoComplete="new-text"
         autoCorrect="off"
