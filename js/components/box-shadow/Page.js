@@ -42,7 +42,7 @@ var STYLE = {
     display: 'inline-block',
     fontWeight: 'bold',
     width: '25%',
-    minWidth: '255px',
+    minWidth: '325px',
     height: '90%'
   },
   RESULT: {

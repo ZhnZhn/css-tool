@@ -1,0 +1,25 @@
+)]}
+{
+ "version": 3,
+ "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\zhn\\Color.jsx",
+ "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\zhn\\Color.js",
+ "sourceRoot": "",
+ "names": [
+  "STYLE",
+  "ROOT",
+  "display",
+  "height",
+  "width",
+  "borderRadius",
+  "boxShadow",
+  "Color",
+  "style",
+  "value",
+  "_style",
+  "backgroundColor",
+  "propTypes",
+  "object",
+  "string"
+ ],
+ "mappings": ";;;;;;;;AAAA;;;;;;AAEA,IAAMA,QAAQ;AACZC,QAAM;AACJC,aAAS,cADL;AAEJC,YAAQ,MAFJ;AAGJC,WAAO,MAHH;AAIJC,kBAAc,KAJV;AAKJC,eAAW;AALP;AADM,CAAd;;AAUA,IAAMC,QAAQ,SAARA,KAAQ,OAAsB;AAAA,MAAnBC,KAAmB,QAAnBA,KAAmB;AAAA,MAAZC,KAAY,QAAZA,KAAY;;AAClC,MAAMC,SAAUD,KAAD,GACJ,EAAEE,iBAAiBF,KAAnB,EADI,GAEJ,IAFX;AAGA,SACE,wCAAM,oBAAWT,MAAMC,IAAjB,EAA0BO,KAA1B,EAAoCE,MAApC,CAAN,GADF;AAID,CARD;;AAUAH,MAAMK,SAAN,GAAkB;AAChBJ,SAAO,iBAAUK,MADD;AAEhBJ,SAAO,iBAAUK;AAFD,CAAlB;;kBAKeP,K"
+}

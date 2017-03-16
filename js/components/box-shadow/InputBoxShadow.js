@@ -12,10 +12,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _tinycolor = require('tinycolor2');
-
-var _tinycolor2 = _interopRequireDefault(_tinycolor);
-
 var _RowInputType = require('../zhn-moleculs/RowInputType1');
 
 var _RowInputType2 = _interopRequireDefault(_RowInputType);
@@ -23,6 +19,10 @@ var _RowInputType2 = _interopRequireDefault(_RowInputType);
 var _RowInputType3 = require('../zhn-moleculs/RowInputType2');
 
 var _RowInputType4 = _interopRequireDefault(_RowInputType3);
+
+var _RowInputType5 = require('../zhn-moleculs/RowInputType3');
+
+var _RowInputType6 = _interopRequireDefault(_RowInputType5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -150,7 +150,7 @@ var InputBoxShadow = function (_Component) {
           initValue: spreadR,
           onChange: this._handleChangeInput.bind(this, 'spreadR')
         })),
-        _react2.default.createElement(_RowInputType4.default, {
+        _react2.default.createElement(_RowInputType6.default, {
           style: STYLE.ROW_INPUT,
           caption: 'Shadow Color',
           initValue: '#000000',
@@ -160,14 +160,14 @@ var InputBoxShadow = function (_Component) {
           initValue: opacity,
           onChange: this._handleChangeInput.bind(this, 'opacity')
         })),
-        _react2.default.createElement(_RowInputType4.default, {
+        _react2.default.createElement(_RowInputType6.default, {
           style: STYLE.ROW_INPUT,
           styleInput: STYLE.BOX_INPUT,
           caption: 'Wrapper Background',
           initValue: bgColor,
           onEnter: this._handleEnter.bind(this, 'bgColor')
         }),
-        _react2.default.createElement(_RowInputType4.default, {
+        _react2.default.createElement(_RowInputType6.default, {
           style: STYLE.ROW_INPUT,
           styleInput: STYLE.BOX_INPUT,
           caption: 'Box Background',
@@ -228,12 +228,9 @@ var _initialiseProps = function _initialiseProps() {
     _this2.props.onEnter(propName, value);
   };
 
-  this._handleEnterColor = function (value) {
-    var color = (0, _tinycolor2.default)(value);
-    if (color.isValid()) {
-      _this2.color = color.toHexString();
-      _this2.props.onChange(_this2._getBoxShadow());
-    }
+  this._handleEnterColor = function (value, color) {
+    _this2.color = color.toHexString();
+    _this2.props.onChange(_this2._getBoxShadow());
   };
 };
 

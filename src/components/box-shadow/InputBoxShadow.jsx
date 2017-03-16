@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
-import tinycolor from 'tinycolor2';
-
 import RowInputType1 from '../zhn-moleculs/RowInputType1'
 import RowInputType2 from '../zhn-moleculs/RowInputType2'
+import RowInputType3 from '../zhn-moleculs/RowInputType3'
 
 const STYLE = {
   ROW_INPUT: {
@@ -105,12 +104,9 @@ class InputBoxShadow extends Component {
   _handleEnter = (propName, value) => {
      this.props.onEnter(propName, value)
   }
-  _handleEnterColor = (value) => {
-     const color = tinycolor(value);
-     if (color.isValid()){
-       this.color = color.toHexString()
-       this.props.onChange(this._getBoxShadow())
-     }
+  _handleEnterColor = (value, color) => {
+     this.color = color.toHexString()
+     this.props.onChange(this._getBoxShadow())
   }
 
   render(){
@@ -146,7 +142,7 @@ class InputBoxShadow extends Component {
            initValue={spreadR}
            onChange={this._handleChangeInput.bind(this, 'spreadR')}
         />
-        <RowInputType2
+        <RowInputType3
            style={STYLE.ROW_INPUT}
            caption="Shadow Color"
            initValue="#000000"
@@ -157,14 +153,14 @@ class InputBoxShadow extends Component {
            initValue={opacity}
            onChange={this._handleChangeInput.bind(this, 'opacity')}
         />
-        <RowInputType2
+        <RowInputType3
            style={STYLE.ROW_INPUT}
            styleInput={STYLE.BOX_INPUT}
            caption="Wrapper Background"
            initValue={bgColor}
            onEnter={this._handleEnter.bind(this, 'bgColor')}
         />
-        <RowInputType2
+        <RowInputType3
            style={STYLE.ROW_INPUT}
            styleInput={STYLE.BOX_INPUT}
            caption="Box Background"
