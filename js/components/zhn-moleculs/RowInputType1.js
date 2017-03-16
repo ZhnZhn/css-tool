@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _math = require('../../utils/math');
+
+var _math2 = _interopRequireDefault(_math);
+
 var _InputText = require('../zhn/InputText');
 
 var _InputText2 = _interopRequireDefault(_InputText);
@@ -60,7 +64,7 @@ var RowInputType1 = function (_Component) {
       var _this$props = _this.props,
           min = _this$props.min,
           max = _this$props.max,
-          _value = parseInt(value, 10);
+          _value = _this.stepExp !== 0 ? _math2.default.round10(parseFloat(value), _this.stepExp) : parseInt(value, 10);
 
       if (_value >= min && _value <= max) {
         _this.value = _value;
@@ -70,6 +74,9 @@ var RowInputType1 = function (_Component) {
     };
 
     _this.isOnChange = typeof props.onChange === 'function' ? true : false;
+
+    var arr = ('' + props.step).split('.');
+    _this.stepExp = arr[1] ? -1 * arr[1].length : 0;
     return _this;
   }
 
@@ -80,10 +87,11 @@ var RowInputType1 = function (_Component) {
 
       var _props = this.props,
           style = _props.style,
+          styleInput = _props.styleInput,
           caption = _props.caption,
           initValue = _props.initValue,
           unit = _props.unit,
-          rest = _objectWithoutProperties(_props, ['style', 'caption', 'initValue', 'unit']);
+          rest = _objectWithoutProperties(_props, ['style', 'styleInput', 'caption', 'initValue', 'unit']);
 
       return _react2.default.createElement(
         'div',
@@ -105,7 +113,7 @@ var RowInputType1 = function (_Component) {
             ref: function ref(c) {
               return _this2.textComp = c;
             },
-            style: STYLE.RIGHT,
+            style: _extends({}, STYLE.RIGHT, styleInput),
             initValue: initValue,
             onChange: this._handleChangeText
           })
@@ -127,13 +135,20 @@ var RowInputType1 = function (_Component) {
 
 RowInputType1.propTypes = {
   style: _react.PropTypes.object,
+  styleInput: _react.PropTypes.object,
+
   caption: _react.PropTypes.string,
   initValue: _react.PropTypes.number,
+  min: _react.PropTypes.number,
+  max: _react.PropTypes.number,
+  step: _react.PropTypes.number,
   unit: _react.PropTypes.string,
+
   onChange: _react.PropTypes.func
 };
 RowInputType1.defaultProps = {
-  unit: 'px'
+  unit: 'px',
+  step: 1
 };
 exports.default = RowInputType1;
 //# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\zhn-moleculs\RowInputType1.js.map

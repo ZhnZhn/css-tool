@@ -159,7 +159,7 @@ class InputSlider extends Component {
 
   componentWillReceiveProps(nextProps){
     if (nextProps !== this.props){
-      this.setState({ value : nextProps.initValue });
+      this.setState({ value : nextProps.initValue })
     }
   }
 

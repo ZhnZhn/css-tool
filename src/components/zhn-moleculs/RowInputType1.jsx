@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
+import fnMath from '../../utils/math'
+
 import InputText from '../zhn/InputText'
 import InputSlider from '../zhn/InputSlider'
 
@@ -12,19 +14,29 @@ const STYLE = {
 class RowInputType1 extends Component {
    static propTypes = {
      style: PropTypes.object,
+     styleInput: PropTypes.object,
+
      caption: PropTypes.string,
      initValue: PropTypes.number,
+     min: PropTypes.number,
+     max: PropTypes.number,
+     step: PropTypes.number,
      unit: PropTypes.string,
+
      onChange: PropTypes.func
    }
    static defaultProps = {
-     unit: 'px'
+     unit: 'px',
+     step: 1
    }
 
    constructor(props){
      super()
      this.isOnChange = (typeof props.onChange === 'function')
              ? true : false
+
+     const arr = (''+props.step).split('.')
+     this.stepExp = (arr[1]) ? -1 * arr[1].length : 0
    }
 
  _handleOnChange = (value) => {
@@ -41,7 +53,10 @@ class RowInputType1 extends Component {
 
   _handleChangeText = (value) => {
     const { min, max } = this.props
-        , _value = parseInt(value, 10);
+        , _value = (this.stepExp !== 0)
+            ? fnMath.round10(parseFloat(value), this.stepExp)
+            : parseInt(value, 10);
+
     if ( _value>=min && _value<=max ){
       this.value = _value
       this.sliderComp.setValue(_value)
@@ -50,7 +65,7 @@ class RowInputType1 extends Component {
   }
 
   render(){
-    const { style, caption, initValue, unit, ...rest } = this.props
+    const { style, styleInput, caption, initValue, unit, ...rest } = this.props
     return (
       <div style={style} >
         <label style={{ lineHeight: 1.8 }}>
@@ -58,7 +73,7 @@ class RowInputType1 extends Component {
           <span style={STYLE.RIGHT}>{unit}</span>
           <InputText
              ref={c => this.textComp = c}
-             style={STYLE.RIGHT}
+             style={{ ...STYLE.RIGHT, ...styleInput }}
              initValue={initValue}
              onChange={this._handleChangeText}
           />

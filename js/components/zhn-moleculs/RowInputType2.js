@@ -80,8 +80,10 @@ var RowInputType2 = function (_Component) {
 RowInputType2.propTypes = {
   style: _react.PropTypes.object,
   styleInput: _react.PropTypes.object,
+
   caption: _react.PropTypes.string,
   initValue: _react.PropTypes.string,
+
   onEnter: _react.PropTypes.func
 };
 RowInputType2.defaultProps = {

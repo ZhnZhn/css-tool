@@ -16,8 +16,10 @@ class RowInputType2 extends Component {
   static propTypes = {
     style: PropTypes.object,
     styleInput: PropTypes.object,
+
     caption: PropTypes.string,
     initValue: PropTypes.string,
+
     onEnter: PropTypes.func
   }
   static defaultProps = {
@@ -25,7 +27,11 @@ class RowInputType2 extends Component {
   }
 
   render(){
-    const { style, styleInput, caption, initValue, onEnter } = this.props
+    const {
+            style, styleInput,
+            caption, initValue,
+            onEnter
+          } = this.props
     return (
       <div style={style}>
          <label style={{ ...STYLE.ROOT }}>

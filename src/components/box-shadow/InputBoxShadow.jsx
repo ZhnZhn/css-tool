@@ -11,6 +11,9 @@ const STYLE = {
   },
   BOX_INPUT: {
     color: 'brown'
+  },
+  INPUT_OPACITY : {
+    width: '50px'
   }
 }
 
@@ -151,6 +154,7 @@ class InputBoxShadow extends Component {
         <RowInputType1
            {...inputRows[4]}
            initValue={opacity}
+           styleInput={STYLE.INPUT_OPACITY}
            onChange={this._handleChangeInput.bind(this, 'opacity')}
         />
         <RowInputType3

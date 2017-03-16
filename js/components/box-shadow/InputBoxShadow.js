@@ -39,6 +39,9 @@ var STYLE = {
   },
   BOX_INPUT: {
     color: 'brown'
+  },
+  INPUT_OPACITY: {
+    width: '50px'
   }
 };
 
@@ -158,6 +161,7 @@ var InputBoxShadow = function (_Component) {
         }),
         _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[4], {
           initValue: opacity,
+          styleInput: STYLE.INPUT_OPACITY,
           onChange: this._handleChangeInput.bind(this, 'opacity')
         })),
         _react2.default.createElement(_RowInputType6.default, {
