@@ -24,17 +24,18 @@ module.exports = {
       chunkFilename: "[chunkhash].js"
   },
   resolve: {        
-    modulesDirectories: ['node_modules']    
+    modules: ['node_modules']    
   },
   plugins : [
     new webpack.DefinePlugin({
        'process.env' : {
           'NODE_ENV': JSON.stringify('production')
        }
-    }),
+    }),    
     new webpack.optimize.CommonsChunkPlugin({
       names: ['lib', 'manifest']
-    }),
+    }),   
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
         compress: {
            warnings: false

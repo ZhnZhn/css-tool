@@ -4,17 +4,19 @@ import IconAppLogo from './IconAppLogo'
 import AppLabel from './AppLabel'
 import GitHubLink from './GitHubLink'
 
+const CAPTION = "CSS Tool v0.1.0";
+
 class HeaderBar extends Component {
-  render(){
+  render() {
     return (
       <div className="header" >
         <IconAppLogo
            className="header__icon-app"
-           title="CSS Tool v0.01.0"
+           title={CAPTION}
         />
         <AppLabel
            className="header__label-app"
-           caption="CSS Tool v0.01.0"
+           caption={CAPTION}
         />
         <GitHubLink
           className="header__github-link"

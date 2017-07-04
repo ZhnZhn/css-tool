@@ -30,6 +30,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var CAPTION = "CSS Tool v0.1.0";
+
 var HeaderBar = function (_Component) {
   _inherits(HeaderBar, _Component);
 
@@ -47,11 +49,11 @@ var HeaderBar = function (_Component) {
         { className: 'header' },
         _react2.default.createElement(_IconAppLogo2.default, {
           className: 'header__icon-app',
-          title: 'CSS Tool v0.01.0'
+          title: CAPTION
         }),
         _react2.default.createElement(_AppLabel2.default, {
           className: 'header__label-app',
-          caption: 'CSS Tool v0.01.0'
+          caption: CAPTION
         }),
         _react2.default.createElement(_GitHubLink2.default, {
           className: 'header__github-link',
