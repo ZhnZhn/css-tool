@@ -1,31 +1,30 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _react = require('react');
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _react = _interopRequireDefault(require("react"));
 
 var AppLabel = function AppLabel(_ref) {
   var className = _ref.className,
       style = _ref.style,
       caption = _ref.caption;
-  return _react2.default.createElement(
-    'span',
-    { className: className, style: style },
-    caption
-  );
+  return _react["default"].createElement("span", {
+    className: className,
+    style: style
+  }, caption);
 };
-
+/*
 AppLabel.propTypes = {
-  className: _react.PropTypes.string,
-  style: _react.PropTypes.object,
-  caption: _react.PropTypes.string
-};
+  className: PropTypes.string,
+  style: PropTypes.object,
+  caption: PropTypes.string
+}
+*/
 
-exports.default = AppLabel;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\header\AppLabel.js.map
+
+var _default = AppLabel;
+exports["default"] = _default;
+//# sourceMappingURL=AppLabel.js.map

@@ -1,20 +1,21 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
 var imObj = {
   create: function create(obj) {
-    return _extends({}, obj);
+    return (0, _extends2["default"])({}, obj);
   },
   update: function update(obj, propName, propValue) {
     obj[propName] = propValue;
-    return _extends({}, obj);
+    return (0, _extends2["default"])({}, obj);
   }
 };
-
-exports.default = imObj;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\utils\im-obj.js.map
+var _default = imObj;
+exports["default"] = _default;
+//# sourceMappingURL=im-obj.js.map

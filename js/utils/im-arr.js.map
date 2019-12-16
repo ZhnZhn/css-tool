@@ -1,18 +1,1 @@
-)]}
-{
- "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\utils\\im-arr.js",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\utils\\im-arr.js",
- "sourceRoot": "",
- "names": [
-  "imArr",
-  "insert",
-  "arr",
-  "index",
-  "value",
-  "slice",
-  "update",
-  "remove"
- ],
- "mappings": ";;;;;;;;AACA,IAAMA,QAAQ;AACZC,QADY,oBACqB;AAAA,QAA1BC,GAA0B,uEAAtB,EAAsB;AAAA,QAAlBC,KAAkB,uEAAZ,CAAY;AAAA,QAATC,KAAS,uEAAH,EAAG;;AAC/B,wCACKF,IAAIG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,IAEEC,KAFF,sBAGKF,IAAIG,KAAJ,CAAUF,KAAV,CAHL;AAKD,GAPW;AASZG,QATY,oBASgB;AAAA,QAArBJ,GAAqB,uEAAjB,EAAiB;AAAA,QAAbC,KAAa;AAAA,QAANC,KAAM;;AAC1BF,QAAIC,KAAJ,IAAaC,KAAb;AACA,wCAAWF,GAAX;AACD,GAZW;AAcZK,QAdY,oBAcS;AAAA,QAAdL,GAAc,uEAAV,EAAU;AAAA,QAANC,KAAM;;AACnB,wCACKD,IAAIG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,sBAEKD,IAAIG,KAAJ,CAAUF,QAAM,CAAhB,CAFL;AAID;AAnBW,CAAd;;kBAsBeH,K"
-}
+{"version":3,"sources":["../../src/utils/im-arr.js"],"names":["imArr","insert","arr","index","value","slice","update","remove"],"mappings":";;;;AACA,IAAMA,KAAK,GAAG;AACZC,EAAAA,MADY,kBACLC,GADK,EACGC,KADH,EACYC,KADZ,EACqB;AAAA,QAA1BF,GAA0B;AAA1BA,MAAAA,GAA0B,GAAtB,EAAsB;AAAA;;AAAA,QAAlBC,KAAkB;AAAlBA,MAAAA,KAAkB,GAAZ,CAAY;AAAA;;AAAA,QAATC,KAAS;AAATA,MAAAA,KAAS,GAAH,EAAG;AAAA;;AAC/B,qBACKF,GAAG,CAACG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,GAEEC,KAFF,GAGKF,GAAG,CAACG,KAAJ,CAAUF,KAAV,CAHL;AAKD,GAPW;AASZG,EAAAA,MATY,kBASLJ,GATK,EASGC,KATH,EASUC,KATV,EASgB;AAAA,QAArBF,GAAqB;AAArBA,MAAAA,GAAqB,GAAjB,EAAiB;AAAA;;AAC1BA,IAAAA,GAAG,CAACC,KAAD,CAAH,GAAaC,KAAb;AACA,qBAAWF,GAAX;AACD,GAZW;AAcZK,EAAAA,MAdY,kBAcLL,GAdK,EAcGC,KAdH,EAcS;AAAA,QAAdD,GAAc;AAAdA,MAAAA,GAAc,GAAV,EAAU;AAAA;;AACnB,qBACKA,GAAG,CAACG,KAAJ,CAAU,CAAV,EAAaF,KAAb,CADL,EAEKD,GAAG,CAACG,KAAJ,CAAUF,KAAK,GAAC,CAAhB,CAFL;AAID;AAnBW,CAAd;eAsBeH,K","sourcesContent":["\r\nconst imArr = {\r\n  insert(arr=[], index=0, value={}){\r\n    return [\r\n      ...arr.slice(0, index),\r\n      value,\r\n      ...arr.slice(index)\r\n    ];\r\n  },\r\n\r\n  update(arr=[], index, value){\r\n    arr[index] = value\r\n    return [...arr];\r\n  },\r\n\r\n  remove(arr=[], index){\r\n    return [\r\n      ...arr.slice(0, index),\r\n      ...arr.slice(index+1)\r\n    ];\r\n  }\r\n}\r\n\r\nexport default imArr\r\n"],"file":"im-arr.js"}

@@ -1,0 +1,13 @@
+{
+ "version": 3,
+ "sources": [
+  "../../src/components/Comp.js"
+ ],
+ "file": "../../src/components/Comp.js",
+ "names": [
+  "Comp",
+  "Atoms",
+  "ZhnM"
+ ],
+ "mappings": ";;;;;;;;;AAAA;;AACA;;AAEA,IAAMA,IAAI,iCACLC,aADK,MAELC,cAFK,CAAV;eAKeF,I"
+}

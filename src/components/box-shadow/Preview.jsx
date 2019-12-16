@@ -1,67 +1,59 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 import fn from './helpers/fn'
 
-const STYLE = {
+const S = {
   ROOT : {
     width: '100%',
-    height: '430px',
-    paddingTop: '24px'
+    height: 430,
+    paddingTop: 24
   },
   INNER : {
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '50%',
-    height: '250px',
+    height: 250,
     resize: 'both',
     overflow: 'auto'
   }
-}
+};
 
 
-const _fnToStyle = boxShadows => {
-  const values = boxShadows.map(value => {
-     return fn.toCssValue(value);
-  })
-  return {
-    boxShadow: values.join(',')
-  };
-}
+const _crBoxShadowStyle = boxShadows => ({
+  boxShadow: boxShadows.map(fn.toCssValue).join(',')
+});
 
+const Preview = ({ boxShadows=[], configStyle }) => {
+   const _style = _crBoxShadowStyle(boxShadows)
+   , _rootStyle = { backgroundColor: configStyle.bgColor }
+   , _boxStyle = {
+        backgroundColor: configStyle.boxColor,
+        borderRadius: configStyle.boxBorderRadius
+      };
+   return (
+     <div style={{ ...S.ROOT, ..._rootStyle}}>
+       <div style={{ ...S.INNER, ..._boxStyle, ..._style }} />
+     </div>
+   );
+};
 
-class Preview extends Component {
-  static propTypes = {
-    boxShadows: PropTypes.arrayOf(
-      PropTypes.shape({
-        gLength: PropTypes.number,
-        vLength: PropTypes.number,
-        blurR: PropTypes.number,
-        spreadR: PropTypes.number,
-        opacity: PropTypes.number
-      })
-    ),
-    configStyle: PropTypes.shape({
-      bgColor: PropTypes.string,
-      boxColor: PropTypes.string,
-      borderRadius: PropTypes.string
+/*
+Preview.propTypes = {
+  boxShadows: PropTypes.arrayOf(
+    PropTypes.shape({
+      gLength: PropTypes.number,
+      vLength: PropTypes.number,
+      blurR: PropTypes.number,
+      spreadR: PropTypes.number,
+      opacity: PropTypes.number
     })
-  }
-
-  render(){
-    const { boxShadows, configStyle } = this.props
-        , _style = _fnToStyle(boxShadows)
-        , _rootStyle = { backgroundColor: configStyle.bgColor }
-        , _boxStyle = {
-             backgroundColor: configStyle.boxColor,
-             borderRadius: configStyle.boxBorderRadius
-           };        
-    return (
-      <div style={{ ...STYLE.ROOT, ..._rootStyle}}>
-        <div style={{ ...STYLE.INNER, ..._boxStyle, ..._style }}>
-        </div>
-      </div>
-    )
-  }
+  ),
+  configStyle: PropTypes.shape({
+    bgColor: PropTypes.string,
+    boxColor: PropTypes.string,
+    borderRadius: PropTypes.string
+  })
 }
+*/
 
 export default Preview

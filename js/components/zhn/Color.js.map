@@ -1,11 +1,11 @@
-)]}
 {
  "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\zhn\\Color.jsx",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\zhn\\Color.js",
- "sourceRoot": "",
+ "sources": [
+  "../../../src/components/zhn/Color.js"
+ ],
+ "file": "../../../src/components/zhn/Color.js",
  "names": [
-  "STYLE",
+  "S",
   "ROOT",
   "display",
   "height",
@@ -16,10 +16,7 @@
   "style",
   "value",
   "_style",
-  "backgroundColor",
-  "propTypes",
-  "object",
-  "string"
+  "backgroundColor"
  ],
- "mappings": ";;;;;;;;AAAA;;;;;;AAEA,IAAMA,QAAQ;AACZC,QAAM;AACJC,aAAS,cADL;AAEJC,YAAQ,MAFJ;AAGJC,WAAO,MAHH;AAIJC,kBAAc,KAJV;AAKJC,eAAW;AALP;AADM,CAAd;;AAUA,IAAMC,QAAQ,SAARA,KAAQ,OAAsB;AAAA,MAAnBC,KAAmB,QAAnBA,KAAmB;AAAA,MAAZC,KAAY,QAAZA,KAAY;;AAClC,MAAMC,SAAUD,KAAD,GACJ,EAAEE,iBAAiBF,KAAnB,EADI,GAEJ,IAFX;AAGA,SACE,wCAAM,oBAAWT,MAAMC,IAAjB,EAA0BO,KAA1B,EAAoCE,MAApC,CAAN,GADF;AAID,CARD;;AAUAH,MAAMK,SAAN,GAAkB;AAChBJ,SAAO,iBAAUK,MADD;AAEhBJ,SAAO,iBAAUK;AAFD,CAAlB;;kBAKeP,K"
+ "mappings": ";;;;;;;;;AAAA;;AAEA,IAAMA,CAAC,GAAG;AACRC,EAAAA,IAAI,EAAE;AACJC,IAAAA,OAAO,EAAE,cADL;AAEJC,IAAAA,MAAM,EAAE,EAFJ;AAGJC,IAAAA,KAAK,EAAE,EAHH;AAIJC,IAAAA,YAAY,EAAE,CAJV;AAKJC,IAAAA,SAAS,EAAE;AALP;AADE,CAAV;;AAUA,IAAMC,KAAK,GAAG,SAARA,KAAQ,OAAsB;AAAA,MAAnBC,KAAmB,QAAnBA,KAAmB;AAAA,MAAZC,KAAY,QAAZA,KAAY;;AAClC,MAAMC,MAAM,GAAGD,KAAK,GAChB;AAAEE,IAAAA,eAAe,EAAEF;AAAnB,GADgB,GAEhB,IAFJ;;AAGA,SACE;AAAM,IAAA,KAAK,gCAAMT,CAAC,CAACC,IAAR,MAAiBO,KAAjB,MAA2BE,MAA3B;AAAX,IADF;AAGD,CAPD;AASA;;;;;;;;eAOeH,K"
 }

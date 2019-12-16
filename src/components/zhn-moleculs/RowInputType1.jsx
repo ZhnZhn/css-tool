@@ -1,17 +1,22 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 
 import fnMath from '../../utils/math'
 
-import InputText from '../zhn/InputText'
-import InputSlider from '../zhn/InputSlider'
+import A from '../zhn/A'
 
-const STYLE = {
+const S = {
   RIGHT: {
     float: 'right'
+  },
+  LABEL: {
+     lineHeight: 1.8
   }
-}
+};
+
+const _isFn = fn => typeof fn === 'function';
 
 class RowInputType1 extends Component {
+  /*
    static propTypes = {
      style: PropTypes.object,
      styleInput: PropTypes.object,
@@ -25,18 +30,19 @@ class RowInputType1 extends Component {
 
      onChange: PropTypes.func
    }
+   */
+
    static defaultProps = {
      unit: 'px',
      step: 1
    }
 
    constructor(props){
-     super()
-     this.isOnChange = (typeof props.onChange === 'function')
-             ? true : false
+     super(props)
+     this.isOnChange = _isFn(props.onChange)
 
-     const arr = (''+props.step).split('.')
-     this.stepExp = (arr[1]) ? -1 * arr[1].length : 0
+     const _arr = (''+props.step).split('.');
+     this.stepExp = _arr[1] ? -1 * _arr[1].length : 0
    }
 
  _handleOnChange = (value) => {
@@ -53,9 +59,9 @@ class RowInputType1 extends Component {
 
   _handleChangeText = (value) => {
     const { min, max } = this.props
-        , _value = (this.stepExp !== 0)
-            ? fnMath.round10(parseFloat(value), this.stepExp)
-            : parseInt(value, 10);
+    , _value = this.stepExp !== 0
+        ? fnMath.round10(parseFloat(value), this.stepExp)
+        : parseInt(value, 10);
 
     if ( _value>=min && _value<=max ){
       this.value = _value
@@ -64,23 +70,27 @@ class RowInputType1 extends Component {
     }
   }
 
+  _refTextComp = c => this.textComp = c
+  _refSliderComp = c => this.sliderComp = c
+
   render(){
     const { style, styleInput, caption, initValue, unit, ...rest } = this.props
     return (
       <div style={style} >
-        <label style={{ lineHeight: 1.8 }}>
+        {/*eslint-disable jsx-a11y/label-has-for*/}
+        <label style={S.LABEL}>
           <span>{caption}</span>
-          <span style={STYLE.RIGHT}>{unit}</span>
-          <InputText
-             ref={c => this.textComp = c}
-             style={{ ...STYLE.RIGHT, ...styleInput }}
+          <span style={S.RIGHT}>{unit}</span>
+          <A.InputText
+             ref={this._refTextComp}
+             style={{ ...S.RIGHT, ...styleInput }}
              initValue={initValue}
              onChange={this._handleChangeText}
           />
         </label>
-
-        <InputSlider
-           ref={c => this.sliderComp = c}
+        {/*eslint-enable jsx-a11y/label-has-for*/}
+        <A.InputSlider
+           ref={this._refSliderComp}
            {...rest}
            initValue={initValue}
            onChange={this._handleChangeSlider}

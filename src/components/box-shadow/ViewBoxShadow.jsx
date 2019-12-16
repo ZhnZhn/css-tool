@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component  } from 'react'
 
 import CssValue from './CssValue'
 import Preview from './Preview'
 
 class ViewBoxShadow extends Component {
+  /*
   static propTypes = {
     style: PropTypes.object,
     boxShadows: PropTypes.arrayOf(PropTypes.object),
@@ -13,6 +14,7 @@ class ViewBoxShadow extends Component {
     onEdit: PropTypes.func,
     onRemove: PropTypes.func
   }
+  */
 
   shouldComponentUpdate(nextProps, nextState){
     if (this.props !== nextProps &&

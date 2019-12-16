@@ -1,16 +1,14 @@
-)]}
 {
  "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\header\\GitHubLink.jsx",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\header\\GitHubLink.js",
- "sourceRoot": "",
+ "sources": [
+  "../../../src/components/header/GitHubLink.js"
+ ],
+ "file": "../../../src/components/header/GitHubLink.js",
  "names": [
   "GitHubLink",
   "className",
   "title",
-  "href",
-  "propTypes",
-  "string"
+  "href"
  ],
- "mappings": ";;;;;;AAAA;;;;;;AAEA,IAAMA,aAAa,SAAbA,UAAa;AAAA,MAAGC,SAAH,QAAGA,SAAH;AAAA,MAAcC,KAAd,QAAcA,KAAd;AAAA,MAAqBC,IAArB,QAAqBA,IAArB;AAAA,SACjB;AAAA;AAAA;AACE,iBAAWF,SADb;AAEE,aAAOC,KAFT;AAGE,YAAMC;AAHR;AAKE;AAAA;AAAA,QAAK,SAAQ,WAAb,EAAyB,OAAM,4BAA/B,EAA4D,aAAU,SAAtE,EAAgF,aAAU,SAA1F,EAAoG,mBAAgB,OAApH,EAA4H,qBAAkB,OAA9I;AACE;AAAA;AAAA;AAAA;AAAA,OADF;AAEE,8CAAM,GAAE,yqBAAR;AAFF;AALF,GADiB;AAAA,CAAnB;;AAaAH,WAAWI,SAAX,GAAuB;AACrBH,aAAW,iBAAUI,MADA;AAErBH,SAAO,iBAAUG,MAFI;AAGrBF,QAAM,iBAAUE;AAHK,CAAvB;;kBAOeL,U"
+ "mappings": ";;;;;;;AAAA;;AAEA,IAAMA,UAAU,GAAG,SAAbA,UAAa;AAAA,MAAGC,SAAH,QAAGA,SAAH;AAAA,MAAcC,KAAd,QAAcA,KAAd;AAAA,MAAqBC,IAArB,QAAqBA,IAArB;AAAA,SACjB;AACE,IAAA,SAAS,EAAEF,SADb;AAEE,IAAA,KAAK,EAAEC,KAFT;AAGE,IAAA,IAAI,EAAEC;AAHR,KAKE;AAAK,IAAA,OAAO,EAAC,WAAb;AACK,IAAA,KAAK,EAAC,4BADX;AAEK,IAAA,QAAQ,EAAC,SAFd;AAGK,IAAA,QAAQ,EAAC,SAHd;AAIK,IAAA,cAAc,EAAC,OAJpB;AAKK,IAAA,gBAAgB,EAAC;AALtB,KAOE,6DAPF,EAQE;AAAM,IAAA,CAAC,EAAC;AAAR,IARF,CALF,CADiB;AAAA,CAAnB;AAmBA;;;;;;;;;eAQeH,U"
 }

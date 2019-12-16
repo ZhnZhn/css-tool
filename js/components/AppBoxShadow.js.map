@@ -1,11 +1,11 @@
-)]}
 {
  "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\components\\AppBoxShadow.jsx",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\components\\AppBoxShadow.js",
- "sourceRoot": "",
+ "sources": [
+  "../../src/components/AppBoxShadow.js"
+ ],
+ "file": "../../src/components/AppBoxShadow.js",
  "names": [
   "AppBoxShadow"
  ],
- "mappings": ";;;;;;;;AAAA;;;;AAEA;;;;AACA;;;;;;;;;;;;IAEMA,Y;;;;;;;;;;;6BACI;AACN,aACE;AAAA;AAAA;AACE,gEADF;AAEE;AAFF,OADF;AAMD;;;;;;kBAGYA,Y"
+ "mappings": ";;;;;;;AAAA;;AAEA;;AACA;;AAEA,IAAMA,YAAY,GAAG,SAAfA,YAAe;AAAA,SACnB,6CACE,gCAAC,qBAAD,OADF,EAEE,gCAAC,gBAAD,OAFF,CADmB;AAAA,CAArB;;eAOeA,Y"
 }

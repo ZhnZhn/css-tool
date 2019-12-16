@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 const S = {
   INPUT_TEXT : {
@@ -17,31 +17,32 @@ const S = {
     marginRight : '5px',
     boxShadow: '0 2px 2px 0 rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1)'
   }
-}
+};
 
+const _isFn = fn => typeof fn === 'function';
 
 class InputText extends Component {
+  /*
   static propTypes = {
     style: PropTypes.object,
     initValue: PropTypes.string,
     onChange: PropTypes.func
   }
+  */
   static defaultProps = {
     initValue : ''
   }
 
   constructor(props){
-    super()
-    this.isOnChange = (typeof props.onChange === 'function')
-           ? true : false
-    this.isOnEnter = (typeof props.onEnter === 'function')
-           ? true : false
+    super(props)
+    this.isOnChange = _isFn(props.onChange)
+    this.isOnEnter = _isFn(props.onEnter)
     this.state = {
-      value : props.initValue
+      value: props.initValue
     }
   }
 
-  componentWillReceiveProps(nextProps){
+  UNSAFE_componentWillReceiveProps(nextProps){
     if (nextProps !== this.props){
       this.setState({ value : nextProps.initValue });
     }
@@ -64,19 +65,19 @@ class InputText extends Component {
   }
 
   render(){
-    const {style} = this.props
-        , {value} = this.state;
+    const { style } = this.props
+        , { value } = this.state;
     return (
-      <input        
+      <input
         name="text"
         autoComplete="new-text"
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck={false}
         type="text"
-        style={Object.assign({}, S.INPUT_TEXT, style)}
+        style={{ ...S.INPUT_TEXT, ...style}}
         value={value}
-        translate={false}
+        translate="false"
         onChange={this._handleInputChange}
         onKeyDown={this._handleKeyDown}
       />

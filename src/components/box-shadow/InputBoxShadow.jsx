@@ -1,10 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 
-import RowInputType1 from '../zhn-moleculs/RowInputType1'
-import RowInputType2 from '../zhn-moleculs/RowInputType2'
-import RowInputType3 from '../zhn-moleculs/RowInputType3'
+import A from '../Comp'
 
-const STYLE = {
+const S = {
   ROW_INPUT: {
     width: '100%',
     margin: '16px 16px'
@@ -15,29 +13,30 @@ const STYLE = {
   INPUT_OPACITY : {
     width: '50px'
   }
-}
+};
 
 const inputRows = [
   {
-    style : STYLE.ROW_INPUT, caption: "Horizontal Length",
+    style : S.ROW_INPUT, caption: "Horizontal Length",
     min: -30, max: 30, step:1, unit: 'px'
   },{
-    style : STYLE.ROW_INPUT, caption: "Vertical Length",
+    style : S.ROW_INPUT, caption: "Vertical Length",
     min: -30, max: 30, step:1, unit: 'px'
   },{
-    style : STYLE.ROW_INPUT, caption: "Blur Radius",
+    style : S.ROW_INPUT, caption: "Blur Radius",
     min: 0, max: 20, step:1, unit: 'px'
   },{
-    style : STYLE.ROW_INPUT, caption: "Spread Radius",
+    style : S.ROW_INPUT, caption: "Spread Radius",
     min: -10, max: 20, step:1, unit: 'px'
   },{
-    style : STYLE.ROW_INPUT, caption: "Opacity",
+    style : S.ROW_INPUT, caption: "Opacity",
     min: 0, max: 1, step: 0.01, unit: ''
   }
 ]
 
 
 class InputBoxShadow extends Component {
+  /*
    static propTypes = {
       initValue: PropTypes.shape({
         vLength: PropTypes.number,
@@ -50,13 +49,15 @@ class InputBoxShadow extends Component {
       onChange: PropTypes.func,
       onEnter: PropTypes.func
    }
+   */
+
    static defaultProps = {
      onChange: () => {},
      onEnter: () => {}
    }
 
   constructor(props){
-    super()
+    super(props)
     const { vLength, gLength, blurR, spreadR, color, opacity } = props.initValue
     this.vLength = vLength
     this.gLength = gLength
@@ -77,7 +78,7 @@ class InputBoxShadow extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps){
+  UNSAFE_componentWillReceiveProps(nextProps){
     if (this.props !== nextProps &&
         this.props.initValue !== nextProps.initValue ) {
           const { vLength, gLength, blurR, spreadR, color, opacity } = nextProps.initValue
@@ -117,7 +118,7 @@ class InputBoxShadow extends Component {
         , {
             vLength, gLength,
             blurR, spreadR,
-            opacity
+            opacity, color
           } = initValue
         , {
             bgColor,
@@ -125,55 +126,55 @@ class InputBoxShadow extends Component {
           } = configStyle
     return (
       <div style={style}>
-        <RowInputType1
+        <A.RowInputType1
            {...inputRows[0]}
             initValue={vLength}
             onChange={this._handleChangeInput.bind(this, 'vLength')}
         />
-        <RowInputType1
+        <A.RowInputType1
            {...inputRows[1]}
            initValue={gLength}
            onChange={this._handleChangeInput.bind(this, 'gLength')}
         />
-        <RowInputType1
+        <A.RowInputType1
            {...inputRows[2]}
            initValue={blurR}
            onChange={this._handleChangeInput.bind(this, 'blurR')}
         />
-        <RowInputType1
+        <A.RowInputType1
            {...inputRows[3]}
            initValue={spreadR}
            onChange={this._handleChangeInput.bind(this, 'spreadR')}
         />
-        <RowInputType3
-           style={STYLE.ROW_INPUT}
+        <A.RowInputType3
+           style={S.ROW_INPUT}
            caption="Shadow Color"
-           initValue="#000000"
+           initValue={color}
            onEnter={this._handleEnterColor}
         />
-        <RowInputType1
+        <A.RowInputType1
            {...inputRows[4]}
            initValue={opacity}
-           styleInput={STYLE.INPUT_OPACITY}
+           styleInput={S.INPUT_OPACITY}
            onChange={this._handleChangeInput.bind(this, 'opacity')}
         />
-        <RowInputType3
-           style={STYLE.ROW_INPUT}
-           styleInput={STYLE.BOX_INPUT}
+        <A.RowInputType3
+           style={S.ROW_INPUT}
+           styleInput={S.BOX_INPUT}
            caption="Wrapper Background"
            initValue={bgColor}
            onEnter={this._handleEnter.bind(this, 'bgColor')}
         />
-        <RowInputType3
-           style={STYLE.ROW_INPUT}
-           styleInput={STYLE.BOX_INPUT}
+        <A.RowInputType3
+           style={S.ROW_INPUT}
+           styleInput={S.BOX_INPUT}
            caption="Box Background"
            initValue={boxColor}
            onEnter={this._handleEnter.bind(this, 'boxColor')}
         />
-        <RowInputType2
-           style={STYLE.ROW_INPUT}
-           styleInput={STYLE.BOX_INPUT}
+        <A.RowInputType2
+           style={S.ROW_INPUT}
+           styleInput={S.BOX_INPUT}
            caption="Box Border Radius"
            initValue={boxBorderRadius}
            onEnter={this._handleEnter.bind(this, 'boxBorderRadius')}

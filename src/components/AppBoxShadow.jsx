@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import HeaderBar from './header/HeaderBar'
 import Page from './box-shadow/Page'
 
-class AppBoxShadow extends Component {
-  render(){
-    return (
-      <div>
-        <HeaderBar />
-        <Page />
-      </div>
-    );
-  }
-}
+const AppBoxShadow = () => (
+  <div>
+    <HeaderBar />
+    <Page />
+  </div>
+);
 
 export default AppBoxShadow

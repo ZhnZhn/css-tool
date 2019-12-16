@@ -1,34 +1,39 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
+exports.__esModule = true;
+exports["default"] = void 0;
 var imArr = {
-  insert: function insert() {
-    var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var value = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  insert: function insert(arr, index, value) {
+    if (arr === void 0) {
+      arr = [];
+    }
 
-    return [].concat(_toConsumableArray(arr.slice(0, index)), [value], _toConsumableArray(arr.slice(index)));
+    if (index === void 0) {
+      index = 0;
+    }
+
+    if (value === void 0) {
+      value = {};
+    }
+
+    return [].concat(arr.slice(0, index), [value], arr.slice(index));
   },
-  update: function update() {
-    var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var index = arguments[1];
-    var value = arguments[2];
+  update: function update(arr, index, value) {
+    if (arr === void 0) {
+      arr = [];
+    }
 
     arr[index] = value;
-    return [].concat(_toConsumableArray(arr));
+    return [].concat(arr);
   },
-  remove: function remove() {
-    var arr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var index = arguments[1];
+  remove: function remove(arr, index) {
+    if (arr === void 0) {
+      arr = [];
+    }
 
-    return [].concat(_toConsumableArray(arr.slice(0, index)), _toConsumableArray(arr.slice(index + 1)));
+    return [].concat(arr.slice(0, index), arr.slice(index + 1));
   }
 };
-
-exports.default = imArr;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\utils\im-arr.js.map
+var _default = imArr;
+exports["default"] = _default;
+//# sourceMappingURL=im-arr.js.map

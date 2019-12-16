@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 import RaisedButton from '../zhn/RaisedButton'
 import fn from './helpers/fn'
 
-const STYLE = {
+const S = {
   ROOT: {
-    paddingTop: '16px'
+    paddingTop: 16
   },
   TITLE: {
     color: '#80c040',
@@ -13,79 +13,79 @@ const STYLE = {
     fontWeight: 'bold'
   },
   VALUE: {
+    color: 'darkslateblue',
     fontSize: '20px',
-    color: 'darkslateblue'
   },
   EDITED: {
     borderBottom: '2px solid green'
   },
   BT: {
-    width: '70px'
+    width: 70
   },
   BT_R: {
-     width: '100px'
+     width: 100
   }
 }
 
-class CssValue extends Component {
-  static propTypes = {
-    boxShadows: PropTypes.arrayOf(
-      PropTypes.shape({
-        gLength: PropTypes.number,
-        vLength: PropTypes.number,
-        blurR: PropTypes.number,
-        spreadR: PropTypes.number,
-        opacity: PropTypes.number
-      })
-    ),
-    currentIndex: PropTypes.number,
-    onAdd: PropTypes.func,
-    onEdit: PropTypes.func,
-    onRemove: PropTypes.func
-  }
 
-  _renderValues(options){
-     const { boxShadows=[], currentIndex, onAdd, onEdit, onRemove } = options
-     const max = boxShadows.length-1
-     return boxShadows.map((item, index) => {
-        const _sufix = (index !== max) ? "," : ";"
-            , _styleValue = (index === currentIndex)
-                 ? STYLE.EDITED
-                 : null
-        return (
-          <div>
-            <span style={{...STYLE.VALUE, ..._styleValue }}>
-              {`${fn.toCssValue(item)}${_sufix}`}
-            </span>
+const _renderValues = options => {
+  const { boxShadows=[], currentIndex, onAdd, onEdit, onRemove } = options
+  const max = boxShadows.length-1
+  return boxShadows.map((item, index) => {
+     const _sufix = index !== max ? "," : ";"
+     , _styleValue = index === currentIndex
+           ? S.EDITED
+           : null;
+     return (
+       <div key={index} >
+         <span style={{...S.VALUE, ..._styleValue }}>
+           {`${fn.toCssValue(item)}${_sufix}`}
+         </span>
 
-            <RaisedButton
-              style={STYLE.BT}
-              caption="EDIT"
-              onClick={onEdit.bind(null, index)}
-            />
-            <RaisedButton
-              style={STYLE.BT}
-              caption="ADD"
-              onClick={onAdd.bind(null, index)}
-            />
-            <RaisedButton
-              style={STYLE.BT_R}
-              caption="REMOVE"
-              onClick={onRemove.bind(null, index)}
-            />
-          </div>
-        )
-     })
-  }
+         <RaisedButton
+           style={S.BT}
+           caption="EDIT"
+           onClick={onEdit.bind(null, index)}
+         />
+         <RaisedButton
+           style={S.BT}
+           caption="ADD"
+           onClick={onAdd.bind(null, index)}
+         />
+         {index !== 0  && <RaisedButton
+            style={S.BT_R}
+            caption="REMOVE"
+            onClick={onRemove.bind(null, index)}
+          />
+         }
+       </div>
+     )
+  })
+};
 
-  render(){
-    return (
-      <div style={STYLE.ROOT}>
-        <div style={STYLE.TITLE}>BOX-SHADOW:</div>
-        {this._renderValues(this.props)}
-      </div>
-    );
-  }
+const CssValue = props => (
+  <div style={S.ROOT}>
+    <div style={S.TITLE}>BOX-SHADOW:</div>
+    {_renderValues(props)}
+  </div>
+);
+
+/*
+CssValue.propTypes = {
+  boxShadows: PropTypes.arrayOf(
+    PropTypes.shape({
+      gLength: PropTypes.number,
+      vLength: PropTypes.number,
+      blurR: PropTypes.number,
+      spreadR: PropTypes.number,
+      opacity: PropTypes.number
+    })
+  ),
+  currentIndex: PropTypes.number,
+  onAdd: PropTypes.func,
+  onEdit: PropTypes.func,
+  onRemove: PropTypes.func
 }
+*/
 
 export default CssValue

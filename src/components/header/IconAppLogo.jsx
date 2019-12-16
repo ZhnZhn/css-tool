@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 const IconAppLogo = ({ className, title }) => {
   return (
@@ -7,11 +7,11 @@ const IconAppLogo = ({ className, title }) => {
        title={title}
     >
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
-         fill-rule="evenodd"
-         clip-rule="evenodd"
-         stroke-linejoin="round"
-         stroke-miterlimit="2"
-         stroke-width="2"
+         fillRule="evenodd"
+         clipRule="evenodd"
+         strokeLinejoin="round"
+         strokeMiterlimit="2"
+         strokeWidth="2"
     >
     <title>{title}</title>
     <rect
@@ -49,9 +49,11 @@ const IconAppLogo = ({ className, title }) => {
   );
 }
 
+/*
 IconAppLogo.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string
 }
+*/
 
 export default IconAppLogo

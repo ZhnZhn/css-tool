@@ -1,12 +1,1 @@
-)]}
-{
- "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\index.jsx",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\index.js",
- "sourceRoot": "",
- "names": [
-  "document",
-  "getElementById"
- ],
- "mappings": ";;AAAA;;;;AACA;;AAEA;;;;;;AAEA,sBAAO,2DAAP,EAAyBA,SAASC,cAAT,CAAwB,KAAxB,CAAzB"
-}
+{"version":3,"sources":["../src/index.jsx"],"names":["document","getElementById"],"mappings":";;;;AAAA;;AACA;;AAEA;;AAEA,sBAAO,gCAAC,wBAAD,OAAP,EAAyBA,QAAQ,CAACC,cAAT,CAAwB,KAAxB,CAAzB","sourcesContent":["import React from 'react'\r\nimport { render } from 'react-dom'\r\n\r\nimport AppBoxShadow from './components/AppBoxShadow'\r\n\r\nrender(<AppBoxShadow />, document.getElementById('app')) \r\n"],"file":"index.js"}

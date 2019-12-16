@@ -1,30 +1,22 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _react = require('react');
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react2 = _interopRequireDefault(_react);
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _react = _interopRequireWildcard(require("react"));
 
 /*
  Mostly from
  https://github.com/callemall/material-ui/blob/master/src/Slider/Slider.js
 */
-
 var S = {
   ROOT: {
     userSelect: 'none',
@@ -115,19 +107,23 @@ var S = {
   }
 };
 
+var _isFn = function _isFn(fn) {
+  return typeof fn === 'function';
+};
+
 var _round10 = function _round10(value, exp) {
   value = +value;
-  exp = +exp;
-  // If the value is not a number or the exp is not an integer...
+  exp = +exp; // If the value is not a number or the exp is not an integer...
+
   if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
     return NaN;
-  }
-  // Shift
-  value = value.toString().split('e');
-  value = Math.round(+(value[0] + 'e' + (value[1] ? +value[1] - exp : -exp)));
-  // Shift back
-  value = value.toString().split('e');
+  } // Shift
 
+
+  value = value.toString().split('e');
+  value = Math.round(+(value[0] + 'e' + (value[1] ? +value[1] - exp : -exp))); // Shift back
+
+  value = value.toString().split('e');
   return +(value[0] + 'e' + (value[1] ? +value[1] + exp : exp));
 };
 
@@ -137,29 +133,51 @@ var _fnAddStep = function _fnAddStep(value, step, exp) {
 
 var _fnToPercent = function _fnToPercent(value, min, max) {
   var _percent = (value - min) / (max - min);
+
   return isNaN(_percent) ? 0 : _percent * 100;
 };
+
 var _fnWidthCalc = function _fnWidthCalc(percent) {
-  return { width: 'calc(' + percent + '%)' };
+  return {
+    width: "calc(" + percent + "%)"
+  };
 };
+
 var _fnLeftPercent = function _fnLeftPercent(percent) {
-  return { left: percent + '%' };
+  return {
+    left: percent + "%"
+  };
 };
 
-var InputSlider = function (_Component) {
-  _inherits(InputSlider, _Component);
+var InputSlider =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inheritsLoose2["default"])(InputSlider, _Component);
 
+  /*
+  static propTypes = {
+    initValue: PropTypes.number,
+    step : PropTypes.number,
+    min : PropTypes.number,
+    max : PropTypes.number,
+    onChange : PropTypes.func
+  }
+  */
   function InputSlider(props) {
-    _classCallCheck(this, InputSlider);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, (InputSlider.__proto__ || Object.getPrototypeOf(InputSlider)).call(this));
+    _this = _Component.call(this, props) || this;
 
     _this._handleMouseEnter = function () {
-      _this.setState({ hovered: true });
+      _this.setState({
+        hovered: true
+      });
     };
 
     _this._handleMouseLeave = function () {
-      _this.setState({ hovered: false });
+      _this.setState({
+        hovered: false
+      });
     };
 
     _this._handleMouseDown = function (event) {
@@ -167,6 +185,7 @@ var InputSlider = function (_Component) {
       event.preventDefault();
       document.addEventListener('mousemove', _this._handleDragMouseMove);
       document.addEventListener('mouseup', _this._handleDragMouseUp);
+
       _this.setState({
         dragged: true
       });
@@ -179,17 +198,22 @@ var InputSlider = function (_Component) {
     _this._handleDragMouseUp = function () {
       document.removeEventListener('mousemove', _this._handleDragMouseMove);
       document.removeEventListener('mouseup', _this._handleDragMouseUp);
+
       _this.setState({
         dragged: false
       });
     };
 
     _this._handleFocusTrack = function () {
-      _this.setState({ hovered: true });
+      _this.setState({
+        hovered: true
+      });
     };
 
     _this._handleBlurTrack = function () {
-      _this.setState({ hovered: false });
+      _this.setState({
+        hovered: false
+      });
     };
 
     _this._handleKeyDownTrack = function (event) {
@@ -203,10 +227,13 @@ var InputSlider = function (_Component) {
 
             if (value > min) {
               var _value = _fnAddStep(value, -step, _this.stepExp);
+
               _this._setValue(event, _value);
             }
+
             break;
           }
+
         case 39:
           {
             var _this$props2 = _this.props,
@@ -216,10 +243,13 @@ var InputSlider = function (_Component) {
 
             if (_value2 < max) {
               var _value3 = _fnAddStep(_value2, _step, _this.stepExp);
+
               _this._setValue(event, _value3);
             }
+
             break;
           }
+
         default:
           return;
       }
@@ -229,16 +259,22 @@ var InputSlider = function (_Component) {
       if (_this.dragRunning) {
         return;
       }
+
       _this.dragRunning = true;
       requestAnimationFrame(function () {
         _this.dragRunning = false;
+
         var position = event.clientX - _this._calcTrackOffset();
+
         _this._setValueFromPosition(event, position);
       });
     };
 
     _this._setValue = function (event, value) {
-      _this.setState({ value: value });
+      _this.setState({
+        value: value
+      });
+
       if (_this.isOnChange) {
         _this.props.onChange(event, value);
       }
@@ -250,6 +286,7 @@ var InputSlider = function (_Component) {
 
     _this._setValueFromPosition = function (event, position) {
       var positionMax = _this.trackComp['clientWidth'];
+
       if (position < 0) {
         position = 0;
       } else if (position > positionMax) {
@@ -260,8 +297,7 @@ var InputSlider = function (_Component) {
           step = _this$props3.step,
           min = _this$props3.min,
           max = _this$props3.max;
-
-      var value = void 0;
+      var value;
       value = position / positionMax * (max - min);
       value = Math.round(value / step) * step + min;
       value = parseFloat(value.toFixed(5));
@@ -277,10 +313,13 @@ var InputSlider = function (_Component) {
       }
     };
 
-    _this.isOnChange = typeof props.onChange === 'function' ? true : false;
+    _this._refTrackComp = function (comp) {
+      return _this.trackComp = comp;
+    };
+
+    _this.isOnChange = _isFn(props.onChange);
     var arr = ('' + props.step).split('.');
     _this.stepExp = arr[1] ? -1 * arr[1].length : 0;
-
     _this.state = {
       hovered: false,
       dragged: false,
@@ -289,101 +328,81 @@ var InputSlider = function (_Component) {
     return _this;
   }
 
-  _createClass(InputSlider, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps !== this.props) {
-        this.setState({ value: nextProps.initValue });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+  var _proto = InputSlider.prototype;
 
-      var _props = this.props,
-          step = _props.step,
-          min = _props.min,
-          max = _props.max,
-          _state = this.state,
-          hovered = _state.hovered,
-          dragged = _state.dragged,
-          value = _state.value,
-          _lineAfterStyle = hovered ? _extends({}, S.LINE_AFTER, S.LINE_HOVERED) : S.LINE_AFTER,
-          _circleStyle = dragged ? S.CIRCLE_DRAGGED : null,
-          _emberStyle = dragged ? S.EMBER : null,
-          _circleInnerEl = hovered || dragged ? _react2.default.createElement('div', { style: _extends({}, S.CIRCLE_INNER_EL, _emberStyle) }) : null,
-          _percent = _fnToPercent(value, min, max),
-          _widthBeforeStyle = _fnWidthCalc(_percent),
-          _widthAfterStyle = _fnWidthCalc(100 - _percent),
-          _leftStyle = _fnLeftPercent(_percent);
+  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      this.setState({
+        value: nextProps.initValue
+      });
+    }
+  };
 
-      return _react2.default.createElement(
-        'div',
-        { style: S.ROOT,
-          onMouseDown: this._handleMouseDown,
-          onMouseEnter: this._handleMouseEnter,
-          onMouseLeave: this._handleMouseLeave
-        },
-        _react2.default.createElement(
-          'div',
-          {
-            ref: function ref(comp) {
-              return _this2.trackComp = comp;
-            },
-            tabIndex: '0',
-            style: S.ROOT_LINE,
-            onKeyDown: this._handleKeyDownTrack,
-            onFocus: this._handleFocusTrack,
-            onBlur: this._handleBlurTrack
-          },
-          _react2.default.createElement('div', { style: _extends({}, S.LINE_BEFORE, _widthBeforeStyle) }),
-          _react2.default.createElement('div', { style: _extends({}, _lineAfterStyle, _widthAfterStyle) }),
-          _react2.default.createElement(
-            'div',
-            {
-              //tabIndex={0}
-              style: _extends({}, S.ROOT_CIRCLE, _circleStyle, _leftStyle)
-            },
-            _react2.default.createElement(
-              'div',
-              { style: _extends({}, S.CIRCLE_INNER, _circleStyle) },
-              _circleInnerEl
-            )
-          ),
-          _react2.default.createElement('input', {
-            type: 'hidden',
-            step: step,
-            min: min,
-            max: max,
-            value: value,
-            required: true
-          })
-        )
-      );
-    }
-  }, {
-    key: 'setValue',
-    value: function setValue(value) {
-      this.setState({ value: value });
-    }
-  }]);
+  _proto.render = function render() {
+    var _this$props4 = this.props,
+        step = _this$props4.step,
+        min = _this$props4.min,
+        max = _this$props4.max,
+        _this$state = this.state,
+        hovered = _this$state.hovered,
+        dragged = _this$state.dragged,
+        value = _this$state.value,
+        _lineAfterStyle = hovered ? (0, _extends2["default"])({}, S.LINE_AFTER, {}, S.LINE_HOVERED) : S.LINE_AFTER,
+        _circleStyle = dragged ? S.CIRCLE_DRAGGED : null,
+        _emberStyle = dragged ? S.EMBER : null,
+        _percent = _fnToPercent(value, min, max),
+        _widthBeforeStyle = _fnWidthCalc(_percent),
+        _widthAfterStyle = _fnWidthCalc(100 - _percent),
+        _leftStyle = _fnLeftPercent(_percent);
+
+    return _react["default"].createElement("div", {
+      style: S.ROOT,
+      onMouseDown: this._handleMouseDown,
+      onMouseEnter: this._handleMouseEnter,
+      onMouseLeave: this._handleMouseLeave
+    }, _react["default"].createElement("div", {
+      ref: this._refTrackComp,
+      tabIndex: "0",
+      style: S.ROOT_LINE,
+      onKeyDown: this._handleKeyDownTrack,
+      onFocus: this._handleFocusTrack,
+      onBlur: this._handleBlurTrack
+    }, _react["default"].createElement("div", {
+      style: (0, _extends2["default"])({}, S.LINE_BEFORE, {}, _widthBeforeStyle)
+    }), _react["default"].createElement("div", {
+      style: (0, _extends2["default"])({}, _lineAfterStyle, {}, _widthAfterStyle)
+    }), _react["default"].createElement("div", {
+      //tabIndex={0}
+      style: (0, _extends2["default"])({}, S.ROOT_CIRCLE, {}, _circleStyle, {}, _leftStyle)
+    }, _react["default"].createElement("div", {
+      style: (0, _extends2["default"])({}, S.CIRCLE_INNER, {}, _circleStyle)
+    }, (hovered || dragged) && _react["default"].createElement("div", {
+      style: (0, _extends2["default"])({}, S.CIRCLE_INNER_EL, {}, _emberStyle)
+    }))), _react["default"].createElement("input", {
+      type: "hidden",
+      step: step,
+      min: min,
+      max: max,
+      value: value,
+      required: true
+    })));
+  };
+
+  _proto.setValue = function setValue(value) {
+    this.setState({
+      value: value
+    });
+  };
 
   return InputSlider;
 }(_react.Component);
 
-InputSlider.propTypes = {
-  initValue: _react.PropTypes.number,
-  step: _react.PropTypes.number,
-  min: _react.PropTypes.number,
-  max: _react.PropTypes.number,
-  onChange: _react.PropTypes.func
-};
 InputSlider.defaultProps = {
   initValue: 4,
   min: 0,
   max: 20,
   step: 1
 };
-exports.default = InputSlider;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\zhn\InputSlider.js.map
+var _default = InputSlider;
+exports["default"] = _default;
+//# sourceMappingURL=InputSlider.js.map

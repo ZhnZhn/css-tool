@@ -1,52 +1,59 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _react = require('react');
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react2 = _interopRequireDefault(_react);
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
 
-var _math = require('../../utils/math');
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _math2 = _interopRequireDefault(_math);
+var _react = _interopRequireWildcard(require("react"));
 
-var _InputText = require('../zhn/InputText');
+var _math = _interopRequireDefault(require("../../utils/math"));
 
-var _InputText2 = _interopRequireDefault(_InputText);
+var _A = _interopRequireDefault(require("../zhn/A"));
 
-var _InputSlider = require('../zhn/InputSlider');
-
-var _InputSlider2 = _interopRequireDefault(_InputSlider);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var STYLE = {
+var S = {
   RIGHT: {
-    float: 'right'
+    "float": 'right'
+  },
+  LABEL: {
+    lineHeight: 1.8
   }
 };
 
-var RowInputType1 = function (_Component) {
-  _inherits(RowInputType1, _Component);
+var _isFn = function _isFn(fn) {
+  return typeof fn === 'function';
+};
 
+var RowInputType1 =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inheritsLoose2["default"])(RowInputType1, _Component);
+
+  /*
+   static propTypes = {
+     style: PropTypes.object,
+     styleInput: PropTypes.object,
+       caption: PropTypes.string,
+     initValue: PropTypes.number,
+     min: PropTypes.number,
+     max: PropTypes.number,
+     step: PropTypes.number,
+     unit: PropTypes.string,
+       onChange: PropTypes.func
+   }
+   */
   function RowInputType1(props) {
-    _classCallCheck(this, RowInputType1);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, (RowInputType1.__proto__ || Object.getPrototypeOf(RowInputType1)).call(this));
+    _this = _Component.call(this, props) || this;
 
     _this._handleOnChange = function (value) {
       if (_this.isOnChange) {
@@ -56,7 +63,9 @@ var RowInputType1 = function (_Component) {
 
     _this._handleChangeSlider = function (event, value) {
       _this.value = value;
+
       _this.textComp.setValue(value);
+
       _this._handleOnChange(value);
     };
 
@@ -64,91 +73,69 @@ var RowInputType1 = function (_Component) {
       var _this$props = _this.props,
           min = _this$props.min,
           max = _this$props.max,
-          _value = _this.stepExp !== 0 ? _math2.default.round10(parseFloat(value), _this.stepExp) : parseInt(value, 10);
+          _value = _this.stepExp !== 0 ? _math["default"].round10(parseFloat(value), _this.stepExp) : parseInt(value, 10);
 
       if (_value >= min && _value <= max) {
         _this.value = _value;
+
         _this.sliderComp.setValue(_value);
+
         _this._handleOnChange(value);
       }
     };
 
-    _this.isOnChange = typeof props.onChange === 'function' ? true : false;
+    _this._refTextComp = function (c) {
+      return _this.textComp = c;
+    };
 
-    var arr = ('' + props.step).split('.');
-    _this.stepExp = arr[1] ? -1 * arr[1].length : 0;
+    _this._refSliderComp = function (c) {
+      return _this.sliderComp = c;
+    };
+
+    _this.isOnChange = _isFn(props.onChange);
+
+    var _arr = ('' + props.step).split('.');
+
+    _this.stepExp = _arr[1] ? -1 * _arr[1].length : 0;
     return _this;
   }
 
-  _createClass(RowInputType1, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+  var _proto = RowInputType1.prototype;
 
-      var _props = this.props,
-          style = _props.style,
-          styleInput = _props.styleInput,
-          caption = _props.caption,
-          initValue = _props.initValue,
-          unit = _props.unit,
-          rest = _objectWithoutProperties(_props, ['style', 'styleInput', 'caption', 'initValue', 'unit']);
-
-      return _react2.default.createElement(
-        'div',
-        { style: style },
-        _react2.default.createElement(
-          'label',
-          { style: { lineHeight: 1.8 } },
-          _react2.default.createElement(
-            'span',
-            null,
-            caption
-          ),
-          _react2.default.createElement(
-            'span',
-            { style: STYLE.RIGHT },
-            unit
-          ),
-          _react2.default.createElement(_InputText2.default, {
-            ref: function ref(c) {
-              return _this2.textComp = c;
-            },
-            style: _extends({}, STYLE.RIGHT, styleInput),
-            initValue: initValue,
-            onChange: this._handleChangeText
-          })
-        ),
-        _react2.default.createElement(_InputSlider2.default, _extends({
-          ref: function ref(c) {
-            return _this2.sliderComp = c;
-          }
-        }, rest, {
-          initValue: initValue,
-          onChange: this._handleChangeSlider
-        }))
-      );
-    }
-  }]);
+  _proto.render = function render() {
+    var _this$props2 = this.props,
+        style = _this$props2.style,
+        styleInput = _this$props2.styleInput,
+        caption = _this$props2.caption,
+        initValue = _this$props2.initValue,
+        unit = _this$props2.unit,
+        rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["style", "styleInput", "caption", "initValue", "unit"]);
+    return _react["default"].createElement("div", {
+      style: style
+    }, _react["default"].createElement("label", {
+      style: S.LABEL
+    }, _react["default"].createElement("span", null, caption), _react["default"].createElement("span", {
+      style: S.RIGHT
+    }, unit), _react["default"].createElement(_A["default"].InputText, {
+      ref: this._refTextComp,
+      style: (0, _extends2["default"])({}, S.RIGHT, {}, styleInput),
+      initValue: initValue,
+      onChange: this._handleChangeText
+    })), _react["default"].createElement(_A["default"].InputSlider, (0, _extends2["default"])({
+      ref: this._refSliderComp
+    }, rest, {
+      initValue: initValue,
+      onChange: this._handleChangeSlider
+    })));
+  };
 
   return RowInputType1;
 }(_react.Component);
 
-RowInputType1.propTypes = {
-  style: _react.PropTypes.object,
-  styleInput: _react.PropTypes.object,
-
-  caption: _react.PropTypes.string,
-  initValue: _react.PropTypes.number,
-  min: _react.PropTypes.number,
-  max: _react.PropTypes.number,
-  step: _react.PropTypes.number,
-  unit: _react.PropTypes.string,
-
-  onChange: _react.PropTypes.func
-};
 RowInputType1.defaultProps = {
   unit: 'px',
   step: 1
 };
-exports.default = RowInputType1;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\zhn-moleculs\RowInputType1.js.map
+var _default = RowInputType1;
+exports["default"] = _default;
+//# sourceMappingURL=RowInputType1.js.map

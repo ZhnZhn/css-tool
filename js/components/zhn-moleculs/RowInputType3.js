@@ -1,65 +1,65 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _react = require('react');
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react2 = _interopRequireDefault(_react);
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _tinycolor = require('tinycolor2');
+var _react = _interopRequireWildcard(require("react"));
 
-var _tinycolor2 = _interopRequireDefault(_tinycolor);
+var _tinycolor = _interopRequireDefault(require("tinycolor2"));
 
-var _Color = require('../zhn/Color');
+var _A = _interopRequireDefault(require("../zhn/A"));
 
-var _Color2 = _interopRequireDefault(_Color);
-
-var _InputText = require('../zhn/InputText');
-
-var _InputText2 = _interopRequireDefault(_InputText);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var STYLE = {
+var S = {
   ROOT: {
     lineHeight: 1.8
   },
   COLOR: {
-    float: 'right',
+    "float": 'right',
     marginLeft: '16px',
     marginRight: '16px'
   },
   TEXT: {
-    float: 'right',
+    "float": 'right',
     width: '80px'
   }
 };
 
-var RowInputType3 = function (_Component) {
-  _inherits(RowInputType3, _Component);
+var RowInputType3 =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inheritsLoose2["default"])(RowInputType3, _Component);
 
+  /*
+  static propTypes = {
+    style: PropTypes.object,
+    styleInput: PropTypes.object,
+    caption: PropTypes.string,
+    initValue: PropTypes.string,
+    onEnter: PropTypes.func
+  }
+  */
   function RowInputType3(props) {
-    _classCallCheck(this, RowInputType3);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, (RowInputType3.__proto__ || Object.getPrototypeOf(RowInputType3)).call(this));
+    _this = _Component.call(this, props) || this;
 
     _this._handleEnter = function (value) {
-      var color = (0, _tinycolor2.default)(value);
+      var color = (0, _tinycolor["default"])(value);
+
       if (color.isValid()) {
         _this.props.onEnter(value, color);
-        _this.setState({ value: color.toHexString() });
+
+        _this.setState({
+          value: color.toHexString()
+        });
       }
     };
 
@@ -69,59 +69,42 @@ var RowInputType3 = function (_Component) {
     return _this;
   }
 
-  _createClass(RowInputType3, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (this.props !== nextProps && this.state.value !== nextProps.initValue) {
-        this.setState({ value: nextProps.initValue });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          style = _props.style,
-          styleInput = _props.styleInput,
-          caption = _props.caption,
-          value = this.state.value;
+  var _proto = RowInputType3.prototype;
 
-      return _react2.default.createElement(
-        'div',
-        { style: style },
-        _react2.default.createElement(
-          'label',
-          { style: _extends({}, STYLE.ROOT) },
-          _react2.default.createElement(
-            'span',
-            null,
-            caption
-          ),
-          _react2.default.createElement(_InputText2.default, {
-            style: _extends({}, STYLE.TEXT, styleInput),
-            initValue: value,
-            onEnter: this._handleEnter
-          }),
-          _react2.default.createElement(_Color2.default, {
-            style: STYLE.COLOR,
-            value: value
-          })
-        )
-      );
+  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps && this.state.value !== nextProps.initValue) {
+      this.setState({
+        value: nextProps.initValue
+      });
     }
-  }]);
+  };
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        style = _this$props.style,
+        styleInput = _this$props.styleInput,
+        caption = _this$props.caption,
+        value = this.state.value;
+    return _react["default"].createElement("div", {
+      style: style
+    }, _react["default"].createElement("label", {
+      style: (0, _extends2["default"])({}, S.ROOT)
+    }, _react["default"].createElement("span", null, caption), _react["default"].createElement(_A["default"].InputText, {
+      style: (0, _extends2["default"])({}, S.TEXT, {}, styleInput),
+      initValue: value,
+      onEnter: this._handleEnter
+    }), _react["default"].createElement(_A["default"].Color, {
+      style: S.COLOR,
+      value: value
+    })));
+  };
 
   return RowInputType3;
 }(_react.Component);
 
-RowInputType3.propTypes = {
-  style: _react.PropTypes.object,
-  styleInput: _react.PropTypes.object,
-  caption: _react.PropTypes.string,
-  initValue: _react.PropTypes.string,
-  onEnter: _react.PropTypes.func
-};
 RowInputType3.defaultProps = {
   onEnter: function onEnter() {}
 };
-exports.default = RowInputType3;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\zhn-moleculs\RowInputType3.js.map
+var _default = RowInputType3;
+exports["default"] = _default;
+//# sourceMappingURL=RowInputType3.js.map

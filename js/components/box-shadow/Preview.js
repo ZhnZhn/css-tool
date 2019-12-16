@@ -1,100 +1,78 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = require('react');
+var _react = _interopRequireDefault(require("react"));
 
-var _react2 = _interopRequireDefault(_react);
+var _fn = _interopRequireDefault(require("./helpers/fn"));
 
-var _fn = require('./helpers/fn');
-
-var _fn2 = _interopRequireDefault(_fn);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var STYLE = {
+var S = {
   ROOT: {
     width: '100%',
-    height: '430px',
-    paddingTop: '24px'
+    height: 430,
+    paddingTop: 24
   },
   INNER: {
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '50%',
-    height: '250px',
+    height: 250,
     resize: 'both',
     overflow: 'auto'
   }
 };
 
-var _fnToStyle = function _fnToStyle(boxShadows) {
-  var values = boxShadows.map(function (value) {
-    return _fn2.default.toCssValue(value);
-  });
+var _crBoxShadowStyle = function _crBoxShadowStyle(boxShadows) {
   return {
-    boxShadow: values.join(',')
+    boxShadow: boxShadows.map(_fn["default"].toCssValue).join(',')
   };
 };
 
-var Preview = function (_Component) {
-  _inherits(Preview, _Component);
+var Preview = function Preview(_ref) {
+  var _ref$boxShadows = _ref.boxShadows,
+      boxShadows = _ref$boxShadows === void 0 ? [] : _ref$boxShadows,
+      configStyle = _ref.configStyle;
 
-  function Preview() {
-    _classCallCheck(this, Preview);
+  var _style = _crBoxShadowStyle(boxShadows),
+      _rootStyle = {
+    backgroundColor: configStyle.bgColor
+  },
+      _boxStyle = {
+    backgroundColor: configStyle.boxColor,
+    borderRadius: configStyle.boxBorderRadius
+  };
 
-    return _possibleConstructorReturn(this, (Preview.__proto__ || Object.getPrototypeOf(Preview)).apply(this, arguments));
-  }
-
-  _createClass(Preview, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          boxShadows = _props.boxShadows,
-          configStyle = _props.configStyle,
-          _style = _fnToStyle(boxShadows),
-          _rootStyle = { backgroundColor: configStyle.bgColor },
-          _boxStyle = {
-        backgroundColor: configStyle.boxColor,
-        borderRadius: configStyle.boxBorderRadius
-      };
-
-      return _react2.default.createElement(
-        'div',
-        { style: _extends({}, STYLE.ROOT, _rootStyle) },
-        _react2.default.createElement('div', { style: _extends({}, STYLE.INNER, _boxStyle, _style) })
-      );
-    }
-  }]);
-
-  return Preview;
-}(_react.Component);
-
-Preview.propTypes = {
-  boxShadows: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-    gLength: _react.PropTypes.number,
-    vLength: _react.PropTypes.number,
-    blurR: _react.PropTypes.number,
-    spreadR: _react.PropTypes.number,
-    opacity: _react.PropTypes.number
-  })),
-  configStyle: _react.PropTypes.shape({
-    bgColor: _react.PropTypes.string,
-    boxColor: _react.PropTypes.string,
-    borderRadius: _react.PropTypes.string
-  })
+  return _react["default"].createElement("div", {
+    style: (0, _extends2["default"])({}, S.ROOT, {}, _rootStyle)
+  }, _react["default"].createElement("div", {
+    style: (0, _extends2["default"])({}, S.INNER, {}, _boxStyle, {}, _style)
+  }));
 };
-exports.default = Preview;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\box-shadow\Preview.js.map
+/*
+Preview.propTypes = {
+  boxShadows: PropTypes.arrayOf(
+    PropTypes.shape({
+      gLength: PropTypes.number,
+      vLength: PropTypes.number,
+      blurR: PropTypes.number,
+      spreadR: PropTypes.number,
+      opacity: PropTypes.number
+    })
+  ),
+  configStyle: PropTypes.shape({
+    bgColor: PropTypes.string,
+    boxColor: PropTypes.string,
+    borderRadius: PropTypes.string
+  })
+}
+*/
+
+
+var _default = Preview;
+exports["default"] = _default;
+//# sourceMappingURL=Preview.js.map

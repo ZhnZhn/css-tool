@@ -1,26 +1,24 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 /*
 mostly from
 http://www.material-ui.com/#/components/raised-button
 */
 
-const STYLE = {
+const S = {
   ROOT: {
+    display: 'inline-block',
     color: 'rgba(0, 0, 0, 0.870588)',
     backgroundColor: 'rgb(255, 255, 255)',
     transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    boxSizing: 'border-box',
     fontFamily: 'Roboto, sans-serif',
     //-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
-    borderRadius: '2px',
-    display: 'inline-block',
-    margin: '12px'
+    borderRadius: 2,
+    margin: 12
   },
   BT: {
-    border: '10px',
-    boxSizing: 'border-box',
+    border: 10,
     display: 'inline-block',
     fontFamily: 'Roboto, sans-serif',
     //-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -62,38 +60,25 @@ const STYLE = {
   }
 }
 
-class RaisedButton extends Component {
-  static propTypes = {
-    style: PropTypes.object,
-    caption: PropTypes.string,
-    onClick: PropTypes.func
-  }
-  static defaultProps = {
-    onClick: () => {}
-  }
-
-  render(){
-    const { style, caption, onClick } = this.props
-    return (
-      <div style={{...STYLE.ROOT, ...style }}>
-      <button
-        type="button"
-        style={STYLE.BT}
-        tabIndex="0"
-      >
-      <div
-        className="bt-div"
-        style={STYLE.DIV}
-        onClick={onClick}
-      >
-        <span style={STYLE.CAPTION}>
-          {caption}
-        </span>
-      </div>
-      </button>
-      </div>
-    );
-  }
-}
+const RaisedButton = ({
+  style, caption,
+  onClick=()=>{}
+}) => (
+  <div style={{...S.ROOT, ...style }}>
+    <button
+      style={S.BT}
+      onClick={onClick}
+    >
+    <div
+      className="bt-div"
+      style={S.DIV}
+    >
+      <span style={S.CAPTION}>
+        {caption}
+      </span>
+    </div>
+    </button>
+  </div>
+);
 
 export default RaisedButton

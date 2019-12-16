@@ -1,38 +1,21 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _react = require('react');
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react2 = _interopRequireDefault(_react);
+var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _RowInputType = require('../zhn-moleculs/RowInputType1');
+var _react = _interopRequireWildcard(require("react"));
 
-var _RowInputType2 = _interopRequireDefault(_RowInputType);
+var _Comp = _interopRequireDefault(require("../Comp"));
 
-var _RowInputType3 = require('../zhn-moleculs/RowInputType2');
-
-var _RowInputType4 = _interopRequireDefault(_RowInputType3);
-
-var _RowInputType5 = require('../zhn-moleculs/RowInputType3');
-
-var _RowInputType6 = _interopRequireDefault(_RowInputType5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var STYLE = {
+var S = {
   ROW_INPUT: {
     width: '100%',
     margin: '16px 16px'
@@ -44,199 +27,204 @@ var STYLE = {
     width: '50px'
   }
 };
-
 var inputRows = [{
-  style: STYLE.ROW_INPUT, caption: "Horizontal Length",
-  min: -30, max: 30, step: 1, unit: 'px'
+  style: S.ROW_INPUT,
+  caption: "Horizontal Length",
+  min: -30,
+  max: 30,
+  step: 1,
+  unit: 'px'
 }, {
-  style: STYLE.ROW_INPUT, caption: "Vertical Length",
-  min: -30, max: 30, step: 1, unit: 'px'
+  style: S.ROW_INPUT,
+  caption: "Vertical Length",
+  min: -30,
+  max: 30,
+  step: 1,
+  unit: 'px'
 }, {
-  style: STYLE.ROW_INPUT, caption: "Blur Radius",
-  min: 0, max: 20, step: 1, unit: 'px'
+  style: S.ROW_INPUT,
+  caption: "Blur Radius",
+  min: 0,
+  max: 20,
+  step: 1,
+  unit: 'px'
 }, {
-  style: STYLE.ROW_INPUT, caption: "Spread Radius",
-  min: -10, max: 20, step: 1, unit: 'px'
+  style: S.ROW_INPUT,
+  caption: "Spread Radius",
+  min: -10,
+  max: 20,
+  step: 1,
+  unit: 'px'
 }, {
-  style: STYLE.ROW_INPUT, caption: "Opacity",
-  min: 0, max: 1, step: 0.01, unit: ''
+  style: S.ROW_INPUT,
+  caption: "Opacity",
+  min: 0,
+  max: 1,
+  step: 0.01,
+  unit: ''
 }];
 
-var InputBoxShadow = function (_Component) {
-  _inherits(InputBoxShadow, _Component);
+var InputBoxShadow =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inheritsLoose2["default"])(InputBoxShadow, _Component);
 
+  /*
+   static propTypes = {
+      initValue: PropTypes.shape({
+        vLength: PropTypes.number,
+        gLength: PropTypes.number,
+        blurR: PropTypes.number,
+        spreadR: PropTypes.number,
+        color: PropTypes.string,
+        opacity: PropTypes.number
+      }),
+      onChange: PropTypes.func,
+      onEnter: PropTypes.func
+   }
+   */
   function InputBoxShadow(props) {
-    _classCallCheck(this, InputBoxShadow);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, (InputBoxShadow.__proto__ || Object.getPrototypeOf(InputBoxShadow)).call(this));
+    _this = _Component.call(this, props) || this;
 
-    _initialiseProps.call(_this);
+    _this._getBoxShadow = function () {
+      return {
+        vLength: _this.vLength,
+        gLength: _this.gLength,
+        blurR: _this.blurR,
+        spreadR: _this.spreadR,
+        color: _this.color,
+        opacity: _this.opacity
+      };
+    };
+
+    _this._handleChangeInput = function (propName, value) {
+      _this[propName] = value;
+
+      _this.props.onChange(_this._getBoxShadow());
+    };
+
+    _this._handleEnter = function (propName, value) {
+      _this.props.onEnter(propName, value);
+    };
+
+    _this._handleEnterColor = function (value, color) {
+      _this.color = color.toHexString();
+
+      _this.props.onChange(_this._getBoxShadow());
+    };
 
     var _props$initValue = props.initValue,
         vLength = _props$initValue.vLength,
         gLength = _props$initValue.gLength,
         blurR = _props$initValue.blurR,
         spreadR = _props$initValue.spreadR,
-        color = _props$initValue.color,
+        _color = _props$initValue.color,
         opacity = _props$initValue.opacity;
-
     _this.vLength = vLength;
     _this.gLength = gLength;
     _this.blurR = blurR;
     _this.spreadR = spreadR;
-    _this.color = color;
+    _this.color = _color;
     _this.opacity = opacity;
     return _this;
   }
 
-  _createClass(InputBoxShadow, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (this.props !== nextProps && this.props.initValue !== nextProps.initValue) {
-        var _nextProps$initValue = nextProps.initValue,
-            vLength = _nextProps$initValue.vLength,
-            gLength = _nextProps$initValue.gLength,
-            blurR = _nextProps$initValue.blurR,
-            spreadR = _nextProps$initValue.spreadR,
-            color = _nextProps$initValue.color,
-            opacity = _nextProps$initValue.opacity;
+  var _proto = InputBoxShadow.prototype;
 
-        this.vLength = vLength;
-        this.gLength = gLength;
-        this.blurR = blurR;
-        this.spreadR = spreadR;
-        this.color = color;
-        this.opacity = opacity;
-      }
+  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps && this.props.initValue !== nextProps.initValue) {
+      var _nextProps$initValue = nextProps.initValue,
+          vLength = _nextProps$initValue.vLength,
+          gLength = _nextProps$initValue.gLength,
+          blurR = _nextProps$initValue.blurR,
+          spreadR = _nextProps$initValue.spreadR,
+          color = _nextProps$initValue.color,
+          opacity = _nextProps$initValue.opacity;
+      this.vLength = vLength;
+      this.gLength = gLength;
+      this.blurR = blurR;
+      this.spreadR = spreadR;
+      this.color = color;
+      this.opacity = opacity;
     }
-  }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      if (this.props !== nextProps && this.props.initValue === nextProps.initValue) {
-        //console.log('skip Input render');
-        return false;
-      }
-      return true;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          style = _props.style,
-          initValue = _props.initValue,
-          configStyle = _props.configStyle,
-          vLength = initValue.vLength,
-          gLength = initValue.gLength,
-          blurR = initValue.blurR,
-          spreadR = initValue.spreadR,
-          opacity = initValue.opacity,
-          bgColor = configStyle.bgColor,
-          boxColor = configStyle.boxColor,
-          boxBorderRadius = configStyle.boxBorderRadius;
+  };
 
-      return _react2.default.createElement(
-        'div',
-        { style: style },
-        _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[0], {
-          initValue: vLength,
-          onChange: this._handleChangeInput.bind(this, 'vLength')
-        })),
-        _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[1], {
-          initValue: gLength,
-          onChange: this._handleChangeInput.bind(this, 'gLength')
-        })),
-        _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[2], {
-          initValue: blurR,
-          onChange: this._handleChangeInput.bind(this, 'blurR')
-        })),
-        _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[3], {
-          initValue: spreadR,
-          onChange: this._handleChangeInput.bind(this, 'spreadR')
-        })),
-        _react2.default.createElement(_RowInputType6.default, {
-          style: STYLE.ROW_INPUT,
-          caption: 'Shadow Color',
-          initValue: '#000000',
-          onEnter: this._handleEnterColor
-        }),
-        _react2.default.createElement(_RowInputType2.default, _extends({}, inputRows[4], {
-          initValue: opacity,
-          styleInput: STYLE.INPUT_OPACITY,
-          onChange: this._handleChangeInput.bind(this, 'opacity')
-        })),
-        _react2.default.createElement(_RowInputType6.default, {
-          style: STYLE.ROW_INPUT,
-          styleInput: STYLE.BOX_INPUT,
-          caption: 'Wrapper Background',
-          initValue: bgColor,
-          onEnter: this._handleEnter.bind(this, 'bgColor')
-        }),
-        _react2.default.createElement(_RowInputType6.default, {
-          style: STYLE.ROW_INPUT,
-          styleInput: STYLE.BOX_INPUT,
-          caption: 'Box Background',
-          initValue: boxColor,
-          onEnter: this._handleEnter.bind(this, 'boxColor')
-        }),
-        _react2.default.createElement(_RowInputType4.default, {
-          style: STYLE.ROW_INPUT,
-          styleInput: STYLE.BOX_INPUT,
-          caption: 'Box Border Radius',
-          initValue: boxBorderRadius,
-          onEnter: this._handleEnter.bind(this, 'boxBorderRadius')
-        })
-      );
+  _proto.shouldComponentUpdate = function shouldComponentUpdate(nextProps, nextState) {
+    if (this.props !== nextProps && this.props.initValue === nextProps.initValue) {
+      //console.log('skip Input render');
+      return false;
     }
-  }]);
+
+    return true;
+  };
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        style = _this$props.style,
+        initValue = _this$props.initValue,
+        configStyle = _this$props.configStyle,
+        vLength = initValue.vLength,
+        gLength = initValue.gLength,
+        blurR = initValue.blurR,
+        spreadR = initValue.spreadR,
+        opacity = initValue.opacity,
+        color = initValue.color,
+        bgColor = configStyle.bgColor,
+        boxColor = configStyle.boxColor,
+        boxBorderRadius = configStyle.boxBorderRadius;
+    return _react["default"].createElement("div", {
+      style: style
+    }, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[0], {
+      initValue: vLength,
+      onChange: this._handleChangeInput.bind(this, 'vLength')
+    })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[1], {
+      initValue: gLength,
+      onChange: this._handleChangeInput.bind(this, 'gLength')
+    })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[2], {
+      initValue: blurR,
+      onChange: this._handleChangeInput.bind(this, 'blurR')
+    })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[3], {
+      initValue: spreadR,
+      onChange: this._handleChangeInput.bind(this, 'spreadR')
+    })), _react["default"].createElement(_Comp["default"].RowInputType3, {
+      style: S.ROW_INPUT,
+      caption: "Shadow Color",
+      initValue: color,
+      onEnter: this._handleEnterColor
+    }), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[4], {
+      initValue: opacity,
+      styleInput: S.INPUT_OPACITY,
+      onChange: this._handleChangeInput.bind(this, 'opacity')
+    })), _react["default"].createElement(_Comp["default"].RowInputType3, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Wrapper Background",
+      initValue: bgColor,
+      onEnter: this._handleEnter.bind(this, 'bgColor')
+    }), _react["default"].createElement(_Comp["default"].RowInputType3, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Box Background",
+      initValue: boxColor,
+      onEnter: this._handleEnter.bind(this, 'boxColor')
+    }), _react["default"].createElement(_Comp["default"].RowInputType2, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Box Border Radius",
+      initValue: boxBorderRadius,
+      onEnter: this._handleEnter.bind(this, 'boxBorderRadius')
+    }));
+  };
 
   return InputBoxShadow;
 }(_react.Component);
 
-InputBoxShadow.propTypes = {
-  initValue: _react.PropTypes.shape({
-    vLength: _react.PropTypes.number,
-    gLength: _react.PropTypes.number,
-    blurR: _react.PropTypes.number,
-    spreadR: _react.PropTypes.number,
-    color: _react.PropTypes.string,
-    opacity: _react.PropTypes.number
-  }),
-  onChange: _react.PropTypes.func,
-  onEnter: _react.PropTypes.func
-};
 InputBoxShadow.defaultProps = {
   onChange: function onChange() {},
   onEnter: function onEnter() {}
 };
-
-var _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
-
-  this._getBoxShadow = function () {
-    return {
-      vLength: _this2.vLength,
-      gLength: _this2.gLength,
-      blurR: _this2.blurR,
-      spreadR: _this2.spreadR,
-      color: _this2.color,
-      opacity: _this2.opacity
-    };
-  };
-
-  this._handleChangeInput = function (propName, value) {
-    _this2[propName] = value;
-    _this2.props.onChange(_this2._getBoxShadow());
-  };
-
-  this._handleEnter = function (propName, value) {
-    _this2.props.onEnter(propName, value);
-  };
-
-  this._handleEnterColor = function (value, color) {
-    _this2.color = color.toHexString();
-    _this2.props.onChange(_this2._getBoxShadow());
-  };
-};
-
-exports.default = InputBoxShadow;
-//# sourceMappingURL=D:\_Dev\_React\_Shadow_Box\js\components\box-shadow\InputBoxShadow.js.map
+var _default = InputBoxShadow;
+exports["default"] = _default;
+//# sourceMappingURL=InputBoxShadow.js.map

@@ -6,25 +6,25 @@ import imObj from '../../utils/im-obj'
 import InputBoxShadow from './InputBoxShadow'
 import ViewBoxShadow from './ViewBoxShadow'
 
-const STYLE = {
+const S = {
   ROOT: {
     display: 'flex'
   },
   BOX_SHADOW : {
     display: 'inline-block',
-    fontWeight: 'bold',
     width: '25%',
-    minWidth: '325px',
-    height: '90%'
+    minWidth: 325,
+    height: '90%',
+    fontWeight: 'bold',
   },
   RESULT : {
       display: 'inline-block',
-      marginLeft: '48px',
       width: '65%',
       height: '90%',
+      marginLeft: 48,
       verticalAlign: 'top'
   }
-}
+};
 
 const _initValue = {
   gLength: 10,
@@ -44,7 +44,7 @@ const _configStyle = {
 class Page extends Component {
 
   constructor(props){
-    super()
+    super(props)
     this.boxShadow = _initValue
     this.index = 0
     this.boxShadows = [ _initValue ]
@@ -112,20 +112,20 @@ class Page extends Component {
 
   render(){
     const {
-            initValue, boxShadows, index,
-            configStyle
-          } = this.state
+      initValue, boxShadows, index,
+      configStyle
+    } = this.state;
     return (
-      <div style={STYLE.ROOT} >
+      <div style={S.ROOT} >
         <InputBoxShadow
-           style={STYLE.BOX_SHADOW}
+           style={S.BOX_SHADOW}
            initValue={initValue}
            configStyle={configStyle}
            onChange={this._handleChangeInput}
            onEnter={this._handleEnter}
         />
         <ViewBoxShadow
-           style={STYLE.RESULT}
+           style={S.RESULT}
            currentIndex={index}
            boxShadows={boxShadows}
            configStyle={configStyle}

@@ -1,16 +1,1 @@
-)]}
-{
- "version": 3,
- "sources": "D:\\_Dev\\_React\\_Shadow_Box\\src\\utils\\im-obj.js",
- "file": "D:\\_Dev\\_React\\_Shadow_Box\\js\\utils\\im-obj.js",
- "sourceRoot": "",
- "names": [
-  "imObj",
-  "create",
-  "obj",
-  "update",
-  "propName",
-  "propValue"
- ],
- "mappings": ";;;;;;;;AACA,IAAMA,QAAQ;AACZC,QADY,kBACLC,GADK,EACD;AACT,wBAAWA,GAAX;AACD,GAHW;AAKZC,QALY,kBAKLD,GALK,EAKAE,QALA,EAKUC,SALV,EAKoB;AAC9BH,QAAIE,QAAJ,IAAgBC,SAAhB;AACA,wBAAYH,GAAZ;AACD;AARW,CAAd;;kBAWeF,K"
-}
+{"version":3,"sources":["../../src/utils/im-obj.js"],"names":["imObj","create","obj","update","propName","propValue"],"mappings":";;;;;;;;;AACA,IAAMA,KAAK,GAAG;AACZC,EAAAA,MADY,kBACLC,GADK,EACD;AACT,yCAAWA,GAAX;AACD,GAHW;AAKZC,EAAAA,MALY,kBAKLD,GALK,EAKAE,QALA,EAKUC,SALV,EAKoB;AAC9BH,IAAAA,GAAG,CAACE,QAAD,CAAH,GAAgBC,SAAhB;AACA,yCAAYH,GAAZ;AACD;AARW,CAAd;eAWeF,K","sourcesContent":["\r\nconst imObj = {\r\n  create(obj){\r\n    return {...obj};\r\n  },\r\n\r\n  update(obj, propName, propValue){\r\n    obj[propName] = propValue\r\n    return { ...obj };\r\n  }\r\n}\r\n\r\nexport default imObj\r\n"],"file":"im-obj.js"}
