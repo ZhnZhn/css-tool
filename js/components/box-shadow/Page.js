@@ -140,7 +140,10 @@ function (_Component) {
   var _proto = Page.prototype;
 
   _proto.render = function render() {
-    var _this$state = this.state,
+    var _this$props = this.props,
+        isShadow = _this$props.isShadow,
+        isBox = _this$props.isBox,
+        _this$state = this.state,
         initValue = _this$state.initValue,
         boxShadows = _this$state.boxShadows,
         index = _this$state.index,
@@ -149,6 +152,8 @@ function (_Component) {
       style: S.ROOT
     }, _react["default"].createElement(_InputBoxShadow["default"], {
       style: S.BOX_SHADOW,
+      isShadow: isShadow,
+      isBox: isBox,
       initValue: initValue,
       configStyle: configStyle,
       onChange: this._handleChangeInput,

@@ -24,7 +24,8 @@ const S = {
     top: 8,
     left: 0,
     width: '100%',
-    height: 2
+    height: 2,
+    touchAction: 'none'
   },
   LINE_BEFORE : {
     position: 'absolute',
@@ -188,8 +189,8 @@ class InputSlider extends Component {
     this.setState({ hovered: false })
   }
   _handleMouseDown = (event) => {
-    // Cancel text selection
-    if (!HAS_TOUCH) {
+    // Cancel text selection    
+    if (event.cancelable) {
       event.preventDefault()
     }
     const { moveEvent, upEvent } = _crEventNames();

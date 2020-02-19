@@ -1,9 +1,11 @@
 import Atoms from './zhn/A'
-import ZhnM from './zhn-moleculs/A'
+import Am from './zhn-m/A'
+import Aml from './zhn-moleculs/A'
 
 const Comp = {
   ...Atoms,
-  ...ZhnM
+  ...Am,
+  ...Aml
 };
 
 export default Comp

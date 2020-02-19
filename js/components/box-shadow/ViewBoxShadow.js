@@ -56,15 +56,15 @@ function (_Component) {
         onRemove = _this$props.onRemove;
     return _react["default"].createElement("div", {
       style: style
-    }, _react["default"].createElement(_CssValue["default"], {
+    }, _react["default"].createElement(_Preview["default"], {
+      boxShadows: boxShadows,
+      configStyle: configStyle
+    }), _react["default"].createElement(_CssValue["default"], {
       currentIndex: currentIndex,
       boxShadows: boxShadows,
       onAdd: onAdd,
       onEdit: onEdit,
       onRemove: onRemove
-    }), _react["default"].createElement(_Preview["default"], {
-      boxShadows: boxShadows,
-      configStyle: configStyle
     }));
   };
 

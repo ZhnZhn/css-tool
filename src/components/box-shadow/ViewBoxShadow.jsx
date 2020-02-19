@@ -34,17 +34,17 @@ class ViewBoxShadow extends Component {
           } = this.props;
     return (
       <div style={style}>
+        <Preview
+           boxShadows={boxShadows}
+           configStyle={configStyle}
+         />
         <CssValue
            currentIndex={currentIndex}
            boxShadows={boxShadows}
            onAdd={onAdd}
            onEdit={onEdit}
            onRemove={onRemove}
-        />
-        <Preview
-           boxShadows={boxShadows}
-           configStyle={configStyle}
-         />
+        />        
       </div>
     );
   }

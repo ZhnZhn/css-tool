@@ -71,6 +71,8 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
   var style = _ref.style,
       initValue = _ref.initValue,
       configStyle = _ref.configStyle,
+      isShadow = _ref.isShadow,
+      isBox = _ref.isBox,
       _ref$onChange = _ref.onChange,
       onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
       _ref$onEnter = _ref.onEnter,
@@ -102,9 +104,14 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
       bgColor = configStyle.bgColor,
       boxColor = configStyle.boxColor,
       boxBorderRadius = configStyle.boxBorderRadius;
+
+  if (!isShadow && !isBox) {
+    return null;
+  }
+
   return _react["default"].createElement("div", {
     style: style
-  }, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[0], {
+  }, isShadow && _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[0], {
     inputId: id,
     initValue: vLength,
     onChange: _handleChangeInput.bind(null, 'vLength')
@@ -130,7 +137,7 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
     inputId: id,
     initValue: opacity,
     onChange: _handleChangeInput.bind(null, 'opacity')
-  })), _react["default"].createElement(_Comp["default"].RowInputType3, {
+  }))), isBox && _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType3, {
     style: S.ROW_INPUT,
     styleInput: S.BOX_INPUT,
     caption: "Wrapper Background",
@@ -148,13 +155,15 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
     caption: "Box Border Radius",
     initValue: boxBorderRadius,
     onEnter: _handleEnter.bind(null, 'boxBorderRadius')
-  }));
+  })));
 };
 
 var _isNotShouldUpdate = function _isNotShouldUpdate(oldProps, newProps) {
   var initValue = oldProps.initValue,
-      configStyle = oldProps.configStyle;
-  return initValue.id === newProps.initValue.id && configStyle === newProps.configStyle ? true : false;
+      configStyle = oldProps.configStyle,
+      isShadow = oldProps.isShadow,
+      isBox = oldProps.isBox;
+  return initValue.id === newProps.initValue.id && configStyle === newProps.configStyle && isShadow === newProps.isShadow && isBox === newProps.isBox ? true : false;
 };
 
 var _default = _react["default"].memo(InputBoxShadow, _isNotShouldUpdate);

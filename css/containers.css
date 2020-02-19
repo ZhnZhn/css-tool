@@ -19,16 +19,24 @@
   height : 32px;
   cursor: default;
 }
+.header__icon-gap {
+  display: inline-block;
+  width: 45px;
+}
 .header__label-app {
   display: inline-block;
   color:#80c040;
-  margin-left: 35px;
   padding-top: 6px;
-  padding-left: 10px;
   padding-right: 10px;
   font-size: 16px;
   font-weight: bold;
 }
+@media screen and (max-width: 420px) {
+  .header__label-app {
+    display: none;
+  }
+}
+
 .header__github-link {
   display: inline-block;
   position: absolute;

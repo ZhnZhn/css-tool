@@ -115,7 +115,8 @@ class Page extends Component {
   }
 
   render(){
-    const {
+    const { isShadow, isBox } = this.props
+    , {
       initValue, boxShadows, index,
       configStyle
     } = this.state;
@@ -123,6 +124,8 @@ class Page extends Component {
       <div style={S.ROOT} >
         <InputBoxShadow
            style={S.BOX_SHADOW}
+           isShadow={isShadow}
+           isBox={isBox}
            initValue={initValue}
            configStyle={configStyle}
            onChange={this._handleChangeInput}

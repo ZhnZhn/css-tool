@@ -35,7 +35,8 @@ var S = {
     top: 8,
     left: 0,
     width: '100%',
-    height: 2
+    height: 2,
+    touchAction: 'none'
   },
   LINE_BEFORE: {
     position: 'absolute',
@@ -200,8 +201,8 @@ function (_Component) {
     };
 
     _this._handleMouseDown = function (event) {
-      // Cancel text selection
-      if (!HAS_TOUCH) {
+      // Cancel text selection    
+      if (event.cancelable) {
         event.preventDefault();
       }
 

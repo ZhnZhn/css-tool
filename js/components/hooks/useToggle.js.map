@@ -1,0 +1,16 @@
+{
+ "version": 3,
+ "sources": [
+  "../../../src/components/hooks/useToggle.js"
+ ],
+ "file": "../../../src/components/hooks/useToggle.js",
+ "names": [
+  "useToggle",
+  "initialValue",
+  "is",
+  "setIs",
+  "toggle",
+  "v"
+ ],
+ "mappings": ";;;;;AAAA;;AAEA,IAAMA,SAAS,GAAG,SAAZA,SAAY,CAACC,YAAD,EAAkB;AAAA,kBACd,qBAASA,YAAT,CADc;AAAA,MAC3BC,EAD2B;AAAA,MACvBC,KADuB;AAAA,MAEhCC,MAFgC,GAEvB,wBAAY;AAAA,WAAID,KAAK,CAAC,UAAAE,CAAC;AAAA,aAAE,CAACA,CAAH;AAAA,KAAF,CAAT;AAAA,GAAZ,EAA8B,EAA9B,CAFuB;;AAGlC,SAAO,CAACH,EAAD,EAAKE,MAAL,CAAP;AACD,CAJD;;eAMeJ,S"
+}

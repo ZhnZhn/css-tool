@@ -14,8 +14,8 @@ var _fn = _interopRequireDefault(require("./helpers/fn"));
 var S = {
   ROOT: {
     width: '100%',
-    height: 430,
-    paddingTop: 24
+    paddingTop: 24,
+    paddingBottom: 24
   },
   INNER: {
     marginLeft: 'auto',

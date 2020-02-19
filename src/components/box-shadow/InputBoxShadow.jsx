@@ -41,6 +41,7 @@ const inputRows = [
 
 const InputBoxShadow = ({
   style, initValue, configStyle,
+  isShadow, isBox,
   onChange = () => {},
   onEnter = () => {},
 }) => {
@@ -72,74 +73,87 @@ const InputBoxShadow = ({
        boxColor, boxBorderRadius
      } = configStyle;
 
+   if (!isShadow && !isBox) {
+     return null;
+   }
+
    return (
      <div style={style}>
-       <A.RowInputType1
-          {...inputRows[0]}
-           inputId={id}
-           initValue={vLength}
-           onChange={_handleChangeInput.bind(null, 'vLength')}
-       />
-       <A.RowInputType1
-          {...inputRows[1]}
-          inputId={id}
-          initValue={gLength}
-          onChange={_handleChangeInput.bind(null, 'gLength')}
-       />
-       <A.RowInputType1
-          {...inputRows[2]}
-          inputId={id}
-          initValue={blurR}
-          onChange={_handleChangeInput.bind(null, 'blurR')}
-       />
-       <A.RowInputType1
-          {...inputRows[3]}
-          inputId={id}
-          initValue={spreadR}
-          onChange={_handleChangeInput.bind(null, 'spreadR')}
-       />
-       <A.RowInputType3
-          key={`${id}-sc`}
-          style={S.ROW_INPUT}
-          caption="Shadow Color"
-          initValue={color}
-          onEnter={_handleEnterColor}
-       />
-       <A.RowInputType1
-          {...inputRows[4]}
-          inputId={id}
-          initValue={opacity}
-          onChange={_handleChangeInput.bind(null, 'opacity')}
-       />
-       <A.RowInputType3
-          style={S.ROW_INPUT}
-          styleInput={S.BOX_INPUT}
-          caption="Wrapper Background"
-          initValue={bgColor}
-          onEnter={_handleEnter.bind(null, 'bgColor')}
-       />
-       <A.RowInputType3
-          style={S.ROW_INPUT}
-          styleInput={S.BOX_INPUT}
-          caption="Box Background"
-          initValue={boxColor}
-          onEnter={_handleEnter.bind(null, 'boxColor')}
-       />
-       <A.RowInputType2
-          style={S.ROW_INPUT}
-          styleInput={S.BOX_INPUT}
-          caption="Box Border Radius"
-          initValue={boxBorderRadius}
-          onEnter={_handleEnter.bind(null, 'boxBorderRadius')}
-       />
+       { isShadow && <>
+         <A.RowInputType1
+            {...inputRows[0]}
+             inputId={id}
+             initValue={vLength}
+             onChange={_handleChangeInput.bind(null, 'vLength')}
+         />
+         <A.RowInputType1
+            {...inputRows[1]}
+            inputId={id}
+            initValue={gLength}
+            onChange={_handleChangeInput.bind(null, 'gLength')}
+         />
+         <A.RowInputType1
+            {...inputRows[2]}
+            inputId={id}
+            initValue={blurR}
+            onChange={_handleChangeInput.bind(null, 'blurR')}
+         />
+         <A.RowInputType1
+            {...inputRows[3]}
+            inputId={id}
+            initValue={spreadR}
+            onChange={_handleChangeInput.bind(null, 'spreadR')}
+         />
+         <A.RowInputType3
+            key={`${id}-sc`}
+            style={S.ROW_INPUT}
+            caption="Shadow Color"
+            initValue={color}
+            onEnter={_handleEnterColor}
+         />
+         <A.RowInputType1
+            {...inputRows[4]}
+            inputId={id}
+            initValue={opacity}
+            onChange={_handleChangeInput.bind(null, 'opacity')}
+         />
+       </>}
+       { isBox && <>
+           <A.RowInputType3
+              style={S.ROW_INPUT}
+              styleInput={S.BOX_INPUT}
+              caption="Wrapper Background"
+              initValue={bgColor}
+              onEnter={_handleEnter.bind(null, 'bgColor')}
+           />
+           <A.RowInputType3
+              style={S.ROW_INPUT}
+              styleInput={S.BOX_INPUT}
+              caption="Box Background"
+              initValue={boxColor}
+              onEnter={_handleEnter.bind(null, 'boxColor')}
+           />
+           <A.RowInputType2
+              style={S.ROW_INPUT}
+              styleInput={S.BOX_INPUT}
+              caption="Box Border Radius"
+              initValue={boxBorderRadius}
+              onEnter={_handleEnter.bind(null, 'boxBorderRadius')}
+           />
+        </>}
      </div>
    );
 }
 
 const _isNotShouldUpdate = (oldProps, newProps) => {
-  const { initValue, configStyle } = oldProps;
+  const {
+    initValue, configStyle,
+    isShadow, isBox
+  } = oldProps;
   return initValue.id === newProps.initValue.id
     && configStyle === newProps.configStyle
+    && isShadow === newProps.isShadow
+    && isBox === newProps.isBox
      ? true
      : false;
 };

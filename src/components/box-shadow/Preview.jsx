@@ -5,8 +5,8 @@ import fn from './helpers/fn'
 const S = {
   ROOT : {
     width: '100%',
-    height: 430,
-    paddingTop: 24
+    paddingTop: 24,
+    paddingBottom: 24
   },
   INNER : {
     marginLeft: 'auto',
