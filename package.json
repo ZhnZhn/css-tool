@@ -8,6 +8,7 @@
     "bundle": "jspm bundle js/**/* - [js/**/*] dependency-bundle.js",
     "transpile": "babel ./src --out-dir ./js --source-maps --ignore test.js",
     "transpile:all": "babel ./src --out-dir ./js --source-maps",
+    "lint": "eslint -c .eslintrc-build.json ./src > lint.txt",
     "build:dev:dll": "webpack --colors --progress --config webpack.dev.dll.js",
     "build:dev:dll-jsx": "webpack --colors --progress --config webpack.dev.dll-jsx.js",
     "build:dll": "webpack --colors --progress --config webpack.dll.js",
@@ -25,16 +26,16 @@
     "url": "https://github.com/ZhnZhn/css-tool.git"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "^7.7.4",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "del": "^5.1.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "gulp": "^4.0.2",
@@ -52,7 +53,7 @@
   },
   "jspm": {
     "dependencies": {
-      "@babel/runtime": "npm:@babel/runtime@^7.7.6",
+      "@babel/runtime": "npm:@babel/runtime@^7.8.4",
       "react": "npm:react@^16.12.0",
       "react-dom": "npm:react-dom@^16.12.0",
       "tinycolor2": "npm:tinycolor2@^1.4.1"
@@ -60,7 +61,7 @@
     "devDependencies": {}
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.6",
+    "@babel/runtime": "^7.8.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "tinycolor2": "^1.4.1"
