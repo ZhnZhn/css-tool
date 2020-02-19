@@ -9,12 +9,12 @@ const S = {
   },
   COLOR: {
     float: 'right',
-    marginLeft: '16px',
-    marginRight: '16px'
+    marginLeft: 16,
+    marginRight: 16
   },
   TEXT: {
     float: 'right',
-    width: '80px'
+    width: 80
   }
 }
 
@@ -24,6 +24,7 @@ class RowInputType3 extends Component {
     style: PropTypes.object,
     styleInput: PropTypes.object,
     caption: PropTypes.string,
+    inputId: PropTypes.string,
     initValue: PropTypes.string,
     onEnter: PropTypes.func
   }
@@ -34,18 +35,12 @@ class RowInputType3 extends Component {
 
   constructor(props){
     super(props)
+    const { initValue } = props;
     this.state = {
-      value: props.initValue
+      value: initValue,
     }
   }
-
-  UNSAFE_componentWillReceiveProps(nextProps){
-    if (this.props !== nextProps &&
-        this.state.value !== nextProps.initValue ) {
-      this.setState({ value: nextProps.initValue })
-    }
-  }
-
+  
   _handleEnter = (value) => {
      const color = tinycolor(value)
      if (color.isValid()){
@@ -55,8 +50,14 @@ class RowInputType3 extends Component {
   }
 
   render(){
-    const { style, styleInput, caption } = this.props
-        , { value } = this.state;    
+    const {
+      style,
+      styleInput,
+      caption,
+      inputId,
+    } = this.props
+    , { value } = this.state;
+
     return (
       <div style={style}>
          {/*eslint-disable jsx-a11y/label-has-for*/}
@@ -64,6 +65,7 @@ class RowInputType3 extends Component {
            <span>{caption}</span>
            <A.InputText
              style={{ ...S.TEXT, ...styleInput }}
+             inputId={inputId}
              initValue={value}
              onEnter={this._handleEnter}
             />

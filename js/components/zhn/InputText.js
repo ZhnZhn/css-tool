@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -9,122 +7,102 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
+var _react = _interopRequireDefault(require("react"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _crId = _interopRequireDefault(require("../../utils/crId"));
 
+var useState = _react["default"].useState,
+    useRef = _react["default"].useRef,
+    useCallback = _react["default"].useCallback,
+    useEffect = _react["default"].useEffect,
+    useImperativeHandle = _react["default"].useImperativeHandle;
 var S = {
   INPUT_TEXT: {
     display: 'inline',
-    background: 'transparent none repeat scroll 0 0',
-    border: 'medium none',
-    outline: 'medium none',
-    height: '32px',
-    paddingLeft: '5px',
     color: 'green',
-    width: '40px',
+    height: 32,
+    width: 45,
+    paddingLeft: 5,
+    marginLeft: 5,
+    marginRight: 5,
     fontSize: '16px',
     fontWeight: 'bold',
-    backgroundColor: '#E1E1CB',
-    marginLeft: '5px',
-    marginRight: '5px',
+    backgroundColor: '#e1e1cb',
+    border: 'medium none',
+    outline: 'medium none',
     boxShadow: '0 2px 2px 0 rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1)'
   }
 };
-
-var _isFn = function _isFn(fn) {
-  return typeof fn === 'function';
+var DF_TEXT_PROPS = {
+  autoCorrect: "off",
+  autoCapitalize: "off",
+  spellCheck: false,
+  translate: false,
+  maxLength: 25
 };
 
-var InputText =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inheritsLoose2["default"])(InputText, _Component);
+var InputText = function InputText(_ref) {
+  var style = _ref.style,
+      _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'string' : _ref$type,
+      name = _ref.name,
+      _ref$initValue = _ref.initValue,
+      initValue = _ref$initValue === void 0 ? '' : _ref$initValue,
+      inputId = _ref.inputId,
+      _ref$step = _ref.step,
+      step = _ref$step === void 0 ? 1 : _ref$step,
+      _ref$min = _ref.min,
+      min = _ref$min === void 0 ? -10 : _ref$min,
+      _ref$max = _ref.max,
+      max = _ref$max === void 0 ? 10 : _ref$max,
+      innerRef = _ref.innerRef,
+      _ref$onChange = _ref.onChange,
+      onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
+      _ref$onEnter = _ref.onEnter,
+      onEnter = _ref$onEnter === void 0 ? function () {} : _ref$onEnter;
 
-  /*
-  static propTypes = {
-    style: PropTypes.object,
-    initValue: PropTypes.string,
-    onChange: PropTypes.func
-  }
-  */
-  function InputText(props) {
-    var _this;
-
-    _this = _Component.call(this, props) || this;
-
-    _this._handleInputChange = function (event) {
-      var value = event.target.value;
-
-      _this.setState({
-        value: value
-      });
-
-      if (_this.isOnChange) {
-        _this.props.onChange(value);
-      }
-    };
-
-    _this._handleKeyDown = function (event) {
-      if (_this.isOnEnter) {
-        if (event.keyCode === 13) {
-          _this.props.onEnter(event.target.value);
-        }
-      }
-    };
-
-    _this.isOnChange = _isFn(props.onChange);
-    _this.isOnEnter = _isFn(props.onEnter);
-    _this.state = {
-      value: props.initValue
-    };
-    return _this;
-  }
-
-  var _proto = InputText.prototype;
-
-  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({
-        value: nextProps.initValue
-      });
+  var _useState = useState(),
+      value = _useState[0],
+      setValue = _useState[1],
+      _refName = useRef(name || (0, _crId["default"])()),
+      _handleInputChange = useCallback(function (event) {
+    var value = event.target.value;
+    setValue(value);
+    onChange(value);
+  }, []),
+      _handleKeyDown = useCallback(function (event) {
+    if (event.keyCode === 13) {
+      onEnter(event.target.value);
     }
-  };
+  }, []);
 
-  _proto.render = function render() {
-    var style = this.props.style,
-        value = this.state.value;
-    return _react["default"].createElement("input", {
-      name: "text",
-      autoComplete: "new-text",
-      autoCorrect: "off",
-      autoCapitalize: "off",
-      spellCheck: false,
-      type: "text",
-      style: (0, _extends2["default"])({}, S.INPUT_TEXT, {}, style),
-      value: value,
-      translate: "false",
-      onChange: this._handleInputChange,
-      onKeyDown: this._handleKeyDown
-    });
-  };
+  useEffect(function () {
+    setValue(initValue);
+  }, [inputId]);
+  useImperativeHandle(innerRef, function () {
+    return {
+      setValue: setValue
+    };
+  });
 
-  _proto.getValue = function getValue() {
-    return this.state.value;
-  };
+  var _textProps = type === 'text' ? DF_TEXT_PROPS : void 0,
+      _numberProps = type === 'number' ? {
+    min: min,
+    max: max,
+    step: step
+  } : void 0;
 
-  _proto.setValue = function setValue(value) {
-    this.setState({
-      value: value
-    });
-  };
-
-  return InputText;
-}(_react.Component);
-
-InputText.defaultProps = {
-  initValue: ''
+  return _react["default"].createElement("input", (0, _extends2["default"])({
+    type: type,
+    name: _refName.current
+  }, _textProps, _numberProps, {
+    style: (0, _extends2["default"])({}, S.INPUT_TEXT, {}, style),
+    value: value,
+    onChange: _handleInputChange,
+    onKeyDown: _handleKeyDown
+  }));
 };
+
 var _default = InputText;
 exports["default"] = _default;
 //# sourceMappingURL=InputText.js.map

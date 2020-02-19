@@ -23,12 +23,12 @@ var S = {
   },
   COLOR: {
     "float": 'right',
-    marginLeft: '16px',
-    marginRight: '16px'
+    marginLeft: 16,
+    marginRight: 16
   },
   TEXT: {
     "float": 'right',
-    width: '80px'
+    width: 80
   }
 };
 
@@ -42,6 +42,7 @@ function (_Component) {
     style: PropTypes.object,
     styleInput: PropTypes.object,
     caption: PropTypes.string,
+    inputId: PropTypes.string,
     initValue: PropTypes.string,
     onEnter: PropTypes.func
   }
@@ -63,27 +64,21 @@ function (_Component) {
       }
     };
 
+    var initValue = props.initValue;
     _this.state = {
-      value: props.initValue
+      value: initValue
     };
     return _this;
   }
 
   var _proto = RowInputType3.prototype;
 
-  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps && this.state.value !== nextProps.initValue) {
-      this.setState({
-        value: nextProps.initValue
-      });
-    }
-  };
-
   _proto.render = function render() {
     var _this$props = this.props,
         style = _this$props.style,
         styleInput = _this$props.styleInput,
         caption = _this$props.caption,
+        inputId = _this$props.inputId,
         value = this.state.value;
     return _react["default"].createElement("div", {
       style: style
@@ -91,6 +86,7 @@ function (_Component) {
       style: (0, _extends2["default"])({}, S.ROOT)
     }, _react["default"].createElement("span", null, caption), _react["default"].createElement(_A["default"].InputText, {
       style: (0, _extends2["default"])({}, S.TEXT, {}, styleInput),
+      inputId: inputId,
       initValue: value,
       onEnter: this._handleEnter
     }), _react["default"].createElement(_A["default"].Color, {

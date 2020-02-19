@@ -1,95 +1,91 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import crId from '../../utils/crId';
+
+const {
+  useState, useRef, useCallback,
+  useEffect, useImperativeHandle
+} = React;
 
 const S = {
   INPUT_TEXT : {
-    display : 'inline',
-    background: 'transparent none repeat scroll 0 0',
-    border: 'medium none',
-    outline: 'medium none',
-    height: '32px',
-    paddingLeft: '5px',
+    display: 'inline',
     color: 'green',
-    width: '40px',
+    height: 32,
+    width: 45,
+    paddingLeft: 5,
+    marginLeft : 5,
+    marginRight : 5,
     fontSize: '16px',
     fontWeight: 'bold',
-    backgroundColor : '#E1E1CB',
-    marginLeft : '5px',
-    marginRight : '5px',
+    backgroundColor: '#e1e1cb',
+    border: 'medium none',
+    outline: 'medium none',
     boxShadow: '0 2px 2px 0 rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1)'
   }
 };
 
-const _isFn = fn => typeof fn === 'function';
+const DF_TEXT_PROPS = {
+  autoCorrect: "off",
+  autoCapitalize: "off",
+  spellCheck: false,
+  translate: false,
+  maxLength: 25
+};
 
-class InputText extends Component {
-  /*
-  static propTypes = {
-    style: PropTypes.object,
-    initValue: PropTypes.string,
-    onChange: PropTypes.func
-  }
-  */
-  static defaultProps = {
-    initValue : ''
-  }
-
-  constructor(props){
-    super(props)
-    this.isOnChange = _isFn(props.onChange)
-    this.isOnEnter = _isFn(props.onEnter)
-    this.state = {
-      value: props.initValue
-    }
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps){
-    if (nextProps !== this.props){
-      this.setState({ value : nextProps.initValue });
-    }
-  }
-
-  _handleInputChange = (event) => {
-    const value = event.target.value
-    this.setState({ value })
-    if (this.isOnChange){
-      this.props.onChange(value)
-    }
-  }
-
-  _handleKeyDown = (event) => {
-    if (this.isOnEnter){
+const InputText = ({
+  style,
+  type='string',
+  name,
+  initValue='',
+  inputId,
+  step=1,
+  min=-10,
+  max=10,
+  innerRef,
+  onChange=()=>{},
+  onEnter=()=>{}
+}) => {
+  const [value, setValue] = useState()
+  , _refName = useRef(name || crId())
+  , _handleInputChange = useCallback((event) => {
+      const value = event.target.value;
+      setValue(value)
+      onChange(value)
+    }, [])
+  , _handleKeyDown = useCallback((event) => {
       if (event.keyCode === 13){
-        this.props.onEnter(event.target.value)
+        onEnter(event.target.value)
       }
-    }
-  }
+    }, []);
 
-  render(){
-    const { style } = this.props
-        , { value } = this.state;
-    return (
-      <input
-        name="text"
-        autoComplete="new-text"
-        autoCorrect="off"
-        autoCapitalize="off"
-        spellCheck={false}
-        type="text"
-        style={{ ...S.INPUT_TEXT, ...style}}
-        value={value}
-        translate="false"
-        onChange={this._handleInputChange}
-        onKeyDown={this._handleKeyDown}
-      />
-    )
-  }
+  useEffect(() => {
+    setValue(initValue)
+  }, [inputId])
 
-  getValue(){
-    return this.state.value;
-  }
-  setValue(value){
-    this.setState({ value })
-  }
-}
+  useImperativeHandle(innerRef, () => ({
+    setValue
+  }))
+
+  const  _textProps = type === 'text'
+    ? DF_TEXT_PROPS : void 0
+  , _numberProps = type === 'number'
+      ? {
+        min, max, step
+      } : void 0;
+
+  return (
+    <input
+      type={type}
+      name={_refName.current}
+      {..._textProps}
+      {..._numberProps}
+      style={{...S.INPUT_TEXT, ...style}}
+      value={value}
+      onChange={_handleInputChange}
+      onKeyDown={_handleKeyDown}
+    />
+  );
+};
 
 export default InputText

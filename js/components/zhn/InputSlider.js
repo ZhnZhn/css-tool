@@ -13,44 +13,47 @@ var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inh
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _has = _interopRequireDefault(require("../has"));
+
 /*
- Mostly from
+ Mostly from old version Material-UI
  https://github.com/callemall/material-ui/blob/master/src/Slider/Slider.js
 */
+var HAS_TOUCH = _has["default"].HAS_TOUCH;
 var S = {
   ROOT: {
-    userSelect: 'none',
-    cursor: 'default',
-    height: '18px',
-    width: '100%',
     position: 'relative',
-    marginTop: '8px',
-    marginBottom: '8px'
+    height: 18,
+    width: '100%',
+    marginTop: 8,
+    marginBottom: 8,
+    userSelect: 'none',
+    cursor: 'default'
   },
   ROOT_LINE: {
     position: 'absolute',
-    top: '8px',
-    left: '0px',
+    top: 8,
+    left: 0,
     width: '100%',
-    height: '2px'
+    height: 2
   },
   LINE_BEFORE: {
     position: 'absolute',
+    left: 0,
     height: '100%',
-    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    left: '0px',
+    width: 'calc(15%)',
+    marginRight: 6,
     backgroundColor: 'rgb(0, 188, 212)',
-    marginRight: '6px',
-    width: 'calc(15%)'
+    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
   },
   LINE_AFTER: {
     position: 'absolute',
+    right: 0,
     height: '100%',
-    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    right: '0px',
+    width: 'calc(85%)',
+    marginLeft: 6,
     backgroundColor: 'rgb(189, 189, 189)',
-    marginLeft: '6px',
-    width: 'calc(85%)'
+    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
   },
   LINE_HOVERED: {
     backgroundColor: 'rgb(158, 158, 158)'
@@ -58,14 +61,12 @@ var S = {
   ROOT_CIRCLE: {
     boxSizing: 'borderBox',
     position: 'absolute',
-    cursor: 'pointer',
-    pointerEvents: 'inherit',
-    top: '0px',
+    top: 0,
     left: '15%',
-    zIndex: '1',
+    zIndex: 1,
+    width: 12,
+    height: 12,
     margin: '1px 0px 0px',
-    width: '12px',
-    height: '12px',
     backgroundColor: 'rgb(0, 188, 212)',
     backgroundClip: 'padding-box',
     border: '0px solid transparent',
@@ -73,35 +74,37 @@ var S = {
     transform: 'translate(-50%, -50%)',
     overflow: 'visible',
     outline: 'none',
+    cursor: 'pointer',
+    pointerEvents: 'inherit',
     transition: 'background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
   },
   CIRCLE_DRAGGED: {
-    width: '20px',
-    height: '20px '
+    width: 20,
+    height: 20
   },
   CIRCLE_INNER: {
     position: 'absolute',
-    overflow: 'visible',
-    height: '12px',
-    width: '12px',
-    top: '0px',
-    left: '0px'
+    top: 0,
+    left: 0,
+    height: 12,
+    width: 12,
+    overflow: 'visible'
   },
   CIRCLE_INNER_EL: {
     position: 'absolute',
-    height: '36px',
+    top: -12,
+    left: -12,
+    height: 36,
     width: '300%',
     borderRadius: '50%',
     //opacity: '0.16',
     backgroundColor: 'rgba(0, 188, 212, 0.16)',
-    top: '-12px',
-    left: '-12px',
     transform: 'scale(1)'
   },
   EMBER: {
-    top: '-12px',
-    left: '-12px',
-    height: '44px',
+    top: -12,
+    left: -12,
+    height: 44,
     width: '220%',
     border: '1px solid #4caf50'
   }
@@ -127,26 +130,42 @@ var _round10 = function _round10(value, exp) {
   return +(value[0] + 'e' + (value[1] ? +value[1] + exp : exp));
 };
 
-var _fnAddStep = function _fnAddStep(value, step, exp) {
+var _addStep = function _addStep(value, step, exp) {
   return exp ? _round10(value + step, exp) : value + step;
 };
 
-var _fnToPercent = function _fnToPercent(value, min, max) {
+var _toPercent = function _toPercent(value, min, max) {
   var _percent = (value - min) / (max - min);
 
   return isNaN(_percent) ? 0 : _percent * 100;
 };
 
-var _fnWidthCalc = function _fnWidthCalc(percent) {
+var _crWidthCalc = function _crWidthCalc(percent) {
   return {
     width: "calc(" + percent + "%)"
   };
 };
 
-var _fnLeftPercent = function _fnLeftPercent(percent) {
+var _crLeftPercent = function _crLeftPercent(percent) {
   return {
     left: percent + "%"
   };
+};
+
+var _crEventNames = function _crEventNames() {
+  return HAS_TOUCH ? {
+    moveEvent: 'touchmove',
+    upEvent: 'touchend'
+  } : {
+    moveEvent: 'mousemove',
+    upEvent: 'mouseup'
+  };
+};
+
+var _getClientX = function _getClientX(event) {
+  var _event$changedTouches;
+
+  return HAS_TOUCH ? (_event$changedTouches = event.changedTouches[0]) == null ? void 0 : _event$changedTouches.clientX : event.clientX;
 };
 
 var InputSlider =
@@ -182,9 +201,16 @@ function (_Component) {
 
     _this._handleMouseDown = function (event) {
       // Cancel text selection
-      event.preventDefault();
-      document.addEventListener('mousemove', _this._handleDragMouseMove);
-      document.addEventListener('mouseup', _this._handleDragMouseUp);
+      if (!HAS_TOUCH) {
+        event.preventDefault();
+      }
+
+      var _crEventNames2 = _crEventNames(),
+          moveEvent = _crEventNames2.moveEvent,
+          upEvent = _crEventNames2.upEvent;
+
+      document.addEventListener(moveEvent, _this._handleDragMouseMove);
+      document.addEventListener(upEvent, _this._handleDragMouseUp);
 
       _this.setState({
         dragged: true
@@ -196,8 +222,12 @@ function (_Component) {
     };
 
     _this._handleDragMouseUp = function () {
-      document.removeEventListener('mousemove', _this._handleDragMouseMove);
-      document.removeEventListener('mouseup', _this._handleDragMouseUp);
+      var _crEventNames3 = _crEventNames(),
+          moveEvent = _crEventNames3.moveEvent,
+          upEvent = _crEventNames3.upEvent;
+
+      document.removeEventListener(moveEvent, _this._handleDragMouseMove);
+      document.removeEventListener(upEvent, _this._handleDragMouseUp);
 
       _this.setState({
         dragged: false
@@ -226,7 +256,7 @@ function (_Component) {
                 value = _this.state.value;
 
             if (value > min) {
-              var _value = _fnAddStep(value, -step, _this.stepExp);
+              var _value = _addStep(value, -step, _this.stepExp);
 
               _this._setValue(event, _value);
             }
@@ -242,7 +272,7 @@ function (_Component) {
                 _value2 = _this.state.value;
 
             if (_value2 < max) {
-              var _value3 = _fnAddStep(_value2, _step, _this.stepExp);
+              var _value3 = _addStep(_value2, _step, _this.stepExp);
 
               _this._setValue(event, _value3);
             }
@@ -264,9 +294,13 @@ function (_Component) {
       requestAnimationFrame(function () {
         _this.dragRunning = false;
 
-        var position = event.clientX - _this._calcTrackOffset();
+        var _clientX = _getClientX(event);
 
-        _this._setValueFromPosition(event, position);
+        if (_clientX) {
+          var position = _clientX - _this._calcTrackOffset();
+
+          _this._setValueFromPosition(event, position);
+        }
       });
     };
 
@@ -323,20 +357,21 @@ function (_Component) {
     _this.state = {
       hovered: false,
       dragged: false,
-      value: props.initValue
+      value: props.initValue,
+      inputId: props.inputId
     };
     return _this;
   }
 
-  var _proto = InputSlider.prototype;
-
-  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      this.setState({
-        value: nextProps.initValue
-      });
-    }
+  InputSlider.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, state) {
+    var inputId = nextProps.inputId;
+    return inputId !== state.inputId ? {
+      value: nextProps.initValue,
+      inputId: inputId
+    } : null;
   };
+
+  var _proto = InputSlider.prototype;
 
   _proto.render = function render() {
     var _this$props4 = this.props,
@@ -350,24 +385,34 @@ function (_Component) {
         _lineAfterStyle = hovered ? (0, _extends2["default"])({}, S.LINE_AFTER, {}, S.LINE_HOVERED) : S.LINE_AFTER,
         _circleStyle = dragged ? S.CIRCLE_DRAGGED : null,
         _emberStyle = dragged ? S.EMBER : null,
-        _percent = _fnToPercent(value, min, max),
-        _widthBeforeStyle = _fnWidthCalc(_percent),
-        _widthAfterStyle = _fnWidthCalc(100 - _percent),
-        _leftStyle = _fnLeftPercent(_percent);
-
-    return _react["default"].createElement("div", {
-      style: S.ROOT,
+        _percent = _toPercent(value, min, max),
+        _widthBeforeStyle = _crWidthCalc(_percent),
+        _widthAfterStyle = _crWidthCalc(100 - _percent),
+        _leftStyle = _crLeftPercent(_percent),
+        _scrollHandlers = HAS_TOUCH ? {
+      onTouchStart: this._handleMouseDown
+    } : {
       onMouseDown: this._handleMouseDown,
       onMouseEnter: this._handleMouseEnter,
       onMouseLeave: this._handleMouseLeave
-    }, _react["default"].createElement("div", {
+    };
+
+    return _react["default"].createElement("div", {
+      style: S.ROOT
+    }, _react["default"].createElement("div", (0, _extends2["default"])({
       ref: this._refTrackComp,
+      role: "slider",
       tabIndex: "0",
-      style: S.ROOT_LINE,
+      "aria-orientation": "horizontal",
+      "aria-valuemax": max,
+      "aria-valuemin": min,
+      "aria-valuenow": value,
+      style: S.ROOT_LINE
+    }, _scrollHandlers, {
       onKeyDown: this._handleKeyDownTrack,
       onFocus: this._handleFocusTrack,
       onBlur: this._handleBlurTrack
-    }, _react["default"].createElement("div", {
+    }), _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, S.LINE_BEFORE, {}, _widthBeforeStyle)
     }), _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, _lineAfterStyle, {}, _widthAfterStyle)

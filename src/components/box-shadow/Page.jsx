@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import crId from '../../utils/crId'
 import imArr from '../../utils/im-arr'
 import imObj from '../../utils/im-obj'
 
@@ -32,8 +33,9 @@ const _initValue = {
   blurR: 5,
   spreadR: 0,
   color: '#000000',
-  opacity: 0.75
-}
+  opacity: 0.75,
+  id: crId()
+};
 
 const _configStyle = {
   bgColor: 'gray',
@@ -68,12 +70,14 @@ class Page extends Component {
   _handleOnAdd = (index) => {
     this.setState(prev => {
       const { boxShadows, index } = prev
-          , value = boxShadows[index]
-          , _index = index + 1;
+      , value = boxShadows[index]
+      , initValue = imObj.create(value)
+      , _index = index + 1;
+      initValue.id = crId(_index);
       return {
-        initValue: imObj.create(value),
+        initValue,
         index: _index,
-        boxShadows: imArr.insert(boxShadows, _index, value)
+        boxShadows: imArr.insert(boxShadows, _index, initValue)
       }
     })
   }

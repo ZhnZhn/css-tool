@@ -1,44 +1,48 @@
 import React, { Component } from 'react';
 
+import has from '../has';
+
 /*
- Mostly from
+ Mostly from old version Material-UI
  https://github.com/callemall/material-ui/blob/master/src/Slider/Slider.js
 */
 
+const { HAS_TOUCH } = has;
+
 const S = {
   ROOT : {
-    userSelect : 'none',
-    cursor: 'default',
-    height: '18px',
-    width: '100%',
     position: 'relative',
-    marginTop: '8px',
-    marginBottom: '8px'
+    height: 18,
+    width: '100%',
+    marginTop: 8,
+    marginBottom: 8,
+    userSelect : 'none',
+    cursor: 'default'
   },
   ROOT_LINE : {
     position: 'absolute',
-    top: '8px',
-    left: '0px',
+    top: 8,
+    left: 0,
     width: '100%',
-    height: '2px'
+    height: 2
   },
   LINE_BEFORE : {
     position: 'absolute',
+    left: 0,
     height: '100%',
-    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    left: '0px',
+    width: 'calc(15%)',
+    marginRight: 6,
     backgroundColor: 'rgb(0, 188, 212)',
-    marginRight: '6px',
-    width: 'calc(15%)'
+    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
   },
   LINE_AFTER : {
     position: 'absolute',
+    right: 0,
     height: '100%',
-    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    right: '0px',
+    width: 'calc(85%)',
+    marginLeft: 6,
     backgroundColor: 'rgb(189, 189, 189)',
-    marginLeft: '6px',
-    width: 'calc(85%)'
+    transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
   },
   LINE_HOVERED : {
     backgroundColor: 'rgb(158, 158, 158)',
@@ -46,14 +50,12 @@ const S = {
   ROOT_CIRCLE : {
     boxSizing: 'borderBox',
     position: 'absolute',
-    cursor: 'pointer',
-    pointerEvents: 'inherit',
-    top: '0px',
+    top: 0,
     left: '15%',
-    zIndex: '1',
+    zIndex: 1,
+    width: 12,
+    height: 12,
     margin: '1px 0px 0px',
-    width: '12px',
-    height: '12px',
     backgroundColor: 'rgb(0, 188, 212)',
     backgroundClip: 'padding-box',
     border: '0px solid transparent',
@@ -61,39 +63,41 @@ const S = {
     transform: 'translate(-50%, -50%)',
     overflow: 'visible',
     outline: 'none',
+    cursor: 'pointer',
+    pointerEvents: 'inherit',
     transition: 'background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
   },
   CIRCLE_DRAGGED : {
-    width: '20px',
-    height: '20px '
+    width: 20,
+    height: 20
   },
   CIRCLE_INNER : {
     position: 'absolute',
-    overflow: 'visible',
-    height: '12px',
-    width: '12px',
-    top: '0px',
-    left: '0px'
+    top: 0,
+    left: 0,
+    height: 12,
+    width: 12,
+    overflow: 'visible'
   },
   CIRCLE_INNER_EL : {
     position: 'absolute',
-    height: '36px',
+    top: -12,
+    left: -12,
+    height: 36,
     width: '300%',
     borderRadius: '50%',
     //opacity: '0.16',
     backgroundColor: 'rgba(0, 188, 212, 0.16)',
-    top: '-12px',
-    left: '-12px',
     transform: 'scale(1)'
   },
   EMBER : {
-    top: '-12px' ,
-    left: '-12px',
-    height: '44px',
+    top: -12 ,
+    left: -12,
+    height: 44,
     width: '220%',
     border: '1px solid #4caf50'
   }
-}
+};
 
 const _isFn = fn => typeof fn === 'function';
 
@@ -113,21 +117,28 @@ const _round10 = (value, exp) => {
     return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
 }
 
-const _fnAddStep = (value, step, exp ) => exp
+const _addStep = (value, step, exp ) => exp
    ? _round10(value + step, exp)
    : value + step;
 
-const _fnToPercent = (value, min, max) => {
+const _toPercent = (value, min, max) => {
   const _percent = (value - min ) / (max - min)
   return isNaN(_percent) ? 0 : _percent*100;
 };
-const _fnWidthCalc = (percent) => ({
+const _crWidthCalc = (percent) => ({
   width: `calc(${percent}%)`
 });
-const _fnLeftPercent = (percent) => ({
+const _crLeftPercent = (percent) => ({
   left: `${percent}%`
 });
 
+const _crEventNames = () => HAS_TOUCH
+ ? { moveEvent: 'touchmove', upEvent: 'touchend' }
+ : { moveEvent: 'mousemove', upEvent: 'mouseup' };
+
+const _getClientX = event => HAS_TOUCH
+  ? event.changedTouches[0]?.clientX
+  : event.clientX;
 
 class InputSlider extends Component {
   /*
@@ -157,16 +168,18 @@ class InputSlider extends Component {
     this.state = {
       hovered : false,
       dragged : false,
-      value : props.initValue
+      value : props.initValue,
+      inputId: props.inputId
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps){
-    if (nextProps !== this.props){
-      this.setState({ value : nextProps.initValue })
-    }
-  }
 
+  static getDerivedStateFromProps(nextProps, state){
+   const { inputId } = nextProps;
+   return inputId !== state.inputId
+     ? { value: nextProps.initValue, inputId }
+     : null;
+  }
 
   _handleMouseEnter = () => {
     this.setState({ hovered: true })
@@ -176,9 +189,12 @@ class InputSlider extends Component {
   }
   _handleMouseDown = (event) => {
     // Cancel text selection
-    event.preventDefault()
-    document.addEventListener('mousemove', this._handleDragMouseMove)
-    document.addEventListener('mouseup', this._handleDragMouseUp)
+    if (!HAS_TOUCH) {
+      event.preventDefault()
+    }
+    const { moveEvent, upEvent } = _crEventNames();
+    document.addEventListener(moveEvent, this._handleDragMouseMove)
+    document.addEventListener(upEvent, this._handleDragMouseUp)
     this.setState({
       dragged : true
     })
@@ -188,8 +204,9 @@ class InputSlider extends Component {
     this._onDragUpdate(event)
   }
   _handleDragMouseUp = () => {
-     document.removeEventListener('mousemove', this._handleDragMouseMove)
-     document.removeEventListener('mouseup', this._handleDragMouseUp)
+     const { moveEvent, upEvent } = _crEventNames();
+     document.removeEventListener(moveEvent, this._handleDragMouseMove)
+     document.removeEventListener(upEvent, this._handleDragMouseUp)
      this.setState({
        dragged : false
      })
@@ -207,7 +224,7 @@ class InputSlider extends Component {
          const  { min, step } = this.props
               , { value } = this.state;
          if ( value > min) {
-           const _value = _fnAddStep(value, -step, this.stepExp)
+           const _value = _addStep(value, -step, this.stepExp)
            this._setValue(event, _value)
          }
          break;
@@ -216,7 +233,7 @@ class InputSlider extends Component {
          const  { max, step } = this.props
               , { value } = this.state;
          if ( value < max) {
-           const _value = _fnAddStep(value, step, this.stepExp)
+           const _value = _addStep(value, step, this.stepExp)
            this._setValue(event, _value)
          }
          break;
@@ -232,8 +249,11 @@ class InputSlider extends Component {
     this.dragRunning = true;
     requestAnimationFrame(() => {
       this.dragRunning = false;
-      const position = event.clientX - this._calcTrackOffset()
-      this._setValueFromPosition(event, position)
+      const _clientX = _getClientX(event);
+      if (_clientX) {
+        const position = _clientX - this._calcTrackOffset()
+        this._setValueFromPosition(event, position)
+      }
     })
   }
 
@@ -283,21 +303,32 @@ class InputSlider extends Component {
           : S.LINE_AFTER
     , _circleStyle = dragged ? S.CIRCLE_DRAGGED : null
     , _emberStyle = dragged ? S.EMBER : null
-    , _percent = _fnToPercent(value, min, max)
-    , _widthBeforeStyle = _fnWidthCalc(_percent)
-    , _widthAfterStyle = _fnWidthCalc(100 - _percent)
-    , _leftStyle = _fnLeftPercent(_percent);
+    , _percent = _toPercent(value, min, max)
+    , _widthBeforeStyle = _crWidthCalc(_percent)
+    , _widthAfterStyle = _crWidthCalc(100 - _percent)
+    , _leftStyle = _crLeftPercent(_percent)
+    , _scrollHandlers = HAS_TOUCH
+        ? {
+            onTouchStart: this._handleMouseDown
+          }
+        : {
+          onMouseDown: this._handleMouseDown,
+          onMouseEnter: this._handleMouseEnter,
+          onMouseLeave: this._handleMouseLeave
+        };
 
     return (
-      <div style={S.ROOT}
-        onMouseDown={this._handleMouseDown}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
-      >
+      <div style={S.ROOT}>
         <div
            ref={this._refTrackComp}
+           role="slider"
            tabIndex="0"
+           aria-orientation="horizontal"
+           aria-valuemax={max}
+           aria-valuemin={min}
+           aria-valuenow={value}
            style={S.ROOT_LINE}
+           {..._scrollHandlers}
            onKeyDown={this._handleKeyDownTrack}
            onFocus={this._handleFocusTrack}
            onBlur={this._handleBlurTrack}

@@ -17,7 +17,7 @@ var S = {
   },
   TEXT: {
     "float": 'right',
-    width: '80px'
+    width: 80
   }
 };
 

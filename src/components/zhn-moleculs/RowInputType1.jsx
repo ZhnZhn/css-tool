@@ -41,6 +41,9 @@ class RowInputType1 extends Component {
      super(props)
      this.isOnChange = _isFn(props.onChange)
 
+     this._refTextComp = React.createRef()
+     this._refSliderComp = React.createRef()
+
      const _arr = (''+props.step).split('.');
      this.stepExp = _arr[1] ? -1 * _arr[1].length : 0
    }
@@ -53,7 +56,7 @@ class RowInputType1 extends Component {
 
   _handleChangeSlider = (event, value) => {
     this.value = value
-    this.textComp.setValue(value)
+    this._refTextComp.current.setValue(value)
     this._handleOnChange(value)
   }
 
@@ -65,16 +68,20 @@ class RowInputType1 extends Component {
 
     if ( _value>=min && _value<=max ){
       this.value = _value
-      this.sliderComp.setValue(_value)
+      this._refSliderComp.current.setValue(_value)
       this._handleOnChange(value)
     }
   }
 
-  _refTextComp = c => this.textComp = c
-  _refSliderComp = c => this.sliderComp = c
-
   render(){
-    const { style, styleInput, caption, initValue, unit, ...rest } = this.props
+    const {
+      style, styleInput,
+      name, caption,
+      initValue, inputId,
+      unit,
+      min, max, step,
+      ...rest
+    } = this.props
     return (
       <div style={style} >
         {/*eslint-disable jsx-a11y/label-has-for*/}
@@ -82,9 +89,15 @@ class RowInputType1 extends Component {
           <span>{caption}</span>
           <span style={S.RIGHT}>{unit}</span>
           <A.InputText
-             ref={this._refTextComp}
+             innerRef={this._refTextComp}
              style={{ ...S.RIGHT, ...styleInput }}
+             type="number"
+             name={name}
+             inputId={inputId}
              initValue={initValue}
+             step={step}
+             min={min}
+             max={max}
              onChange={this._handleChangeText}
           />
         </label>
@@ -92,6 +105,10 @@ class RowInputType1 extends Component {
         <A.InputSlider
            ref={this._refSliderComp}
            {...rest}
+           inputId={inputId}
+           step={step}
+           min={min}
+           max={max}
            initValue={initValue}
            onChange={this._handleChangeSlider}
         />

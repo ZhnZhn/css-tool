@@ -11,6 +11,8 @@ var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inh
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _crId = _interopRequireDefault(require("../../utils/crId"));
+
 var _imArr = _interopRequireDefault(require("../../utils/im-arr"));
 
 var _imObj = _interopRequireDefault(require("../../utils/im-obj"));
@@ -44,7 +46,8 @@ var _initValue = {
   blurR: 5,
   spreadR: 0,
   color: '#000000',
-  opacity: 0.75
+  opacity: 0.75,
+  id: (0, _crId["default"])()
 };
 var _configStyle = {
   bgColor: 'gray',
@@ -77,12 +80,14 @@ function (_Component) {
         var boxShadows = prev.boxShadows,
             index = prev.index,
             value = boxShadows[index],
+            initValue = _imObj["default"].create(value),
             _index = index + 1;
 
+        initValue.id = (0, _crId["default"])(_index);
         return {
-          initValue: _imObj["default"].create(value),
+          initValue: initValue,
           index: _index,
-          boxShadows: _imArr["default"].insert(boxShadows, _index, value)
+          boxShadows: _imArr["default"].insert(boxShadows, _index, initValue)
         };
       });
     };

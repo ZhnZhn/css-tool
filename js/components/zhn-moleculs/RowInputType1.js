@@ -64,7 +64,7 @@ function (_Component) {
     _this._handleChangeSlider = function (event, value) {
       _this.value = value;
 
-      _this.textComp.setValue(value);
+      _this._refTextComp.current.setValue(value);
 
       _this._handleOnChange(value);
     };
@@ -78,21 +78,15 @@ function (_Component) {
       if (_value >= min && _value <= max) {
         _this.value = _value;
 
-        _this.sliderComp.setValue(_value);
+        _this._refSliderComp.current.setValue(_value);
 
         _this._handleOnChange(value);
       }
     };
 
-    _this._refTextComp = function (c) {
-      return _this.textComp = c;
-    };
-
-    _this._refSliderComp = function (c) {
-      return _this.sliderComp = c;
-    };
-
     _this.isOnChange = _isFn(props.onChange);
+    _this._refTextComp = _react["default"].createRef();
+    _this._refSliderComp = _react["default"].createRef();
 
     var _arr = ('' + props.step).split('.');
 
@@ -106,10 +100,15 @@ function (_Component) {
     var _this$props2 = this.props,
         style = _this$props2.style,
         styleInput = _this$props2.styleInput,
+        name = _this$props2.name,
         caption = _this$props2.caption,
         initValue = _this$props2.initValue,
+        inputId = _this$props2.inputId,
         unit = _this$props2.unit,
-        rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["style", "styleInput", "caption", "initValue", "unit"]);
+        min = _this$props2.min,
+        max = _this$props2.max,
+        step = _this$props2.step,
+        rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["style", "styleInput", "name", "caption", "initValue", "inputId", "unit", "min", "max", "step"]);
     return _react["default"].createElement("div", {
       style: style
     }, _react["default"].createElement("label", {
@@ -117,13 +116,23 @@ function (_Component) {
     }, _react["default"].createElement("span", null, caption), _react["default"].createElement("span", {
       style: S.RIGHT
     }, unit), _react["default"].createElement(_A["default"].InputText, {
-      ref: this._refTextComp,
+      innerRef: this._refTextComp,
       style: (0, _extends2["default"])({}, S.RIGHT, {}, styleInput),
+      type: "number",
+      name: name,
+      inputId: inputId,
       initValue: initValue,
+      step: step,
+      min: min,
+      max: max,
       onChange: this._handleChangeText
     })), _react["default"].createElement(_A["default"].InputSlider, (0, _extends2["default"])({
       ref: this._refSliderComp
     }, rest, {
+      inputId: inputId,
+      step: step,
+      min: min,
+      max: max,
       initValue: initValue,
       onChange: this._handleChangeSlider
     })));
