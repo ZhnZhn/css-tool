@@ -1,53 +1,49 @@
-import React, { Component  } from 'react'
+import React from 'react'
 
 import CssValue from './CssValue'
 import Preview from './Preview'
 
-class ViewBoxShadow extends Component {
-  /*
-  static propTypes = {
-    style: PropTypes.object,
-    boxShadows: PropTypes.arrayOf(PropTypes.object),
-    currentIndex: PropTypes.number,
-    configStyle: PropTypes.object,
-    onAdd: PropTypes.func,
-    onEdit: PropTypes.func,
-    onRemove: PropTypes.func
-  }
-  */
+const CL = "page-sb__views";
 
-  shouldComponentUpdate(nextProps, nextState){
-    if (this.props !== nextProps &&
-        this.props.boxShadows === nextProps.boxShadows &&
-        this.props.currentIndex === nextProps.currentIndex &&
-        this.props.configStyle === nextProps.configStyle ){
-      return false;
-    }
-    return true;
-  }
+const ViewBoxShadow = ({
+  boxShadows, currentIndex,
+  configStyle,
+  onAdd, onEdit, onRemove
+}) => (
+  <div className={CL}>
+    <Preview
+       boxShadows={boxShadows}
+       configStyle={configStyle}
+     />
+    <CssValue
+       currentIndex={currentIndex}
+       boxShadows={boxShadows}
+       onAdd={onAdd}
+       onEdit={onEdit}
+       onRemove={onRemove}
+    />
+  </div>
+);
 
-  render(){
-    const {
-            style, boxShadows, currentIndex,
-            configStyle,
-            onAdd, onEdit, onRemove
-          } = this.props;
-    return (
-      <div style={style}>
-        <Preview
-           boxShadows={boxShadows}
-           configStyle={configStyle}
-         />
-        <CssValue
-           currentIndex={currentIndex}
-           boxShadows={boxShadows}
-           onAdd={onAdd}
-           onEdit={onEdit}
-           onRemove={onRemove}
-        />        
-      </div>
-    );
-  }
+/*
+ViewBoxShadow.propTypes = {
+  style: PropTypes.object,
+  boxShadows: PropTypes.arrayOf(PropTypes.object),
+  currentIndex: PropTypes.number,
+  configStyle: PropTypes.object,
+  onAdd: PropTypes.func,
+  onEdit: PropTypes.func,
+  onRemove: PropTypes.func
 }
+*/
 
-export default ViewBoxShadow
+const _isNotShouldUpdate = (
+  { boxShadows, currentIndex, configStyle },
+  nextProps
+) => boxShadows === nextProps.boxShadows
+  && currentIndex === nextProps.currentIndex
+  && configStyle === nextProps.configStyle
+  ? true
+  : false;
+
+export default React.memo(ViewBoxShadow, _isNotShouldUpdate)

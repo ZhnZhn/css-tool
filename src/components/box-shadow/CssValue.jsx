@@ -3,10 +3,9 @@ import React from 'react'
 import RaisedButton from '../zhn/RaisedButton'
 import fn from './helpers/fn'
 
+const CL = "page-sb__css";
+
 const S = {
-  ROOT: {
-    paddingTop: 16
-  },
   TITLE: {
     color: '#80c040',
     fontSize: '20px',
@@ -64,7 +63,7 @@ const _renderValues = options => {
 };
 
 const CssValue = props => (
-  <div style={S.ROOT}>
+  <div className={CL}>
     <div style={S.TITLE}>BOX-SHADOW:</div>
     {_renderValues(props)}
   </div>

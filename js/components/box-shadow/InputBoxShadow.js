@@ -13,6 +13,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Comp = _interopRequireDefault(require("../Comp"));
 
+var CL = "page-sb__inputs";
 var S = {
   ROW_INPUT: {
     width: '100%',
@@ -68,8 +69,7 @@ var inputRows = [{
 }];
 
 var InputBoxShadow = function InputBoxShadow(_ref) {
-  var style = _ref.style,
-      initValue = _ref.initValue,
+  var initValue = _ref.initValue,
       configStyle = _ref.configStyle,
       isShadow = _ref.isShadow,
       isBox = _ref.isBox,
@@ -110,7 +110,7 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
   }
 
   return _react["default"].createElement("div", {
-    style: style
+    className: CL
   }, isShadow && _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[0], {
     inputId: id,
     initValue: vLength,
@@ -158,12 +158,12 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
   })));
 };
 
-var _isNotShouldUpdate = function _isNotShouldUpdate(oldProps, newProps) {
-  var initValue = oldProps.initValue,
-      configStyle = oldProps.configStyle,
-      isShadow = oldProps.isShadow,
-      isBox = oldProps.isBox;
-  return initValue.id === newProps.initValue.id && configStyle === newProps.configStyle && isShadow === newProps.isShadow && isBox === newProps.isBox ? true : false;
+var _isNotShouldUpdate = function _isNotShouldUpdate(_ref2, nextProps) {
+  var initValue = _ref2.initValue,
+      configStyle = _ref2.configStyle,
+      isShadow = _ref2.isShadow,
+      isBox = _ref2.isBox;
+  return initValue.id === nextProps.initValue.id && configStyle === nextProps.configStyle && isShadow === nextProps.isShadow && isBox === nextProps.isBox ? true : false;
 };
 
 var _default = _react["default"].memo(InputBoxShadow, _isNotShouldUpdate);

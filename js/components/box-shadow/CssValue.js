@@ -13,10 +13,8 @@ var _RaisedButton = _interopRequireDefault(require("../zhn/RaisedButton"));
 
 var _fn = _interopRequireDefault(require("./helpers/fn"));
 
+var CL = "page-sb__css";
 var S = {
-  ROOT: {
-    paddingTop: 16
-  },
   TITLE: {
     color: '#80c040',
     fontSize: '20px',
@@ -71,7 +69,7 @@ var _renderValues = function _renderValues(options) {
 
 var CssValue = function CssValue(props) {
   return _react["default"].createElement("div", {
-    style: S.ROOT
+    className: CL
   }, _react["default"].createElement("div", {
     style: S.TITLE
   }, "BOX-SHADOW:"), _renderValues(props));

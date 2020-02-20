@@ -2,6 +2,8 @@ import React, { useRef, useCallback, useEffect } from 'react'
 
 import A from '../Comp'
 
+const CL = "page-sb__inputs";
+
 const S = {
   ROW_INPUT: {
     width: '100%',
@@ -40,7 +42,7 @@ const inputRows = [
 
 
 const InputBoxShadow = ({
-  style, initValue, configStyle,
+  initValue, configStyle,
   isShadow, isBox,
   onChange = () => {},
   onEnter = () => {},
@@ -78,7 +80,7 @@ const InputBoxShadow = ({
    }
 
    return (
-     <div style={style}>
+     <div className={CL}>
        { isShadow && <>
          <A.RowInputType1
             {...inputRows[0]}
@@ -145,17 +147,16 @@ const InputBoxShadow = ({
    );
 }
 
-const _isNotShouldUpdate = (oldProps, newProps) => {
-  const {
-    initValue, configStyle,
-    isShadow, isBox
-  } = oldProps;
-  return initValue.id === newProps.initValue.id
-    && configStyle === newProps.configStyle
-    && isShadow === newProps.isShadow
-    && isBox === newProps.isBox
-     ? true
-     : false;
-};
+const _isNotShouldUpdate = ({
+ initValue, configStyle,
+ isShadow, isBox
+}, nextProps
+) => initValue.id === nextProps.initValue.id
+  && configStyle === nextProps.configStyle
+  && isShadow === nextProps.isShadow
+  && isBox === nextProps.isBox
+   ? true
+   : false;
+
 
 export default React.memo(InputBoxShadow, _isNotShouldUpdate)

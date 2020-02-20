@@ -2,37 +2,26 @@ import React from 'react'
 
 import fn from './helpers/fn'
 
-const S = {
-  ROOT : {
-    width: '100%',
-    paddingTop: 24,
-    paddingBottom: 24
-  },
-  INNER : {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '50%',
-    height: 250,
-    resize: 'both',
-    overflow: 'auto'
-  }
+const CL = {
+  PREVIEW: "page-sb__preview",
+  INNER: "page-sb__preview__inner"
 };
-
 
 const _crBoxShadowStyle = boxShadows => ({
   boxShadow: boxShadows.map(fn.toCssValue).join(',')
 });
 
-const Preview = ({ boxShadows=[], configStyle }) => {
+const Preview = ({ boxShadows=[], configStyle={} }) => {
    const _style = _crBoxShadowStyle(boxShadows)
-   , _rootStyle = { backgroundColor: configStyle.bgColor }
+   , { bgColor, boxColor, boxBorderRadius } = configStyle
+   , _rootStyle = { backgroundColor: bgColor }
    , _boxStyle = {
-        backgroundColor: configStyle.boxColor,
-        borderRadius: configStyle.boxBorderRadius
+        backgroundColor: boxColor,
+        borderRadius: boxBorderRadius
       };
    return (
-     <div style={{ ...S.ROOT, ..._rootStyle}}>
-       <div style={{ ...S.INNER, ..._boxStyle, ..._style }} />
+     <div className={CL.PREVIEW} style={_rootStyle}>
+       <div className={CL.INNER} style={{ ..._boxStyle, ..._style }} />
      </div>
    );
 };

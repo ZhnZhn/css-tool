@@ -11,20 +11,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _fn = _interopRequireDefault(require("./helpers/fn"));
 
-var S = {
-  ROOT: {
-    width: '100%',
-    paddingTop: 24,
-    paddingBottom: 24
-  },
-  INNER: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '50%',
-    height: 250,
-    resize: 'both',
-    overflow: 'auto'
-  }
+var CL = {
+  PREVIEW: "page-sb__preview",
+  INNER: "page-sb__preview__inner"
 };
 
 var _crBoxShadowStyle = function _crBoxShadowStyle(boxShadows) {
@@ -36,21 +25,27 @@ var _crBoxShadowStyle = function _crBoxShadowStyle(boxShadows) {
 var Preview = function Preview(_ref) {
   var _ref$boxShadows = _ref.boxShadows,
       boxShadows = _ref$boxShadows === void 0 ? [] : _ref$boxShadows,
-      configStyle = _ref.configStyle;
+      _ref$configStyle = _ref.configStyle,
+      configStyle = _ref$configStyle === void 0 ? {} : _ref$configStyle;
 
   var _style = _crBoxShadowStyle(boxShadows),
+      bgColor = configStyle.bgColor,
+      boxColor = configStyle.boxColor,
+      boxBorderRadius = configStyle.boxBorderRadius,
       _rootStyle = {
-    backgroundColor: configStyle.bgColor
+    backgroundColor: bgColor
   },
       _boxStyle = {
-    backgroundColor: configStyle.boxColor,
-    borderRadius: configStyle.boxBorderRadius
+    backgroundColor: boxColor,
+    borderRadius: boxBorderRadius
   };
 
   return _react["default"].createElement("div", {
-    style: (0, _extends2["default"])({}, S.ROOT, {}, _rootStyle)
+    className: CL.PREVIEW,
+    style: _rootStyle
   }, _react["default"].createElement("div", {
-    style: (0, _extends2["default"])({}, S.INNER, {}, _boxStyle, {}, _style)
+    className: CL.INNER,
+    style: (0, _extends2["default"])({}, _boxStyle, {}, _style)
   }));
 };
 /*
