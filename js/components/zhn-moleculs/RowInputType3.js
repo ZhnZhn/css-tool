@@ -23,7 +23,6 @@ var S = {
   },
   COLOR: {
     "float": 'right',
-    marginLeft: 16,
     marginRight: 16
   },
   TEXT: {

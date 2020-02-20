@@ -140,7 +140,7 @@ var InputBoxShadow = function InputBoxShadow(_ref) {
   }))), isBox && _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType3, {
     style: S.ROW_INPUT,
     styleInput: S.BOX_INPUT,
-    caption: "Wrapper Background",
+    caption: "Background",
     initValue: bgColor,
     onEnter: _handleEnter.bind(null, 'bgColor')
   }), _react["default"].createElement(_Comp["default"].RowInputType3, {

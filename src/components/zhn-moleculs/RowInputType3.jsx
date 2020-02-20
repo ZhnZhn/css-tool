@@ -8,8 +8,7 @@ const S = {
     lineHeight: 1.8
   },
   COLOR: {
-    float: 'right',
-    marginLeft: 16,
+    float: 'right',    
     marginRight: 16
   },
   TEXT: {
@@ -40,7 +39,7 @@ class RowInputType3 extends Component {
       value: initValue,
     }
   }
-  
+
   _handleEnter = (value) => {
      const color = tinycolor(value)
      if (color.isValid()){
