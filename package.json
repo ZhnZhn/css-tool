@@ -9,6 +9,7 @@
     "transpile": "babel ./src --out-dir ./js --source-maps --ignore test.js",
     "transpile:all": "babel ./src --out-dir ./js --source-maps",
     "lint": "eslint -c .eslintrc-build.json ./src > lint.txt",
+    "lint:css": "stylelint ./css/*.css",
     "build:dev:dll": "webpack --colors --progress --config webpack.dev.dll.js",
     "build:dev:dll-jsx": "webpack --colors --progress --config webpack.dev.dll-jsx.js",
     "build:dll": "webpack --colors --progress --config webpack.dll.js",
@@ -48,6 +49,8 @@
     "html-webpack-plugin": "^3.2.0",
     "jspm": "^0.16.55",
     "terser-webpack-plugin": "^2.3.0",
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },

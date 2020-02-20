@@ -1,5 +1,5 @@
 .header {
-  position : relative;
+  position: relative;
   width: 100%;
   background-color: rgba(77, 77, 77, 1);
   min-height: 46px;
@@ -7,7 +7,9 @@
   padding-top: 8px;
   padding-left: 12px;
   margin-bottom: 16px;
+  /* stylelint-disable */
   box-shadow: rgba(0,0,0, 0.14) 0px 0px 4px, rgba(0,0,0, 0.6) 0px 4px 8px;
+  /* stylelint-enable */
   z-index: 50;
 }
 .header__icon-app {
@@ -15,8 +17,8 @@
   position: absolute;
   top: 7px;
   left: 16px;
-  width : 32px;
-  height : 32px;
+  width: 32px;
+  height: 32px;
   cursor: default;
 }
 .header__icon-gap {
@@ -25,7 +27,7 @@
 }
 .header__label-app {
   display: inline-block;
-  color:#80c040;
+  color: #80c040;
   padding-top: 6px;
   padding-right: 10px;
   font-size: 16px;
@@ -40,7 +42,7 @@
 .header__github-link {
   display: inline-block;
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 24px;
   text-decoration: none;
   fill: grey;
