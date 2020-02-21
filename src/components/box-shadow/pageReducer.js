@@ -12,6 +12,7 @@ const A = {
 };
 
 const DF_INITIAL_VALUE = {
+  isInset: false,
   gLength: 10,
   vLength: 10,
   blurR: 5,
@@ -48,6 +49,7 @@ const pageReducer = (state, action) => {
       , { boxShadows, currentIndex } = state;
       return {
         ...state,
+        initValue: imObj.create(boxShadow),
         boxShadows: imArr.update(boxShadows, currentIndex, boxShadow)
       };
     }

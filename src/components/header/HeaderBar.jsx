@@ -17,6 +17,13 @@ const HeaderBar = ({ onShadow, onBox }) => (
     <AppLabel
        className="header__label-app"
        caption={CAPTION}
+    />    
+    <A.FlatButton
+      caption="Box"
+      title="Click to toggle css box inputs"
+      accessKey="b"
+      timeout={0}
+      onClick={onBox}
     />
     <A.FlatButton
       caption="Shadow"
@@ -24,13 +31,6 @@ const HeaderBar = ({ onShadow, onBox }) => (
       accessKey="h"
       timeout={0}
       onClick={onShadow}
-    />
-    <A.FlatButton
-      caption="Box"
-      title="Click to toggle css box inputs"
-      accessKey="b"
-      timeout={0}
-      onClick={onBox}
     />
     <GitHubLink
       className="header__github-link"

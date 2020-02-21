@@ -3,14 +3,12 @@ import React from 'react'
 import CssValue from './CssValue'
 import Preview from './Preview'
 
-const CL = "page-sb__views";
-
 const ViewBoxShadow = ({
   boxShadows, currentIndex,
   configStyle,
   onAdd, onEdit, onRemove
 }) => (
-  <div className={CL}>
+  <>
     <Preview
        boxShadows={boxShadows}
        configStyle={configStyle}
@@ -22,7 +20,7 @@ const ViewBoxShadow = ({
        onEdit={onEdit}
        onRemove={onRemove}
     />
-  </div>
+  </>
 );
 
 /*

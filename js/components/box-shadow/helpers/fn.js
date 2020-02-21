@@ -9,14 +9,18 @@ var _tinycolor = _interopRequireDefault(require("tinycolor2"));
 
 var fn = {
   toCssValue: function toCssValue(boxShadow) {
-    var vLength = boxShadow.vLength,
+    var isInset = boxShadow.isInset,
+        vLength = boxShadow.vLength,
         gLength = boxShadow.gLength,
         blurR = boxShadow.blurR,
         spreadR = boxShadow.spreadR,
         color = boxShadow.color,
         opacity = boxShadow.opacity,
+        _strCss = [vLength + 'px', gLength + 'px', blurR + 'px', spreadR + 'px'].join(' '),
+        _prefix = isInset ? 'inset ' + _strCss : _strCss,
         cRgb = (0, _tinycolor["default"])(color).toRgb();
-    return vLength + "px " + gLength + "px " + blurR + "px " + spreadR + "px rgba(" + cRgb.r + ", " + cRgb.g + ", " + cRgb.b + ", " + opacity + ")";
+
+    return _prefix + " rgba(" + cRgb.r + ", " + cRgb.g + ", " + cRgb.b + ", " + opacity + ")";
   }
 };
 var _default = fn;

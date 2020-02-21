@@ -2,10 +2,16 @@ import React, { useReducer, useCallback } from 'react'
 
 import pageReducer from './pageReducer'
 
-import InputBoxShadow from './InputBoxShadow'
+
+import InputBox from './InputBox'
+import InputShadow from './InputShadow'
 import ViewBoxShadow from './ViewBoxShadow'
 
-const CL = "page-sb";
+const CL = {
+  PAGE: "page-sb",
+  INPUTS: "page-sb__inputs",
+  VIEWS: "page-sb__views"
+};
 
 const { A, INITIAL_STATE } = pageReducer;
 
@@ -19,6 +25,7 @@ const Page = ({isShadow, isBox}) => {
       boxShadows,
       configStyle
     } = state
+  , { id, isInset } = initValue
   , _updateShadows = useCallback(boxShadow => dispatch({
        type: A.UPDATE_SHADOWS, boxShadow
      }), [])
@@ -35,23 +42,31 @@ const Page = ({isShadow, isBox}) => {
       type: A.REMOVE_SHADOW, removeIndex
     }),[])
   return (
-    <div className={CL} >
-      <InputBoxShadow
-         isShadow={isShadow}
-         isBox={isBox}
-         initValue={initValue}
-         configStyle={configStyle}
-         onChange={_updateShadows}
-         onEnter={_updateConfig}
-      />
-      <ViewBoxShadow
-         currentIndex={currentIndex}
-         boxShadows={boxShadows}
-         configStyle={configStyle}
-         onAdd={_addShadow}
-         onEdit={_setCurrentShadow}
-         onRemove={_removeShadow}
-      />
+    <div className={CL.PAGE} >
+      <div className={CL.INPUTS}>
+        <InputBox
+          isBox={isBox}
+          configStyle={configStyle}
+          onEnter={_updateConfig}
+        />
+        <InputShadow
+          id={id}
+          isShadow={isShadow}
+          isInset={isInset}          
+          initValue={initValue}
+          onChange={_updateShadows}
+        />
+      </div>
+      <div className={CL.VIEWS}>
+        <ViewBoxShadow
+           currentIndex={currentIndex}
+           boxShadows={boxShadows}
+           configStyle={configStyle}
+           onAdd={_addShadow}
+           onEdit={_setCurrentShadow}
+           onRemove={_removeShadow}
+        />
+      </div>
     </div>
   );
 }

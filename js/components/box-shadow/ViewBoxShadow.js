@@ -11,8 +11,6 @@ var _CssValue = _interopRequireDefault(require("./CssValue"));
 
 var _Preview = _interopRequireDefault(require("./Preview"));
 
-var CL = "page-sb__views";
-
 var ViewBoxShadow = function ViewBoxShadow(_ref) {
   var boxShadows = _ref.boxShadows,
       currentIndex = _ref.currentIndex,
@@ -20,9 +18,7 @@ var ViewBoxShadow = function ViewBoxShadow(_ref) {
       onAdd = _ref.onAdd,
       onEdit = _ref.onEdit,
       onRemove = _ref.onRemove;
-  return _react["default"].createElement("div", {
-    className: CL
-  }, _react["default"].createElement(_Preview["default"], {
+  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Preview["default"], {
     boxShadows: boxShadows,
     configStyle: configStyle
   }), _react["default"].createElement(_CssValue["default"], {

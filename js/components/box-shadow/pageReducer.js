@@ -21,6 +21,7 @@ var A = {
   UPDATE_CONFIG: 'UPDATE_CONFIG'
 };
 var DF_INITIAL_VALUE = {
+  isInset: false,
   gLength: 10,
   vLength: 10,
   blurR: 5,
@@ -58,6 +59,7 @@ var pageReducer = function pageReducer(state, action) {
             _boxShadows = state.boxShadows,
             currentIndex = state.currentIndex;
         return (0, _extends2["default"])({}, state, {
+          initValue: _imObj["default"].create(boxShadow),
           boxShadows: _imArr["default"].update(_boxShadows, currentIndex, boxShadow)
         });
       }

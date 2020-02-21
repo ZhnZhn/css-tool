@@ -11,11 +11,17 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _pageReducer = _interopRequireDefault(require("./pageReducer"));
 
-var _InputBoxShadow = _interopRequireDefault(require("./InputBoxShadow"));
+var _InputBox = _interopRequireDefault(require("./InputBox"));
+
+var _InputShadow = _interopRequireDefault(require("./InputShadow"));
 
 var _ViewBoxShadow = _interopRequireDefault(require("./ViewBoxShadow"));
 
-var CL = "page-sb";
+var CL = {
+  PAGE: "page-sb",
+  INPUTS: "page-sb__inputs",
+  VIEWS: "page-sb__views"
+};
 var A = _pageReducer["default"].A,
     INITIAL_STATE = _pageReducer["default"].INITIAL_STATE;
 
@@ -30,6 +36,8 @@ var Page = function Page(_ref) {
       initValue = state.initValue,
       boxShadows = state.boxShadows,
       configStyle = state.configStyle,
+      id = initValue.id,
+      isInset = initValue.isInset,
       _updateShadows = (0, _react.useCallback)(function (boxShadow) {
     return dispatch({
       type: A.UPDATE_SHADOWS,
@@ -63,22 +71,29 @@ var Page = function Page(_ref) {
   }, []);
 
   return _react["default"].createElement("div", {
-    className: CL
-  }, _react["default"].createElement(_InputBoxShadow["default"], {
-    isShadow: isShadow,
+    className: CL.PAGE
+  }, _react["default"].createElement("div", {
+    className: CL.INPUTS
+  }, _react["default"].createElement(_InputBox["default"], {
     isBox: isBox,
-    initValue: initValue,
     configStyle: configStyle,
-    onChange: _updateShadows,
     onEnter: _updateConfig
-  }), _react["default"].createElement(_ViewBoxShadow["default"], {
+  }), _react["default"].createElement(_InputShadow["default"], {
+    id: id,
+    isShadow: isShadow,
+    isInset: isInset,
+    initValue: initValue,
+    onChange: _updateShadows
+  })), _react["default"].createElement("div", {
+    className: CL.VIEWS
+  }, _react["default"].createElement(_ViewBoxShadow["default"], {
     currentIndex: currentIndex,
     boxShadows: boxShadows,
     configStyle: configStyle,
     onAdd: _addShadow,
     onEdit: _setCurrentShadow,
     onRemove: _removeShadow
-  }));
+  })));
 };
 
 var _default = Page;

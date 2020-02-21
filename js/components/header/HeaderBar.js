@@ -31,17 +31,17 @@ var HeaderBar = function HeaderBar(_ref) {
     className: "header__label-app",
     caption: CAPTION
   }), _react["default"].createElement(_Comp["default"].FlatButton, {
-    caption: "Shadow",
-    title: "Click to toggle css shadow-box inputs",
-    accessKey: "h",
-    timeout: 0,
-    onClick: onShadow
-  }), _react["default"].createElement(_Comp["default"].FlatButton, {
     caption: "Box",
     title: "Click to toggle css box inputs",
     accessKey: "b",
     timeout: 0,
     onClick: onBox
+  }), _react["default"].createElement(_Comp["default"].FlatButton, {
+    caption: "Shadow",
+    title: "Click to toggle css shadow-box inputs",
+    accessKey: "h",
+    timeout: 0,
+    onClick: onShadow
   }), _react["default"].createElement(_GitHubLink["default"], {
     className: "header__github-link",
     title: "GitHub Repository",
