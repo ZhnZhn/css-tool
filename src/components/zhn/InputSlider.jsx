@@ -189,7 +189,7 @@ class InputSlider extends Component {
     this.setState({ hovered: false })
   }
   _handleMouseDown = (event) => {
-    // Cancel text selection    
+    // Cancel text selection
     if (event.cancelable) {
       event.preventDefault()
     }
@@ -308,38 +308,45 @@ class InputSlider extends Component {
     , _widthBeforeStyle = _crWidthCalc(_percent)
     , _widthAfterStyle = _crWidthCalc(100 - _percent)
     , _leftStyle = _crLeftPercent(_percent)
-    , _scrollHandlers = HAS_TOUCH
-        ? {
-            onTouchStart: this._handleMouseDown
-          }
+    , _sliderProps = {
+        role: "slider",
+        tabIndex: "0",
+        'aria-orientation': "horizontal",
+        'aria-valuemax': max,
+        'aria-valuemin': min,
+        'aria-valuenow': value
+      }
+    , _mouseSlider = HAS_TOUCH
+        ? void 0
         : {
+          ..._sliderProps,
           onMouseDown: this._handleMouseDown,
           onMouseEnter: this._handleMouseEnter,
-          onMouseLeave: this._handleMouseLeave
-        };
+          onMouseLeave: this._handleMouseLeave,
+          onKeyDown: this._handleKeyDownTrack,
+          onFocus: this._handleFocusTrack,
+          onBlur: this._handleBlurTrack
+        }
+    , _touchSlider = HAS_TOUCH
+        ? {
+            ..._sliderProps,
+            onTouchStart: this._handleMouseDown
+          }
+        : void 0;
 
     return (
       <div style={S.ROOT}>
         <div
            ref={this._refTrackComp}
-           role="slider"
-           tabIndex="0"
-           aria-orientation="horizontal"
-           aria-valuemax={max}
-           aria-valuemin={min}
-           aria-valuenow={value}
            style={S.ROOT_LINE}
-           {..._scrollHandlers}
-           onKeyDown={this._handleKeyDownTrack}
-           onFocus={this._handleFocusTrack}
-           onBlur={this._handleBlurTrack}
+           {..._mouseSlider}
         >
           <div style={{...S.LINE_BEFORE, ..._widthBeforeStyle }} />
           <div style={{..._lineAfterStyle, ..._widthAfterStyle }} />
           <div
-             //tabIndex={0}
              style={{...S.ROOT_CIRCLE, ..._circleStyle, ..._leftStyle }}
-          >
+             {..._touchSlider}
+           >
             <div style={{ ...S.CIRCLE_INNER, ..._circleStyle}} >
               { (hovered || dragged) && <div
                     style={{ ...S.CIRCLE_INNER_EL, ..._emberStyle }}

@@ -201,7 +201,7 @@ function (_Component) {
     };
 
     _this._handleMouseDown = function (event) {
-      // Cancel text selection    
+      // Cancel text selection
       if (event.cancelable) {
         event.preventDefault();
       }
@@ -390,37 +390,38 @@ function (_Component) {
         _widthBeforeStyle = _crWidthCalc(_percent),
         _widthAfterStyle = _crWidthCalc(100 - _percent),
         _leftStyle = _crLeftPercent(_percent),
-        _scrollHandlers = HAS_TOUCH ? {
-      onTouchStart: this._handleMouseDown
-    } : {
+        _sliderProps = {
+      role: "slider",
+      tabIndex: "0",
+      'aria-orientation': "horizontal",
+      'aria-valuemax': max,
+      'aria-valuemin': min,
+      'aria-valuenow': value
+    },
+        _mouseSlider = HAS_TOUCH ? void 0 : (0, _extends2["default"])({}, _sliderProps, {
       onMouseDown: this._handleMouseDown,
       onMouseEnter: this._handleMouseEnter,
-      onMouseLeave: this._handleMouseLeave
-    };
+      onMouseLeave: this._handleMouseLeave,
+      onKeyDown: this._handleKeyDownTrack,
+      onFocus: this._handleFocusTrack,
+      onBlur: this._handleBlurTrack
+    }),
+        _touchSlider = HAS_TOUCH ? (0, _extends2["default"])({}, _sliderProps, {
+      onTouchStart: this._handleMouseDown
+    }) : void 0;
 
     return _react["default"].createElement("div", {
       style: S.ROOT
     }, _react["default"].createElement("div", (0, _extends2["default"])({
       ref: this._refTrackComp,
-      role: "slider",
-      tabIndex: "0",
-      "aria-orientation": "horizontal",
-      "aria-valuemax": max,
-      "aria-valuemin": min,
-      "aria-valuenow": value,
       style: S.ROOT_LINE
-    }, _scrollHandlers, {
-      onKeyDown: this._handleKeyDownTrack,
-      onFocus: this._handleFocusTrack,
-      onBlur: this._handleBlurTrack
-    }), _react["default"].createElement("div", {
+    }, _mouseSlider), _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, S.LINE_BEFORE, {}, _widthBeforeStyle)
     }), _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, _lineAfterStyle, {}, _widthAfterStyle)
-    }), _react["default"].createElement("div", {
-      //tabIndex={0}
+    }), _react["default"].createElement("div", (0, _extends2["default"])({
       style: (0, _extends2["default"])({}, S.ROOT_CIRCLE, {}, _circleStyle, {}, _leftStyle)
-    }, _react["default"].createElement("div", {
+    }, _touchSlider), _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, S.CIRCLE_INNER, {}, _circleStyle)
     }, (hovered || dragged) && _react["default"].createElement("div", {
       style: (0, _extends2["default"])({}, S.CIRCLE_INNER_EL, {}, _emberStyle)
