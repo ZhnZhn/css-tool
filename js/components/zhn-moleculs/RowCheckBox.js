@@ -14,18 +14,9 @@ var _A = _interopRequireDefault(require("../zhn/A"));
 var CL = "bt-chb";
 var S = {
   ROOT: {
+    lineHeight: 1.8,
     paddingTop: 6,
     paddingLeft: 16
-  },
-  CAPTION: {
-    display: 'inline-block',
-    color: 'black',
-    backgroundColor: 'transparent',
-    paddingLeft: 12,
-    fontSize: '16px',
-    fontWeight: 'bold',
-    userSelect: 'none',
-    cursor: 'pointer'
   }
 };
 
@@ -52,7 +43,6 @@ var RowCheckBox = function RowCheckBox(_ref) {
   }), caption && _react["default"].createElement("button", {
     className: CL,
     tabIndex: "-1",
-    style: S.CAPTION,
     onClick: _toggleValue
   }, caption));
 };

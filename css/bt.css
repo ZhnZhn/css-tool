@@ -1,4 +1,15 @@
-
+.bt-chb {
+  display: inline-block;
+  color: black;
+  background-color: transparent;
+  padding-left: 12px;
+  line-height: inherit;
+  font-size: 16px;
+  font-family: Roboto, Arial, Lato, sans-serif;
+  font-weight: 700;
+  user-select: none;
+  cursor: pointer;
+}
 .bt-chb:hover,
 .bt-chb:focus {
   outline: 0;

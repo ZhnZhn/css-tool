@@ -6,22 +6,13 @@ const CL = "bt-chb";
 
 const S = {
   ROOT: {
+    lineHeight: 1.8,
     paddingTop: 6,
     paddingLeft: 16
-  },
-  CAPTION: {
-    display: 'inline-block',
-    color: 'black',
-    backgroundColor: 'transparent',
-    paddingLeft: 12,
-    fontSize: '16px',
-    fontWeight: 'bold',
-    userSelect: 'none',
-    cursor: 'pointer'
   }
 };
 
-const RowCheckBox = ({  
+const RowCheckBox = ({
   value,
   caption,
   onCheck,
@@ -43,7 +34,6 @@ const RowCheckBox = ({
           <button
             className={CL}
             tabIndex="-1"
-            style={S.CAPTION}
             onClick={_toggleValue}
           >
             {caption}
