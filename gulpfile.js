@@ -23,14 +23,19 @@ gulp.task('styles', gulp.series(['clean'], function(){
 
 gulp.task('inject-css', gulp.series(['styles'], function(){
    const target = gulp.src('./template/gulp.ejs')
-   , source = gulp.src(['./css/*.min.css'], { read:false });
-   return target.pipe(inject(source))
+   , source = gulp.src(['./css/*.min.css']);
+   return target.pipe(inject(source, {
+      starttag: '<!-- inject:inline:style -->',
+      transform: function(filePath, file) {
+        return '<style>' + file.contents.toString('utf8') + '</style>';
+      }
+    }))
     .pipe(gulp.dest('./template'))
 }));
 
 gulp.task('template', gulp.series(['inject-css'], function(){
   return gulp.src('./template/gulp.ejs')
-    .pipe(replace('<!-- inject:css -->',''))
+    .pipe(replace('<!-- inject:inline:style -->',''))
     .pipe(replace('<!-- endinject  -->', ''))
     .pipe(rename('index.ejs'))
     .pipe(gulp.dest('./template'));

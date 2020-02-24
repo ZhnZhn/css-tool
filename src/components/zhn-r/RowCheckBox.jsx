@@ -1,14 +1,11 @@
 import React, { useCallback } from 'react'
 
 import A from '../zhn/A'
-
-const CL = "bt-chb";
+import STYLE from './style'
 
 const S = {
-  ROOT: {
-    lineHeight: 1.8,
-    paddingTop: 6,
-    paddingLeft: 16
+  ROW: {
+    marginTop: 6
   }
 };
 
@@ -23,7 +20,7 @@ const RowCheckBox = ({
     else { onCheck() }
   },[ value, onUnCheck, onCheck ]);
   return (
-    <div style={S.ROOT}>
+    <div className={STYLE.CL_ROW} style={S.ROW}>
       <A.SvgCheckBox
         value={value}
         onCheck={onCheck}
@@ -32,7 +29,7 @@ const RowCheckBox = ({
       {
         caption && (
           <button
-            className={CL}
+            className={STYLE.CL_CHB_BT}
             tabIndex="-1"
             onClick={_toggleValue}
           >

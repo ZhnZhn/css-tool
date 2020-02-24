@@ -31,7 +31,6 @@ var DF_INITIAL_VALUE = {
   id: (0, _crId["default"])()
 };
 var INITIAL_STATE = {
-  initValue: DF_INITIAL_VALUE,
   currentIndex: 0,
   boxShadows: [DF_INITIAL_VALUE],
   configStyle: {
@@ -45,39 +44,34 @@ var pageReducer = function pageReducer(state, action) {
   switch (action.type) {
     case A.SET_CURRENT_SHADOW:
       {
-        var editIndex = action.editIndex,
-            boxShadows = state.boxShadows;
+        var editIndex = action.editIndex;
         return (0, _extends2["default"])({}, state, {
-          currentIndex: editIndex,
-          initValue: _imObj["default"].create(boxShadows[editIndex])
+          currentIndex: editIndex
         });
       }
 
     case A.UPDATE_SHADOWS:
       {
         var boxShadow = action.boxShadow,
-            _boxShadows = state.boxShadows,
+            boxShadows = state.boxShadows,
             currentIndex = state.currentIndex;
         return (0, _extends2["default"])({}, state, {
-          initValue: _imObj["default"].create(boxShadow),
-          boxShadows: _imArr["default"].update(_boxShadows, currentIndex, boxShadow)
+          boxShadows: _imArr["default"].update(boxShadows, currentIndex, boxShadow)
         });
       }
 
     case A.ADD_SHADOW:
       {
         var fromIndex = action.fromIndex,
-            _boxShadows2 = state.boxShadows,
+            _boxShadows = state.boxShadows,
             _currentIndex = state.currentIndex,
-            value = _boxShadows2[fromIndex],
-            initValue = _imObj["default"].create(value),
+            _initValue = _imObj["default"].create(_boxShadows[fromIndex]),
             _index = _currentIndex + 1;
 
-        initValue.id = (0, _crId["default"])(_index);
+        _initValue.id = (0, _crId["default"])(_index);
         return (0, _extends2["default"])({}, state, {
-          initValue: initValue,
           currentIndex: _index,
-          boxShadows: _imArr["default"].insert(_boxShadows2, _index, initValue)
+          boxShadows: _imArr["default"].insert(_boxShadows, _index, _initValue)
         });
       }
 
@@ -89,23 +83,22 @@ var pageReducer = function pageReducer(state, action) {
           return state;
         }
 
-        var _boxShadows3 = state.boxShadows,
+        var _boxShadows2 = state.boxShadows,
             _index2 = removeIndex - 1;
 
         return (0, _extends2["default"])({}, state, {
           currentIndex: _index2,
-          initValue: _imObj["default"].create(_boxShadows3[_index2]),
-          boxShadows: _imArr["default"].remove(_boxShadows3, removeIndex)
+          boxShadows: _imArr["default"].remove(_boxShadows2, removeIndex)
         });
       }
 
     case A.UPDATE_CONFIG:
       {
         var propName = action.propName,
-            _value = action.value,
+            value = action.value,
             configStyle = state.configStyle;
         return (0, _extends2["default"])({}, state, {
-          configStyle: _imObj["default"].update(configStyle, propName, _value)
+          configStyle: _imObj["default"].update(configStyle, propName, value)
         });
       }
 

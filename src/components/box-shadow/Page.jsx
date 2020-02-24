@@ -21,11 +21,11 @@ const Page = ({isShadow, isBox}) => {
   ] = useReducer(pageReducer, INITIAL_STATE)
   , {
       currentIndex,
-      initValue,
       boxShadows,
       configStyle
     } = state
-  , { id, isInset } = initValue
+  , _currentValue = boxShadows[currentIndex]  
+  , { id, isInset } = _currentValue
   , _updateShadows = useCallback(boxShadow => dispatch({
        type: A.UPDATE_SHADOWS, boxShadow
      }), [])
@@ -52,8 +52,8 @@ const Page = ({isShadow, isBox}) => {
         <InputShadow
           id={id}
           isShadow={isShadow}
-          isInset={isInset}          
-          initValue={initValue}
+          isInset={isInset}
+          initValue={_currentValue}
           onChange={_updateShadows}
         />
       </div>

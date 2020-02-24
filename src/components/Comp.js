@@ -1,11 +1,11 @@
-import Atoms from './zhn/A'
+import A from './zhn/A'
 import Am from './zhn-m/A'
-import Aml from './zhn-moleculs/A'
+import Ar from './zhn-r/A'
 
 const Comp = {
-  ...Atoms,
+  ...A,
   ...Am,
-  ...Aml
+  ...Ar
 };
 
 export default Comp

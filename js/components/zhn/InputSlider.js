@@ -13,6 +13,8 @@ var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inh
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _math = _interopRequireDefault(require("../../utils/math"));
+
 var _has = _interopRequireDefault(require("../has"));
 
 /*
@@ -20,6 +22,8 @@ var _has = _interopRequireDefault(require("../has"));
  https://github.com/callemall/material-ui/blob/master/src/Slider/Slider.js
 */
 var HAS_TOUCH = _has["default"].HAS_TOUCH;
+var round10 = _math["default"].round10,
+    toPercent = _math["default"].toPercent;
 var S = {
   ROOT: {
     position: 'relative',
@@ -115,30 +119,8 @@ var _isFn = function _isFn(fn) {
   return typeof fn === 'function';
 };
 
-var _round10 = function _round10(value, exp) {
-  value = +value;
-  exp = +exp; // If the value is not a number or the exp is not an integer...
-
-  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-    return NaN;
-  } // Shift
-
-
-  value = value.toString().split('e');
-  value = Math.round(+(value[0] + 'e' + (value[1] ? +value[1] - exp : -exp))); // Shift back
-
-  value = value.toString().split('e');
-  return +(value[0] + 'e' + (value[1] ? +value[1] + exp : exp));
-};
-
 var _addStep = function _addStep(value, step, exp) {
-  return exp ? _round10(value + step, exp) : value + step;
-};
-
-var _toPercent = function _toPercent(value, min, max) {
-  var _percent = (value - min) / (max - min);
-
-  return isNaN(_percent) ? 0 : _percent * 100;
+  return exp ? round10(value + step, exp) : value + step;
 };
 
 var _crWidthCalc = function _crWidthCalc(percent) {
@@ -386,7 +368,7 @@ function (_Component) {
         _lineAfterStyle = hovered ? (0, _extends2["default"])({}, S.LINE_AFTER, {}, S.LINE_HOVERED) : S.LINE_AFTER,
         _circleStyle = dragged ? S.CIRCLE_DRAGGED : null,
         _emberStyle = dragged ? S.EMBER : null,
-        _percent = _toPercent(value, min, max),
+        _percent = toPercent(value, min, max),
         _widthBeforeStyle = _crWidthCalc(_percent),
         _widthAfterStyle = _crWidthCalc(100 - _percent),
         _leftStyle = _crLeftPercent(_percent),

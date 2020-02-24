@@ -1,4 +1,6 @@
 
+const _isNaN = Number.isNaN || isNaN;
+
 const math = {
   round10: (value, exp) => {
       value = +value;
@@ -14,6 +16,13 @@ const math = {
       value = value.toString().split('e');
 
       return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+  },
+
+  toPercent: (value, min, max) => {
+    const _percent = (value - min ) / (max - min);
+    return _isNaN(_percent)
+      ? 0
+      : _percent*100;
   }
 }
 

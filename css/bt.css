@@ -24,7 +24,7 @@
   border: 10px;
   box-sizing: border-box;
   display: inline-block;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, Arial, Lato, sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   text-decoration: none;

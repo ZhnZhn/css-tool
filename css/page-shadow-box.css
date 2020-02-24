@@ -38,7 +38,7 @@
 }
 
 @media screen and (max-width: 420px) {
-  .bt-chb {
+  .row__caption {
     font-size: 18px;
   }
   .page-sb {

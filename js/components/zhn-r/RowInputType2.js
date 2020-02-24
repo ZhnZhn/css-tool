@@ -11,29 +11,20 @@ var _react = _interopRequireDefault(require("react"));
 
 var _A = _interopRequireDefault(require("../zhn/A"));
 
-var S = {
-  ROOT: {
-    lineHeight: 1.8
-  },
-  TEXT: {
-    "float": 'right',
-    width: 80
-  }
-};
+var _style = _interopRequireDefault(require("./style"));
 
 var RowInputType2 = function RowInputType2(_ref) {
-  var style = _ref.style,
-      styleInput = _ref.styleInput,
+  var styleInput = _ref.styleInput,
       caption = _ref.caption,
       initValue = _ref.initValue,
       _ref$onEnter = _ref.onEnter,
       onEnter = _ref$onEnter === void 0 ? function () {} : _ref$onEnter;
   return _react["default"].createElement("div", {
-    style: style
+    className: _style["default"].CL_ROW
   }, _react["default"].createElement("label", {
-    style: (0, _extends2["default"])({}, S.ROOT)
+    className: _style["default"].CL_CAPTION
   }, _react["default"].createElement("span", null, caption), _react["default"].createElement(_A["default"].InputText, {
-    style: (0, _extends2["default"])({}, S.TEXT, {}, styleInput),
+    style: (0, _extends2["default"])({}, _style["default"].TEXT, {}, styleInput),
     initValue: initValue,
     onEnter: onEnter
   })));

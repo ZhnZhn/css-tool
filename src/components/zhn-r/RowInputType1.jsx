@@ -3,16 +3,10 @@ import React, { Component } from 'react'
 import fnMath from '../../utils/math'
 
 import A from '../zhn/A'
+import S from './style'
 
-const S = {
-  RIGHT: {
-    float: 'right'
-  },
-  LABEL: {
-     lineHeight: 1.8
-  }
-};
 
+const { round10 } = fnMath;
 const _isFn = fn => typeof fn === 'function';
 
 class RowInputType1 extends Component {
@@ -39,8 +33,7 @@ class RowInputType1 extends Component {
 
    constructor(props){
      super(props)
-     this.isOnChange = _isFn(props.onChange)
-
+     
      this._refTextComp = React.createRef()
      this._refSliderComp = React.createRef()
 
@@ -49,8 +42,9 @@ class RowInputType1 extends Component {
    }
 
  _handleOnChange = (value) => {
-   if (this.isOnChange){
-     this.props.onChange(value)
+   const { onChange } = this.props
+   if (_isFn(onChange)) {
+     onChange(value)
    }
  }
 
@@ -63,7 +57,7 @@ class RowInputType1 extends Component {
   _handleChangeText = (value) => {
     const { min, max } = this.props
     , _value = this.stepExp !== 0
-        ? fnMath.round10(parseFloat(value), this.stepExp)
+        ? round10(parseFloat(value), this.stepExp)
         : parseInt(value, 10);
 
     if ( _value>=min && _value<=max ){
@@ -75,7 +69,7 @@ class RowInputType1 extends Component {
 
   render(){
     const {
-      style, styleInput,
+      styleInput,
       name, caption,
       initValue, inputId,
       unit,
@@ -83,9 +77,9 @@ class RowInputType1 extends Component {
       ...rest
     } = this.props
     return (
-      <div style={style} >
+      <div className={S.CL_ROW}>
         {/*eslint-disable jsx-a11y/label-has-for*/}
-        <label style={S.LABEL}>
+        <label className={S.CL_CAPTION}>
           <span>{caption}</span>
           <span style={S.RIGHT}>{unit}</span>
           <A.InputText

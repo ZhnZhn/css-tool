@@ -1,25 +1,17 @@
 import React from 'react'
 
 import A from '../zhn/A'
+import S from './style'
 
-const S = {
-  ROOT : {
-    lineHeight: 1.8
-  },
-  TEXT: {
-    float: 'right',
-    width: 80
-  }
-};
 
 const RowInputType2 = ({
-  style, styleInput,
+  styleInput,
   caption, initValue,
   onEnter=()=>{}
 }) => (
-  <div style={style}>
+  <div className={S.CL_ROW}>
      {/*eslint-disable jsx-a11y/label-has-for*/}
-     <label style={{ ...S.ROOT }}>
+     <label className={S.CL_CAPTION}>
        <span>{caption}</span>
        <A.InputText
          style={{ ...S.TEXT, ...styleInput }}

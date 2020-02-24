@@ -1,1 +1,26 @@
-{"version":3,"sources":["../../src/utils/math.js"],"names":["math","round10","value","exp","isNaN","NaN","toString","split","Math","round"],"mappings":";;;;AACA,IAAMA,IAAI,GAAG;AACXC,EAAAA,OAAO,EAAE,iBAACC,KAAD,EAAQC,GAAR,EAAgB;AACrBD,IAAAA,KAAK,GAAG,CAACA,KAAT;AACAC,IAAAA,GAAG,GAAG,CAACA,GAAP,CAFqB,CAGrB;;AACA,QAAIC,KAAK,CAACF,KAAD,CAAL,IAAgB,EAAE,OAAOC,GAAP,KAAe,QAAf,IAA2BA,GAAG,GAAG,CAAN,KAAY,CAAzC,CAApB,EAAiE;AAC/D,aAAOE,GAAP;AACD,KANoB,CAOrB;;;AACAH,IAAAA,KAAK,GAAGA,KAAK,CAACI,QAAN,GAAiBC,KAAjB,CAAuB,GAAvB,CAAR;AACAL,IAAAA,KAAK,GAAGM,IAAI,CAACC,KAAL,CAAW,EAAEP,KAAK,CAAC,CAAD,CAAL,GAAW,GAAX,IAAkBA,KAAK,CAAC,CAAD,CAAL,GAAY,CAACA,KAAK,CAAC,CAAD,CAAN,GAAYC,GAAxB,GAA+B,CAACA,GAAlD,CAAF,CAAX,CAAR,CATqB,CAUrB;;AACAD,IAAAA,KAAK,GAAGA,KAAK,CAACI,QAAN,GAAiBC,KAAjB,CAAuB,GAAvB,CAAR;AAEA,WAAO,EAAEL,KAAK,CAAC,CAAD,CAAL,GAAW,GAAX,IAAkBA,KAAK,CAAC,CAAD,CAAL,GAAY,CAACA,KAAK,CAAC,CAAD,CAAN,GAAYC,GAAxB,GAA+BA,GAAjD,CAAF,CAAP;AACH;AAfU,CAAb;eAkBeH,I","sourcesContent":["\r\nconst math = {\r\n  round10: (value, exp) => {\r\n      value = +value;\r\n      exp = +exp;\r\n      // If the value is not a number or the exp is not an integer...\r\n      if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {\r\n        return NaN;\r\n      }\r\n      // Shift\r\n      value = value.toString().split('e');\r\n      value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));\r\n      // Shift back\r\n      value = value.toString().split('e');\r\n\r\n      return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));\r\n  }\r\n}\r\n\r\nexport default math\r\n"],"file":"math.js"}
+{
+ "version": 3,
+ "sources": [
+  "../../src/utils/math.js"
+ ],
+ "file": "../../src/utils/math.js",
+ "names": [
+  "_isNaN",
+  "Number",
+  "isNaN",
+  "math",
+  "round10",
+  "value",
+  "exp",
+  "NaN",
+  "toString",
+  "split",
+  "Math",
+  "round",
+  "toPercent",
+  "min",
+  "max",
+  "_percent"
+ ],
+ "mappings": ";;;;;AACA,IAAMA,MAAM,GAAGC,MAAM,CAACC,KAAP,IAAgBA,KAA/B;;AAEA,IAAMC,IAAI,GAAG;AACXC,EAAAA,OAAO,EAAE,iBAACC,KAAD,EAAQC,GAAR,EAAgB;AACrBD,IAAAA,KAAK,GAAG,CAACA,KAAT;AACAC,IAAAA,GAAG,GAAG,CAACA,GAAP,CAFqB,CAGrB;;AACA,QAAIJ,KAAK,CAACG,KAAD,CAAL,IAAgB,EAAE,OAAOC,GAAP,KAAe,QAAf,IAA2BA,GAAG,GAAG,CAAN,KAAY,CAAzC,CAApB,EAAiE;AAC/D,aAAOC,GAAP;AACD,KANoB,CAOrB;;;AACAF,IAAAA,KAAK,GAAGA,KAAK,CAACG,QAAN,GAAiBC,KAAjB,CAAuB,GAAvB,CAAR;AACAJ,IAAAA,KAAK,GAAGK,IAAI,CAACC,KAAL,CAAW,EAAEN,KAAK,CAAC,CAAD,CAAL,GAAW,GAAX,IAAkBA,KAAK,CAAC,CAAD,CAAL,GAAY,CAACA,KAAK,CAAC,CAAD,CAAN,GAAYC,GAAxB,GAA+B,CAACA,GAAlD,CAAF,CAAX,CAAR,CATqB,CAUrB;;AACAD,IAAAA,KAAK,GAAGA,KAAK,CAACG,QAAN,GAAiBC,KAAjB,CAAuB,GAAvB,CAAR;AAEA,WAAO,EAAEJ,KAAK,CAAC,CAAD,CAAL,GAAW,GAAX,IAAkBA,KAAK,CAAC,CAAD,CAAL,GAAY,CAACA,KAAK,CAAC,CAAD,CAAN,GAAYC,GAAxB,GAA+BA,GAAjD,CAAF,CAAP;AACH,GAfU;AAiBXM,EAAAA,SAAS,EAAE,mBAACP,KAAD,EAAQQ,GAAR,EAAaC,GAAb,EAAqB;AAC9B,QAAMC,QAAQ,GAAG,CAACV,KAAK,GAAGQ,GAAT,KAAkBC,GAAG,GAAGD,GAAxB,CAAjB;;AACA,WAAOb,MAAM,CAACe,QAAD,CAAN,GACH,CADG,GAEHA,QAAQ,GAAC,GAFb;AAGD;AAtBU,CAAb;eAyBeZ,I"
+}

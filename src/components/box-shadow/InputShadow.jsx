@@ -2,38 +2,31 @@ import React, { useRef, useCallback, useEffect } from 'react'
 
 import A from '../Comp'
 
-const S = {
-  ROW_INPUT: {
-    width: '100%',
-    margin: '16px 16px'
-  }
-};
+const _crName = ({ caption }) => caption
+ .toLowerCase().replace(' ', '-');
 
-const inputRows = [
+const INPUT_ROWS = [
   {
-    style : S.ROW_INPUT, caption: "Horizontal Length",
-    name: 'horizontal-lenght',
+    caption: "Horizontal Length",
     min: -30, max: 30, step:1, unit: 'px'
   },{
-    style : S.ROW_INPUT, caption: "Vertical Length",
-    name: 'vertical-length',
+    caption: "Vertical Length",
     min: -30, max: 30, step:1, unit: 'px'
   },{
-    style : S.ROW_INPUT, caption: "Blur Radius",
-    name: 'blur-radius',
+    caption: "Blur Radius",
     min: 0, max: 20, step:1, unit: 'px'
   },{
-    style : S.ROW_INPUT, caption: "Spread Radius",
-    name: 'spread-radius',
+    caption: "Spread Radius",
     min: -10, max: 20, step:1, unit: 'px'
   },{
-    style : S.ROW_INPUT,
     styleInput: { width: 55 },
     caption: "Opacity",
-    name: 'opacity',
     min: 0, max: 1, step: 0.01, unit: ''
   }
-];
+].map(item => ({
+  name: _crName(item),
+  ...item
+}));
 
 const _useChangeValue = (fn, propName, value) => useCallback(
   fn.bind(null, propName, value), []
@@ -73,38 +66,37 @@ const InputShadow = ({
   return (
     <>
       <A.RowInputType1
-         {...inputRows[0]}
+         {...INPUT_ROWS[0]}
           inputId={id}
           initValue={vLength}
           onChange={_changeInput.bind(null, 'vLength')}
       />
       <A.RowInputType1
-         {...inputRows[1]}
+         {...INPUT_ROWS[1]}
          inputId={id}
          initValue={gLength}
          onChange={_changeInput.bind(null, 'gLength')}
       />
       <A.RowInputType1
-         {...inputRows[2]}
+         {...INPUT_ROWS[2]}
          inputId={id}
          initValue={blurR}
          onChange={_changeInput.bind(null, 'blurR')}
       />
       <A.RowInputType1
-         {...inputRows[3]}
+         {...INPUT_ROWS[3]}
          inputId={id}
          initValue={spreadR}
          onChange={_changeInput.bind(null, 'spreadR')}
       />
       <A.RowInputType3
          key={`${id}-sc`}
-         style={S.ROW_INPUT}
          caption="Shadow Color"
          initValue={color}
          onEnter={_enterColor}
       />
       <A.RowInputType1
-         {...inputRows[4]}
+         {...INPUT_ROWS[4]}
          inputId={id}
          initValue={opacity}
          onChange={_changeInput.bind(null, 'opacity')}

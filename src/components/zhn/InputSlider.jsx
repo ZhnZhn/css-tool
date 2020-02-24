@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import fnMath from '../../utils/math'
 import has from '../has';
 
 /*
@@ -8,6 +9,7 @@ import has from '../has';
 */
 
 const { HAS_TOUCH } = has;
+const { round10, toPercent } = fnMath
 
 const S = {
   ROOT : {
@@ -102,30 +104,10 @@ const S = {
 
 const _isFn = fn => typeof fn === 'function';
 
-const _round10 = (value, exp) => {
-    value = +value;
-    exp = +exp;
-    // If the value is not a number or the exp is not an integer...
-    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
-      return NaN;
-    }
-    // Shift
-    value = value.toString().split('e');
-    value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-    // Shift back
-    value = value.toString().split('e');
-
-    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-}
-
 const _addStep = (value, step, exp ) => exp
-   ? _round10(value + step, exp)
+   ? round10(value + step, exp)
    : value + step;
-
-const _toPercent = (value, min, max) => {
-  const _percent = (value - min ) / (max - min)
-  return isNaN(_percent) ? 0 : _percent*100;
-};
+   
 const _crWidthCalc = (percent) => ({
   width: `calc(${percent}%)`
 });
@@ -304,7 +286,7 @@ class InputSlider extends Component {
           : S.LINE_AFTER
     , _circleStyle = dragged ? S.CIRCLE_DRAGGED : null
     , _emberStyle = dragged ? S.EMBER : null
-    , _percent = _toPercent(value, min, max)
+    , _percent = toPercent(value, min, max)
     , _widthBeforeStyle = _crWidthCalc(_percent)
     , _widthAfterStyle = _crWidthCalc(100 - _percent)
     , _leftStyle = _crLeftPercent(_percent)

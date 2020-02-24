@@ -1,9 +1,9 @@
 {
  "version": 3,
  "sources": [
-  "../../../src/components/zhn-moleculs/A.js"
+  "../../../src/components/zhn-r/A.js"
  ],
- "file": "../../../src/components/zhn-moleculs/A.js",
+ "file": "../../../src/components/zhn-r/A.js",
  "names": [
   "A",
   "RowInputType1",

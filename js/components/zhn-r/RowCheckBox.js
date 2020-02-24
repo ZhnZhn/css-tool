@@ -11,12 +11,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _A = _interopRequireDefault(require("../zhn/A"));
 
-var CL = "bt-chb";
+var _style = _interopRequireDefault(require("./style"));
+
 var S = {
-  ROOT: {
-    lineHeight: 1.8,
-    paddingTop: 6,
-    paddingLeft: 16
+  ROW: {
+    marginTop: 6
   }
 };
 
@@ -35,13 +34,14 @@ var RowCheckBox = function RowCheckBox(_ref) {
   }, [value, onUnCheck, onCheck]);
 
   return _react["default"].createElement("div", {
-    style: S.ROOT
+    className: _style["default"].CL_ROW,
+    style: S.ROW
   }, _react["default"].createElement(_A["default"].SvgCheckBox, {
     value: value,
     onCheck: onCheck,
     onUnCheck: onUnCheck
   }), caption && _react["default"].createElement("button", {
-    className: CL,
+    className: _style["default"].CL_CHB_BT,
     tabIndex: "-1",
     onClick: _toggleValue
   }, caption));

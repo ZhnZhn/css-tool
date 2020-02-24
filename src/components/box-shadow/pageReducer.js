@@ -23,7 +23,6 @@ const DF_INITIAL_VALUE = {
 }
 
 const INITIAL_STATE = {
-  initValue: DF_INITIAL_VALUE,
   currentIndex: 0,
   boxShadows: [ DF_INITIAL_VALUE ],
   configStyle: {
@@ -36,12 +35,10 @@ const INITIAL_STATE = {
 const pageReducer = (state, action) => {
   switch(action.type){
     case A.SET_CURRENT_SHADOW: {
-      const { editIndex } = action
-      , { boxShadows } = state
+      const { editIndex } = action;
       return {
         ...state,
-        currentIndex: editIndex,
-        initValue: imObj.create(boxShadows[editIndex])
+        currentIndex: editIndex        
       };
     }
     case A.UPDATE_SHADOWS: {
@@ -49,21 +46,19 @@ const pageReducer = (state, action) => {
       , { boxShadows, currentIndex } = state;
       return {
         ...state,
-        initValue: imObj.create(boxShadow),
         boxShadows: imArr.update(boxShadows, currentIndex, boxShadow)
       };
     }
     case A.ADD_SHADOW: {
       const { fromIndex } = action
       , { boxShadows, currentIndex } = state
-      , value = boxShadows[fromIndex]
-      , initValue = imObj.create(value)
+      , _initValue = imObj.create(boxShadows[fromIndex])
       , _index = currentIndex + 1;
-      initValue.id = crId(_index)
+      _initValue.id = crId(_index)
       return {
-        ...state, initValue,
+        ...state,
         currentIndex: _index,
-        boxShadows: imArr.insert(boxShadows, _index, initValue)
+        boxShadows: imArr.insert(boxShadows, _index, _initValue)
       };
     }
     case A.REMOVE_SHADOW: {
@@ -74,7 +69,6 @@ const pageReducer = (state, action) => {
       return {
         ...state,
         currentIndex: _index,
-        initValue: imObj.create(boxShadows[_index]),
         boxShadows: imArr.remove(boxShadows, removeIndex)
       };
     }

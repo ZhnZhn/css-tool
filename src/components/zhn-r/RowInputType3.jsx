@@ -2,20 +2,7 @@ import React, { Component } from 'react'
 import tinycolor from 'tinycolor2'
 
 import A from '../zhn/A'
-
-const S = {
-  ROOT: {
-    lineHeight: 1.8
-  },
-  COLOR: {
-    float: 'right',    
-    marginRight: 16
-  },
-  TEXT: {
-    float: 'right',
-    width: 80
-  }
-}
+import S from './style'
 
 class RowInputType3 extends Component {
   /*
@@ -49,8 +36,7 @@ class RowInputType3 extends Component {
   }
 
   render(){
-    const {
-      style,
+    const {      
       styleInput,
       caption,
       inputId,
@@ -58,9 +44,9 @@ class RowInputType3 extends Component {
     , { value } = this.state;
 
     return (
-      <div style={style}>
+      <div className={S.CL_ROW}>
          {/*eslint-disable jsx-a11y/label-has-for*/}
-         <label style={{ ...S.ROOT }}>
+         <label className={S.CL_CAPTION}>
            <span>{caption}</span>
            <A.InputText
              style={{ ...S.TEXT, ...styleInput }}

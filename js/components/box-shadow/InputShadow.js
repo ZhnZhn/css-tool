@@ -13,68 +13,61 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Comp = _interopRequireDefault(require("../Comp"));
 
-var S = {
-  ROW_INPUT: {
-    width: '100%',
-    margin: '16px 16px'
-  }
+var _crName = function _crName(_ref) {
+  var caption = _ref.caption;
+  return caption.toLowerCase().replace(' ', '-');
 };
-var inputRows = [{
-  style: S.ROW_INPUT,
+
+var INPUT_ROWS = [{
   caption: "Horizontal Length",
-  name: 'horizontal-lenght',
   min: -30,
   max: 30,
   step: 1,
   unit: 'px'
 }, {
-  style: S.ROW_INPUT,
   caption: "Vertical Length",
-  name: 'vertical-length',
   min: -30,
   max: 30,
   step: 1,
   unit: 'px'
 }, {
-  style: S.ROW_INPUT,
   caption: "Blur Radius",
-  name: 'blur-radius',
   min: 0,
   max: 20,
   step: 1,
   unit: 'px'
 }, {
-  style: S.ROW_INPUT,
   caption: "Spread Radius",
-  name: 'spread-radius',
   min: -10,
   max: 20,
   step: 1,
   unit: 'px'
 }, {
-  style: S.ROW_INPUT,
   styleInput: {
     width: 55
   },
   caption: "Opacity",
-  name: 'opacity',
   min: 0,
   max: 1,
   step: 0.01,
   unit: ''
-}];
+}].map(function (item) {
+  return (0, _extends2["default"])({
+    name: _crName(item)
+  }, item);
+});
 
 var _useChangeValue = function _useChangeValue(fn, propName, value) {
   return (0, _react.useCallback)(fn.bind(null, propName, value), []);
 };
 
-var InputShadow = function InputShadow(_ref) {
-  var id = _ref.id,
-      isShadow = _ref.isShadow,
-      isInset = _ref.isInset,
-      initValue = _ref.initValue,
-      _ref$onChange = _ref.onChange,
-      onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange;
+var InputShadow = function InputShadow(_ref2) {
+  var id = _ref2.id,
+      isShadow = _ref2.isShadow,
+      isInset = _ref2.isInset,
+      initValue = _ref2.initValue,
+      _ref2$onChange = _ref2.onChange,
+      onChange = _ref2$onChange === void 0 ? function () {} : _ref2$onChange;
 
   var _refInput = (0, _react.useRef)({}),
       _changeInput = (0, _react.useCallback)(function (propName, value) {
@@ -102,29 +95,28 @@ var InputShadow = function InputShadow(_ref) {
       spreadR = initValue.spreadR,
       opacity = initValue.opacity,
       color = initValue.color;
-  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[0], {
+  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[0], {
     inputId: id,
     initValue: vLength,
     onChange: _changeInput.bind(null, 'vLength')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[1], {
+  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[1], {
     inputId: id,
     initValue: gLength,
     onChange: _changeInput.bind(null, 'gLength')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[2], {
+  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[2], {
     inputId: id,
     initValue: blurR,
     onChange: _changeInput.bind(null, 'blurR')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[3], {
+  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[3], {
     inputId: id,
     initValue: spreadR,
     onChange: _changeInput.bind(null, 'spreadR')
   })), _react["default"].createElement(_Comp["default"].RowInputType3, {
     key: id + "-sc",
-    style: S.ROW_INPUT,
     caption: "Shadow Color",
     initValue: color,
     onEnter: _enterColor
-  }), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, inputRows[4], {
+  }), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[4], {
     inputId: id,
     initValue: opacity,
     onChange: _changeInput.bind(null, 'opacity')
@@ -136,10 +128,10 @@ var InputShadow = function InputShadow(_ref) {
   }));
 };
 
-var _isNotShouldUpdate = function _isNotShouldUpdate(_ref2, nextProps) {
-  var isShadow = _ref2.isShadow,
-      id = _ref2.id,
-      isInset = _ref2.isInset;
+var _isNotShouldUpdate = function _isNotShouldUpdate(_ref3, nextProps) {
+  var isShadow = _ref3.isShadow,
+      id = _ref3.id,
+      isInset = _ref3.isInset;
   return id === nextProps.id && isInset === nextProps.isInset && isShadow === nextProps.isShadow ? true : false;
 };
 

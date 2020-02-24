@@ -17,19 +17,7 @@ var _tinycolor = _interopRequireDefault(require("tinycolor2"));
 
 var _A = _interopRequireDefault(require("../zhn/A"));
 
-var S = {
-  ROOT: {
-    lineHeight: 1.8
-  },
-  COLOR: {
-    "float": 'right',
-    marginRight: 16
-  },
-  TEXT: {
-    "float": 'right',
-    width: 80
-  }
-};
+var _style = _interopRequireDefault(require("./style"));
 
 var RowInputType3 =
 /*#__PURE__*/
@@ -74,22 +62,21 @@ function (_Component) {
 
   _proto.render = function render() {
     var _this$props = this.props,
-        style = _this$props.style,
         styleInput = _this$props.styleInput,
         caption = _this$props.caption,
         inputId = _this$props.inputId,
         value = this.state.value;
     return _react["default"].createElement("div", {
-      style: style
+      className: _style["default"].CL_ROW
     }, _react["default"].createElement("label", {
-      style: (0, _extends2["default"])({}, S.ROOT)
+      className: _style["default"].CL_CAPTION
     }, _react["default"].createElement("span", null, caption), _react["default"].createElement(_A["default"].InputText, {
-      style: (0, _extends2["default"])({}, S.TEXT, {}, styleInput),
+      style: (0, _extends2["default"])({}, _style["default"].TEXT, {}, styleInput),
       inputId: inputId,
       initValue: value,
       onEnter: this._handleEnter
     }), _react["default"].createElement(_A["default"].Color, {
-      style: S.COLOR,
+      style: _style["default"].COLOR,
       value: value
     })));
   };

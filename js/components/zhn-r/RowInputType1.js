@@ -19,14 +19,9 @@ var _math = _interopRequireDefault(require("../../utils/math"));
 
 var _A = _interopRequireDefault(require("../zhn/A"));
 
-var S = {
-  RIGHT: {
-    "float": 'right'
-  },
-  LABEL: {
-    lineHeight: 1.8
-  }
-};
+var _style = _interopRequireDefault(require("./style"));
+
+var round10 = _math["default"].round10;
 
 var _isFn = function _isFn(fn) {
   return typeof fn === 'function';
@@ -56,8 +51,10 @@ function (_Component) {
     _this = _Component.call(this, props) || this;
 
     _this._handleOnChange = function (value) {
-      if (_this.isOnChange) {
-        _this.props.onChange(value);
+      var onChange = _this.props.onChange;
+
+      if (_isFn(onChange)) {
+        onChange(value);
       }
     };
 
@@ -73,7 +70,7 @@ function (_Component) {
       var _this$props = _this.props,
           min = _this$props.min,
           max = _this$props.max,
-          _value = _this.stepExp !== 0 ? _math["default"].round10(parseFloat(value), _this.stepExp) : parseInt(value, 10);
+          _value = _this.stepExp !== 0 ? round10(parseFloat(value), _this.stepExp) : parseInt(value, 10);
 
       if (_value >= min && _value <= max) {
         _this.value = _value;
@@ -84,7 +81,6 @@ function (_Component) {
       }
     };
 
-    _this.isOnChange = _isFn(props.onChange);
     _this._refTextComp = _react["default"].createRef();
     _this._refSliderComp = _react["default"].createRef();
 
@@ -98,7 +94,6 @@ function (_Component) {
 
   _proto.render = function render() {
     var _this$props2 = this.props,
-        style = _this$props2.style,
         styleInput = _this$props2.styleInput,
         name = _this$props2.name,
         caption = _this$props2.caption,
@@ -108,16 +103,16 @@ function (_Component) {
         min = _this$props2.min,
         max = _this$props2.max,
         step = _this$props2.step,
-        rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["style", "styleInput", "name", "caption", "initValue", "inputId", "unit", "min", "max", "step"]);
+        rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["styleInput", "name", "caption", "initValue", "inputId", "unit", "min", "max", "step"]);
     return _react["default"].createElement("div", {
-      style: style
+      className: _style["default"].CL_ROW
     }, _react["default"].createElement("label", {
-      style: S.LABEL
+      className: _style["default"].CL_CAPTION
     }, _react["default"].createElement("span", null, caption), _react["default"].createElement("span", {
-      style: S.RIGHT
+      style: _style["default"].RIGHT
     }, unit), _react["default"].createElement(_A["default"].InputText, {
       innerRef: this._refTextComp,
-      style: (0, _extends2["default"])({}, S.RIGHT, {}, styleInput),
+      style: (0, _extends2["default"])({}, _style["default"].RIGHT, {}, styleInput),
       type: "number",
       name: name,
       inputId: inputId,

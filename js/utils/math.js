@@ -2,6 +2,9 @@
 
 exports.__esModule = true;
 exports["default"] = void 0;
+
+var _isNaN = Number.isNaN || isNaN;
+
 var math = {
   round10: function round10(value, exp) {
     value = +value;
@@ -17,6 +20,11 @@ var math = {
 
     value = value.toString().split('e');
     return +(value[0] + 'e' + (value[1] ? +value[1] + exp : exp));
+  },
+  toPercent: function toPercent(value, min, max) {
+    var _percent = (value - min) / (max - min);
+
+    return _isNaN(_percent) ? 0 : _percent * 100;
   }
 };
 var _default = math;

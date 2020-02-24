@@ -33,11 +33,11 @@ var Page = function Page(_ref) {
       state = _useReducer[0],
       dispatch = _useReducer[1],
       currentIndex = state.currentIndex,
-      initValue = state.initValue,
       boxShadows = state.boxShadows,
       configStyle = state.configStyle,
-      id = initValue.id,
-      isInset = initValue.isInset,
+      _currentValue = boxShadows[currentIndex],
+      id = _currentValue.id,
+      isInset = _currentValue.isInset,
       _updateShadows = (0, _react.useCallback)(function (boxShadow) {
     return dispatch({
       type: A.UPDATE_SHADOWS,
@@ -82,7 +82,7 @@ var Page = function Page(_ref) {
     id: id,
     isShadow: isShadow,
     isInset: isInset,
-    initValue: initValue,
+    initValue: _currentValue,
     onChange: _updateShadows
   })), _react["default"].createElement("div", {
     className: CL.VIEWS

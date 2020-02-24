@@ -1,0 +1,9 @@
+
+ .row {
+   width: 100%;
+   line-height: 1.8;
+   margin: 16px 16px;
+ }
+ .row__caption {
+   user-select: none;
+ }
