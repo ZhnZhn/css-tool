@@ -7,15 +7,17 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _crId = _interopRequireDefault(require("../../utils/crId"));
 
-var useState = _react["default"].useState,
-    useRef = _react["default"].useRef,
-    useCallback = _react["default"].useCallback,
-    useEffect = _react["default"].useEffect,
-    useImperativeHandle = _react["default"].useImperativeHandle;
+var useState = _hooks["default"].useState,
+    useRef = _hooks["default"].useRef,
+    useCallback = _hooks["default"].useCallback,
+    useEffect = _hooks["default"].useEffect,
+    useImperativeHandle = _hooks["default"].useImperativeHandle;
 var S = {
   INPUT_TEXT: {
     display: 'inline',
@@ -92,13 +94,14 @@ var InputText = function InputText(_ref) {
     step: step
   } : void 0;
 
-  return _react["default"].createElement("input", (0, _extends2["default"])({
+  return (0, _preact.h)("input", (0, _extends2["default"])({
     type: type,
     name: _refName.current
   }, _textProps, _numberProps, {
     style: (0, _extends2["default"])({}, S.INPUT_TEXT, {}, style),
-    value: value,
-    onChange: _handleInputChange,
+    value: value //onChange={_handleInputChange}
+    ,
+    onInput: _handleInputChange,
     onKeyDown: _handleKeyDown
   }));
 };

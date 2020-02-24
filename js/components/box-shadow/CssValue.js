@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 var _RaisedButton = _interopRequireDefault(require("../zhn/RaisedButton"));
 
@@ -47,19 +47,19 @@ var _renderValues = function _renderValues(options) {
     var _sufix = index !== max ? "," : ";",
         _styleValue = index === currentIndex ? S.EDITED : null;
 
-    return _react["default"].createElement("div", {
+    return (0, _preact.h)("div", {
       key: index
-    }, _react["default"].createElement("span", {
+    }, (0, _preact.h)("span", {
       style: (0, _extends2["default"])({}, S.VALUE, {}, _styleValue)
-    }, "" + _fn["default"].toCssValue(item) + _sufix), _react["default"].createElement(_RaisedButton["default"], {
+    }, "" + _fn["default"].toCssValue(item) + _sufix), (0, _preact.h)(_RaisedButton["default"], {
       style: S.BT,
       caption: "EDIT",
       onClick: onEdit.bind(null, index)
-    }), _react["default"].createElement(_RaisedButton["default"], {
+    }), (0, _preact.h)(_RaisedButton["default"], {
       style: S.BT,
       caption: "ADD",
       onClick: onAdd.bind(null, index)
-    }), index !== 0 && _react["default"].createElement(_RaisedButton["default"], {
+    }), index !== 0 && (0, _preact.h)(_RaisedButton["default"], {
       style: S.BT_R,
       caption: "REMOVE",
       onClick: onRemove.bind(null, index)
@@ -68,9 +68,9 @@ var _renderValues = function _renderValues(options) {
 };
 
 var CssValue = function CssValue(props) {
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     className: CL
-  }, _react["default"].createElement("div", {
+  }, (0, _preact.h)("div", {
     style: S.TITLE
   }, "BOX-SHADOW:"), _renderValues(props));
 };

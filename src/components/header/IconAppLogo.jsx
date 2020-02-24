@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 
 const IconAppLogo = ({ className, title }) => {
   return (
@@ -7,11 +7,11 @@ const IconAppLogo = ({ className, title }) => {
        title={title}
     >
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
-         fillRule="evenodd"
-         clipRule="evenodd"
-         strokeLinejoin="round"
-         strokeMiterlimit="2"
-         strokeWidth="2"
+         fill-rule="evenodd"
+         clip-rule="evenodd"
+         stroke-linejoin="round"
+         stroke-miterlimit="2"
+         stroke-width="2"
     >
     <title>{title}</title>
     <rect

@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -9,12 +7,15 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _isKeyEnter = _interopRequireDefault(require("./isKeyEnter"));
 
 var _Color = _interopRequireDefault(require("../styles/Color"));
 
+var useCallback = _hooks["default"].useCallback;
 var S = {
   DIV: {
     display: 'inline-block',
@@ -30,10 +31,10 @@ var S = {
 
 var SvgChecked = function SvgChecked(_ref) {
   var stroke = _ref.stroke;
-  return _react["default"].createElement("path", {
+  return (0, _preact.h)("path", {
     d: "M 2,5 L 8,14 14,1",
-    strokeWidth: "2",
-    strokeLinecap: "round",
+    "stroke-width": "2",
+    "stroke-linecap": "round",
     stroke: stroke,
     fill: _Color["default"].BLANK
   });
@@ -53,14 +54,14 @@ var SvgCheckBox = function SvgCheckBox(_ref2) {
       _ref2$onUnCheck = _ref2.onUnCheck,
       onUnCheck = _ref2$onUnCheck === void 0 ? function () {} : _ref2$onUnCheck;
 
-  var _hClick = (0, _react.useCallback)(function () {
+  var _hClick = useCallback(function () {
     if (!value) {
       onCheck();
     } else {
       onUnCheck();
     }
   }, [value, onCheck, onUnCheck]),
-      _hKeyDown = (0, _react.useCallback)(function (evt) {
+      _hKeyDown = useCallback(function (evt) {
     if ((0, _isKeyEnter["default"])(evt)) {
       evt.preventDefault();
 
@@ -71,30 +72,30 @@ var SvgCheckBox = function SvgCheckBox(_ref2) {
   var _restStroke = value ? checkedRestStroke : _Color["default"].INPUT_GREY,
       _restFill = value ? checkedRestFill : _Color["default"].BLANK;
 
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     role: "checkbox",
     tabIndex: "0",
     "aria-checked": value,
     style: (0, _extends2["default"])({}, S.DIV, {}, style),
     onClick: _hClick,
     onKeyDown: _hKeyDown
-  }, _react["default"].createElement("svg", {
+  }, (0, _preact.h)("svg", {
     viewBox: "0 0 16 16",
     width: "100%",
     height: "100%",
     preserveAspectRatio: "none",
     xmlns: "http://www.w3.org/2000/svg",
     style: S.SVG
-  }, _react["default"].createElement("rect", {
+  }, (0, _preact.h)("rect", {
     x: "1",
     y: "1",
     height: "14",
     width: "14",
-    strokeWidth: "2",
+    "stroke-width": "2",
     rx: "3",
     stroke: _restStroke,
     fill: _restFill
-  }), value ? _react["default"].createElement(SvgChecked, {
+  }), value ? (0, _preact.h)(SvgChecked, {
     stroke: checkedColor
   }) : null));
 };

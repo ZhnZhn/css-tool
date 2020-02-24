@@ -1,11 +1,13 @@
-import React, { useReducer, useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
 
 import pageReducer from './pageReducer'
-
 
 import InputBox from './InputBox'
 import InputShadow from './InputShadow'
 import ViewBoxShadow from './ViewBoxShadow'
+
+const { useReducer, useCallback } = hooks
 
 const CL = {
   PAGE: "page-sb",
@@ -24,7 +26,7 @@ const Page = ({isShadow, isBox}) => {
       boxShadows,
       configStyle
     } = state
-  , _currentValue = boxShadows[currentIndex]  
+  , _currentValue = boxShadows[currentIndex]
   , { id, isInset } = _currentValue
   , _updateShadows = useCallback(boxShadow => dispatch({
        type: A.UPDATE_SHADOWS, boxShadow
@@ -45,11 +47,13 @@ const Page = ({isShadow, isBox}) => {
     <div className={CL.PAGE} >
       <div className={CL.INPUTS}>
         <InputBox
+          key="input-box"
           isBox={isBox}
           configStyle={configStyle}
           onEnter={_updateConfig}
         />
         <InputShadow
+          key="input-shadow"
           id={id}
           isShadow={isShadow}
           isInset={isInset}

@@ -2,15 +2,18 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
+
+var _memo = _interopRequireDefault(require("../memo"));
 
 var _Comp = _interopRequireDefault(require("../Comp"));
 
+var useCallback = _hooks["default"].useCallback;
 var S = {
   DIV: {
     marginBottom: 32
@@ -30,32 +33,32 @@ var InputBox = function InputBox(_ref) {
       _ref$onEnter = _ref.onEnter,
       onEnter = _ref$onEnter === void 0 ? function () {} : _ref$onEnter;
 
-  var _handleEnter = (0, _react.useCallback)(function (propName, value) {
+  var _handleEnter = useCallback(function (propName, value) {
     onEnter(propName, value);
   }, []);
 
   if (!isBox) {
-    return null;
+    return (0, _preact.h)("div", null);
   }
 
   var bgColor = configStyle.bgColor,
       boxColor = configStyle.boxColor,
       boxBorderRadius = configStyle.boxBorderRadius;
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     style: S.DIV
-  }, _react["default"].createElement(_Comp["default"].RowInputType3, {
+  }, (0, _preact.h)(_Comp["default"].RowInputType3, {
     style: S.ROW_INPUT,
     styleInput: S.BOX_INPUT,
     caption: "Background",
     initValue: bgColor,
     onEnter: _handleEnter.bind(null, 'bgColor')
-  }), _react["default"].createElement(_Comp["default"].RowInputType3, {
+  }), (0, _preact.h)(_Comp["default"].RowInputType3, {
     style: S.ROW_INPUT,
     styleInput: S.BOX_INPUT,
     caption: "Box Background",
     initValue: boxColor,
     onEnter: _handleEnter.bind(null, 'boxColor')
-  }), _react["default"].createElement(_Comp["default"].RowInputType2, {
+  }), (0, _preact.h)(_Comp["default"].RowInputType2, {
     style: S.ROW_INPUT,
     styleInput: S.BOX_INPUT,
     caption: "Box Border Radius",
@@ -70,7 +73,7 @@ var _isNotShouldUpdate = function _isNotShouldUpdate(_ref2, nextProps) {
   return isBox === nextProps.isBox && configStyle === nextProps.configStyle ? true : false;
 };
 
-var _default = _react["default"].memo(InputBox, _isNotShouldUpdate);
+var _default = (0, _memo["default"])(InputBox, _isNotShouldUpdate);
 
 exports["default"] = _default;
 //# sourceMappingURL=InputBox.js.map

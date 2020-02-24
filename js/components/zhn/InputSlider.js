@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -11,7 +9,7 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
 
@@ -145,6 +143,10 @@ var _crEventNames = function _crEventNames() {
   };
 };
 
+var _isTouchNode = function _isTouchNode(node) {
+  return HAS_TOUCH && node;
+};
+
 var _getClientX = function _getClientX(event) {
   var _event$changedTouches;
 
@@ -184,7 +186,7 @@ function (_Component) {
 
     _this._handleMouseDown = function (event) {
       // Cancel text selection
-      if (event.cancelable) {
+      if (!HAS_TOUCH) {
         event.preventDefault();
       }
 
@@ -298,11 +300,11 @@ function (_Component) {
     };
 
     _this._calcTrackOffset = function () {
-      return _this.trackComp.getBoundingClientRect()['left'];
+      return _this._refTrack.current.getBoundingClientRect()['left'];
     };
 
     _this._setValueFromPosition = function (event, position) {
-      var positionMax = _this.trackComp['clientWidth'];
+      var positionMax = _this._refTrack.current['clientWidth'];
 
       if (position < 0) {
         position = 0;
@@ -330,11 +332,9 @@ function (_Component) {
       }
     };
 
-    _this._refTrackComp = function (comp) {
-      return _this.trackComp = comp;
-    };
-
     _this.isOnChange = _isFn(props.onChange);
+    _this._refTrack = (0, _preact.createRef)();
+    _this._refTouch = (0, _preact.createRef)();
     var arr = ('' + props.step).split('.');
     _this.stepExp = arr[1] ? -1 * arr[1].length : 0;
     _this.state = {
@@ -346,6 +346,26 @@ function (_Component) {
     return _this;
   }
 
+  var _proto = InputSlider.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    var _node = this._refTouch.current;
+
+    if (_isTouchNode(_node)) {
+      _node.addEventListener('touchstart', this._handleMouseDown, {
+        passive: true
+      });
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    var _node = this._refTouch.current;
+
+    if (_isTouchNode(_node)) {
+      _node.removeEventListener('touchstart', this._handleMouseDown);
+    }
+  };
+
   InputSlider.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, state) {
     var inputId = nextProps.inputId;
     return inputId !== state.inputId ? {
@@ -353,8 +373,6 @@ function (_Component) {
       inputId: inputId
     } : null;
   };
-
-  var _proto = InputSlider.prototype;
 
   _proto.render = function render() {
     var _this$props4 = this.props,
@@ -388,26 +406,25 @@ function (_Component) {
       onFocus: this._handleFocusTrack,
       onBlur: this._handleBlurTrack
     }),
-        _touchSlider = HAS_TOUCH ? (0, _extends2["default"])({}, _sliderProps, {
-      onTouchStart: this._handleMouseDown
-    }) : void 0;
+        _touchSlider = HAS_TOUCH ? _sliderProps : void 0;
 
-    return _react["default"].createElement("div", {
+    return (0, _preact.h)("div", {
       style: S.ROOT
-    }, _react["default"].createElement("div", (0, _extends2["default"])({
-      ref: this._refTrackComp,
+    }, (0, _preact.h)("div", (0, _extends2["default"])({
+      ref: this._refTrack,
       style: S.ROOT_LINE
-    }, _mouseSlider), _react["default"].createElement("div", {
+    }, _mouseSlider), (0, _preact.h)("div", {
       style: (0, _extends2["default"])({}, S.LINE_BEFORE, {}, _widthBeforeStyle)
-    }), _react["default"].createElement("div", {
+    }), (0, _preact.h)("div", {
       style: (0, _extends2["default"])({}, _lineAfterStyle, {}, _widthAfterStyle)
-    }), _react["default"].createElement("div", (0, _extends2["default"])({
+    }), (0, _preact.h)("div", (0, _extends2["default"])({
+      ref: this._refTouch,
       style: (0, _extends2["default"])({}, S.ROOT_CIRCLE, {}, _circleStyle, {}, _leftStyle)
-    }, _touchSlider), _react["default"].createElement("div", {
+    }, _touchSlider), (0, _preact.h)("div", {
       style: (0, _extends2["default"])({}, S.CIRCLE_INNER, {}, _circleStyle)
-    }, (hovered || dragged) && _react["default"].createElement("div", {
+    }, (hovered || dragged) && (0, _preact.h)("div", {
       style: (0, _extends2["default"])({}, S.CIRCLE_INNER_EL, {}, _emberStyle)
-    }))), _react["default"].createElement("input", {
+    }))), (0, _preact.h)("input", {
       type: "hidden",
       step: step,
       min: min,
@@ -424,7 +441,7 @@ function (_Component) {
   };
 
   return InputSlider;
-}(_react.Component);
+}(_preact.Component);
 
 InputSlider.defaultProps = {
   initValue: 4,

@@ -1,12 +1,11 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
+//import React from 'react'
 var S = {
   KEY: {
     textDecoration: 'underline'
@@ -32,14 +31,14 @@ var CaptionInput = function CaptionInput(_ref) {
         _key = caption.substring(_index, _index + 1),
         _after = caption.substring(_index + 1);
 
-    return _react["default"].createElement("span", {
+    return (0, _preact.h)("span", {
       className: className,
       style: rootStyle
-    }, _react["default"].createElement("span", null, _before), _react["default"].createElement("span", {
+    }, (0, _preact.h)("span", null, _before), (0, _preact.h)("span", {
       style: S.KEY
-    }, _key), _react["default"].createElement("span", null, _after), children);
+    }, _key), (0, _preact.h)("span", null, _after), children);
   } else {
-    return _react["default"].createElement("span", {
+    return (0, _preact.h)("span", {
       className: className,
       style: rootStyle
     }, caption, children);

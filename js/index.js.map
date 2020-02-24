@@ -1,1 +1,12 @@
-{"version":3,"sources":["../src/index.jsx"],"names":["document","getElementById"],"mappings":";;;;AAAA;;AACA;;AAEA;;AAEA,sBAAO,gCAAC,wBAAD,OAAP,EAAyBA,QAAQ,CAACC,cAAT,CAAwB,KAAxB,CAAzB","sourcesContent":["import React from 'react'\r\nimport { render } from 'react-dom'\r\n\r\nimport AppBoxShadow from './components/AppBoxShadow'\r\n\r\nrender(<AppBoxShadow />, document.getElementById('app')) \r\n"],"file":"index.js"}
+{
+ "version": 3,
+ "sources": [
+  "../src/index.js"
+ ],
+ "file": "../src/index.js",
+ "names": [
+  "document",
+  "getElementById"
+ ],
+ "mappings": ";;;;AAAA;;AAEA;;AAGA,oBAAO,eAAC,wBAAD,OAAP,EAAyBA,QAAQ,CAACC,cAAT,CAAwB,KAAxB,CAAzB"
+}

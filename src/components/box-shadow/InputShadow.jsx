@@ -1,6 +1,10 @@
-import React, { useRef, useCallback, useEffect } from 'react'
+import { h, Fragment } from 'preact'
+import hooks from '../hooks'
+import  memo  from '../memo'
 
 import A from '../Comp'
+
+const { useRef, useCallback, useEffect } = hooks
 
 const _crName = ({ caption }) => caption
  .toLowerCase().replace(' ', '-');
@@ -56,7 +60,7 @@ const InputShadow = ({
      _refInput.current = initValue
    }, [id, isInset])
 
-  if (!isShadow) {return null;}
+  if (!isShadow) {return <div/>;}
 
   const {
     vLength, gLength,
@@ -122,4 +126,4 @@ const _isNotShouldUpdate = ({
    : false;
 };
 
-export default React.memo(InputShadow, _isNotShouldUpdate)
+export default memo(InputShadow, _isNotShouldUpdate)

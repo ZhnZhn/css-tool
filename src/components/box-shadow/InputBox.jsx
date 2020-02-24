@@ -1,6 +1,10 @@
-import React, { useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
+import  memo  from '../memo'
 
 import A from '../Comp'
+
+const { useCallback } = hooks
 
 const S = {
   DIV: {
@@ -24,7 +28,7 @@ const InputBox = ({
       onEnter(propName, value)
   }, []);
 
-  if (!isBox) { return null; }
+  if (!isBox) { return <div/>; }
 
   const {
     bgColor,
@@ -64,4 +68,4 @@ const _isNotShouldUpdate = ({
    ? true
    : false;
 
-export default React.memo(InputBox, _isNotShouldUpdate)
+export default memo(InputBox, _isNotShouldUpdate)

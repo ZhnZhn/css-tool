@@ -1,6 +1,6 @@
 {
   "name": "box-shadow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Visual tool for css property box-shadow",
   "main": "index.js",
   "scripts": {
@@ -57,16 +57,14 @@
   "jspm": {
     "dependencies": {
       "@babel/runtime": "npm:@babel/runtime@^7.8.4",
-      "react": "npm:react@^16.12.0",
-      "react-dom": "npm:react-dom@^16.12.0",
+      "preact": "npm:preact@^10.3.2",
       "tinycolor2": "npm:tinycolor2@^1.4.1"
     },
     "devDependencies": {}
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "preact": "^10.3.2",
     "tinycolor2": "^1.4.1"
   }
 }

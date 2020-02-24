@@ -1,27 +1,25 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 var IconAppLogo = function IconAppLogo(_ref) {
   var className = _ref.className,
       title = _ref.title;
-  return _react["default"].createElement("span", {
+  return (0, _preact.h)("span", {
     className: className,
     title: title
-  }, _react["default"].createElement("svg", {
+  }, (0, _preact.h)("svg", {
     viewBox: "0 0 32 32",
     xmlns: "http://www.w3.org/2000/svg",
-    fillRule: "evenodd",
-    clipRule: "evenodd",
-    strokeLinejoin: "round",
-    strokeMiterlimit: "2",
-    strokeWidth: "2"
-  }, _react["default"].createElement("title", null, title), _react["default"].createElement("rect", {
+    "fill-rule": "evenodd",
+    "clip-rule": "evenodd",
+    "stroke-linejoin": "round",
+    "stroke-miterlimit": "2",
+    "stroke-width": "2"
+  }, (0, _preact.h)("title", null, title), (0, _preact.h)("rect", {
     ry: "1.8825414",
     rx: "194.14471",
     y: "1.434558",
@@ -30,7 +28,7 @@ var IconAppLogo = function IconAppLogo(_ref) {
     width: "10.85316",
     fill: "#8ecc2d",
     stroke: "#8ecc2d"
-  }), _react["default"].createElement("rect", {
+  }), (0, _preact.h)("rect", {
     ry: "1.87537",
     rx: "204.478",
     y: "16.639841",
@@ -39,7 +37,7 @@ var IconAppLogo = function IconAppLogo(_ref) {
     width: "18.307165",
     fill: "#232f3b",
     stroke: "#232f3b"
-  }), _react["default"].createElement("rect", {
+  }), (0, _preact.h)("rect", {
     ry: "1.87537",
     rx: "204.478",
     y: "3.4229634",

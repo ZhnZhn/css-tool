@@ -1,11 +1,11 @@
-import React from 'react'
+import { h } from 'preact'
 
 import A from '../Comp'
 import IconAppLogo from './IconAppLogo'
 import AppLabel from './AppLabel'
 import GitHubLink from './GitHubLink'
 
-const CAPTION = "CSS Tool v0.1.0";
+const CAPTION = "CSS Tool v0.2.0";
 
 const HeaderBar = ({ onShadow, onBox }) => (
  <div className="header" >
@@ -17,7 +17,7 @@ const HeaderBar = ({ onShadow, onBox }) => (
     <AppLabel
        className="header__label-app"
        caption={CAPTION}
-    />    
+    />
     <A.FlatButton
       caption="Box"
       title="Click to toggle css box inputs"

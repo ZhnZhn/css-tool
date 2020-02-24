@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import { h, Component, createRef } from 'preact'
 
 import fnMath from '../../utils/math'
 
 import A from '../zhn/A'
 import S from './style'
-
 
 const { round10 } = fnMath;
 const _isFn = fn => typeof fn === 'function';
@@ -33,9 +32,9 @@ class RowInputType1 extends Component {
 
    constructor(props){
      super(props)
-     
-     this._refTextComp = React.createRef()
-     this._refSliderComp = React.createRef()
+
+     this._refTextComp = createRef()
+     this._refSliderComp = createRef()
 
      const _arr = (''+props.step).split('.');
      this.stepExp = _arr[1] ? -1 * _arr[1].length : 0

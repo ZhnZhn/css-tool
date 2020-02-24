@@ -1,7 +1,10 @@
-import React, { useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
 
 import A from '../zhn/A'
 import STYLE from './style'
+
+const { useCallback } = hooks;
 
 const S = {
   ROW: {

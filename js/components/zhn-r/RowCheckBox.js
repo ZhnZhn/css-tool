@@ -2,17 +2,18 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _A = _interopRequireDefault(require("../zhn/A"));
 
 var _style = _interopRequireDefault(require("./style"));
 
+var useCallback = _hooks["default"].useCallback;
 var S = {
   ROW: {
     marginTop: 6
@@ -25,7 +26,7 @@ var RowCheckBox = function RowCheckBox(_ref) {
       onCheck = _ref.onCheck,
       onUnCheck = _ref.onUnCheck;
 
-  var _toggleValue = (0, _react.useCallback)(function () {
+  var _toggleValue = useCallback(function () {
     if (value) {
       onUnCheck();
     } else {
@@ -33,14 +34,14 @@ var RowCheckBox = function RowCheckBox(_ref) {
     }
   }, [value, onUnCheck, onCheck]);
 
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     className: _style["default"].CL_ROW,
     style: S.ROW
-  }, _react["default"].createElement(_A["default"].SvgCheckBox, {
+  }, (0, _preact.h)(_A["default"].SvgCheckBox, {
     value: value,
     onCheck: onCheck,
     onUnCheck: onUnCheck
-  }), caption && _react["default"].createElement("button", {
+  }), caption && (0, _preact.h)("button", {
     className: _style["default"].CL_CHB_BT,
     tabIndex: "-1",
     onClick: _toggleValue

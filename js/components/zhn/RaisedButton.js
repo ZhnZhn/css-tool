@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 /*
 mostly from
@@ -73,15 +73,15 @@ var RaisedButton = function RaisedButton(_ref) {
       caption = _ref.caption,
       _ref$onClick = _ref.onClick,
       onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick;
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     style: (0, _extends2["default"])({}, S.ROOT, {}, style)
-  }, _react["default"].createElement("button", {
+  }, (0, _preact.h)("button", {
     style: S.BT,
     onClick: onClick
-  }, _react["default"].createElement("div", {
+  }, (0, _preact.h)("div", {
     className: "bt-div",
     style: S.DIV
-  }, _react["default"].createElement("span", {
+  }, (0, _preact.h)("span", {
     style: S.CAPTION
   }, caption))));
 };

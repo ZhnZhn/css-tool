@@ -1,6 +1,9 @@
-import { useState, useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
 
-const useToggle = (initialValue) => {
+const { useState, useCallback } = hooks;
+
+const useToggle = function(initialValue) {
   const [is, setIs] = useState(initialValue)
   , toggle = useCallback(()=>setIs(v=>!v), [])
   return [is, toggle];

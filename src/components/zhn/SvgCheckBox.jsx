@@ -1,7 +1,10 @@
-import React, { useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
 
 import isKeyEnter from './isKeyEnter'
 import C from '../styles/Color';
+
+const { useCallback } = hooks
 
 const S = {
   DIV: {
@@ -19,8 +22,8 @@ const S = {
 const SvgChecked = ({ stroke }) => (
   <path
       d="M 2,5 L 8,14 14,1"
-      strokeWidth="2"
-      strokeLinecap="round"
+      stroke-width="2"
+      stroke-linecap="round"
       stroke={stroke}
       fill={C.BLANK}
   />
@@ -66,7 +69,7 @@ const SvgCheckBox = ({
         <rect
            x="1" y="1"
            height="14" width="14"
-           strokeWidth="2" rx="3"
+           stroke-width="2" rx="3"
            stroke={_restStroke}
            fill={_restFill}
         />

@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 var S = {
   ROOT: {
@@ -27,7 +27,7 @@ var Color = function Color(_ref) {
     backgroundColor: value
   } : null;
 
-  return _react["default"].createElement("span", {
+  return (0, _preact.h)("span", {
     style: (0, _extends2["default"])({}, S.ROOT, {}, style, {}, _style)
   });
 };

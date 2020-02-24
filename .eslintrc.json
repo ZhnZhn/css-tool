@@ -25,7 +25,7 @@
     "default-case": 2,
     "jsx-quotes": [2, "prefer-double"],
     "no-unused-expressions": 1,
-    "no-unused-vars": [1, {"args": "none"}],
+    "no-unused-vars": [1, { "args": "after-used", "varsIgnorePattern": "^h|Fragment$" }],
 
 
     "react/display-name": 0,
@@ -48,7 +48,7 @@
 
 
     "react/prop-types": 0,
-    "react/react-in-jsx-scope": 1,
+    "react/react-in-jsx-scope": 0,
     "react/self-closing-comp": 1,
 
     "react/sort-comp": 0,

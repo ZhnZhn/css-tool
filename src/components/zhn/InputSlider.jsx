@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { h, Component, createRef } from 'preact';
 
 import fnMath from '../../utils/math'
 import has from '../has';
@@ -107,7 +107,7 @@ const _isFn = fn => typeof fn === 'function';
 const _addStep = (value, step, exp ) => exp
    ? round10(value + step, exp)
    : value + step;
-   
+
 const _crWidthCalc = (percent) => ({
   width: `calc(${percent}%)`
 });
@@ -118,6 +118,8 @@ const _crLeftPercent = (percent) => ({
 const _crEventNames = () => HAS_TOUCH
  ? { moveEvent: 'touchmove', upEvent: 'touchend' }
  : { moveEvent: 'mousemove', upEvent: 'mouseup' };
+
+const _isTouchNode = (node) => HAS_TOUCH && node;
 
 const _getClientX = event => HAS_TOUCH
   ? event.changedTouches[0]?.clientX
@@ -145,6 +147,9 @@ class InputSlider extends Component {
     super(props)
     this.isOnChange = _isFn(props.onChange)
 
+    this._refTrack = createRef()
+    this._refTouch = createRef()
+
     const arr = (''+props.step).split('.')
     this.stepExp = (arr[1]) ? -1 * arr[1].length : 0
 
@@ -156,6 +161,21 @@ class InputSlider extends Component {
     }
   }
 
+  componentDidMount(){
+    const _node = this._refTouch.current;
+    if (_isTouchNode(_node)){
+      _node.addEventListener('touchstart',
+       this._handleMouseDown, { passive: true })
+    }
+  }
+
+  componentWillUnmount(){
+    const _node = this._refTouch.current;
+    if (_isTouchNode(_node)){
+      _node.removeEventListener('touchstart',
+       this._handleMouseDown)
+    }
+  }
 
   static getDerivedStateFromProps(nextProps, state){
    const { inputId } = nextProps;
@@ -172,9 +192,10 @@ class InputSlider extends Component {
   }
   _handleMouseDown = (event) => {
     // Cancel text selection
-    if (event.cancelable) {
+    if (!HAS_TOUCH) {
       event.preventDefault()
     }
+
     const { moveEvent, upEvent } = _crEventNames();
     document.addEventListener(moveEvent, this._handleDragMouseMove)
     document.addEventListener(upEvent, this._handleDragMouseUp)
@@ -248,11 +269,11 @@ class InputSlider extends Component {
   }
 
   _calcTrackOffset = () => {
-    return this.trackComp.getBoundingClientRect()['left'];
+    return this._refTrack.current.getBoundingClientRect()['left'];
   }
 
   _setValueFromPosition = (event, position) => {
-    const positionMax = this.trackComp['clientWidth']
+    const positionMax = this._refTrack.current['clientWidth']
     if (position < 0) {
       position = 0;
     } else if (position > positionMax) {
@@ -275,8 +296,6 @@ class InputSlider extends Component {
       this._setValue(event, value)
     }
   }
-
-  _refTrackComp = comp => this.trackComp = comp
 
   render(){
     const { step, min , max } = this.props
@@ -310,22 +329,20 @@ class InputSlider extends Component {
           onBlur: this._handleBlurTrack
         }
     , _touchSlider = HAS_TOUCH
-        ? {
-            ..._sliderProps,
-            onTouchStart: this._handleMouseDown
-          }
+        ? _sliderProps
         : void 0;
 
     return (
       <div style={S.ROOT}>
         <div
-           ref={this._refTrackComp}
+           ref={this._refTrack}
            style={S.ROOT_LINE}
            {..._mouseSlider}
         >
           <div style={{...S.LINE_BEFORE, ..._widthBeforeStyle }} />
           <div style={{..._lineAfterStyle, ..._widthAfterStyle }} />
           <div
+            ref={this._refTouch}
              style={{...S.ROOT_CIRCLE, ..._circleStyle, ..._leftStyle }}
              {..._touchSlider}
            >

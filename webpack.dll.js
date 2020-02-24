@@ -9,7 +9,7 @@ module.exports = {
   mode: "production",
   entry: {
      lib: [
-            "react", "react-dom",
+            "preact",
             "tinycolor2"
           ]
   },

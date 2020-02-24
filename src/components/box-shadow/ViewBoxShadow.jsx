@@ -1,4 +1,5 @@
-import React from 'react'
+import { h, Fragment } from 'preact'
+import memo from '../memo'
 
 import CssValue from './CssValue'
 import Preview from './Preview'
@@ -44,4 +45,4 @@ const _isNotShouldUpdate = (
   ? true
   : false;
 
-export default React.memo(ViewBoxShadow, _isNotShouldUpdate)
+export default memo(ViewBoxShadow, _isNotShouldUpdate)

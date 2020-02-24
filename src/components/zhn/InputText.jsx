@@ -1,11 +1,12 @@
-import React from 'react';
+import { h } from 'preact'
+import hooks from '../hooks'
 
 import crId from '../../utils/crId';
 
 const {
   useState, useRef, useCallback,
   useEffect, useImperativeHandle
-} = React;
+} = hooks;
 
 const S = {
   INPUT_TEXT : {
@@ -82,7 +83,8 @@ const InputText = ({
       {..._numberProps}
       style={{...S.INPUT_TEXT, ...style}}
       value={value}
-      onChange={_handleInputChange}
+      //onChange={_handleInputChange}
+      onInput={_handleInputChange}
       onKeyDown={_handleKeyDown}
     />
   );

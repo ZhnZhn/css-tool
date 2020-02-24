@@ -1,8 +1,11 @@
-import React, { useRef, useCallback } from 'react'
+import { h } from 'preact'
+import hooks from '../hooks'
 
 import has from '../has'
 
 import CaptionInput from './CaptionInput'
+
+const { useRef, useCallback } = hooks;
 
 const { HAS_TOUCH } = has;
 

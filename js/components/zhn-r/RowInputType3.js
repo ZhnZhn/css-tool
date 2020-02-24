@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -11,7 +9,7 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
 
 var _tinycolor = _interopRequireDefault(require("tinycolor2"));
 
@@ -66,23 +64,23 @@ function (_Component) {
         caption = _this$props.caption,
         inputId = _this$props.inputId,
         value = this.state.value;
-    return _react["default"].createElement("div", {
+    return (0, _preact.h)("div", {
       className: _style["default"].CL_ROW
-    }, _react["default"].createElement("label", {
+    }, (0, _preact.h)("label", {
       className: _style["default"].CL_CAPTION
-    }, _react["default"].createElement("span", null, caption), _react["default"].createElement(_A["default"].InputText, {
+    }, (0, _preact.h)("span", null, caption), (0, _preact.h)(_A["default"].InputText, {
       style: (0, _extends2["default"])({}, _style["default"].TEXT, {}, styleInput),
       inputId: inputId,
       initValue: value,
       onEnter: this._handleEnter
-    }), _react["default"].createElement(_A["default"].Color, {
+    }), (0, _preact.h)(_A["default"].Color, {
       style: _style["default"].COLOR,
       value: value
     })));
   };
 
   return RowInputType3;
-}(_react.Component);
+}(_preact.Component);
 
 RowInputType3.defaultProps = {
   onEnter: function onEnter() {}

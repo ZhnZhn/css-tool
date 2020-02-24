@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -9,9 +7,17 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
+
+var _memo = _interopRequireDefault(require("../memo"));
 
 var _Comp = _interopRequireDefault(require("../Comp"));
+
+var useRef = _hooks["default"].useRef,
+    useCallback = _hooks["default"].useCallback,
+    useEffect = _hooks["default"].useEffect;
 
 var _crName = function _crName(_ref) {
   var caption = _ref.caption;
@@ -58,7 +64,7 @@ var INPUT_ROWS = [{
 });
 
 var _useChangeValue = function _useChangeValue(fn, propName, value) {
-  return (0, _react.useCallback)(fn.bind(null, propName, value), []);
+  return useCallback(fn.bind(null, propName, value), []);
 };
 
 var InputShadow = function InputShadow(_ref2) {
@@ -69,24 +75,24 @@ var InputShadow = function InputShadow(_ref2) {
       _ref2$onChange = _ref2.onChange,
       onChange = _ref2$onChange === void 0 ? function () {} : _ref2$onChange;
 
-  var _refInput = (0, _react.useRef)({}),
-      _changeInput = (0, _react.useCallback)(function (propName, value) {
+  var _refInput = useRef({}),
+      _changeInput = useCallback(function (propName, value) {
     _refInput.current[propName] = value;
     onChange(_refInput.current);
   }, []),
-      _enterColor = (0, _react.useCallback)(function (value, color) {
+      _enterColor = useCallback(function (value, color) {
     _refInput.current.color = color.toHexString();
     onChange(_refInput.current);
   }, []),
       _onChechInset = _useChangeValue(_changeInput, 'isInset', true),
       _onUnCheckInset = _useChangeValue(_changeInput, 'isInset', false);
 
-  (0, _react.useEffect)(function () {
+  useEffect(function () {
     _refInput.current = initValue;
   }, [id, isInset]);
 
   if (!isShadow) {
-    return null;
+    return (0, _preact.h)("div", null);
   }
 
   var vLength = initValue.vLength,
@@ -95,32 +101,32 @@ var InputShadow = function InputShadow(_ref2) {
       spreadR = initValue.spreadR,
       opacity = initValue.opacity,
       color = initValue.color;
-  return _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[0], {
+  return (0, _preact.h)(_preact.Fragment, null, (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[0], {
     inputId: id,
     initValue: vLength,
     onChange: _changeInput.bind(null, 'vLength')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[1], {
+  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[1], {
     inputId: id,
     initValue: gLength,
     onChange: _changeInput.bind(null, 'gLength')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[2], {
+  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[2], {
     inputId: id,
     initValue: blurR,
     onChange: _changeInput.bind(null, 'blurR')
-  })), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[3], {
+  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[3], {
     inputId: id,
     initValue: spreadR,
     onChange: _changeInput.bind(null, 'spreadR')
-  })), _react["default"].createElement(_Comp["default"].RowInputType3, {
+  })), (0, _preact.h)(_Comp["default"].RowInputType3, {
     key: id + "-sc",
     caption: "Shadow Color",
     initValue: color,
     onEnter: _enterColor
-  }), _react["default"].createElement(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[4], {
+  }), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[4], {
     inputId: id,
     initValue: opacity,
     onChange: _changeInput.bind(null, 'opacity')
-  })), _react["default"].createElement(_Comp["default"].RowCheckBox, {
+  })), (0, _preact.h)(_Comp["default"].RowCheckBox, {
     caption: "Inset",
     value: isInset,
     onCheck: _onChechInset,
@@ -135,7 +141,7 @@ var _isNotShouldUpdate = function _isNotShouldUpdate(_ref3, nextProps) {
   return id === nextProps.id && isInset === nextProps.isInset && isShadow === nextProps.isShadow ? true : false;
 };
 
-var _default = _react["default"].memo(InputShadow, _isNotShouldUpdate);
+var _default = (0, _memo["default"])(InputShadow, _isNotShouldUpdate);
 
 exports["default"] = _default;
 //# sourceMappingURL=InputShadow.js.map

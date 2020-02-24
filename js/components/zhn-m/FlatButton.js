@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -9,12 +7,16 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
+
+var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _has = _interopRequireDefault(require("../has"));
 
 var _CaptionInput = _interopRequireDefault(require("./CaptionInput"));
 
+var useRef = _hooks["default"].useRef,
+    useCallback = _hooks["default"].useCallback;
 var HAS_TOUCH = _has["default"].HAS_TOUCH;
 var CL = {
   BT: 'bt-flat',
@@ -53,8 +55,8 @@ var FlatButton = function FlatButton(_ref2) {
       onClick = _ref2.onClick,
       children = _ref2.children;
 
-  var _refBt = (0, _react.useRef)(),
-      _hClick = (0, _react.useCallback)(function (event) {
+  var _refBt = useRef(),
+      _hClick = useCallback(function (event) {
     _setPointerEvents(_refBt, 'none');
 
     setTimeout(_setPointerEvents, timeout, _refBt);
@@ -65,7 +67,7 @@ var FlatButton = function FlatButton(_ref2) {
       _accessKey = HAS_TOUCH ? void 0 : accessKey,
       _title = _accessKey ? title + " [" + accessKey + "]" : title;
 
-  return _react["default"].createElement("button", {
+  return (0, _preact.h)("button", {
     ref: _refBt,
     type: "button",
     className: _className,
@@ -74,9 +76,9 @@ var FlatButton = function FlatButton(_ref2) {
     tabIndex: 0,
     title: _title,
     onClick: _hClick
-  }, _react["default"].createElement("div", {
+  }, (0, _preact.h)("div", {
     className: clDiv
-  }, _react["default"].createElement(_CaptionInput["default"], {
+  }, (0, _preact.h)(_CaptionInput["default"], {
     className: CL.BT_SPAN,
     caption: caption,
     accessKey: _accessKey

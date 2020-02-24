@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 var _useToggle3 = _interopRequireDefault(require("./hooks/useToggle"));
 
@@ -21,10 +21,10 @@ var AppBoxShadow = function AppBoxShadow() {
       isBox = _useToggle2[0],
       _toggleBox = _useToggle2[1];
 
-  return _react["default"].createElement("div", null, _react["default"].createElement(_HeaderBar["default"], {
+  return (0, _preact.h)("div", null, (0, _preact.h)(_HeaderBar["default"], {
     onShadow: _toggleShadow,
     onBox: _toggleBox
-  }), _react["default"].createElement(_Page["default"], {
+  }), (0, _preact.h)(_Page["default"], {
     isShadow: isShadow,
     isBox: isBox
   }));

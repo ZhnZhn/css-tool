@@ -1,8 +1,7 @@
-import React from 'react'
+import { h } from 'preact'
 
 import A from '../zhn/A'
 import S from './style'
-
 
 const RowInputType2 = ({
   styleInput,

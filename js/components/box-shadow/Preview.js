@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _react = _interopRequireDefault(require("react"));
+var _preact = require("preact");
 
 var _fn = _interopRequireDefault(require("./helpers/fn"));
 
@@ -40,10 +40,10 @@ var Preview = function Preview(_ref) {
     borderRadius: boxBorderRadius
   };
 
-  return _react["default"].createElement("div", {
+  return (0, _preact.h)("div", {
     className: CL.PREVIEW,
     style: _rootStyle
-  }, _react["default"].createElement("div", {
+  }, (0, _preact.h)("div", {
     className: CL.INNER,
     style: (0, _extends2["default"])({}, _boxStyle, {}, _style)
   }));

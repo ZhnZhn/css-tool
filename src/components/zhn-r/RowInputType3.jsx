@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { h, Component } from 'preact'
 import tinycolor from 'tinycolor2'
 
 import A from '../zhn/A'
@@ -36,7 +36,7 @@ class RowInputType3 extends Component {
   }
 
   render(){
-    const {      
+    const {
       styleInput,
       caption,
       inputId,

@@ -1,7 +1,5 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
@@ -13,7 +11,7 @@ var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runt
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
 
@@ -81,8 +79,8 @@ function (_Component) {
       }
     };
 
-    _this._refTextComp = _react["default"].createRef();
-    _this._refSliderComp = _react["default"].createRef();
+    _this._refTextComp = (0, _preact.createRef)();
+    _this._refSliderComp = (0, _preact.createRef)();
 
     var _arr = ('' + props.step).split('.');
 
@@ -104,13 +102,13 @@ function (_Component) {
         max = _this$props2.max,
         step = _this$props2.step,
         rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["styleInput", "name", "caption", "initValue", "inputId", "unit", "min", "max", "step"]);
-    return _react["default"].createElement("div", {
+    return (0, _preact.h)("div", {
       className: _style["default"].CL_ROW
-    }, _react["default"].createElement("label", {
+    }, (0, _preact.h)("label", {
       className: _style["default"].CL_CAPTION
-    }, _react["default"].createElement("span", null, caption), _react["default"].createElement("span", {
+    }, (0, _preact.h)("span", null, caption), (0, _preact.h)("span", {
       style: _style["default"].RIGHT
-    }, unit), _react["default"].createElement(_A["default"].InputText, {
+    }, unit), (0, _preact.h)(_A["default"].InputText, {
       innerRef: this._refTextComp,
       style: (0, _extends2["default"])({}, _style["default"].RIGHT, {}, styleInput),
       type: "number",
@@ -121,7 +119,7 @@ function (_Component) {
       min: min,
       max: max,
       onChange: this._handleChangeText
-    })), _react["default"].createElement(_A["default"].InputSlider, (0, _extends2["default"])({
+    })), (0, _preact.h)(_A["default"].InputSlider, (0, _extends2["default"])({
       ref: this._refSliderComp
     }, rest, {
       inputId: inputId,
@@ -134,7 +132,7 @@ function (_Component) {
   };
 
   return RowInputType1;
-}(_react.Component);
+}(_preact.Component);
 
 RowInputType1.defaultProps = {
   unit: 'px',
