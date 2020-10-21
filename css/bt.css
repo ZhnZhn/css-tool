@@ -1,3 +1,17 @@
+.chb {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  padding: 1px;
+  border-radius: 2px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.chb:focus {
+  outline: 0;
+  border: 2px solid #fdb316;
+}
+
 .bt-chb {
   display: inline-block;
   color: black;
@@ -10,12 +24,13 @@
   user-select: none;
   cursor: pointer;
 }
+.chb:hover,
 .bt-chb:hover,
 .bt-chb:focus {
   outline: 0;
 }
 
-.bt-div:hover{
+.bt-div:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 

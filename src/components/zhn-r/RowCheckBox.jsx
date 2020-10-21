@@ -7,6 +7,7 @@ const { useCallback } = hooks;
 
 const S = {
   ROW: {
+    lineHeight: 'unset',
     marginTop: 6
   }
 };

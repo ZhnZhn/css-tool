@@ -16,13 +16,10 @@ var _isKeyEnter = _interopRequireDefault(require("./isKeyEnter"));
 var _Color = _interopRequireDefault(require("../styles/Color"));
 
 var useCallback = _hooks["default"].useCallback;
+var CL = 'chb';
 var S = {
   DIV: {
-    display: 'inline-block',
-    width: 16,
-    height: 16,
-    transform: 'scale(1.2)',
-    cursor: 'pointer'
+    transform: 'scale(1.2)'
   },
   SVG: {
     display: 'inline-block'
@@ -76,6 +73,7 @@ var SvgCheckBox = function SvgCheckBox(_ref2) {
     role: "checkbox",
     tabIndex: "0",
     "aria-checked": value,
+    className: CL,
     style: (0, _extends2["default"])({}, S.DIV, style),
     onClick: _hClick,
     onKeyDown: _hKeyDown,

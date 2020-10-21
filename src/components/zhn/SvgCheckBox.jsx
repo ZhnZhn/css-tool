@@ -5,13 +5,11 @@ import C from '../styles/Color';
 
 const { useCallback } = hooks
 
+const CL = 'chb';
+
 const S = {
   DIV: {
-    display: 'inline-block',
-    width: 16,
-    height: 16,
-    transform: 'scale(1.2)',
-    cursor: 'pointer'
+    transform: 'scale(1.2)'
   },
   SVG: {
     display: 'inline-block'
@@ -56,6 +54,7 @@ const SvgCheckBox = ({
        role="checkbox"
        tabIndex="0"
        aria-checked={value}
+       className={CL}
        style={{ ...S.DIV, ...style }}
        onClick={_hClick}
        onKeyDown={_hKeyDown}

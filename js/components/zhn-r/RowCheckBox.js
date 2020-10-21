@@ -16,6 +16,7 @@ var _style = _interopRequireDefault(require("./style"));
 var useCallback = _hooks["default"].useCallback;
 var S = {
   ROW: {
+    lineHeight: 'unset',
     marginTop: 6
   }
 };
