@@ -49,7 +49,7 @@
     "gulp-rev": "^9.0.0",
     "html-webpack-plugin": "^4.5.0",
     "jspm": "^0.16.55",
-    "stylelint": "^13.2.1",
+    "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
     "terser-webpack-plugin": "^5.0.0",
     "webpack": "^5.1.3",
