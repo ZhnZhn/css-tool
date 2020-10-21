@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -38,33 +38,34 @@ var InputBox = function InputBox(_ref) {
   }, []);
 
   if (!isBox) {
-    return (0, _preact.h)("div", null);
+    return (0, _jsxRuntime.jsx)("div", {});
   }
 
   var bgColor = configStyle.bgColor,
       boxColor = configStyle.boxColor,
       boxBorderRadius = configStyle.boxBorderRadius;
-  return (0, _preact.h)("div", {
-    style: S.DIV
-  }, (0, _preact.h)(_Comp["default"].RowInputType3, {
-    style: S.ROW_INPUT,
-    styleInput: S.BOX_INPUT,
-    caption: "Background",
-    initValue: bgColor,
-    onEnter: _handleEnter.bind(null, 'bgColor')
-  }), (0, _preact.h)(_Comp["default"].RowInputType3, {
-    style: S.ROW_INPUT,
-    styleInput: S.BOX_INPUT,
-    caption: "Box Background",
-    initValue: boxColor,
-    onEnter: _handleEnter.bind(null, 'boxColor')
-  }), (0, _preact.h)(_Comp["default"].RowInputType2, {
-    style: S.ROW_INPUT,
-    styleInput: S.BOX_INPUT,
-    caption: "Box Border Radius",
-    initValue: boxBorderRadius,
-    onEnter: _handleEnter.bind(null, 'boxBorderRadius')
-  }));
+  return (0, _jsxRuntime.jsxs)("div", {
+    style: S.DIV,
+    children: [(0, _jsxRuntime.jsx)(_Comp["default"].RowInputType3, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Background",
+      initValue: bgColor,
+      onEnter: _handleEnter.bind(null, 'bgColor')
+    }), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType3, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Box Background",
+      initValue: boxColor,
+      onEnter: _handleEnter.bind(null, 'boxColor')
+    }), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType2, {
+      style: S.ROW_INPUT,
+      styleInput: S.BOX_INPUT,
+      caption: "Box Border Radius",
+      initValue: boxBorderRadius,
+      onEnter: _handleEnter.bind(null, 'boxBorderRadius')
+    })]
+  });
 };
 
 var _isNotShouldUpdate = function _isNotShouldUpdate(_ref2, nextProps) {

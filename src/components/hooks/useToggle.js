@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import hooks from '../hooks'
 
 const { useState, useCallback } = hooks;

@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var S = {
   ROOT: {
@@ -27,8 +27,8 @@ var Color = function Color(_ref) {
     backgroundColor: value
   } : null;
 
-  return (0, _preact.h)("span", {
-    style: (0, _extends2["default"])({}, S.ROOT, {}, style, {}, _style)
+  return (0, _jsxRuntime.jsx)("span", {
+    style: (0, _extends2["default"])({}, S.ROOT, style, _style)
   });
 };
 /*

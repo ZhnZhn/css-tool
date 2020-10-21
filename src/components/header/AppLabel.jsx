@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 const AppLabel = ({ className, style, caption }) => (
   <span className={className} style={style}>
     {caption}

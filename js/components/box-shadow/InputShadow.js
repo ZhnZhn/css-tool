@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -92,7 +92,7 @@ var InputShadow = function InputShadow(_ref2) {
   }, [id, isInset]);
 
   if (!isShadow) {
-    return (0, _preact.h)("div", null);
+    return (0, _jsxRuntime.jsx)("div", {});
   }
 
   var vLength = initValue.vLength,
@@ -101,37 +101,38 @@ var InputShadow = function InputShadow(_ref2) {
       spreadR = initValue.spreadR,
       opacity = initValue.opacity,
       color = initValue.color;
-  return (0, _preact.h)(_preact.Fragment, null, (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[0], {
-    inputId: id,
-    initValue: vLength,
-    onChange: _changeInput.bind(null, 'vLength')
-  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[1], {
-    inputId: id,
-    initValue: gLength,
-    onChange: _changeInput.bind(null, 'gLength')
-  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[2], {
-    inputId: id,
-    initValue: blurR,
-    onChange: _changeInput.bind(null, 'blurR')
-  })), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[3], {
-    inputId: id,
-    initValue: spreadR,
-    onChange: _changeInput.bind(null, 'spreadR')
-  })), (0, _preact.h)(_Comp["default"].RowInputType3, {
-    key: id + "-sc",
-    caption: "Shadow Color",
-    initValue: color,
-    onEnter: _enterColor
-  }), (0, _preact.h)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[4], {
-    inputId: id,
-    initValue: opacity,
-    onChange: _changeInput.bind(null, 'opacity')
-  })), (0, _preact.h)(_Comp["default"].RowCheckBox, {
-    caption: "Inset",
-    value: isInset,
-    onCheck: _onChechInset,
-    onUnCheck: _onUnCheckInset
-  }));
+  return (0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
+    children: [(0, _jsxRuntime.jsx)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[0], {
+      inputId: id,
+      initValue: vLength,
+      onChange: _changeInput.bind(null, 'vLength')
+    })), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[1], {
+      inputId: id,
+      initValue: gLength,
+      onChange: _changeInput.bind(null, 'gLength')
+    })), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[2], {
+      inputId: id,
+      initValue: blurR,
+      onChange: _changeInput.bind(null, 'blurR')
+    })), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[3], {
+      inputId: id,
+      initValue: spreadR,
+      onChange: _changeInput.bind(null, 'spreadR')
+    })), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType3, {
+      caption: "Shadow Color",
+      initValue: color,
+      onEnter: _enterColor
+    }, id + "-sc"), (0, _jsxRuntime.jsx)(_Comp["default"].RowInputType1, (0, _extends2["default"])({}, INPUT_ROWS[4], {
+      inputId: id,
+      initValue: opacity,
+      onChange: _changeInput.bind(null, 'opacity')
+    })), (0, _jsxRuntime.jsx)(_Comp["default"].RowCheckBox, {
+      caption: "Inset",
+      value: isInset,
+      onCheck: _onChechInset,
+      onUnCheck: _onUnCheckInset
+    })]
+  });
 };
 
 var _isNotShouldUpdate = function _isNotShouldUpdate(_ref3, nextProps) {

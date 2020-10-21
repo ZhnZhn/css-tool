@@ -1,6 +1,4 @@
-import { h } from 'preact'
 import hooks from '../hooks'
-
 import has from '../has'
 
 import CaptionInput from './CaptionInput'

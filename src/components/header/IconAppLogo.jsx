@@ -1,11 +1,8 @@
-import { h } from 'preact'
-
-const IconAppLogo = ({ className, title }) => {
-  return (
-    <span
-       className={className}
-       title={title}
-    >
+const IconAppLogo = ({ className, title }) => (
+  <span
+     className={className}
+     title={title}
+  >
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
          fill-rule="evenodd"
          clip-rule="evenodd"
@@ -45,9 +42,9 @@ const IconAppLogo = ({ className, title }) => {
       stroke="#a487d4"
     />
     </svg>
-    </span>
-  );
-}
+  </span>
+);
+
 
 /*
 IconAppLogo.propTypes = {

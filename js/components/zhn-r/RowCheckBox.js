@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -34,18 +34,20 @@ var RowCheckBox = function RowCheckBox(_ref) {
     }
   }, [value, onUnCheck, onCheck]);
 
-  return (0, _preact.h)("div", {
+  return (0, _jsxRuntime.jsxs)("div", {
     className: _style["default"].CL_ROW,
-    style: S.ROW
-  }, (0, _preact.h)(_A["default"].SvgCheckBox, {
-    value: value,
-    onCheck: onCheck,
-    onUnCheck: onUnCheck
-  }), caption && (0, _preact.h)("button", {
-    className: _style["default"].CL_CHB_BT,
-    tabIndex: "-1",
-    onClick: _toggleValue
-  }, caption));
+    style: S.ROW,
+    children: [(0, _jsxRuntime.jsx)(_A["default"].SvgCheckBox, {
+      value: value,
+      onCheck: onCheck,
+      onUnCheck: onUnCheck
+    }), caption && (0, _jsxRuntime.jsx)("button", {
+      className: _style["default"].CL_CHB_BT,
+      tabIndex: "-1",
+      onClick: _toggleValue,
+      children: caption
+    })]
+  });
 };
 
 var _default = RowCheckBox;

@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -31,7 +31,7 @@ var S = {
 
 var SvgChecked = function SvgChecked(_ref) {
   var stroke = _ref.stroke;
-  return (0, _preact.h)("path", {
+  return (0, _jsxRuntime.jsx)("path", {
     d: "M 2,5 L 8,14 14,1",
     "stroke-width": "2",
     "stroke-linecap": "round",
@@ -72,32 +72,34 @@ var SvgCheckBox = function SvgCheckBox(_ref2) {
   var _restStroke = value ? checkedRestStroke : _Color["default"].INPUT_GREY,
       _restFill = value ? checkedRestFill : _Color["default"].BLANK;
 
-  return (0, _preact.h)("div", {
+  return (0, _jsxRuntime.jsx)("div", {
     role: "checkbox",
     tabIndex: "0",
     "aria-checked": value,
-    style: (0, _extends2["default"])({}, S.DIV, {}, style),
+    style: (0, _extends2["default"])({}, S.DIV, style),
     onClick: _hClick,
-    onKeyDown: _hKeyDown
-  }, (0, _preact.h)("svg", {
-    viewBox: "0 0 16 16",
-    width: "100%",
-    height: "100%",
-    preserveAspectRatio: "none",
-    xmlns: "http://www.w3.org/2000/svg",
-    style: S.SVG
-  }, (0, _preact.h)("rect", {
-    x: "1",
-    y: "1",
-    height: "14",
-    width: "14",
-    "stroke-width": "2",
-    rx: "3",
-    stroke: _restStroke,
-    fill: _restFill
-  }), value ? (0, _preact.h)(SvgChecked, {
-    stroke: checkedColor
-  }) : null));
+    onKeyDown: _hKeyDown,
+    children: (0, _jsxRuntime.jsxs)("svg", {
+      viewBox: "0 0 16 16",
+      width: "100%",
+      height: "100%",
+      preserveAspectRatio: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      style: S.SVG,
+      children: [(0, _jsxRuntime.jsx)("rect", {
+        x: "1",
+        y: "1",
+        height: "14",
+        width: "14",
+        "stroke-width": "2",
+        rx: "3",
+        stroke: _restStroke,
+        fill: _restFill
+      }), value ? (0, _jsxRuntime.jsx)(SvgChecked, {
+        stroke: checkedColor
+      }) : null]
+    })
+  });
 };
 
 var _default = SvgCheckBox;

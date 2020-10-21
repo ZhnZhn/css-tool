@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -94,11 +94,11 @@ var InputText = function InputText(_ref) {
     step: step
   } : void 0;
 
-  return (0, _preact.h)("input", (0, _extends2["default"])({
+  return (0, _jsxRuntime.jsx)("input", (0, _extends2["default"])({
     type: type,
     name: _refName.current
   }, _textProps, _numberProps, {
-    style: (0, _extends2["default"])({}, S.INPUT_TEXT, {}, style),
+    style: (0, _extends2["default"])({}, S.INPUT_TEXT, style),
     value: value //onChange={_handleInputChange}
     ,
     onInput: _handleInputChange,

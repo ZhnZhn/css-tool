@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _useToggle3 = _interopRequireDefault(require("./hooks/useToggle"));
 
@@ -21,13 +21,15 @@ var AppBoxShadow = function AppBoxShadow() {
       isBox = _useToggle2[0],
       _toggleBox = _useToggle2[1];
 
-  return (0, _preact.h)("div", null, (0, _preact.h)(_HeaderBar["default"], {
-    onShadow: _toggleShadow,
-    onBox: _toggleBox
-  }), (0, _preact.h)(_Page["default"], {
-    isShadow: isShadow,
-    isBox: isBox
-  }));
+  return (0, _jsxRuntime.jsxs)("div", {
+    children: [(0, _jsxRuntime.jsx)(_HeaderBar["default"], {
+      onShadow: _toggleShadow,
+      onBox: _toggleBox
+    }), (0, _jsxRuntime.jsx)(_Page["default"], {
+      isShadow: isShadow,
+      isBox: isBox
+    })]
+  });
 };
 
 var _default = AppBoxShadow;

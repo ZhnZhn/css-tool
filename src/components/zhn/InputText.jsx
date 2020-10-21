@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import hooks from '../hooks'
 
 import crId from '../../utils/crId';

@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 import A from '../Comp'
 import IconAppLogo from './IconAppLogo'
 import AppLabel from './AppLabel'

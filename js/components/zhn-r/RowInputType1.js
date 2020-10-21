@@ -11,6 +11,8 @@ var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runt
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
+var _jsxRuntime = require("preact/jsx-runtime");
+
 var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
@@ -25,9 +27,7 @@ var _isFn = function _isFn(fn) {
   return typeof fn === 'function';
 };
 
-var RowInputType1 =
-/*#__PURE__*/
-function (_Component) {
+var RowInputType1 = /*#__PURE__*/function (_Component) {
   (0, _inheritsLoose2["default"])(RowInputType1, _Component);
 
   /*
@@ -102,33 +102,38 @@ function (_Component) {
         max = _this$props2.max,
         step = _this$props2.step,
         rest = (0, _objectWithoutPropertiesLoose2["default"])(_this$props2, ["styleInput", "name", "caption", "initValue", "inputId", "unit", "min", "max", "step"]);
-    return (0, _preact.h)("div", {
-      className: _style["default"].CL_ROW
-    }, (0, _preact.h)("label", {
-      className: _style["default"].CL_CAPTION
-    }, (0, _preact.h)("span", null, caption), (0, _preact.h)("span", {
-      style: _style["default"].RIGHT
-    }, unit), (0, _preact.h)(_A["default"].InputText, {
-      innerRef: this._refTextComp,
-      style: (0, _extends2["default"])({}, _style["default"].RIGHT, {}, styleInput),
-      type: "number",
-      name: name,
-      inputId: inputId,
-      initValue: initValue,
-      step: step,
-      min: min,
-      max: max,
-      onChange: this._handleChangeText
-    })), (0, _preact.h)(_A["default"].InputSlider, (0, _extends2["default"])({
-      ref: this._refSliderComp
-    }, rest, {
-      inputId: inputId,
-      step: step,
-      min: min,
-      max: max,
-      initValue: initValue,
-      onChange: this._handleChangeSlider
-    })));
+    return (0, _jsxRuntime.jsxs)("div", {
+      className: _style["default"].CL_ROW,
+      children: [(0, _jsxRuntime.jsxs)("label", {
+        className: _style["default"].CL_CAPTION,
+        children: [(0, _jsxRuntime.jsx)("span", {
+          children: caption
+        }), (0, _jsxRuntime.jsx)("span", {
+          style: _style["default"].RIGHT,
+          children: unit
+        }), (0, _jsxRuntime.jsx)(_A["default"].InputText, {
+          innerRef: this._refTextComp,
+          style: (0, _extends2["default"])({}, _style["default"].RIGHT, styleInput),
+          type: "number",
+          name: name,
+          inputId: inputId,
+          initValue: initValue,
+          step: step,
+          min: min,
+          max: max,
+          onChange: this._handleChangeText
+        })]
+      }), (0, _jsxRuntime.jsx)(_A["default"].InputSlider, (0, _extends2["default"])({
+        ref: this._refSliderComp
+      }, rest, {
+        inputId: inputId,
+        step: step,
+        min: min,
+        max: max,
+        initValue: initValue,
+        onChange: this._handleChangeSlider
+      }))]
+    });
   };
 
   return RowInputType1;

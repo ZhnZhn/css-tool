@@ -7,8 +7,10 @@ module.exports = {
     ['@babel/plugin-transform-runtime'],    
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-transform-react-jsx', {
-      pragma: 'h',
-      pragmaFrag: 'Fragment'
+      runtime: 'automatic',
+      importSource: 'preact'
+      //pragma: 'h',
+      //pragmaFrag: 'Fragment'
     }] 
   ]
 };

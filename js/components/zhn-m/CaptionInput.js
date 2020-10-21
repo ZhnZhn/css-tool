@@ -3,9 +3,8 @@
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
-//import React from 'react'
 var S = {
   KEY: {
     textDecoration: 'underline'
@@ -31,17 +30,24 @@ var CaptionInput = function CaptionInput(_ref) {
         _key = caption.substring(_index, _index + 1),
         _after = caption.substring(_index + 1);
 
-    return (0, _preact.h)("span", {
+    return (0, _jsxRuntime.jsxs)("span", {
       className: className,
-      style: rootStyle
-    }, (0, _preact.h)("span", null, _before), (0, _preact.h)("span", {
-      style: S.KEY
-    }, _key), (0, _preact.h)("span", null, _after), children);
+      style: rootStyle,
+      children: [(0, _jsxRuntime.jsx)("span", {
+        children: _before
+      }), (0, _jsxRuntime.jsx)("span", {
+        style: S.KEY,
+        children: _key
+      }), (0, _jsxRuntime.jsx)("span", {
+        children: _after
+      }), children]
+    });
   } else {
-    return (0, _preact.h)("span", {
+    return (0, _jsxRuntime.jsxs)("span", {
       className: className,
-      style: rootStyle
-    }, caption, children);
+      style: rootStyle,
+      children: [caption, children]
+    });
   }
 };
 

@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 import RaisedButton from '../zhn/RaisedButton'
 import fn from './helpers/fn'
 

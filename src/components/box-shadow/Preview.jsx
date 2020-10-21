@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 import fn from './helpers/fn'
 
 const CL = {

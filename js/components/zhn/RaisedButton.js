@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 /*
 mostly from
@@ -73,17 +73,21 @@ var RaisedButton = function RaisedButton(_ref) {
       caption = _ref.caption,
       _ref$onClick = _ref.onClick,
       onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick;
-  return (0, _preact.h)("div", {
-    style: (0, _extends2["default"])({}, S.ROOT, {}, style)
-  }, (0, _preact.h)("button", {
-    style: S.BT,
-    onClick: onClick
-  }, (0, _preact.h)("div", {
-    className: "bt-div",
-    style: S.DIV
-  }, (0, _preact.h)("span", {
-    style: S.CAPTION
-  }, caption))));
+  return (0, _jsxRuntime.jsx)("div", {
+    style: (0, _extends2["default"])({}, S.ROOT, style),
+    children: (0, _jsxRuntime.jsx)("button", {
+      style: S.BT,
+      onClick: onClick,
+      children: (0, _jsxRuntime.jsx)("div", {
+        className: "bt-div",
+        style: S.DIV,
+        children: (0, _jsxRuntime.jsx)("span", {
+          style: S.CAPTION,
+          children: caption
+        })
+      })
+    })
+  });
 };
 
 var _default = RaisedButton;

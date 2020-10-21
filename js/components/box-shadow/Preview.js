@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _fn = _interopRequireDefault(require("./helpers/fn"));
 
@@ -40,13 +40,14 @@ var Preview = function Preview(_ref) {
     borderRadius: boxBorderRadius
   };
 
-  return (0, _preact.h)("div", {
+  return (0, _jsxRuntime.jsx)("div", {
     className: CL.PREVIEW,
-    style: _rootStyle
-  }, (0, _preact.h)("div", {
-    className: CL.INNER,
-    style: (0, _extends2["default"])({}, _boxStyle, {}, _style)
-  }));
+    style: _rootStyle,
+    children: (0, _jsxRuntime.jsx)("div", {
+      className: CL.INNER,
+      style: (0, _extends2["default"])({}, _boxStyle, _style)
+    })
+  });
 };
 /*
 Preview.propTypes = {

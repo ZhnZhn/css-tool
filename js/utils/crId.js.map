@@ -1,17 +1,1 @@
-{
- "version": 3,
- "sources": [
-  "../../src/utils/crId.js"
- ],
- "file": "../../src/utils/crId.js",
- "names": [
-  "crId",
-  "strSuffix",
-  "Math",
-  "random",
-  "toString",
-  "substr",
-  "toUpperCase"
- ],
- "mappings": ";;;;;AACA,IAAMA,IAAI,GAAG,SAAPA,IAAO,CAACC,SAAD;AAAA,MAACA,SAAD;AAACA,IAAAA,SAAD,GAAW,EAAX;AAAA;;AAAA,SAAkBC,IAAI,CAACC,MAAL,GAC7BC,QAD6B,CACpB,EADoB,EAE7BC,MAF6B,CAEtB,CAFsB,EAEnB,CAFmB,EAG7BC,WAH6B,KAGbL,SAHL;AAAA,CAAb;;eAKgBD,I"
-}
+{"version":3,"sources":["../../src/utils/crId.js"],"names":["crId","strSuffix","Math","random","toString","substr","toUpperCase"],"mappings":";;;;;AACA,IAAMA,IAAI,GAAG,SAAPA,IAAO,CAACC,SAAD;AAAA,MAACA,SAAD;AAACA,IAAAA,SAAD,GAAW,EAAX;AAAA;;AAAA,SAAkBC,IAAI,CAACC,MAAL,GAC7BC,QAD6B,CACpB,EADoB,EAE7BC,MAF6B,CAEtB,CAFsB,EAEnB,CAFmB,EAG7BC,WAH6B,KAGbL,SAHL;AAAA,CAAb;;eAKgBD,I","sourcesContent":["\r\nconst crId = (strSuffix='') => Math.random()\r\n .toString(36)\r\n .substr(2, 9)\r\n .toUpperCase() + strSuffix;\r\n\r\n export default crId\r\n"],"file":"crId.js"}

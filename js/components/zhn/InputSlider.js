@@ -9,6 +9,8 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
+var _jsxRuntime = require("preact/jsx-runtime");
+
 var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
@@ -153,9 +155,7 @@ var _getClientX = function _getClientX(event) {
   return HAS_TOUCH ? (_event$changedTouches = event.changedTouches[0]) == null ? void 0 : _event$changedTouches.clientX : event.clientX;
 };
 
-var InputSlider =
-/*#__PURE__*/
-function (_Component) {
+var InputSlider = /*#__PURE__*/function (_Component) {
   (0, _inheritsLoose2["default"])(InputSlider, _Component);
 
   /*
@@ -383,7 +383,7 @@ function (_Component) {
         hovered = _this$state.hovered,
         dragged = _this$state.dragged,
         value = _this$state.value,
-        _lineAfterStyle = hovered ? (0, _extends2["default"])({}, S.LINE_AFTER, {}, S.LINE_HOVERED) : S.LINE_AFTER,
+        _lineAfterStyle = hovered ? (0, _extends2["default"])({}, S.LINE_AFTER, S.LINE_HOVERED) : S.LINE_AFTER,
         _circleStyle = dragged ? S.CIRCLE_DRAGGED : null,
         _emberStyle = dragged ? S.EMBER : null,
         _percent = toPercent(value, min, max),
@@ -408,30 +408,36 @@ function (_Component) {
     }),
         _touchSlider = HAS_TOUCH ? _sliderProps : void 0;
 
-    return (0, _preact.h)("div", {
-      style: S.ROOT
-    }, (0, _preact.h)("div", (0, _extends2["default"])({
-      ref: this._refTrack,
-      style: S.ROOT_LINE
-    }, _mouseSlider), (0, _preact.h)("div", {
-      style: (0, _extends2["default"])({}, S.LINE_BEFORE, {}, _widthBeforeStyle)
-    }), (0, _preact.h)("div", {
-      style: (0, _extends2["default"])({}, _lineAfterStyle, {}, _widthAfterStyle)
-    }), (0, _preact.h)("div", (0, _extends2["default"])({
-      ref: this._refTouch,
-      style: (0, _extends2["default"])({}, S.ROOT_CIRCLE, {}, _circleStyle, {}, _leftStyle)
-    }, _touchSlider), (0, _preact.h)("div", {
-      style: (0, _extends2["default"])({}, S.CIRCLE_INNER, {}, _circleStyle)
-    }, (hovered || dragged) && (0, _preact.h)("div", {
-      style: (0, _extends2["default"])({}, S.CIRCLE_INNER_EL, {}, _emberStyle)
-    }))), (0, _preact.h)("input", {
-      type: "hidden",
-      step: step,
-      min: min,
-      max: max,
-      value: value,
-      required: true
-    })));
+    return (0, _jsxRuntime.jsx)("div", {
+      style: S.ROOT,
+      children: (0, _jsxRuntime.jsxs)("div", (0, _extends2["default"])({
+        ref: this._refTrack,
+        style: S.ROOT_LINE
+      }, _mouseSlider, {
+        children: [(0, _jsxRuntime.jsx)("div", {
+          style: (0, _extends2["default"])({}, S.LINE_BEFORE, _widthBeforeStyle)
+        }), (0, _jsxRuntime.jsx)("div", {
+          style: (0, _extends2["default"])({}, _lineAfterStyle, _widthAfterStyle)
+        }), (0, _jsxRuntime.jsx)("div", (0, _extends2["default"])({
+          ref: this._refTouch,
+          style: (0, _extends2["default"])({}, S.ROOT_CIRCLE, _circleStyle, _leftStyle)
+        }, _touchSlider, {
+          children: (0, _jsxRuntime.jsx)("div", {
+            style: (0, _extends2["default"])({}, S.CIRCLE_INNER, _circleStyle),
+            children: (hovered || dragged) && (0, _jsxRuntime.jsx)("div", {
+              style: (0, _extends2["default"])({}, S.CIRCLE_INNER_EL, _emberStyle)
+            })
+          })
+        })), (0, _jsxRuntime.jsx)("input", {
+          type: "hidden",
+          step: step,
+          min: min,
+          max: max,
+          value: value,
+          required: true
+        })]
+      }))
+    });
   };
 
   _proto.setValue = function setValue(value) {

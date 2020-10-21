@@ -1,6 +1,3 @@
-//import React from 'react'
-import { h } from 'preact'
-
 const S = {
   KEY: {
     textDecoration: 'underline'

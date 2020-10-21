@@ -1,15 +1,1 @@
-{
- "version": 3,
- "sources": [
-  "../../../src/components/styles/Color.js"
- ],
- "file": "../../../src/components/styles/Color.js",
- "names": [
-  "COLOR",
-  "BG_GREY",
-  "INPUT_BLUE",
-  "INPUT_GREY",
-  "BLANK"
- ],
- "mappings": ";;;;AAAA,IAAMA,KAAK,GAAG;AACZC,EAAAA,OAAO,EAAE,MADG;AAEZC,EAAAA,UAAU,EAAE,SAFA;AAGZC,EAAAA,UAAU,EAAE,SAHA;AAIZC,EAAAA,KAAK,EAAE;AAJK,CAAd;eAOeJ,K"
-}
+{"version":3,"sources":["../../../src/components/styles/Color.js"],"names":["COLOR","BG_GREY","INPUT_BLUE","INPUT_GREY","BLANK"],"mappings":";;;;AAAA,IAAMA,KAAK,GAAG;AACZC,EAAAA,OAAO,EAAE,MADG;AAEZC,EAAAA,UAAU,EAAE,SAFA;AAGZC,EAAAA,UAAU,EAAE,SAHA;AAIZC,EAAAA,KAAK,EAAE;AAJK,CAAd;eAOeJ,K","sourcesContent":["const COLOR = {\r\n  BG_GREY: 'grey',\r\n  INPUT_BLUE: '#00bcd4',\r\n  INPUT_GREY: '#bdbdbd',\r\n  BLANK: 'rgba(0, 0, 0, 0)'\r\n};\r\n\r\nexport default COLOR\r\n"],"file":"Color.js"}

@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var useState = _hooks["default"].useState,

@@ -1,4 +1,3 @@
-import { h, Fragment } from 'preact'
 import memo from '../memo'
 
 import CssValue from './CssValue'

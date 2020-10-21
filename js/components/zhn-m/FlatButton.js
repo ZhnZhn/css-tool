@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -62,12 +62,12 @@ var FlatButton = function FlatButton(_ref2) {
     setTimeout(_setPointerEvents, timeout, _refBt);
     onClick(event);
   }, [timeout, onClick]),
-      _style = isPrimary ? (0, _extends2["default"])({}, rootStyle, {}, S.PRIMARY) : rootStyle,
+      _style = isPrimary ? (0, _extends2["default"])({}, rootStyle, S.PRIMARY) : rootStyle,
       _className = className ? CL.BT + " " + className : CL.BT,
       _accessKey = HAS_TOUCH ? void 0 : accessKey,
       _title = _accessKey ? title + " [" + accessKey + "]" : title;
 
-  return (0, _preact.h)("button", {
+  return (0, _jsxRuntime.jsx)("button", {
     ref: _refBt,
     type: "button",
     className: _className,
@@ -75,14 +75,16 @@ var FlatButton = function FlatButton(_ref2) {
     accessKey: _accessKey,
     tabIndex: 0,
     title: _title,
-    onClick: _hClick
-  }, (0, _preact.h)("div", {
-    className: clDiv
-  }, (0, _preact.h)(_CaptionInput["default"], {
-    className: CL.BT_SPAN,
-    caption: caption,
-    accessKey: _accessKey
-  }), children));
+    onClick: _hClick,
+    children: (0, _jsxRuntime.jsxs)("div", {
+      className: clDiv,
+      children: [(0, _jsxRuntime.jsx)(_CaptionInput["default"], {
+        className: CL.BT_SPAN,
+        caption: caption,
+        accessKey: _accessKey
+      }), children]
+    })
+  });
 };
 
 var _default = FlatButton;

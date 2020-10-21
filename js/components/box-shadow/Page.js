@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _hooks = _interopRequireDefault(require("../hooks"));
 
@@ -72,32 +72,33 @@ var Page = function Page(_ref) {
     });
   }, []);
 
-  return (0, _preact.h)("div", {
-    className: CL.PAGE
-  }, (0, _preact.h)("div", {
-    className: CL.INPUTS
-  }, (0, _preact.h)(_InputBox["default"], {
-    key: "input-box",
-    isBox: isBox,
-    configStyle: configStyle,
-    onEnter: _updateConfig
-  }), (0, _preact.h)(_InputShadow["default"], {
-    key: "input-shadow",
-    id: id,
-    isShadow: isShadow,
-    isInset: isInset,
-    initValue: _currentValue,
-    onChange: _updateShadows
-  })), (0, _preact.h)("div", {
-    className: CL.VIEWS
-  }, (0, _preact.h)(_ViewBoxShadow["default"], {
-    currentIndex: currentIndex,
-    boxShadows: boxShadows,
-    configStyle: configStyle,
-    onAdd: _addShadow,
-    onEdit: _setCurrentShadow,
-    onRemove: _removeShadow
-  })));
+  return (0, _jsxRuntime.jsxs)("div", {
+    className: CL.PAGE,
+    children: [(0, _jsxRuntime.jsxs)("div", {
+      className: CL.INPUTS,
+      children: [(0, _jsxRuntime.jsx)(_InputBox["default"], {
+        isBox: isBox,
+        configStyle: configStyle,
+        onEnter: _updateConfig
+      }, "input-box"), (0, _jsxRuntime.jsx)(_InputShadow["default"], {
+        id: id,
+        isShadow: isShadow,
+        isInset: isInset,
+        initValue: _currentValue,
+        onChange: _updateShadows
+      }, "input-shadow")]
+    }), (0, _jsxRuntime.jsx)("div", {
+      className: CL.VIEWS,
+      children: (0, _jsxRuntime.jsx)(_ViewBoxShadow["default"], {
+        currentIndex: currentIndex,
+        boxShadows: boxShadows,
+        configStyle: configStyle,
+        onAdd: _addShadow,
+        onEdit: _setCurrentShadow,
+        onRemove: _removeShadow
+      })
+    })]
+  });
 };
 
 var _default = Page;

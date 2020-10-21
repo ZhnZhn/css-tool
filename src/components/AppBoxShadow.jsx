@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 import useToggle from './hooks/useToggle'
 
 import HeaderBar from './header/HeaderBar'

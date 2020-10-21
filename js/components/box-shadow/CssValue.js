@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _RaisedButton = _interopRequireDefault(require("../zhn/RaisedButton"));
 
@@ -47,32 +47,35 @@ var _renderValues = function _renderValues(options) {
     var _sufix = index !== max ? "," : ";",
         _styleValue = index === currentIndex ? S.EDITED : null;
 
-    return (0, _preact.h)("div", {
-      key: index
-    }, (0, _preact.h)("span", {
-      style: (0, _extends2["default"])({}, S.VALUE, {}, _styleValue)
-    }, "" + _fn["default"].toCssValue(item) + _sufix), (0, _preact.h)(_RaisedButton["default"], {
-      style: S.BT,
-      caption: "EDIT",
-      onClick: onEdit.bind(null, index)
-    }), (0, _preact.h)(_RaisedButton["default"], {
-      style: S.BT,
-      caption: "ADD",
-      onClick: onAdd.bind(null, index)
-    }), index !== 0 && (0, _preact.h)(_RaisedButton["default"], {
-      style: S.BT_R,
-      caption: "REMOVE",
-      onClick: onRemove.bind(null, index)
-    }));
+    return (0, _jsxRuntime.jsxs)("div", {
+      children: [(0, _jsxRuntime.jsx)("span", {
+        style: (0, _extends2["default"])({}, S.VALUE, _styleValue),
+        children: "" + _fn["default"].toCssValue(item) + _sufix
+      }), (0, _jsxRuntime.jsx)(_RaisedButton["default"], {
+        style: S.BT,
+        caption: "EDIT",
+        onClick: onEdit.bind(null, index)
+      }), (0, _jsxRuntime.jsx)(_RaisedButton["default"], {
+        style: S.BT,
+        caption: "ADD",
+        onClick: onAdd.bind(null, index)
+      }), index !== 0 && (0, _jsxRuntime.jsx)(_RaisedButton["default"], {
+        style: S.BT_R,
+        caption: "REMOVE",
+        onClick: onRemove.bind(null, index)
+      })]
+    }, index);
   });
 };
 
 var CssValue = function CssValue(props) {
-  return (0, _preact.h)("div", {
-    className: CL
-  }, (0, _preact.h)("div", {
-    style: S.TITLE
-  }, "BOX-SHADOW:"), _renderValues(props));
+  return (0, _jsxRuntime.jsxs)("div", {
+    className: CL,
+    children: [(0, _jsxRuntime.jsx)("div", {
+      style: S.TITLE,
+      children: "BOX-SHADOW:"
+    }), _renderValues(props)]
+  });
 };
 /*
 CssValue.propTypes = {

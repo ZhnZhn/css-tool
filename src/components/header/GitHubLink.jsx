@@ -1,6 +1,3 @@
-import { h } from 'preact'
-
-
 const GitHubLink = ({ className, title, href }) => (
   <a
     className={className}

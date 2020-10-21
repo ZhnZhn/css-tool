@@ -1,4 +1,3 @@
-import { h, Fragment } from 'preact'
 import hooks from '../hooks'
 import  memo  from '../memo'
 

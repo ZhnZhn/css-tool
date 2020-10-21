@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _preact = require("preact");
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var _memo = _interopRequireDefault(require("../memo"));
 
@@ -20,16 +20,18 @@ var ViewBoxShadow = function ViewBoxShadow(_ref) {
       onAdd = _ref.onAdd,
       onEdit = _ref.onEdit,
       onRemove = _ref.onRemove;
-  return (0, _preact.h)(_preact.Fragment, null, (0, _preact.h)(_Preview["default"], {
-    boxShadows: boxShadows,
-    configStyle: configStyle
-  }), (0, _preact.h)(_CssValue["default"], {
-    currentIndex: currentIndex,
-    boxShadows: boxShadows,
-    onAdd: onAdd,
-    onEdit: onEdit,
-    onRemove: onRemove
-  }));
+  return (0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
+    children: [(0, _jsxRuntime.jsx)(_Preview["default"], {
+      boxShadows: boxShadows,
+      configStyle: configStyle
+    }), (0, _jsxRuntime.jsx)(_CssValue["default"], {
+      currentIndex: currentIndex,
+      boxShadows: boxShadows,
+      onAdd: onAdd,
+      onEdit: onEdit,
+      onRemove: onRemove
+    })]
+  });
 };
 /*
 ViewBoxShadow.propTypes = {

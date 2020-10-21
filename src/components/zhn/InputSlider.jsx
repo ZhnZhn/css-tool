@@ -1,4 +1,4 @@
-import { h, Component, createRef } from 'preact';
+import { Component, createRef } from 'preact';
 
 import fnMath from '../../utils/math'
 import has from '../has';

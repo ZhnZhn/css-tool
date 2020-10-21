@@ -1,5 +1,3 @@
-import { h } from 'preact'
-
 /*
 mostly from
 http://www.material-ui.com/#/components/raised-button
