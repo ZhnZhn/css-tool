@@ -57,15 +57,15 @@
   },
   "jspm": {
     "dependencies": {
-      "@babel/runtime": "npm:@babel/runtime@^7.12.1",
-      "preact": "npm:preact@^10.5.5",
+      "@babel/runtime": "npm:@babel/runtime@^7.12.5",
+      "preact": "npm:preact@^10.5.7",
       "tinycolor2": "npm:tinycolor2@^1.4.2"
     },
     "devDependencies": {}
   },
   "dependencies": {
-    "@babel/runtime": "^7.12.1",
-    "preact": "^10.5.5",
+    "@babel/runtime": "^7.12.5",
+    "preact": "^10.5.7",
     "tinycolor2": "^1.4.2"
   }
 }
