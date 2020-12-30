@@ -32,7 +32,7 @@
 }
 
 @media screen and (max-width: 620px) {
-   .page-sb__preview__inner {
+  .page-sb__preview__inner {
     height: 100px;
   }
 }
@@ -47,8 +47,8 @@
     grid-template-areas: "box-preview"
                          "shadow-input"
                          "css-view";
-   /* stylelint-enable */    
   }
+   /* stylelint-enable */    
   .page-sb__inputs {
     grid-area: shadow-input;
     width: 90%;
