@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "description": "Visual tool for css property box-shadow",
   "main": "index.js",
-  "scripts": {    
-    "dev": "webpack-dev-server --config webpack.dev.js",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js",
     "transpile": "babel ./src --out-dir ./js --source-maps --ignore test.js",
     "transpile:all": "babel ./src --out-dir ./js --source-maps",
     "lint": "eslint -c .eslintrc-build.json ./src > lint.txt",
@@ -44,10 +44,10 @@
     "gulp-replace": "^1.0.0",
     "gulp-rev": "^9.0.0",
     "html-webpack-plugin": "^4.5.0",
-    "terser-webpack-plugin": "^5.0.3",
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.0",
-    "webpack-dev-server": "^3.11.1"
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
