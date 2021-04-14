@@ -7,11 +7,11 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _RaisedButton = _interopRequireDefault(require("../zhn/RaisedButton"));
 
 var _fn = _interopRequireDefault(require("./helpers/fn"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var CL = "page-sb__css";
 var S = {

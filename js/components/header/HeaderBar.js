@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _Comp = _interopRequireDefault(require("../Comp"));
 
 var _IconAppLogo = _interopRequireDefault(require("./IconAppLogo"));
@@ -14,6 +12,8 @@ var _IconAppLogo = _interopRequireDefault(require("./IconAppLogo"));
 var _AppLabel = _interopRequireDefault(require("./AppLabel"));
 
 var _GitHubLink = _interopRequireDefault(require("./GitHubLink"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var CAPTION = "CSS Tool v0.2.0";
 

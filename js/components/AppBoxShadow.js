@@ -5,13 +5,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _useToggle3 = _interopRequireDefault(require("./hooks/useToggle"));
 
 var _HeaderBar = _interopRequireDefault(require("./header/HeaderBar"));
 
 var _Page = _interopRequireDefault(require("./box-shadow/Page"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var AppBoxShadow = function AppBoxShadow() {
   var _useToggle = (0, _useToggle3["default"])(true),

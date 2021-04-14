@@ -7,13 +7,13 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _isKeyEnter = _interopRequireDefault(require("./isKeyEnter"));
 
 var _Color = _interopRequireDefault(require("../styles/Color"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var useCallback = _hooks["default"].useCallback;
 var CL = 'chb';

@@ -5,13 +5,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _memo = _interopRequireDefault(require("../memo"));
 
 var _Comp = _interopRequireDefault(require("../Comp"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var useCallback = _hooks["default"].useCallback;
 var S = {

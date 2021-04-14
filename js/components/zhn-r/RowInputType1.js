@@ -11,8 +11,6 @@ var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runt
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
@@ -20,6 +18,8 @@ var _math = _interopRequireDefault(require("../../utils/math"));
 var _A = _interopRequireDefault(require("../zhn/A"));
 
 var _style = _interopRequireDefault(require("./style"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var round10 = _math["default"].round10;
 

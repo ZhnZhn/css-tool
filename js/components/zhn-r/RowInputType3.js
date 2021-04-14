@@ -9,8 +9,6 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _preact = require("preact");
 
 var _tinycolor = _interopRequireDefault(require("tinycolor2"));
@@ -18,6 +16,8 @@ var _tinycolor = _interopRequireDefault(require("tinycolor2"));
 var _A = _interopRequireDefault(require("../zhn/A"));
 
 var _style = _interopRequireDefault(require("./style"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var RowInputType3 = /*#__PURE__*/function (_Component) {
   (0, _inheritsLoose2["default"])(RowInputType3, _Component);

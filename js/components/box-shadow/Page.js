@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _pageReducer = _interopRequireDefault(require("./pageReducer"));
@@ -16,6 +14,8 @@ var _InputBox = _interopRequireDefault(require("./InputBox"));
 var _InputShadow = _interopRequireDefault(require("./InputShadow"));
 
 var _ViewBoxShadow = _interopRequireDefault(require("./ViewBoxShadow"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var useReducer = _hooks["default"].useReducer,
     useCallback = _hooks["default"].useCallback;

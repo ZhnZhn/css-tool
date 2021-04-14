@@ -1,14 +1,1 @@
-{
- "version": 3,
- "sources": [
-  "../../../src/components/header/HeaderBar.js"
- ],
- "file": "../../../src/components/header/HeaderBar.js",
- "names": [
-  "CAPTION",
-  "HeaderBar",
-  "onShadow",
-  "onBox"
- ],
- "mappings": ";;;;;;;;;AAAA;;AACA;;AACA;;AACA;;AAEA,IAAMA,OAAO,GAAG,iBAAhB;;AAEA,IAAMC,SAAS,GAAG,SAAZA,SAAY;AAAA,MAAGC,QAAH,QAAGA,QAAH;AAAA,MAAaC,KAAb,QAAaA,KAAb;AAAA,SACjB;AAAK,IAAA,SAAS,EAAC,QAAf;AAAA,eACG,qBAAC,uBAAD;AACG,MAAA,SAAS,EAAC,kBADb;AAEG,MAAA,KAAK,EAAEH;AAFV,MADH,EAKG;AAAK,MAAA,SAAS,EAAC;AAAf,MALH,EAMG,qBAAC,oBAAD;AACG,MAAA,SAAS,EAAC,mBADb;AAEG,MAAA,OAAO,EAAEA;AAFZ,MANH,EAUG,qBAAC,gBAAD,CAAG,UAAH;AACE,MAAA,OAAO,EAAC,KADV;AAEE,MAAA,KAAK,EAAC,gCAFR;AAGE,MAAA,SAAS,EAAC,GAHZ;AAIE,MAAA,OAAO,EAAE,CAJX;AAKE,MAAA,OAAO,EAAEG;AALX,MAVH,EAiBG,qBAAC,gBAAD,CAAG,UAAH;AACE,MAAA,OAAO,EAAC,QADV;AAEE,MAAA,KAAK,EAAC,uCAFR;AAGE,MAAA,SAAS,EAAC,GAHZ;AAIE,MAAA,OAAO,EAAE,CAJX;AAKE,MAAA,OAAO,EAAED;AALX,MAjBH,EAwBG,qBAAC,sBAAD;AACE,MAAA,SAAS,EAAC,qBADZ;AAEE,MAAA,KAAK,EAAC,mBAFR;AAGE,MAAA,IAAI,EAAC;AAHP,MAxBH;AAAA,IADiB;AAAA,CAAlB;;eAmCeD,S"
-}
+{"version":3,"sources":["../../../src/components/header/HeaderBar.jsx"],"names":["CAPTION","HeaderBar","onShadow","onBox"],"mappings":";;;;;;;AAAA;;AACA;;AACA;;AACA;;;;AAEA,IAAMA,OAAO,GAAG,iBAAhB;;AAEA,IAAMC,SAAS,GAAG,SAAZA,SAAY;AAAA,MAAGC,QAAH,QAAGA,QAAH;AAAA,MAAaC,KAAb,QAAaA,KAAb;AAAA,SACjB;AAAK,IAAA,SAAS,EAAC,QAAf;AAAA,eACG,qBAAC,uBAAD;AACG,MAAA,SAAS,EAAC,kBADb;AAEG,MAAA,KAAK,EAAEH;AAFV,MADH,EAKG;AAAK,MAAA,SAAS,EAAC;AAAf,MALH,EAMG,qBAAC,oBAAD;AACG,MAAA,SAAS,EAAC,mBADb;AAEG,MAAA,OAAO,EAAEA;AAFZ,MANH,EAUG,qBAAC,gBAAD,CAAG,UAAH;AACE,MAAA,OAAO,EAAC,KADV;AAEE,MAAA,KAAK,EAAC,gCAFR;AAGE,MAAA,SAAS,EAAC,GAHZ;AAIE,MAAA,OAAO,EAAE,CAJX;AAKE,MAAA,OAAO,EAAEG;AALX,MAVH,EAiBG,qBAAC,gBAAD,CAAG,UAAH;AACE,MAAA,OAAO,EAAC,QADV;AAEE,MAAA,KAAK,EAAC,uCAFR;AAGE,MAAA,SAAS,EAAC,GAHZ;AAIE,MAAA,OAAO,EAAE,CAJX;AAKE,MAAA,OAAO,EAAED;AALX,MAjBH,EAwBG,qBAAC,sBAAD;AACE,MAAA,SAAS,EAAC,qBADZ;AAEE,MAAA,KAAK,EAAC,mBAFR;AAGE,MAAA,IAAI,EAAC;AAHP,MAxBH;AAAA,IADiB;AAAA,CAAlB;;eAmCeD,S","sourcesContent":["import A from '../Comp'\r\nimport IconAppLogo from './IconAppLogo'\r\nimport AppLabel from './AppLabel'\r\nimport GitHubLink from './GitHubLink'\r\n\r\nconst CAPTION = \"CSS Tool v0.2.0\";\r\n\r\nconst HeaderBar = ({ onShadow, onBox }) => (\r\n <div className=\"header\" >\r\n    <IconAppLogo\r\n       className=\"header__icon-app\"\r\n       title={CAPTION}\r\n    />\r\n    <div className=\"header__icon-gap\" />\r\n    <AppLabel\r\n       className=\"header__label-app\"\r\n       caption={CAPTION}\r\n    />\r\n    <A.FlatButton\r\n      caption=\"Box\"\r\n      title=\"Click to toggle css box inputs\"\r\n      accessKey=\"b\"\r\n      timeout={0}\r\n      onClick={onBox}\r\n    />\r\n    <A.FlatButton\r\n      caption=\"Shadow\"\r\n      title=\"Click to toggle css shadow-box inputs\"\r\n      accessKey=\"h\"\r\n      timeout={0}\r\n      onClick={onShadow}\r\n    />\r\n    <GitHubLink\r\n      className=\"header__github-link\"\r\n      title=\"GitHub Repository\"\r\n      href=\"https://github.com/zhnzhn/css-tool/\"\r\n   />\r\n </div>\r\n);\r\n\r\n\r\n\r\nexport default HeaderBar\r\n"],"file":"HeaderBar.js"}

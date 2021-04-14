@@ -7,9 +7,9 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _fn = _interopRequireDefault(require("./helpers/fn"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var CL = {
   PREVIEW: "page-sb__preview",

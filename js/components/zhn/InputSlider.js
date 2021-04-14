@@ -9,13 +9,13 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _preact = require("preact");
 
 var _math = _interopRequireDefault(require("../../utils/math"));
 
 var _has = _interopRequireDefault(require("../has"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 /*
  Mostly from old version Material-UI

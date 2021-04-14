@@ -7,11 +7,11 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _A = _interopRequireDefault(require("../zhn/A"));
 
 var _style = _interopRequireDefault(require("./style"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var RowInputType2 = function RowInputType2(_ref) {
   var styleInput = _ref.styleInput,

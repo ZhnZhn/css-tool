@@ -1,15 +1,1 @@
-{
- "version": 3,
- "sources": [
-  "../../src/components/AppBoxShadow.js"
- ],
- "file": "../../src/components/AppBoxShadow.js",
- "names": [
-  "AppBoxShadow",
-  "isShadow",
-  "_toggleShadow",
-  "isBox",
-  "_toggleBox"
- ],
- "mappings": ";;;;;;;;;AAAA;;AAEA;;AACA;;AAGA,IAAMA,YAAY,GAAG,SAAfA,YAAe,GAAM;AAAA,mBACS,4BAAU,IAAV,CADT;AAAA,MAClBC,QADkB;AAAA,MACRC,aADQ;AAAA,oBAED,4BAAU,KAAV,CAFC;AAAA,MAEtBC,KAFsB;AAAA,MAEfC,UAFe;;AAKzB,SACE;AAAA,eACE,qBAAC,qBAAD;AACE,MAAA,QAAQ,EAAEF,aADZ;AAEE,MAAA,KAAK,EAAEE;AAFT,MADF,EAKE,qBAAC,gBAAD;AACE,MAAA,QAAQ,EAAEH,QADZ;AAEE,MAAA,KAAK,EAAEE;AAFT,MALF;AAAA,IADF;AAYD,CAjBD;;eAmBeH,Y"
-}
+{"version":3,"sources":["../../src/components/AppBoxShadow.jsx"],"names":["AppBoxShadow","isShadow","_toggleShadow","isBox","_toggleBox"],"mappings":";;;;;;;AAAA;;AAEA;;AACA;;;;AAGA,IAAMA,YAAY,GAAG,SAAfA,YAAe,GAAM;AAAA,mBACS,4BAAU,IAAV,CADT;AAAA,MAClBC,QADkB;AAAA,MACRC,aADQ;AAAA,oBAED,4BAAU,KAAV,CAFC;AAAA,MAEtBC,KAFsB;AAAA,MAEfC,UAFe;;AAKzB,SACE;AAAA,eACE,qBAAC,qBAAD;AACE,MAAA,QAAQ,EAAEF,aADZ;AAEE,MAAA,KAAK,EAAEE;AAFT,MADF,EAKE,qBAAC,gBAAD;AACE,MAAA,QAAQ,EAAEH,QADZ;AAEE,MAAA,KAAK,EAAEE;AAFT,MALF;AAAA,IADF;AAYD,CAjBD;;eAmBeH,Y","sourcesContent":["import useToggle from './hooks/useToggle'\r\n\r\nimport HeaderBar from './header/HeaderBar'\r\nimport Page from './box-shadow/Page'\r\n\r\n\r\nconst AppBoxShadow = () => {\r\n  const [isShadow, _toggleShadow] = useToggle(true)\r\n  , [isBox, _toggleBox] = useToggle(false);\r\n\r\n\r\n  return (\r\n    <div>\r\n      <HeaderBar\r\n        onShadow={_toggleShadow}\r\n        onBox={_toggleBox}\r\n      />\r\n      <Page\r\n        isShadow={isShadow}\r\n        isBox={isBox}\r\n      />\r\n    </div>\r\n  )\r\n};\r\n\r\nexport default AppBoxShadow\r\n"],"file":"AppBoxShadow.js"}

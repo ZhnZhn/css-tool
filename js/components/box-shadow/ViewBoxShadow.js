@@ -5,13 +5,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _memo = _interopRequireDefault(require("../memo"));
 
 var _CssValue = _interopRequireDefault(require("./CssValue"));
 
 var _Preview = _interopRequireDefault(require("./Preview"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var ViewBoxShadow = function ViewBoxShadow(_ref) {
   var boxShadows = _ref.boxShadows,

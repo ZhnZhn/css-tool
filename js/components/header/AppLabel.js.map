@@ -1,14 +1,1 @@
-{
- "version": 3,
- "sources": [
-  "../../../src/components/header/AppLabel.js"
- ],
- "file": "../../../src/components/header/AppLabel.js",
- "names": [
-  "AppLabel",
-  "className",
-  "style",
-  "caption"
- ],
- "mappings": ";;;;;;;AAAA,IAAMA,QAAQ,GAAG,SAAXA,QAAW;AAAA,MAAGC,SAAH,QAAGA,SAAH;AAAA,MAAcC,KAAd,QAAcA,KAAd;AAAA,MAAqBC,OAArB,QAAqBA,OAArB;AAAA,SACf;AAAM,IAAA,SAAS,EAAEF,SAAjB;AAA4B,IAAA,KAAK,EAAEC,KAAnC;AAAA,cACGC;AADH,IADe;AAAA,CAAjB;AAMA;AACA;AACA;AACA;AACA;AACA;AACA;;;eAEeH,Q"
-}
+{"version":3,"sources":["../../../src/components/header/AppLabel.jsx"],"names":["AppLabel","className","style","caption"],"mappings":";;;;;;;AAAA,IAAMA,QAAQ,GAAG,SAAXA,QAAW;AAAA,MAAGC,SAAH,QAAGA,SAAH;AAAA,MAAcC,KAAd,QAAcA,KAAd;AAAA,MAAqBC,OAArB,QAAqBA,OAArB;AAAA,SACf;AAAM,IAAA,SAAS,EAAEF,SAAjB;AAA4B,IAAA,KAAK,EAAEC,KAAnC;AAAA,cACGC;AADH,IADe;AAAA,CAAjB;AAMA;AACA;AACA;AACA;AACA;AACA;AACA;;;eAEeH,Q","sourcesContent":["const AppLabel = ({ className, style, caption }) => (\r\n  <span className={className} style={style}>\r\n    {caption}\r\n  </span>\r\n);\r\n\r\n/*\r\nAppLabel.propTypes = {\r\n  className: PropTypes.string,\r\n  style: PropTypes.object,\r\n  caption: PropTypes.string\r\n}\r\n*/\r\n\r\nexport default AppLabel\r\n"],"file":"AppLabel.js"}

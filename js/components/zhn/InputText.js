@@ -7,11 +7,11 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _crId = _interopRequireDefault(require("../../utils/crId"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var useState = _hooks["default"].useState,
     useRef = _hooks["default"].useRef,

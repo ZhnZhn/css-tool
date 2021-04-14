@@ -7,13 +7,13 @@ exports["default"] = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
-var _jsxRuntime = require("preact/jsx-runtime");
-
 var _hooks = _interopRequireDefault(require("../hooks"));
 
 var _has = _interopRequireDefault(require("../has"));
 
 var _CaptionInput = _interopRequireDefault(require("./CaptionInput"));
+
+var _jsxRuntime = require("preact/jsx-runtime");
 
 var useRef = _hooks["default"].useRef,
     useCallback = _hooks["default"].useCallback;
