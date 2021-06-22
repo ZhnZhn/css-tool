@@ -1,11 +1,21 @@
-import A from '../Comp'
-import IconAppLogo from './IconAppLogo'
-import AppLabel from './AppLabel'
-import GitHubLink from './GitHubLink'
+import type { FC, MouseEvent } from '../types'
+
+import A from '../Comp';
+import IconAppLogo from './IconAppLogo';
+import AppLabel from './AppLabel';
+import GitHubLink from './GitHubLink';
+
+interface HeaderBarProps {
+  onShadow: (evt: MouseEvent) => void;
+  onBox: (evt: MouseEvent) => void;
+}
 
 const CAPTION = "CSS Tool v0.2.0";
 
-const HeaderBar = ({ onShadow, onBox }) => (
+const HeaderBar: FC<HeaderBarProps, false> = ({
+   onShadow, 
+   onBox 
+}) => (
  <div className="header" >
     <IconAppLogo
        className="header__icon-app"
@@ -13,8 +23,8 @@ const HeaderBar = ({ onShadow, onBox }) => (
     />
     <div className="header__icon-gap" />
     <AppLabel
-       className="header__label-app"
-       caption={CAPTION}
+      className="header__label-app"
+      caption={CAPTION}
     />
     <A.FlatButton
       caption="Box"
