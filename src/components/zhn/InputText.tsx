@@ -13,7 +13,7 @@ const CL_INPUT_TEXT = 'input-text box-shadow';
 
 type ValueType = string | number
 type InnerRefType = {
-  setValue: (initValue: ValueType) => void
+  setValue: (initValue: any) => void
 }
 
 interface InputTextProps {
@@ -26,8 +26,8 @@ interface InputTextProps {
   min?: number;
   max?: number;
   innerRef?: RefObject<InnerRefType>;
-  onChange?: (value: ValueType) => void;
-  onEnter?: (value: ValueType) => void;
+  onChange?: (value: any) => void;
+  onEnter?: (value: any) => void;
 }
 
 
