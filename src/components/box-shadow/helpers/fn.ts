@@ -1,6 +1,11 @@
-import tinycolor from 'tinycolor2'
+import type { ShadowType } from '../types';
+import tinycolor from 'tinycolor2';
 
-const fn = {
+type FnType = {
+  toCssValue(boxShadow: ShadowType): string
+}
+
+const fn: FnType = {
   toCssValue: (boxShadow) => {
     const {
         isInset,
