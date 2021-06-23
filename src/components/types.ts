@@ -9,5 +9,5 @@ export type FC<T, IS = true> = IS extends true
   ? { (props: T & { children?: ChildrenType }): VElemType} 
   : { (props: T): VElemType }
 
-export type { MouseEvent } from 'react'
+export type { MouseEvent, KeyboardEvent } from 'react'
 
