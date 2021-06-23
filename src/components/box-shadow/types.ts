@@ -9,3 +9,11 @@ export type ShadowType = {
   color: string;
 }
 
+export type ConfigStyleType = {
+  bgColor: string;
+  boxColor: string;
+  borderRadius: string; 
+  boxBorderRadius: string; 
+}
+
+
