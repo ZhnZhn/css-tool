@@ -10,7 +10,7 @@ const { useState, useCallback } = hooks;
 interface RowInputType3Props {  
   styleInput?: CSSProperties
   caption: string;
-  inputId: string;
+  inputId?: string;
   initValue: string;
   onEnter: (value: string, color: tinycolor.Instance) => void
 }
