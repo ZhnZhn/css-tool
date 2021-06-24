@@ -1,49 +1,31 @@
+import type { ReducerType } from '../types';
+import type { PageStateType, PageActionType } from './pageConfig';
 
-import crId from '../../utils/crId'
-import imArr from '../../utils/im-arr'
-import imObj from '../../utils/im-obj'
+import crId from '../../utils/crId';
+import imArr from '../../utils/im-arr';
+import imObj from '../../utils/im-obj';
 
-const A = {
-  SET_CURRENT_SHADOW: 'SET_CURRENT_SHADOW',
-  UPATE_SHADOWS: 'UPDATE_SHADOWS',
-  ADD_SHADOW: 'ADD_SHADOW',
-  REMOVE_SHADOW: 'REMOVE_SHADOW',
-  UPDATE_CONFIG: 'UPDATE_CONFIG'
-};
+import { A }  from './pageConfig'; 
 
-const DF_INITIAL_VALUE = {
-  isInset: false,
-  gLength: 10,
-  vLength: 10,
-  blurR: 5,
-  spreadR: 0,
-  color: '#000000',
-  opacity: 0.75,
-  id: crId()
-}
+type PageReducer = ReducerType<PageStateType, PageActionType>
 
-const INITIAL_STATE = {
-  currentIndex: 0,
-  boxShadows: [ DF_INITIAL_VALUE ],
-  configStyle: {
-    bgColor: 'gray',
-    boxColor: '#e7a61a',
-    boxBorderRadius: '0px'
-  }
-};
+const _isNumber = (n: any): n is number => typeof n === 'number'; 
+const _isStr = (str: any): str is string => typeof str === 'string'; 
 
-const pageReducer = (state, action) => {
+const pageReducer: PageReducer = (state, action) => {
   switch(action.type){
     case A.SET_CURRENT_SHADOW: {
       const { editIndex } = action;
-      return {
+      return _isNumber(editIndex) ? {
         ...state,
         currentIndex: editIndex        
-      };
+      } : state;
     }
     case A.UPDATE_SHADOWS: {
       const { boxShadow } = action
-      , { boxShadows, currentIndex } = state;
+      if (!boxShadow) { return state; }
+
+      const { boxShadows, currentIndex } = state;
       return {
         ...state,
         boxShadows: imArr.update(boxShadows, currentIndex, boxShadow)
@@ -51,10 +33,12 @@ const pageReducer = (state, action) => {
     }
     case A.ADD_SHADOW: {
       const { fromIndex } = action
-      , { boxShadows, currentIndex } = state
+      if (!_isNumber(fromIndex)) { return state; }
+
+      const { boxShadows, currentIndex } = state
       , _initValue = imObj.create(boxShadows[fromIndex])
       , _index = currentIndex + 1;
-      _initValue.id = crId(_index)
+      _initValue.id = crId(''+_index)
       return {
         ...state,
         currentIndex: _index,
@@ -63,7 +47,10 @@ const pageReducer = (state, action) => {
     }
     case A.REMOVE_SHADOW: {
       const { removeIndex } = action;
-      if (removeIndex === 0) { return state; }
+      if (!_isNumber(removeIndex) || removeIndex === 0 ) { 
+        return state; 
+      }
+      
       const { boxShadows } = state
       , _index = removeIndex - 1;
       return {
@@ -74,7 +61,9 @@ const pageReducer = (state, action) => {
     }
     case A.UPDATE_CONFIG: {
       const { propName, value } = action
-      , { configStyle } = state;
+      if (!_isStr(propName)) { return state; }
+
+      const { configStyle } = state;
       return {
         ...state,
         configStyle: imObj.update(configStyle, propName, value)
@@ -83,8 +72,5 @@ const pageReducer = (state, action) => {
     default: throw new Error('Unsupported action type: ' + action.type);
   }
 };
-
-pageReducer.A = A
-pageReducer.INITIAL_STATE = INITIAL_STATE
 
 export default pageReducer

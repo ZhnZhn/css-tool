@@ -2,7 +2,7 @@ import { CSSProperties, FC, IsNotShouldUpdate } from '../types';
 import { ConfigStyleType } from './types';
 
 import hooks from '../hooks';
-import  memo  from '../memo';
+import memo  from '../memo';
 
 import A from '../Comp';
 
@@ -19,7 +19,7 @@ const _fnNoop = () => {}
 interface InputBoxProps {
   isBox: boolean;
   configStyle: ConfigStyleType
-  onEnter?: (pn: string, v: any) => {}
+  onEnter?: (pn: keyof ConfigStyleType, v: string) => void
 }
 
 const InputBox: FC<InputBoxProps, false> = ({
@@ -27,9 +27,12 @@ const InputBox: FC<InputBoxProps, false> = ({
   configStyle,
   onEnter=_fnNoop
 }) => {
-  const _hEnter = useCallback((propName: string, value: any) => {
+  /*eslint-disable react-hooks/exhaustive-deps */
+  const _hEnter = useCallback((propName: keyof ConfigStyleType, value: string) => {
       onEnter(propName, value)
   }, []);
+  //onEnter
+  /*eslint-enable react-hooks/exhaustive-deps */
 
   if (!isBox) { return <div/>; }
 

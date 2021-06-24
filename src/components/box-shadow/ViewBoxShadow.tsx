@@ -1,4 +1,4 @@
-import type { CSSProperties, FC, IsNotShouldUpdate } from '../types';
+import type { FC, IsNotShouldUpdate } from '../types';
 import type { ShadowType, ConfigStyleType } from './types';
 
 import memo from '../memo';
@@ -6,8 +6,7 @@ import memo from '../memo';
 import CssValue from './CssValue';
 import Preview from './Preview';
 
-interface ViewBoxShadowProps {
-  style: CSSProperties;
+interface ViewBoxShadowProps {  
   boxShadows: ShadowType[];
   currentIndex: number;
   configStyle: ConfigStyleType;
@@ -18,7 +17,7 @@ interface ViewBoxShadowProps {
 
 const ViewBoxShadow: FC<ViewBoxShadowProps, false> = ({
   boxShadows, currentIndex,
-  configStyle,
+  configStyle,  
   onAdd, onEdit, onRemove
 }) => (
   <>
@@ -36,8 +35,6 @@ const ViewBoxShadow: FC<ViewBoxShadowProps, false> = ({
   </>
 );
 
-
-
 const _isNotShouldUpdate: IsNotShouldUpdate<ViewBoxShadowProps> = (
   { boxShadows, currentIndex, configStyle },
   nextProps
@@ -47,4 +44,6 @@ const _isNotShouldUpdate: IsNotShouldUpdate<ViewBoxShadowProps> = (
   ? true
   : false;
 
-export default memo(ViewBoxShadow, _isNotShouldUpdate)
+  
+export default memo(ViewBoxShadow, _isNotShouldUpdate) 
+

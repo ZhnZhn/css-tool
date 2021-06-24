@@ -7,13 +7,13 @@ export type ShadowType = {
   spreadR: number,
   opacity: number,
   color: string;
+  id: string;
 }
 
 export type ConfigStyleType = {
   bgColor: string;
   boxColor: string;
-  borderRadius: string; 
+  //borderRadius: string; 
   boxBorderRadius: string; 
 }
-
 

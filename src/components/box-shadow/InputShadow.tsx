@@ -1,11 +1,27 @@
-import hooks from '../hooks'
-import  memo  from '../memo'
+import type { FC, IsNotShouldUpdate } from '../types';
+import type tinycolor from 'tinycolor2';
 
-import A from '../Comp'
+import hooks from '../hooks';
+import  memo  from '../memo';
+
+import A from '../Comp';
+import { ShadowType } from './types';
 
 const { useRef, useCallback, useEffect } = hooks
 
-const _crName = ({ caption }) => caption
+interface InputShadowProps {
+  id: string;
+  isShadow: boolean;
+  isInset: boolean;
+  initValue: ShadowType;
+  onChange? : (v: any) => void
+}
+
+type CrNameType = {
+  ({caption}: {caption: string}): string
+}
+
+const _crName: CrNameType = ({ caption }) => caption
  .toLowerCase().replace(' ', '-');
 
 const INPUT_ROWS = [
@@ -31,33 +47,49 @@ const INPUT_ROWS = [
   ...item
 }));
 
-const _useChangeValue = (fn, propName, value) => useCallback(
+type FnChangeInputType = {
+  (propName: keyof ShadowType, value: any): void
+}
+type UseChangeValue = {
+  (fn: FnChangeInputType, propName: keyof ShadowType, value: any ): () => void
+}
+
+/*eslint-disable react-hooks/exhaustive-deps */
+const _useChangeValue: UseChangeValue = (fn, propName, value) => useCallback(
   fn.bind(null, propName, value), []
 );
+/*eslint-enable react-hooks/exhaustive-deps */  
 
-const InputShadow = ({
+const _fnNoop = () => {}
+
+const InputShadow: FC<InputShadowProps, false> = ({
   id,
   isShadow,
   isInset,
   initValue,
-  onChange=()=>{}
+  onChange=_fnNoop
 }) => {
-  const _refInput = useRef({})
-  , _changeInput = useCallback((propName, value) => {
+  const _refInput = useRef<Partial<ShadowType>>({})
+  /*eslint-disable react-hooks/exhaustive-deps */
+  , _changeInput = useCallback((propName: keyof ShadowType, value: any) => {
       _refInput.current[propName] = value
       onChange(_refInput.current)
     }, [])
- , _enterColor = useCallback((value, color) => {
+ , _enterColor = useCallback((value: string, color: tinycolor.Instance) => {
       _refInput.current.color = color.toHexString()
       onChange(_refInput.current)
    }, [])
+  //onChange 
+ /*eslint-enable react-hooks/exhaustive-deps */  
 , _onChechInset = _useChangeValue(_changeInput, 'isInset', true)
 , _onUnCheckInset = _useChangeValue(_changeInput, 'isInset', false)
 
-
-   useEffect(() => {
-     _refInput.current = initValue
-   }, [id, isInset])
+ /*eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    _refInput.current = initValue
+  }, [id, isInset])
+ // initValue
+ /*eslint-enable react-hooks/exhaustive-deps */    
 
   if (!isShadow) {return <div/>;}
 
@@ -93,7 +125,7 @@ const InputShadow = ({
          onChange={_changeInput.bind(null, 'spreadR')}
       />
       <A.RowInputType3
-         key={`${id}-sc`}
+         //key={`${id}-sc`}
          caption="Shadow Color"
          initValue={color}
          onEnter={_enterColor}
@@ -114,7 +146,7 @@ const InputShadow = ({
   );
 }
 
-const _isNotShouldUpdate = ({
+const _isNotShouldUpdate: IsNotShouldUpdate<InputShadowProps> = ({
  isShadow, id, isInset
 }, nextProps
 ) => {
