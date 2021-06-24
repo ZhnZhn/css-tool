@@ -1,5 +1,5 @@
 
-const crId = (strSuffix='') => Math.random()
+const crId = (strSuffix=''): string => Math.random()
  .toString(36)
  .substr(2, 9)
  .toUpperCase() + strSuffix;

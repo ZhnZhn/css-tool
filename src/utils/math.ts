@@ -1,7 +1,14 @@
 
 const _isNaN = Number.isNaN || isNaN;
 
-const math = {
+type NumberOrString = number | string
+
+type MathType = {
+  round10(v: NumberOrString, exp: NumberOrString): number;
+  toPercent(value: number, min: number, max: number): number;
+}
+
+const math: MathType = {
   round10: (value, exp) => {
       value = +value;
       exp = +exp;
@@ -9,13 +16,13 @@ const math = {
       if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
         return NaN;
       }
-      // Shift
-      value = value.toString().split('e');
-      value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+      // Shift      
+      let _arrV = value.toString().split('e');
+      value = Math.round(+(_arrV[0] + 'e' + (_arrV[1] ? (+_arrV[1] - exp) : -exp)));
       // Shift back
-      value = value.toString().split('e');
+      _arrV = value.toString().split('e');
 
-      return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+      return +(_arrV[0] + 'e' + (_arrV[1] ? (+_arrV[1] + exp) : exp));
   },
 
   toPercent: (value, min, max) => {
