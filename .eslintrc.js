@@ -1,18 +1,21 @@
 module.exports = {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
      "es6": true,
      "browser": true,
      "jest": true
   },
   "plugins": [
+     "@typescript-eslint",
      "react",
      "react-hooks",
      "jsx-a11y"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:react/recommended",       
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended"  
   ],
 
   "rules": {
@@ -66,8 +69,10 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
 
     //edit jsx-a11y rules
-    "jsx-a11y/no-access-key": 0,
-    "jsx-a11y/label-has-for": 0
+    "jsx-a11y/no-access-key": "off",
+    "jsx-a11y/label-has-for": "off",
+
+    "@typescript-eslint/no-empty-function": "off"
   },
   "settings":  {
     "react":  {

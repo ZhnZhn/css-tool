@@ -12,7 +12,7 @@ module.exports = {
   mode: "production",
   cache: true,
   entry: {
-    app: path.resolve('src', 'index.jsx')
+    app: path.resolve('src', 'index.tsx')
   },
   output: {
       path: path.resolve('app'),
@@ -23,7 +23,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        //test: /\.jsx?$/,
+        test: /\.(ts|js)x?$/,  
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -41,7 +42,7 @@ module.exports = {
   },
   resolve: {
     modules: ['local_modules','node_modules'],
-    extensions: ['.js', '.jsx']
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   plugins : [    
     new webpack.DllReferencePlugin({

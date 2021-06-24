@@ -1,5 +1,5 @@
 module.exports = {
   "rules": {
-    "no-console": 1
+    "no-console": "error"
   }
 }
