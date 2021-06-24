@@ -17,7 +17,7 @@ type SetNumberValueType = {
   setValue(v: number): void
 }
 
-interface RowInputType1Props {
+export interface RowInputType1Props {
   unit?: string;     
   step?: number;
   min: number; 
@@ -66,7 +66,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
       _refSliderComp.current.setValue(_value)
       onChange(value)
     }
-  }, [])
+  }, [min, max, onChange])
 
   
   return (

@@ -6,7 +6,7 @@ import STYLE from './style';
 
 const { useCallback } = hooks;
 
-interface RowCheckBoxProps {
+export interface RowCheckBoxProps {
   value: boolean;
   caption: string;
   onCheck: () => void

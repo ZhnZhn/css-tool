@@ -16,7 +16,7 @@ type InnerRefType = {
   setValue: (initValue: any) => void
 }
 
-interface InputTextProps {
+export interface InputTextProps {
   style?: CSSProperties;
   type?: 'text' | 'number';
   name?: string;
@@ -64,20 +64,26 @@ const InputText: FC<InputTextProps, false> = ({
 }) => {
   const [value, setValue] = useState<ValueType>(initValue)
   , _refName = useRef<string>(name || crId())
+  /*eslint-disable react-hooks/exhaustive-deps */
   , _hInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
       const value = event.currentTarget.value;
       setValue(value)
       onChange(value)
     }, [])
+    //onChange
   , _hKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
       if (event.keyCode === 13){                
         onEnter(event.currentTarget.value)
       }
     }, []);
+    //onEnter
+  
 
   useEffect(() => {
     setValue(initValue)
   }, [inputId])
+   //initValue
+  /*eslint-enable react-hooks/exhaustive-deps */ 
 
   useImperativeHandle(innerRef!, () => ({
     setValue

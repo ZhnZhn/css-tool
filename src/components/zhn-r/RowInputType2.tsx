@@ -3,12 +3,11 @@ import type { FC, CSSProperties } from '../types';
 import A from '../zhn/A';
 import S from './style';
 
-type ValueType = string | number
-interface RowInputType2Props {
+export interface RowInputType2Props {
   styleInput?: CSSProperties;
   caption: string;
-  initValue?: ValueType;
-  onEnter?: (v: ValueType) => void; 
+  initValue?: string;
+  onEnter?: (v: string) => void; 
 }
 
 const RowInputType2: FC<RowInputType2Props, false> = ({

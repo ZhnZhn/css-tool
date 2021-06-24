@@ -4,7 +4,7 @@ import S from './RaisedButtonStyle'
 
 const CL_BT_DIV = "bt-div";
 
-interface RaisedButtonProps {
+export interface RaisedButtonProps {
   style?: CSSProperties,
   caption: string,
   onClick?: () => void

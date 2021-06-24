@@ -1,5 +1,30 @@
+
 //preact/compat memo.js
 import { createElement } from 'preact';
+
+
+//https://github.com/preactjs/preact/blob/master/compat/src/index.d.ts
+/*
+export function memo<P = {}>(
+	component: preact.FunctionalComponent<P>,
+	comparer?: (prev: P, next: P) => boolean
+): preact.FunctionComponent<P>;
+export function memo<C extends preact.FunctionalComponent<any>>(
+	component: C,
+	comparer?: (
+		prev: preact.ComponentProps<C>,
+		next: preact.ComponentProps<C>
+	) => boolean
+): C;
+*/
+
+/*
+export declare function memo<T extends ComponentType<any>>(
+	Component: T,
+	propsAreEqual?: (prevProps: Readonly<ComponentProps<T>>, nextProps: Readonly<ComponentProps<T>>) => boolean
+): MemoExoticComponent<T>;
+*/
+
 
 function assign(obj, props) {
 	for (let i in props) obj[i] = props[i];
@@ -12,7 +37,7 @@ function shallowDiffers(a, b) {
 	return false;
 }
 
-export default function memo(c, comparer) {
+export default function memo<T>(c: T, comparer): T {
 	function shouldUpdate(nextProps) {
 		let ref = this.props.ref;
 		let updateRef = ref == nextProps.ref;

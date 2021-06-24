@@ -26,7 +26,7 @@ const SvgChecked: FC<SvgCheckedProps, false> = ({
   />
 );
 
-interface SvgCheckBoxProps {
+export interface SvgCheckBoxProps {
   style?: CSSProperties;  
   checkedRestStroke?: string;
   checkedRestFill?: string; 

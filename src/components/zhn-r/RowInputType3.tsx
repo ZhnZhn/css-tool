@@ -7,7 +7,7 @@ import S from './style';
 
 const { useState, useCallback } = hooks;
 
-interface RowInputType3Props {  
+export interface RowInputType3Props {  
   styleInput?: CSSProperties
   caption: string;
   inputId?: string;
@@ -24,14 +24,14 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
   initValue,
   onEnter=_fnNoop
 }) => {
-  const [value, setValue] = useState(initValue)
+  const [value, setValue] = useState(initValue)  
   , _hEnter = useCallback((value: string) => {
     const color = tinycolor(value);
      if (color.isValid()){
        onEnter(value, color)
        setValue(color.toHexString())
      }
-  }, []);
+  }, [onEnter]);  
 
   return (
    <div className={S.CL_ROW}>

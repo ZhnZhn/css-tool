@@ -1,13 +1,12 @@
-import useToggle from './hooks/useToggle'
+import type { FC, EmptyObjType } from './types';
+import useToggle from './hooks/useToggle';
 
-import HeaderBar from './header/HeaderBar'
-import Page from './box-shadow/Page'
+import HeaderBar from './header/HeaderBar';
+import Page from './box-shadow/Page';
 
-
-const AppBoxShadow = () => {
+const AppBoxShadow: FC<EmptyObjType, false> = () => {
   const [isShadow, _toggleShadow] = useToggle(true)
   , [isBox, _toggleBox] = useToggle(false);
-
 
   return (
     <div>

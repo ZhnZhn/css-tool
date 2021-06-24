@@ -1,4 +1,4 @@
-import FlatButton from './FlatButton'
+import FlatButton from './FlatButton';
 
 const A = {  
   FlatButton

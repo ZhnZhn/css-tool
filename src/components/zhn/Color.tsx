@@ -1,6 +1,6 @@
 import type { FC, CSSProperties } from '../types';
 
-interface ColorProps {
+export interface ColorProps {
   style: CSSProperties;
   value: string;
 }

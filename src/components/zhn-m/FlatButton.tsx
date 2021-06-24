@@ -18,7 +18,7 @@ const S_PRIMARY: CSSProperties = {
   color: '#607d8b'
 };
 
-interface FlatButtonProps {
+export interface FlatButtonProps {
   className?: string; 
   style?: CSSProperties;
   clDiv?: string; 
