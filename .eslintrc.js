@@ -72,7 +72,8 @@ module.exports = {
     "jsx-a11y/no-access-key": "off",
     "jsx-a11y/label-has-for": "off",
 
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   "settings":  {
     "react":  {
