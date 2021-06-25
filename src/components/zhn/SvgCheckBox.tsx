@@ -26,7 +26,8 @@ const SvgChecked: FC<SvgCheckedProps, false> = ({
   />
 );
 
-export interface SvgCheckBoxProps {
+export interface SvgCheckBoxProps {  
+  id?: string;
   style?: CSSProperties;  
   checkedRestStroke?: string;
   checkedRestFill?: string; 
@@ -38,7 +39,8 @@ export interface SvgCheckBoxProps {
 
 const _fnNoop = () => {}
 
-const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({
+const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({  
+  id,
   style,
   checkedRestStroke=C.INPUT_BLUE,
   checkedRestFill=C.INPUT_BLUE,
@@ -62,7 +64,8 @@ const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({
   , _restFill = value
     ? checkedRestFill : C.BLANK;
   return (
-    <div
+    <div       
+       id={id}
        role="checkbox"
        tabIndex={0}
        aria-checked={value}

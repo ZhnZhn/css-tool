@@ -11,5 +11,16 @@
 }
 .css-value:hover,
 .css-value:focus {
+   outline: 0
+}
+
+.css-token {
+  padding-right: 5px
+}
+
+.css-value:hover,
+.css-value:focus,
+.css-token:hover,
+.css-token:focus {
     outline: 0
 }

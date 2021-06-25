@@ -17,11 +17,11 @@ interface InputShadowProps {
   onChange? : (v: any) => void
 }
 
-type CrNameType = {
+type CrIdType = {
   ({caption}: {caption: string}): string
 }
 
-const _crName: CrNameType = ({ caption }) => caption
+const _crId: CrIdType = ({ caption }) => caption
  .toLowerCase().replace(' ', '-');
 
 const INPUT_ROWS = [
@@ -43,7 +43,7 @@ const INPUT_ROWS = [
     min: 0, max: 1, step: 0.01, unit: ''
   }
 ].map(item => ({
-  name: _crName(item),
+  id: _crId(item),
   ...item
 }));
 
@@ -103,14 +103,14 @@ const InputShadow: FC<InputShadowProps, false> = ({
       <A.RowInputType1
          {...INPUT_ROWS[0]}
           inputId={id}
-          initValue={vLength}
-          onChange={_changeInput.bind(null, 'vLength')}
+          initValue={gLength}
+          onChange={_changeInput.bind(null, 'gLength')}
       />
       <A.RowInputType1
          {...INPUT_ROWS[1]}
          inputId={id}
-         initValue={gLength}
-         onChange={_changeInput.bind(null, 'gLength')}
+         initValue={vLength}
+         onChange={_changeInput.bind(null, 'vLength')}
       />
       <A.RowInputType1
          {...INPUT_ROWS[2]}
@@ -126,7 +126,8 @@ const InputShadow: FC<InputShadowProps, false> = ({
       />
       <A.RowInputType3
          //key={`${id}-sc`}
-         caption="Shadow Color"
+         id="shadow-color"
+         caption="Shadow Color"         
          initValue={color}
          onEnter={_enterColor}
       />
@@ -137,7 +138,8 @@ const InputShadow: FC<InputShadowProps, false> = ({
          onChange={_changeInput.bind(null, 'opacity')}
       />
       <A.RowCheckBox
-        caption="Inset"
+        id="inset"
+        caption="Inset"        
         value={isInset}
         onCheck={_onChechInset}
         onUnCheck={_onUnCheckInset}

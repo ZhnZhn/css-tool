@@ -7,8 +7,9 @@ import STYLE from './style';
 const { useCallback } = hooks;
 
 export interface RowCheckBoxProps {
+  id?: string; 
   value: boolean;
-  caption: string;
+  caption: string;  
   onCheck: () => void
   onUnCheck: () => void
 }
@@ -19,8 +20,9 @@ const S_ROW: CSSProperties = {
 }
 
 const RowCheckBox: FC<RowCheckBoxProps, false> = ({
+  id,
   value,
-  caption,
+  caption,  
   onCheck,
   onUnCheck
 }) => {
@@ -31,6 +33,7 @@ const RowCheckBox: FC<RowCheckBoxProps, false> = ({
   return (
     <div className={STYLE.CL_ROW} style={S_ROW}>
       <A.SvgCheckBox
+        id={id}
         value={value}
         onCheck={onCheck}
         onUnCheck={onUnCheck}

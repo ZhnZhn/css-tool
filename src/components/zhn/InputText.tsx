@@ -18,8 +18,8 @@ type InnerRefType = {
 
 export interface InputTextProps {
   style?: CSSProperties;
-  type?: 'text' | 'number';
-  name?: string;
+  type?: 'text' | 'number';  
+  id?: string;
   initValue?: ValueType;
   inputId?: string;
   step?: number;
@@ -50,9 +50,9 @@ const DF_TEXT_PROPS: DfTextPropsType = {
 const _fnNoop = () => {}
 
 const InputText: FC<InputTextProps, false> = ({
+  id,
   style,
-  type='text',
-  name,
+  type='text',  
   initValue='',
   inputId,
   step=1,
@@ -63,7 +63,7 @@ const InputText: FC<InputTextProps, false> = ({
   onEnter=_fnNoop
 }) => {
   const [value, setValue] = useState<ValueType>(initValue)
-  , _refName = useRef<string>(name || crId())
+  , _refId = useRef<string>(id || crId())
   /*eslint-disable react-hooks/exhaustive-deps */
   , _hInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
       const value = event.currentTarget.value;
@@ -97,7 +97,7 @@ const InputText: FC<InputTextProps, false> = ({
   return (
     <input
       type={type}
-      name={_refName.current}
+      id={_refId.current}
       {..._textProps}
       {..._numberProps}
       className={CL_INPUT_TEXT}

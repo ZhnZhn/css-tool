@@ -8,8 +8,9 @@ import S from './style';
 const { useState, useCallback } = hooks;
 
 export interface RowInputType3Props {  
+  id?: string;
   styleInput?: CSSProperties
-  caption: string;
+  caption: string;  
   inputId?: string;
   initValue: string;
   onEnter: (value: string, color: tinycolor.Instance) => void
@@ -18,8 +19,9 @@ export interface RowInputType3Props {
 const _fnNoop = () => {};
 
 const RowInputType3: FC<RowInputType3Props, false> = ({   
+  id,
   styleInput,
-  caption,
+  caption,  
   inputId,
   initValue,
   onEnter=_fnNoop
@@ -39,8 +41,9 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
       <label className={S.CL_CAPTION}>
         <span>{caption}</span>
         <A.InputText
+           id={id}
            style={{...S.TEXT, ...styleInput}}
-           inputId={inputId}
+           inputId={inputId}           
            initValue={value}
            onEnter={_hEnter}
          />

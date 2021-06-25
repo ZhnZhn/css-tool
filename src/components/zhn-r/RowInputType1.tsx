@@ -18,13 +18,12 @@ type SetNumberValueType = {
 }
 
 export interface RowInputType1Props {
+  id?: string;
   unit?: string;     
   step?: number;
   min: number; 
-  max: number;
-  style?: CSSProperties;
-  styleInput?: CSSProperties; 
-  name: string; 
+  max: number;  
+  styleInput?: CSSProperties;     
   caption: string;
   initValue: number;
   inputId: string;  
@@ -43,15 +42,15 @@ const _crNumberValue = (stepExp: number, value: string) => stepExp !== 0
 const _fnNoop = () => {}
 
 const RowInputType1: FC<RowInputType1Props, false> = ({
+  id,
   unit='px',     
   step=1,
   min, 
   max,
   styleInput,
-  name, caption,
+  caption,
   initValue, inputId,  
-  onChange=_fnNoop,
-  ...restProps
+  onChange=_fnNoop  
 }) => {
   const _refTextComp = useRef<SetStringValueType>()
   , _refSliderComp = useRef<SetNumberValueType>()
@@ -76,10 +75,10 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
           <span>{caption}</span>
           <span style={S.RIGHT}>{unit}</span>
           <A.InputText
+             id={id}
              innerRef={_refTextComp}
              style={{...S.RIGHT, ...styleInput}}
-             type="number"
-             name={name}
+             type="number"             
              inputId={inputId}
              initValue={initValue}
              step={step}
@@ -90,8 +89,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
         </label>
         {/*eslint-enable jsx-a11y/label-has-for*/}
         <A.InputSlider
-           ref={_refSliderComp}
-           {...restProps}
+           ref={_refSliderComp}           
            inputId={inputId}
            step={step}
            min={min}
