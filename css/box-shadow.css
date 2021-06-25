@@ -1,0 +1,15 @@
+.css-property {
+  color: #80c040;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.css-value {
+  color: darkslateblue;
+  font-size: 20px;
+  cursor: pointer;
+}
+.css-value:hover,
+.css-value:focus {
+    outline: 0
+}

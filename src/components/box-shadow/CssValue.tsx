@@ -4,20 +4,15 @@ import type { ShadowType } from './types';
 import RaisedButton from '../zhn/RaisedButton';
 import fn from './helpers/fn';
 
-const CL = "page-sb__css";
+const CL = "page-sb__css"
+, CL_CSS_PROPERTY = "css-property"
+, CL_CSS_VALUE = "css-value";
 
-const S_TITLE: CSSProperties = {
-  color: '#80c040',
-  fontSize: '20px',
-  fontWeight: 'bold'
-}, S_VALUE: CSSProperties = {
-  color: 'darkslateblue',
-  fontSize: '20px',
-}, S_EDITED: CSSProperties = {
+const S_EDITED: CSSProperties = {
   borderBottom: '2px solid green'
-},S_BT: CSSProperties = {
+}, S_BT: CSSProperties = {
   width: 70
-},S_BT_R: CSSProperties = {
+}, S_BT_R: CSSProperties = {
   width: 100
 }
 
@@ -31,23 +26,22 @@ interface CssValueProps {
 
 const _renderValues = (props: CssValueProps) => {
   const { boxShadows=[], currentIndex, onAdd, onEdit, onRemove } = props
-  const max = boxShadows.length-1
+  , max = boxShadows.length-1;
   return boxShadows.map((item, index) => {
      const _sufix = index !== max ? "," : ";"
      , _styleValue = index === currentIndex
            ? S_EDITED
-           : null;
+           : void 0;
      return (
        <div key={index} >
-         <span style={{...S_VALUE, ..._styleValue }}>
-           {`${fn.toCssValue(item)}${_sufix}`}
-         </span>
-
-         <RaisedButton
-           style={S_BT}
-           caption="EDIT"
+         <span            
+           tabIndex={-1}
+           className={CL_CSS_VALUE}
+           style={_styleValue}
            onClick={onEdit.bind(null, index)}
-         />
+         >
+           {`${fn.toCssValue(item)}${_sufix}`}
+         </span>        
          <RaisedButton
            style={S_BT}
            caption="ADD"
@@ -66,7 +60,7 @@ const _renderValues = (props: CssValueProps) => {
 
 const CssValue: FC<CssValueProps, false> = props => (
   <div className={CL}>
-    <div style={S_TITLE}>BOX-SHADOW:</div>
+    <div className={CL_CSS_PROPERTY}>BOX-SHADOW:</div>
     {_renderValues(props)}
   </div>
 );
