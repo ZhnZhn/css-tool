@@ -3,7 +3,7 @@ import type { ShadowType, ConfigStyleType } from './types';
 
 import memo from '../memo';
 
-import CssValue from './CssValue';
+import CssValues from './CssValues';
 import Preview from './Preview';
 
 interface ViewBoxShadowProps {  
@@ -25,7 +25,7 @@ const ViewBoxShadow: FC<ViewBoxShadowProps, false> = ({
        boxShadows={boxShadows}
        configStyle={configStyle}
      />
-    <CssValue
+    <CssValues
        currentIndex={currentIndex}
        boxShadows={boxShadows}
        onAdd={onAdd}
