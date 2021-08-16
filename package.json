@@ -67,17 +67,19 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "preact": "^10.5.13",
+    "preact": "^10.5.14",
     "tinycolor2": "^1.4.2"
   },
-  "jest":{
-    "roots": ["<rootDir>/src"],  
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
     "testMatch": [
       "**/__tests__/**/*.+(ts|tsx|js)",
-      "**/?(*.)+(spec|test).+(ts|tsx|js)"  
-    ],  
+      "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"  
+      "^.+\\.(ts|tsx)$": "ts-jest"
     }
   }
 }
