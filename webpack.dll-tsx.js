@@ -15,9 +15,10 @@ module.exports = {
     app: path.resolve('src', 'index.tsx')
   },
   output: {
-      path: path.resolve('public'),
+      path: path.resolve('app'),
       filename: "[name]_[contenthash].js",
-      chunkFilename: "[name]_[contenthash].js"      
+      chunkFilename: "[name]_[contenthash].js",
+      publicPath: 'app/'      
   },
   module: {
     rules: [
@@ -50,7 +51,7 @@ module.exports = {
     }), 
     new HtmlWebpackPlugin({
         minify: false,
-        filename: path.resolve('public', 'index.html'),
+        filename: path.resolve('index.html'),
         template: path.resolve('template', 'index.ejs'),
         inject: false,    
         postProcessing: postProcessing    

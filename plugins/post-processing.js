@@ -8,7 +8,7 @@ const postProcessing = prevHtml => {
     const lib = stats.lib;
     nextHtml = prevHtml.replace(
       '<!--lib-->',
-      '<script src="'+ lib + '" defer></script>'
+      '<script src="app/'+ lib + '" defer></script>'
     );
   } catch(err) {
     console.log(err.message)
