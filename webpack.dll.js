@@ -14,7 +14,7 @@ module.exports = {
           ]
   },
   output: {
-      path: path.resolve('app'),
+      path: path.resolve('public'),
       filename: "[name]_[chunkhash].js",
       library: '[name]_vendor'
   },

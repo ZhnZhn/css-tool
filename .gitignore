@@ -5,3 +5,4 @@ lint.txt
 npm-debug.log
 .vscode
 dev
+webpack.dev.js

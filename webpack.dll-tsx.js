@@ -15,10 +15,9 @@ module.exports = {
     app: path.resolve('src', 'index.tsx')
   },
   output: {
-      path: path.resolve('app'),
+      path: path.resolve('public'),
       filename: "[name]_[contenthash].js",
-      chunkFilename: "[name]_[contenthash].js",
-      publicPath: 'app/'
+      chunkFilename: "[name]_[contenthash].js"      
   },
   module: {
     rules: [
@@ -49,17 +48,12 @@ module.exports = {
       context: __dirname,
       manifest: require('./dll/lib-manifest.json')
     }), 
-    /*
-    new webpack.ids.DeterministicModuleIdsPlugin({
-      maxLength: 5
-    }),
-    */   
     new HtmlWebpackPlugin({
         minify: false,
-        filename: path.resolve('index.html'),
+        filename: path.resolve('public', 'index.html'),
         template: path.resolve('template', 'index.ejs'),
-        inject: false,
-        postProcessing: postProcessing
+        inject: false,    
+        postProcessing: postProcessing    
     }),
     new HtmlProcessingWebpackPlugin()
   ],
