@@ -1,10 +1,8 @@
 'use strict'
 
 const path = require('path')
-, webpack = require('webpack')
 , babelDevConfig = require('./babel.config')
 , HtmlWebpackPlugin = require('html-webpack-plugin')
-, HtmlProcessingWebpackPlugin = require('./plugins/html-processing-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -13,10 +11,14 @@ module.exports = {
     app: path.resolve('src', 'index.tsx')
   },
   devtool: 'inline-source-map',
-  devServer: {
+  devServer: {        
+    hot: true,
+    static: {
+      directory: path.resolve(__dirname, 'dev')
+    },        
+    allowedHosts: ['localhost','client.webSocketURL.hostname'],
     port: 8090
-  },
-
+  },  
   output: {
       path: path.resolve('dev'),
       filename: "[name]_dev_[contenthash].js",
@@ -43,16 +45,15 @@ module.exports = {
     ]
   },
   resolve: {
+    symlinks: false,
     modules: ['local_modules','node_modules'],
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   plugins : [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
         filename: path.resolve('dev', 'index.html'),
         template: path.resolve('template', 'index.ejs'),
         inject: false
-    }),
-    new HtmlProcessingWebpackPlugin()
+    })
   ]
 }
