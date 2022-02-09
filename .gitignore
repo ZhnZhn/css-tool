@@ -6,3 +6,4 @@ npm-debug.log
 .vscode
 dev
 webpack.dev.js
+css-min.js
