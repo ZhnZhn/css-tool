@@ -1,13 +1,12 @@
-import type { FC, CSSProperties, KeyboardEvent } from '../types';
+import type { FC, CSSProperties } from '../types';
 
 import { useCallback } from '../uiApi';
+import useKeyEnter from '../hooks/useKeyEnter';
 
-import isKeyEnter from './isKeyEnter';
 import C from '../styles/Color';
 
-const CL = 'chb';
-
-const S_DIV: CSSProperties = { transform: 'scale(1.2)' }
+const CL_CHB = 'chb'
+, S_DIV: CSSProperties = { transform: 'scale(1.2)' }
 , S_SVG: CSSProperties = { display: 'inline-block' };
 
 interface SvgCheckedProps {
@@ -48,33 +47,36 @@ const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({
   onUnCheck=_fnNoop
 }) => {
   const _hClick = useCallback(() => {
-      if (!value) { onCheck() }
-      else { onUnCheck() }
+    const _setValue = value 
+      ? onUnCheck
+      : onCheck;
+    _setValue();        
   }, [value, onCheck, onUnCheck])
-  , _hKeyDown = useCallback((evt: KeyboardEvent) => {
-      if (isKeyEnter(evt)){
-        evt.preventDefault()
-        _hClick()
-      }
-    }, [_hClick]);
-  const _restStroke = value
-    ? checkedRestStroke : C.INPUT_GREY
-  , _restFill = value
-    ? checkedRestFill : C.BLANK;
+  , _hKeyDown = useKeyEnter(_hClick)
+  , [
+    _restStroke,
+    _restFill
+  ] = value 
+    ? [checkedRestStroke, checkedRestFill]
+    : [C.INPUT_GREY, C.BLANK];  
+  
   return (
     <div       
        id={id}
        role="checkbox"
        tabIndex={0}
        aria-checked={value}
-       className={CL}
+       className={CL_CHB}
        style={{ ...S_DIV, ...style }}
        onClick={_hClick}
        onKeyDown={_hKeyDown}
     >
       <svg
-        viewBox="0 0 16 16" width="100%" height="100%"
-        preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        viewBox="0 0 16 16" 
+        width="100%" 
+        height="100%"                 
         style={S_SVG}
         stroke-width="2"
         stroke-linecap="round"
