@@ -76,7 +76,7 @@ const FlatButton: FC<FlatButtonProps> = ({
         <CaptionInput
           className={CL_BT_SPAN}
           caption={caption}
-          accessKey={_accessKey}
+          hotKey={_accessKey}
         />
         {children}
       </div>

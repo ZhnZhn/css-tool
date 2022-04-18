@@ -1,43 +1,62 @@
 import type { CSSProperties, FC } from '../types';
 
 interface CaptionInputProps {
-  className?: string; 
-  style?: CSSProperties;
+  className?: string;   
+  caption?: string;
+  hotKey?: string;  
+}
+interface CaptionWithHotKeyProps {
   caption: string;
-  accessKey?: string;  
+  hotKey?: string;  
 }
 
-const S_KEY: CSSProperties = {  
+const S_HOT_KEY: CSSProperties = {  
   textDecoration: 'underline'  
 };
 
+const _crHotKeyIndex = (
+  caption: string,
+  hotKey?: string, 
+) => hotKey
+  ? caption.toLowerCase().indexOf(hotKey)
+  : -1;
+
+const CaptionWithHotKey: FC<CaptionWithHotKeyProps> = ({ 
+  caption, 
+  hotKey 
+}) => {
+  const index = _crHotKeyIndex(caption, hotKey);
+  if (index === -1) { return <>{caption}</>; }
+
+  const _before = caption.substring(0, index)
+  , _key = caption.substring(index, index+1)
+  , _after = caption.substring(index+1);
+  return (
+    <>
+     <span>{_before}</span>
+     <span style={S_HOT_KEY}>{_key}</span>
+     <span>{_after}</span>
+    </>
+  );
+};
+
 const CaptionInput: FC<CaptionInputProps> = ({
-  className, style,
-  caption, accessKey='',
+  className,   
+  caption, 
+  hotKey,
   children
 }) => {
   if (!caption) { return null; }
-  const _index = caption.toLowerCase().indexOf(accessKey);
-  if (accessKey && _index !== -1) {
-    const _before = caption.substring(0, _index)
-    , _key = caption.substring(_index, _index+1)
-    , _after = caption.substring(_index+1);
-    return (
-      <span className={className} style={style}>
-         <span>{_before}</span>
-         <span style={S_KEY}>{_key}</span>
-         <span>{_after}</span>
-         {children}
-      </span>
-    );
-  } else {
-    return (
-      <span className={className} style={style}>
-        {caption}
-        {children}
-      </span>
-    );
-  }
+
+  return (
+    <span className={className}>
+      <CaptionWithHotKey 
+        caption={caption}
+        hotKey={hotKey}        
+      />       
+      {children}
+    </span>
+  );  
 };
 
 export default CaptionInput
