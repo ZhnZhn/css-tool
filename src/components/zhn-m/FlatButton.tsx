@@ -1,12 +1,13 @@
 import type { CSSProperties, FC, MouseEvent } from '../types';
 
-import hooks from '../hooks';
+import { 
+  useRef, 
+  useCallback 
+} from '../uiApi';
 import has from '../has';
 import crCn from '../crCn';
 
 import CaptionInput from './CaptionInput';
-
-const { useRef, useCallback } = hooks;
 
 const { HAS_TOUCH } = has;
 

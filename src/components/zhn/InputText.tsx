@@ -1,13 +1,14 @@
 import type { FC, CSSProperties, RefObject, ChangeEvent, KeyboardEvent } from '../types';
 
-import hooks from '../hooks';
+import {
+  useState, 
+  useRef, 
+  useCallback,
+  useEffect, 
+  useImperativeHandle
+} from '../uiApi';
 
 import crId from '../../utils/crId';
-
-const {
-  useState, useRef, useCallback,
-  useEffect, useImperativeHandle
-} = hooks;
 
 const CL_INPUT_TEXT = 'input-text box-shadow';
 

@@ -1,13 +1,15 @@
 import type { FC, IsNotShouldUpdate } from '../types';
 import type tinycolor from 'tinycolor2';
 
-import hooks from '../hooks';
+import { 
+  useRef, 
+  useCallback, 
+  useEffect 
+} from '../uiApi';
 import  memo  from '../memo';
 
 import A from '../Comp';
 import { ShadowType } from './types';
-
-const { useRef, useCallback, useEffect } = hooks
 
 interface InputShadowProps {
   id: string;

@@ -1,12 +1,13 @@
 import type { CSSProperties, FC } from '../types';
-import hooks from '../hooks';
+import { 
+  useCallback, 
+  useRef 
+} from '../uiApi';
 
 import fnMath from '../../utils/math'
 
 import A from '../zhn/A'
 import S from './style'
-
-const { useCallback, useRef } = hooks;
 
 const { round10 } = fnMath;
 

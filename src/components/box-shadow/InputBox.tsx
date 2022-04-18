@@ -1,12 +1,10 @@
 import { CSSProperties, FC, IsNotShouldUpdate } from '../types';
 import { ConfigStyleType } from './types';
 
-import hooks from '../hooks';
+import { useCallback } from '../uiApi';
 import memo  from '../memo';
 
 import A from '../Comp';
-
-const { useCallback } = hooks;
 
 const S_DIV: CSSProperties = {
   marginBottom: 32

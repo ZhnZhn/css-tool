@@ -1,10 +1,8 @@
 import type { FC, CSSProperties } from '../types';
-import hooks from '../hooks';
+import { useCallback } from '../uiApi';
 
 import A from '../zhn/A';
 import STYLE from './style';
-
-const { useCallback } = hooks;
 
 export interface RowCheckBoxProps {
   id?: string; 

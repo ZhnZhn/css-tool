@@ -1,6 +1,7 @@
-import hooks from '../hooks';
-
-const { useState, useCallback } = hooks;
+import { 
+  useState, 
+  useCallback 
+} from '../uiApi';
 
 type UseToggleType = {
   (initialValue?: boolean): [

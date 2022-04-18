@@ -1,11 +1,9 @@
 import type { FC, CSSProperties, KeyboardEvent } from '../types';
 
-import hooks from '../hooks';
+import { useCallback } from '../uiApi';
 
 import isKeyEnter from './isKeyEnter';
 import C from '../styles/Color';
-
-const { useCallback } = hooks;
 
 const CL = 'chb';
 

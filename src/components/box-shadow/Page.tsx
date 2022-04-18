@@ -1,7 +1,10 @@
 import type { FC } from '../types';
 import type { ConfigStyleType, ShadowType } from './types';
 
-import hooks from '../hooks';
+import { 
+  useReducer, 
+  useCallback 
+} from '../uiApi';
 
 import { A, INITIAL_STATE } from './pageConfig';
 import pageReducer from './pageReducer';
@@ -9,8 +12,6 @@ import pageReducer from './pageReducer';
 import InputBox from './InputBox';
 import InputShadow from './InputShadow';
 import ViewBoxShadow from './ViewBoxShadow';
-
-const { useReducer, useCallback } = hooks;
 
 const CL_PAGE = "page-sb"
 , CL_INPUTS = "page-sb__inputs"

@@ -1,11 +1,12 @@
 import type { CSSProperties, FC } from '../types';
 import tinycolor from 'tinycolor2';
-import hooks from '../hooks';
+import { 
+  useState, 
+  useCallback 
+} from '../uiApi';
 
 import A from '../zhn/A';
 import S from './style';
-
-const { useState, useCallback } = hooks;
 
 export interface RowInputType3Props {  
   id?: string;
