@@ -1,4 +1,5 @@
-/*
+import type { RefObject } from './types';
+/* 
 export { 
   useState, 
   useCallback, 
@@ -17,3 +18,5 @@ export {
   useRef, 
   useImperativeHandle 
 } from 'preact/hooks';
+
+export { Component, createRef } from 'preact';
