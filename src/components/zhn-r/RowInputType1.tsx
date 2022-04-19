@@ -56,14 +56,14 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   const _refTextComp = useRef<SetStringValueType>()
   , _refSliderComp = useRef<SetNumberValueType>()
   , _refStepExp = useRef(_crStepExp(step))
-  , _hChangeSlider = useCallback((event: any, value: string) => {
-    _refTextComp.current.setValue(value)
+  , _hChangeSlider = useCallback((value: string) => {
+    _refTextComp.current?.setValue(value)
     onChange(value)
   }, [onChange])
   , _hChangeText = useCallback((value: string) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
     if ( _value>=min && _value<=max ){      
-      _refSliderComp.current.setValue(_value)
+      _refSliderComp.current?.setValue(_value)
       onChange(value)
     }
   }, [min, max, onChange])

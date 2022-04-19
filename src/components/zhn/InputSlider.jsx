@@ -267,7 +267,7 @@ class InputSlider extends Component {
   _setValue = (event, value) => {
     this.setState({ value })
     if (this.isOnChange){
-      this.props.onChange(event, value)
+      this.props.onChange(value, event)
     }
   }
 
