@@ -6,7 +6,12 @@ import {
 
 import { round10 } from '../../utils/math';
 
-import A from '../zhn/A';
+import useToggle from '../hooks/useToggle';
+
+import InputText from '../zhn/InputText'
+import ShowHide from '../zhn/ShowHide';
+import InputSlider from '../zhn/InputSlider';
+
 import {
   CL_ROW,
   CL_CAPTION,
@@ -69,6 +74,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
       onChange(value)
     }
   }, [min, max, onChange])
+  , [isShowSlider, toggleIsShowSlider] = useToggle()
 
   
   return (
@@ -77,7 +83,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
         <label className={CL_CAPTION}>
           <span>{caption}</span>
           <span style={S_RIGHT}>{unit}</span>
-          <A.InputText
+          <InputText
              id={id}
              innerRef={_refTextComp}
              style={{...S_RIGHT, ...styleInput}}
@@ -88,18 +94,21 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
              min={min}
              max={max}
              onChange={_hChangeText}
+             onEnter={toggleIsShowSlider}
           />
         </label>
         {/*eslint-enable jsx-a11y/label-has-for*/}
-        <A.InputSlider
-           ref={_refSliderComp}           
-           inputId={inputId}
-           step={step}
-           min={min}
-           max={max}
-           initValue={initValue}
-           onChange={_hChangeSlider}
-        />
+        <ShowHide is={isShowSlider}>
+          <InputSlider
+             ref={_refSliderComp}           
+             inputId={inputId}
+             step={step}
+             min={min}
+             max={max}
+             initValue={initValue}
+             onChange={_hChangeSlider}          
+          />
+        </ShowHide>
       </div>
   );
 }
