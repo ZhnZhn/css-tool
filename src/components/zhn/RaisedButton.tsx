@@ -1,31 +1,26 @@
-import type { FC, CSSProperties } from '../types';
+import type { FC } from '../types';
 
-import S from './RaisedButtonStyle'
-
-const CL_BT_DIV = "bt-div";
+const CL_BT_RAISED = "bt-raised";
+const CL_WRAPPER_BT_RAISED = `wrapper__${CL_BT_RAISED}`;
+const CL_BT_RAISED_DIV = `${CL_BT_RAISED}__div`;
+const CL_BT_RAISED_CAPTION = `${CL_BT_RAISED}__caption`;
 
 export interface RaisedButtonProps {
-  style?: CSSProperties,
   caption: string,
   onClick?: () => void
 }
 
-const _fnNoop = () => {};
-
 const RaisedButton: FC<RaisedButtonProps, false> = ({
-  style, caption,
-  onClick=_fnNoop
+  caption,
+  onClick
 }) => (
-  <div style={{...S.ROOT, ...style}}>
+  <div className={CL_WRAPPER_BT_RAISED}>
     <button
-      style={S.BT}
+      className={CL_BT_RAISED}
       onClick={onClick}
     >
-      <div
-        className={CL_BT_DIV}
-        style={S.DIV}
-      >
-        <span style={S.CAPTION}>
+      <div className={CL_BT_RAISED_DIV}>
+        <span className={CL_BT_RAISED_CAPTION}>
           {caption}
         </span>
       </div>

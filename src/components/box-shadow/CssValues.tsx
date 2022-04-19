@@ -4,16 +4,12 @@ import type { ShadowType } from './types';
 import CssValue from './CssValue';
 import RaisedButton from '../zhn/RaisedButton';
 
-const CL = "page-sb__css"
+const CL_PAGE_SB_CSS = "page-sb__css"
 , CL_CSS_PROPERTY = "css-property"
 , CL_CSS_VALUE = "css-value";
 
 const S_EDITED: CSSProperties = {
   borderBottom: '2px solid green'
-}, S_BT: CSSProperties = {
-  width: 70
-}, S_BT_R: CSSProperties = {
-  width: 100
 }; 
 
 interface CssValueProps {
@@ -25,7 +21,13 @@ interface CssValueProps {
 }
 
 const _renderValues = (props: CssValueProps) => {
-  const { boxShadows=[], currentIndex, onAdd, onEdit, onRemove } = props
+  const { 
+    boxShadows=[], 
+    currentIndex, 
+    onAdd, 
+    onEdit, 
+    onRemove 
+  } = props
   , max = boxShadows.length-1;  
   return boxShadows.map((item, index) => {     
      const _sufix = index !== max ? "," : ";"
@@ -40,7 +42,7 @@ const _renderValues = (props: CssValueProps) => {
            tabIndex={-1}
            className={CL_CSS_VALUE}
            style={_styleValue}
-           onClick={onEdit.bind(null, index)}
+           onClick={() => onEdit(index)}
          >
            <CssValue 
              item={item}
@@ -49,15 +51,13 @@ const _renderValues = (props: CssValueProps) => {
          </span>        
          {/* eslint-enable jsx-a11y/no-static-element-interactions */ }
          {/* eslint-enable jsx-a11y/click-events-have-key-events */ }
-         <RaisedButton
-           style={S_BT}
+         <RaisedButton          
            caption="ADD"
-           onClick={onAdd.bind(null, index)}
+           onClick={() => onAdd(index)}
          />
-         {index !== 0  && <RaisedButton
-            style={S_BT_R}
+         {index !== 0  && <RaisedButton            
             caption="REMOVE"
-            onClick={onRemove.bind(null, index)}
+            onClick={() => onRemove(index)}
           />
          }
        </div>
@@ -66,7 +66,7 @@ const _renderValues = (props: CssValueProps) => {
 };
 
 const CssValues: FC<CssValueProps, false> = props => (
-  <div className={CL}>
+  <div className={CL_PAGE_SB_CSS}>
     <div className={CL_CSS_PROPERTY}>BOX-SHADOW:</div>
     {_renderValues(props)}
   </div>
