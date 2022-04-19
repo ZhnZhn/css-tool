@@ -21,10 +21,6 @@ export type IsNotShouldUpdate<T> = {
   (prevProps: T, nextProps: T): boolean  
 }
 
-export type ActionHmType<T extends string> = {
-  [Key in T] : Key
-}
-
 export type ReducerType<S, A> = {
   (state: Readonly<S>, action: A): S
 }

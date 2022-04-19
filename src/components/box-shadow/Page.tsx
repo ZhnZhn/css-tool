@@ -6,7 +6,14 @@ import {
   useCallback 
 } from '../uiApi';
 
-import { A, INITIAL_STATE } from './pageConfig';
+import { 
+  UPDATE_SHADOWS,
+  UPDATE_CONFIG, 
+  ADD_SHADOW,
+  SET_CURRENT_SHADOW,
+  REMOVE_SHADOW,
+  INITIAL_STATE 
+} from './pageConfig';
 import pageReducer from './pageReducer';
 
 import InputBox from './InputBox';
@@ -34,19 +41,19 @@ const Page: FC<PageProps, false> = ({ isShadow, isBox }) => {
   , _currentValue = boxShadows[currentIndex]
   , { id, isInset } = _currentValue
   , _updateShadows = useCallback((boxShadow: ShadowType) => dispatch({
-       type: A.UPDATE_SHADOWS, boxShadow
+       type: UPDATE_SHADOWS, boxShadow
      }), [])
   , _updateConfig = useCallback((propName: keyof ConfigStyleType, value: any) => dispatch({
-       type: A.UPDATE_CONFIG, propName, value
+       type: UPDATE_CONFIG, propName, value
      }),[])
   , _addShadow = useCallback((fromIndex: number) => dispatch({
-      type: A.ADD_SHADOW, fromIndex
+      type: ADD_SHADOW, fromIndex
     }),[])
   , _setCurrentShadow = useCallback((editIndex: number) => dispatch({
-      type: A.SET_CURRENT_SHADOW, editIndex
+      type: SET_CURRENT_SHADOW, editIndex
     }),[])
   , _removeShadow = useCallback((removeIndex: number) => dispatch({
-      type: A.REMOVE_SHADOW, removeIndex
+      type: REMOVE_SHADOW, removeIndex
     }),[])
   return (
     <div className={CL_PAGE} >

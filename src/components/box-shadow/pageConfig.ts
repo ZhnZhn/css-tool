@@ -1,22 +1,20 @@
 
-import type { ActionHmType } from '../types';
 import type { ShadowType, ConfigStyleType } from './types';
 
 import crId from '../../utils/crId';
 
-type ActionType = 'SET_CURRENT_SHADOW'
- | 'UPDATE_SHADOWS'
- | 'ADD_SHADOW'
- | 'REMOVE_SHADOW'
- | 'UPDATE_CONFIG'
+export const SET_CURRENT_SHADOW = 'SET_CURRENT_SHADOW'
+export const UPDATE_SHADOWS = 'UPDATE_SHADOWS'
+export const ADD_SHADOW = 'ADD_SHADOW'
+export const REMOVE_SHADOW = 'REMOVE_SHADOW'
+export const UPDATE_CONFIG = 'UPDATE_CONFIG'
 
-export const A: ActionHmType<ActionType> = {
-  SET_CURRENT_SHADOW: 'SET_CURRENT_SHADOW',
-  UPDATE_SHADOWS: 'UPDATE_SHADOWS',
-  ADD_SHADOW: 'ADD_SHADOW',
-  REMOVE_SHADOW: 'REMOVE_SHADOW',
-  UPDATE_CONFIG: 'UPDATE_CONFIG'
-};
+type ActionType = typeof SET_CURRENT_SHADOW
+  | typeof UPDATE_SHADOWS
+  | typeof ADD_SHADOW
+  | typeof REMOVE_SHADOW
+  | typeof UPDATE_CONFIG
+
 
 export type PageActionType = {
   type: ActionType;

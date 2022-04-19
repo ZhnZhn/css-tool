@@ -5,7 +5,13 @@ import crId from '../../utils/crId';
 import imArr from '../../utils/im-arr';
 import imObj from '../../utils/im-obj';
 
-import { A }  from './pageConfig'; 
+import {
+  SET_CURRENT_SHADOW,
+  UPDATE_SHADOWS,
+  ADD_SHADOW,
+  REMOVE_SHADOW,
+  UPDATE_CONFIG
+} from './pageConfig'
 
 type PageReducer = ReducerType<PageStateType, PageActionType>
 
@@ -14,14 +20,14 @@ const _isStr = (str: any): str is string => typeof str === 'string';
 
 const pageReducer: PageReducer = (state, action) => {
   switch(action.type){
-    case A.SET_CURRENT_SHADOW: {
+    case SET_CURRENT_SHADOW: {
       const { editIndex } = action;
       return _isNumber(editIndex) ? {
         ...state,
         currentIndex: editIndex        
       } : state;
     }
-    case A.UPDATE_SHADOWS: {
+    case UPDATE_SHADOWS: {
       const { boxShadow } = action
       if (!boxShadow) { return state; }
 
@@ -31,7 +37,7 @@ const pageReducer: PageReducer = (state, action) => {
         boxShadows: imArr.update(boxShadows, currentIndex, boxShadow)
       };
     }
-    case A.ADD_SHADOW: {
+    case ADD_SHADOW: {
       const { fromIndex } = action
       if (!_isNumber(fromIndex)) { return state; }
 
@@ -45,7 +51,7 @@ const pageReducer: PageReducer = (state, action) => {
         boxShadows: imArr.insert(boxShadows, _index, _initValue)
       };
     }
-    case A.REMOVE_SHADOW: {
+    case REMOVE_SHADOW: {
       const { removeIndex } = action;
       if (!_isNumber(removeIndex) || removeIndex === 0 ) { 
         return state; 
@@ -59,7 +65,7 @@ const pageReducer: PageReducer = (state, action) => {
         boxShadows: imArr.remove(boxShadows, removeIndex)
       };
     }
-    case A.UPDATE_CONFIG: {
+    case UPDATE_CONFIG: {
       const { propName, value } = action
       if (!_isStr(propName)) { return state; }
 
