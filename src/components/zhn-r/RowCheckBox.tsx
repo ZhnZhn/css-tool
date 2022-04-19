@@ -1,7 +1,7 @@
 import type { FC, CSSProperties } from '../types';
 import { useCallback } from '../uiApi';
 
-import A from '../zhn/A';
+import SvgCheckBox from '../zhn/SvgCheckBox';
 import { 
   CL_ROW,
   CL_CHB_BT 
@@ -33,7 +33,7 @@ const RowCheckBox: FC<RowCheckBoxProps, false> = ({
   },[ value, onUnCheck, onCheck ]);
   return (
     <div className={CL_ROW} style={S_ROW}>
-      <A.SvgCheckBox
+      <SvgCheckBox
         id={id}
         value={value}
         onCheck={onCheck}

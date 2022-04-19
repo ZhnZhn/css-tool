@@ -1,6 +1,6 @@
 import type { FC, MouseEvent } from '../types'
 
-import A from '../Comp';
+import FlatButton from '../zhn-m/FlatButton';
 import IconAppLogo from './IconAppLogo';
 import AppLabel from './AppLabel';
 import GitHubLink from './GitHubLink';
@@ -26,14 +26,14 @@ const HeaderBar: FC<HeaderBarProps, false> = ({
       className="header__label-app"
       caption={CAPTION}
     />
-    <A.FlatButton
+    <FlatButton
       caption="Box"
       title="Click to toggle css box inputs"
       accessKey="b"
       timeout={0}
       onClick={onBox}
     />
-    <A.FlatButton
+    <FlatButton
       caption="Shadow"
       title="Click to toggle css shadow-box inputs"
       accessKey="h"
@@ -47,7 +47,5 @@ const HeaderBar: FC<HeaderBarProps, false> = ({
    />
  </div>
 );
-
-
 
 export default HeaderBar

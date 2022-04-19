@@ -1,5 +1,6 @@
 import type { FC, IsNotShouldUpdate } from '../types';
 import type tinycolor from 'tinycolor2';
+import { ShadowType } from './types';
 
 import { 
   useRef, 
@@ -8,8 +9,9 @@ import {
 } from '../uiApi';
 import  memo  from '../memo';
 
-import A from '../Comp';
-import { ShadowType } from './types';
+import RowInputType1 from '../zhn-r/RowInputType1';
+import RowInputType3 from '../zhn-r/RowInputType3';
+import RowCheckBox from '../zhn-r/RowCheckBox';
 
 interface InputShadowProps {
   id: string;
@@ -102,44 +104,44 @@ const InputShadow: FC<InputShadowProps, false> = ({
   } = initValue;
   return (
     <>
-      <A.RowInputType1
+      <RowInputType1
          {...INPUT_ROWS[0]}
           inputId={id}
           initValue={gLength}
           onChange={_changeInput.bind(null, 'gLength')}
       />
-      <A.RowInputType1
+      <RowInputType1
          {...INPUT_ROWS[1]}
          inputId={id}
          initValue={vLength}
          onChange={_changeInput.bind(null, 'vLength')}
       />
-      <A.RowInputType1
+      <RowInputType1
          {...INPUT_ROWS[2]}
          inputId={id}
          initValue={blurR}
          onChange={_changeInput.bind(null, 'blurR')}
       />
-      <A.RowInputType1
+      <RowInputType1
          {...INPUT_ROWS[3]}
          inputId={id}
          initValue={spreadR}
          onChange={_changeInput.bind(null, 'spreadR')}
       />
-      <A.RowInputType3
+      <RowInputType3
          //key={`${id}-sc`}
          id="shadow-color"
          caption="Shadow Color"         
          initValue={color}
          onEnter={_enterColor}
       />
-      <A.RowInputType1
+      <RowInputType1
          {...INPUT_ROWS[4]}
          inputId={id}
          initValue={opacity}
          onChange={_changeInput.bind(null, 'opacity')}
       />
-      <A.RowCheckBox
+      <RowCheckBox
         id="inset"
         caption="Inset"        
         value={isInset}

@@ -4,7 +4,8 @@ import { ConfigStyleType } from './types';
 import { useCallback } from '../uiApi';
 import memo  from '../memo';
 
-import A from '../Comp';
+import RowInputType2 from '../zhn-r/RowInputType2';
+import RowInputType3 from '../zhn-r/RowInputType3';
 
 const S_DIV: CSSProperties = {
   marginBottom: 32
@@ -40,19 +41,19 @@ const InputBox: FC<InputBoxProps, false> = ({
   } = configStyle;
   return (
     <div style={S_DIV}>
-      <A.RowInputType3         
+      <RowInputType3         
          styleInput={S_BOX_INPUT}
          caption="Background"
          initValue={bgColor}
          onEnter={_hEnter.bind(null, 'bgColor')}
       />
-      <A.RowInputType3         
+      <RowInputType3         
          styleInput={S_BOX_INPUT}
          caption="Box Background"
          initValue={boxColor}
          onEnter={_hEnter.bind(null, 'boxColor')}
       />
-      <A.RowInputType2         
+      <RowInputType2         
          styleInput={S_BOX_INPUT}
          caption="Box Border Radius"
          initValue={boxBorderRadius}

@@ -5,7 +5,9 @@ import {
   useCallback 
 } from '../uiApi';
 
-import A from '../zhn/A';
+import InputText from '../zhn/InputText';
+import Color from '../zhn/Color';
+
 import {
   CL_ROW,
   CL_CAPTION,
@@ -46,14 +48,14 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
       {/*eslint-disable jsx-a11y/label-has-for*/}
       <label className={CL_CAPTION}>
         <span>{caption}</span>
-        <A.InputText
+        <InputText
            id={id}
            style={{...S_TEXT, ...styleInput}}
            inputId={inputId}           
            initValue={value}
            onEnter={_hEnter}
          />
-         <A.Color
+         <Color
            style={S_COLOR}
            value={value}
          />
