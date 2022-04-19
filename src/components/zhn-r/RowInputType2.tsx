@@ -1,7 +1,11 @@
 import type { FC, CSSProperties } from '../types';
 
 import A from '../zhn/A';
-import S from './style';
+import { 
+  CL_ROW,
+  CL_CAPTION,
+  S_TEXT 
+} from './style';
 
 export interface RowInputType2Props {
   styleInput?: CSSProperties;
@@ -16,12 +20,12 @@ const RowInputType2: FC<RowInputType2Props, false> = ({
   initValue,
   onEnter
 }) => (
-  <div className={S.CL_ROW}>
+  <div className={CL_ROW}>
      {/*eslint-disable jsx-a11y/label-has-for*/}
-     <label className={S.CL_CAPTION}>
+     <label className={CL_CAPTION}>
        <span>{caption}</span>
        <A.InputText
-         style={{...S.TEXT, ...styleInput}}
+         style={{...S_TEXT, ...styleInput}}
          initValue={initValue}
          onEnter={onEnter}
         />

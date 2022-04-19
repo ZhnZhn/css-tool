@@ -7,7 +7,11 @@ import {
 import fnMath from '../../utils/math'
 
 import A from '../zhn/A'
-import S from './style'
+import {
+  CL_ROW,
+  CL_CAPTION,
+  S_RIGHT
+} from './style'
 
 const { round10 } = fnMath;
 
@@ -40,7 +44,7 @@ const _crNumberValue = (stepExp: number, value: string) => stepExp !== 0
   ? round10(parseFloat(value), stepExp)
   : parseInt(value, 10);
 
-const _fnNoop = () => {}
+const _FN_NOOP = () => {}
 
 const RowInputType1: FC<RowInputType1Props, false> = ({
   id,
@@ -51,7 +55,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   styleInput,
   caption,
   initValue, inputId,  
-  onChange=_fnNoop  
+  onChange=_FN_NOOP
 }) => {
   const _refTextComp = useRef<SetStringValueType>()
   , _refSliderComp = useRef<SetNumberValueType>()
@@ -70,15 +74,15 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
 
   
   return (
-    <div className={S.CL_ROW}>
+    <div className={CL_ROW}>
         {/*eslint-disable jsx-a11y/label-has-for*/}
-        <label className={S.CL_CAPTION}>
+        <label className={CL_CAPTION}>
           <span>{caption}</span>
-          <span style={S.RIGHT}>{unit}</span>
+          <span style={S_RIGHT}>{unit}</span>
           <A.InputText
              id={id}
              innerRef={_refTextComp}
-             style={{...S.RIGHT, ...styleInput}}
+             style={{...S_RIGHT, ...styleInput}}
              type="number"             
              inputId={inputId}
              initValue={initValue}

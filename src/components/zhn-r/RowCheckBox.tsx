@@ -2,7 +2,10 @@ import type { FC, CSSProperties } from '../types';
 import { useCallback } from '../uiApi';
 
 import A from '../zhn/A';
-import STYLE from './style';
+import { 
+  CL_ROW,
+  CL_CHB_BT 
+} from './style';
 
 export interface RowCheckBoxProps {
   id?: string; 
@@ -29,7 +32,7 @@ const RowCheckBox: FC<RowCheckBoxProps, false> = ({
     else { onCheck() }
   },[ value, onUnCheck, onCheck ]);
   return (
-    <div className={STYLE.CL_ROW} style={S_ROW}>
+    <div className={CL_ROW} style={S_ROW}>
       <A.SvgCheckBox
         id={id}
         value={value}
@@ -39,7 +42,7 @@ const RowCheckBox: FC<RowCheckBoxProps, false> = ({
       {
         caption && (
           <button
-            className={STYLE.CL_CHB_BT}
+            className={CL_CHB_BT}
             tabIndex={-1}
             onClick={_toggleValue}
           >

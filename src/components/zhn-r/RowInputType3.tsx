@@ -6,7 +6,12 @@ import {
 } from '../uiApi';
 
 import A from '../zhn/A';
-import S from './style';
+import {
+  CL_ROW,
+  CL_CAPTION,
+  S_TEXT,
+  S_COLOR
+} from './style';
 
 export interface RowInputType3Props {  
   id?: string;
@@ -17,7 +22,7 @@ export interface RowInputType3Props {
   onEnter: (value: string, color: tinycolor.Instance) => void
 }
 
-const _fnNoop = () => {};
+const _FN_NOOP = () => {};
 
 const RowInputType3: FC<RowInputType3Props, false> = ({   
   id,
@@ -25,7 +30,7 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
   caption,  
   inputId,
   initValue,
-  onEnter=_fnNoop
+  onEnter=_FN_NOOP
 }) => {
   const [value, setValue] = useState(initValue)  
   , _hEnter = useCallback((value: string) => {
@@ -37,19 +42,19 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
   }, [onEnter]);  
 
   return (
-   <div className={S.CL_ROW}>
+   <div className={CL_ROW}>
       {/*eslint-disable jsx-a11y/label-has-for*/}
-      <label className={S.CL_CAPTION}>
+      <label className={CL_CAPTION}>
         <span>{caption}</span>
         <A.InputText
            id={id}
-           style={{...S.TEXT, ...styleInput}}
+           style={{...S_TEXT, ...styleInput}}
            inputId={inputId}           
            initValue={value}
            onEnter={_hEnter}
          />
          <A.Color
-           style={S.COLOR}
+           style={S_COLOR}
            value={value}
          />
       </label>
