@@ -1,7 +1,7 @@
 import type { FC } from '../types';
 import type { ShadowType } from './types';
 
-import fn from './helpers/fn';
+import { toRgba } from './helpers/fn';
 import CssToken from './CssToken';
 
 interface CssValueProps {
@@ -36,7 +36,7 @@ const CssValue: FC<CssValueProps, false> = ({ item, sufix }) => {
       id="spread-radius"             
     />            
     <CssToken 
-      title={fn.toRgba(item)}
+      title={toRgba(item)}
       id="shadow-color"             
     />            
     <CssToken 

@@ -1,7 +1,7 @@
 import type { FC } from '../types';
 import type { ShadowType, ConfigStyleType } from './types';
 
-import fn from './helpers/fn';
+import { toCssValue } from './helpers/fn';
 
 interface PreviewProps {
   boxShadows?: ShadowType[];
@@ -12,7 +12,7 @@ const CL_PREVIEW = "page-sb__preview"
 , CL_INNER = "page-sb__preview__inner";
 
 const _crBoxShadowStyle = (boxShadows: ShadowType[]) => ({
-  boxShadow: boxShadows.map(fn.toCssValue).join(',')
+  boxShadow: boxShadows.map(toCssValue).join(',')
 });
 
 const Preview: FC<PreviewProps, false> = ({ 

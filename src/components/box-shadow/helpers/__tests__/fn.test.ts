@@ -1,10 +1,8 @@
 import type { ShadowType } from '../../types';
-import fn from '../fn';
-
-const { 
- toRgba,
- toCssValue 
-} = fn;
+import { 
+   toRgba,
+   toCssValue 
+} from '../fn';
 
 const _boxShadow: ShadowType = {
    isInset: false,
