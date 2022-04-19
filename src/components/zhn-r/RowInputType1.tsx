@@ -4,16 +4,14 @@ import {
   useRef 
 } from '../uiApi';
 
-import fnMath from '../../utils/math'
+import { round10 } from '../../utils/math';
 
-import A from '../zhn/A'
+import A from '../zhn/A';
 import {
   CL_ROW,
   CL_CAPTION,
   S_RIGHT
-} from './style'
-
-const { round10 } = fnMath;
+} from './style';
 
 type SetStringValueType = {
   setValue(v: string): void

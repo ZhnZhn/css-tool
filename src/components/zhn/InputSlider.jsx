@@ -1,7 +1,10 @@
 //import type { CSSProperties } from '../types';
 import { Component, createRef } from '../uiApi';
 
-import fnMath from '../../utils/math'
+import { 
+  round10,
+  toPercent
+} from '../../utils/math'
 import has from '../has';
 
 /*
@@ -10,8 +13,6 @@ import has from '../has';
 */
 
 const { HAS_TOUCH } = has;
-const { round10, toPercent } = fnMath
-
 
 const S_ROOT = {
   position: 'relative',
