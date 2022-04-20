@@ -8,7 +8,7 @@ import { round10 } from '../../utils/math';
 
 import useToggle from '../hooks/useToggle';
 
-import InputText from '../zhn/InputText'
+import InputNumber from '../zhn/InputNumber';
 import ShowHide from '../zhn/ShowHide';
 import InputSlider from '../zhn/InputSlider';
 
@@ -28,12 +28,12 @@ type SetNumberValueType = {
 export interface RowInputType1Props {
   id?: string;
   unit?: string;     
+  initValue: number;
   step?: number;
   min: number; 
   max: number;  
   styleInput?: CSSProperties;     
   caption: string;
-  initValue: number;
   inputId: string;  
   onChange?: (v: string) => void
 }
@@ -57,7 +57,8 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   max,
   styleInput,
   caption,
-  initValue, inputId,  
+  initValue, 
+  inputId,  
   onChange=_FN_NOOP
 }) => {
   const _refTextComp = useRef<SetStringValueType>()
@@ -83,13 +84,12 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
         <label className={CL_CAPTION}>
           <span>{caption}</span>
           <span style={S_RIGHT}>{unit}</span>
-          <InputText
+          <InputNumber
              id={id}
              innerRef={_refTextComp}
-             style={{...S_RIGHT, ...styleInput}}
-             type="number"             
+             style={{...S_RIGHT, ...styleInput}}                         
              inputId={inputId}
-             initValue={initValue}
+             initialValue={initValue}
              step={step}
              min={min}
              max={max}

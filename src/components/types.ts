@@ -1,12 +1,8 @@
-import type { CSSProperties as CSSProps } from 'react';
-
-export type CSSProperties = CSSProps
-export type StyleSheet<T extends string> = Record<T, CSSProperties> 
-
+export type { CSSProperties } from 'react';
 export type { MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
 
-export type { RefObject } from 'preact'
-
+export type { RefObject } from 'preact';
+export type { StateUpdater } from 'preact/hooks';
 
 export type EmptyObjType = Record<string, never>
 
@@ -15,7 +11,6 @@ export type ChildrenType = VElemType
 export type FC<T = EmptyObjType, IS = true> = IS extends true 
   ? { (props: T & { children?: ChildrenType }): VElemType} 
   : { (props: T): VElemType }
-
 
 export type IsNotShouldUpdate<T> = {
   (prevProps: T, nextProps: T): boolean  

@@ -52,7 +52,7 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
            id={id}
            style={{...S_TEXT, ...styleInput}}
            inputId={inputId}           
-           initValue={value}
+           initialValue={value}
            onEnter={_hEnter}
          />
          <Color

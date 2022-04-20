@@ -26,7 +26,7 @@ const RowInputType2: FC<RowInputType2Props, false> = ({
        <span>{caption}</span>
        <InputText
          style={{...S_TEXT, ...styleInput}}
-         initValue={initValue}
+         initialValue={initValue}
          onEnter={onEnter}
         />
      </label>
