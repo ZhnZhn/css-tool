@@ -1,77 +1,41 @@
 import type { 
   FC, 
-  CSSProperties, 
-  RefObject, 
-  ChangeEvent, 
-  KeyboardEvent 
+  CSSProperties
 } from '../types';
+import type { InputInnerRefType } from './useInputValue';
 
 import {
-  useRef, 
-  useCallback,  
-  useImperativeHandle
-} from '../uiApi';
-import useValue from './useValue';
+  CL_INPUT, 
+  useInputValue 
+} from './useInputValue';
 
-import crId from '../../utils/crId';
-
-const CL_INPUT_TEXT = 'input-text box-shadow';
-
-type InnerRefType = {
-  setValue: (value: any) => void
-}
+type TextType = string | undefined 
 
 export interface InputTextProps {
   style?: CSSProperties;  
-  id?: string;
-  inputId?: string;  
-  initialValue?: string;
-  innerRef?: RefObject<InnerRefType>;
-  onChange?: (value: any) => void;
-  onEnter?: (value: any) => void;
+  id?: string;    
+  initialValue: TextType;
+  innerRef?: InputInnerRefType;
+  onChange?: (value: TextType) => void;
+  onEnter?: (value: string) => void;
 }
 
-const _FN_NOOP = () => {}
-
-const InputText: FC<InputTextProps, false> = ({
-  id,
-  style,  
-  initialValue='',
-  inputId,  
-  innerRef,
-  onChange=_FN_NOOP,
-  onEnter=_FN_NOOP
-}) => {
-  const [
+const InputText: FC<InputTextProps, false> = (props) => {
+  const {        
+    style    
+  } = props
+  , [
+    id,
     value, 
-    setValue
-  ] = useValue(initialValue, inputId)   
-  , _refId = useRef<string>(id || crId())  
-  /*eslint-disable react-hooks/exhaustive-deps */
-  , _hInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.currentTarget              
-      setValue({ value })
-      onChange(value)
-    }, [])
-    //onChange
-  , _hKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.keyCode === 13){                
-        onEnter(event.currentTarget.value)
-      }
-    }, []);
-    //onEnter      
-
-  useImperativeHandle(innerRef!, () => ({
-    setValue: (value) => setValue({ value })
-  }), [])
-  // setValue
-  /*eslint-enable react-hooks/exhaustive-deps */ 
+    hKeyDown,
+    hInputChange
+  ] = useInputValue<TextType>(props);
   
   return (
     <input
       type="text"
-      id={_refId.current}      
-      className={CL_INPUT_TEXT}
+      id={id}      
+      className={CL_INPUT}
       style={style}
       value={value}
       autoCorrect="off"
@@ -80,8 +44,8 @@ const InputText: FC<InputTextProps, false> = ({
       translate="no"
       maxLength={25}
       //onChange={_hInputChange}
-      onInput={_hInputChange}
-      onKeyDown={_hKeyDown}
+      onInput={hInputChange}
+      onKeyDown={hKeyDown}
     />
   );
 };

@@ -18,10 +18,7 @@ import {
   S_RIGHT
 } from './style';
 
-type SetStringValueType = {
-  setValue(v: string): void
-}
-type SetNumberValueType = {
+type InputType = {
   setValue(v: number): void
 }
 
@@ -43,9 +40,12 @@ const _crStepExp = (step: number) => {
   return _arr[1] ? -1 * _arr[1].length : 0;
 }  
 
-const _crNumberValue = (stepExp: number, value: string) => stepExp !== 0
-  ? round10(parseFloat(value), stepExp)
-  : parseInt(value, 10);
+const _crNumberValue = (
+  stepExp: number, 
+  value: number
+) => stepExp !== 0
+  ? round10(parseFloat(''+value), stepExp)
+  : value;
 
 const _FN_NOOP = () => {}
 
@@ -61,18 +61,18 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   inputId,  
   onChange=_FN_NOOP
 }) => {
-  const _refTextComp = useRef<SetStringValueType>()
-  , _refSliderComp = useRef<SetNumberValueType>()
+  const _refInputNumber = useRef<InputType>()
+  , _refSliderComp = useRef<InputType>()
   , _refStepExp = useRef(_crStepExp(step))
-  , _hChangeSlider = useCallback((value: string) => {
-    _refTextComp.current?.setValue(value)
-    onChange(value)
+  , _hChangeSlider = useCallback((value: number) => {
+    _refInputNumber.current?.setValue(value)
+    onChange(''+value)
   }, [onChange])
-  , _hChangeText = useCallback((value: string) => {    
+  , _hChangeNumber = useCallback((value: number) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
     if ( _value>=min && _value<=max ){      
       _refSliderComp.current?.setValue(_value)
-      onChange(value)
+      onChange(''+value)
     }
   }, [min, max, onChange])
   , [isShowSlider, toggleIsShowSlider] = useToggle()
@@ -85,15 +85,15 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
           <span>{caption}</span>
           <span style={S_RIGHT}>{unit}</span>
           <InputNumber
+             key={inputId}
              id={id}
-             innerRef={_refTextComp}
-             style={{...S_RIGHT, ...styleInput}}                         
-             inputId={inputId}
+             innerRef={_refInputNumber}
+             style={{...S_RIGHT, ...styleInput}}                                      
              initialValue={initValue}
              step={step}
              min={min}
              max={max}
-             onChange={_hChangeText}
+             onChange={_hChangeNumber}
              onEnter={toggleIsShowSlider}
           />
         </label>

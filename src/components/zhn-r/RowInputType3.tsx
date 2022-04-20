@@ -49,9 +49,9 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
       <label className={CL_CAPTION}>
         <span>{caption}</span>
         <InputText
+           key={inputId}
            id={id}
-           style={{...S_TEXT, ...styleInput}}
-           inputId={inputId}           
+           style={{...S_TEXT, ...styleInput}}                      
            initialValue={value}
            onEnter={_hEnter}
          />
