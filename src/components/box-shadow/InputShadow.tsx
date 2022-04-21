@@ -1,5 +1,8 @@
-import type { FC, IsNotShouldUpdate } from '../types';
-import type tinycolor from 'tinycolor2';
+import type { 
+  FC, 
+  IsNotShouldUpdate,
+  TinycolorInstance 
+} from '../types';
 import { ShadowType } from './types';
 
 import { 
@@ -79,7 +82,8 @@ const InputShadow: FC<InputShadowProps, false> = ({
       _refInput.current[propName] = value
       onChange(_refInput.current)
     }, [])
- , _enterColor = useCallback((value: string, color: tinycolor.Instance) => {
+ //, _enterColor = useCallback((value: string, color: tinycolor.Instance) => {
+   , _enterColor = useCallback((value: string, color: TinycolorInstance) => {     
       _refInput.current.color = color.toHexString()
       onChange(_refInput.current)
    }, [])

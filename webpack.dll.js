@@ -9,8 +9,7 @@ module.exports = {
   mode: "production",
   entry: {
      lib: [
-            "preact",
-            "tinycolor2"
+            "preact"
           ]
   },
   output: {

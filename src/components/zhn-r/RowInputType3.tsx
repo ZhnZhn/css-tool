@@ -1,5 +1,10 @@
-import type { CSSProperties, FC } from '../types';
-import tinycolor from 'tinycolor2';
+import type { 
+  CSSProperties, 
+  FC,
+  TinycolorInstance 
+} from '../types';
+
+import tinycolor from '../../tinycolor/tinycolor';
 import { 
   useState, 
   useCallback 
@@ -20,8 +25,8 @@ export interface RowInputType3Props {
   styleInput?: CSSProperties
   caption: string;  
   inputId?: string;
-  initValue: string;
-  onEnter: (value: string, color: tinycolor.Instance) => void
+  initValue: string;  
+  onEnter: (value: string, color: TinycolorInstance) => void
 }
 
 const _FN_NOOP = () => {};
@@ -36,8 +41,8 @@ const RowInputType3: FC<RowInputType3Props, false> = ({
 }) => {
   const [value, setValue] = useState(initValue)  
   , _hEnter = useCallback((value: string) => {
-    const color = tinycolor(value);
-     if (color.isValid()){
+    const color = tinycolor(value) as TinycolorInstance;
+     if (color && color.isValid()){
        onEnter(value, color)
        setValue(color.toHexString())
      }

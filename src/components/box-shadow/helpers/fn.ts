@@ -1,9 +1,9 @@
 import type { ShadowType } from '../types';
-import tinycolor from 'tinycolor2';
+import tinycolor from '../../../tinycolor/tinycolor'; 
 
 const _toRgb = (
   color: string
-) => tinycolor(color).toRgb();
+) => tinycolor(color)!.toRgb();
 
 export const toRgba = (
   { color }: ShadowType
