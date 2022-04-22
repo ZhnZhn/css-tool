@@ -1,14 +1,26 @@
 import inputToRGB from "./inputToRGB";
-import { rgbToHex } from "./utils";
+import { 
+   rgbToHex,
+   rgbToHsl 
+} from "./utils";
 
 const mathRound = Math.round;
 let tinyCounter = 0;
 
-function tinycolor (color, opts) {
+// Don't let the range of [0,255] come back in [0,1].
+// Potentially lose a little bit of precision here, but will fix issues where
+// .5 gets interpreted as half of the total, instead of half of 1
+// If it was supposed to be 128, this was already taken care of by `inputToRgb`
+const _getRgbItem = v => v < 1
+  ? mathRound(v)
+  : v;
 
-    color = (color) ? color : '';
+function TinycolorImpl (color, opts) {
+
+    color = color || '';
     opts = opts || { };
 
+    /*
     // If input is already a tinycolor, return itself
     if (color instanceof tinycolor) {
        return color;
@@ -17,30 +29,23 @@ function tinycolor (color, opts) {
     if (!(this instanceof tinycolor)) {
         return new tinycolor(color, opts);
     }
+    */
 
     const rgb = inputToRGB(color);
     this._originalInput = color
-    this._r = rgb.r
-    this._g = rgb.g
-    this._b = rgb.b
+    this._r = _getRgbItem(rgb.r)
+    this._g = _getRgbItem(rgb.g)
+    this._b = _getRgbItem(rgb.b)
     this._a = rgb.a
     this._roundA = mathRound(100*this._a) / 100
     this._format = opts.format || rgb.format
     this._gradientType = opts.gradientType
 
-    // Don't let the range of [0,255] come back in [0,1].
-    // Potentially lose a little bit of precision here, but will fix issues where
-    // .5 gets interpreted as half of the total, instead of half of 1
-    // If it was supposed to be 128, this was already taken care of by `inputToRgb`
-    if (this._r < 1) { this._r = mathRound(this._r); }
-    if (this._g < 1) { this._g = mathRound(this._g); }
-    if (this._b < 1) { this._b = mathRound(this._b); }
-
-    this._ok = rgb.ok;
-    this._tc_id = tinyCounter++;
+    this._ok = rgb.ok
+    this._tc_id = tinyCounter++
 }
 
-tinycolor.prototype = {
+TinycolorImpl.prototype = {
    isValid: function() {
       return this._ok;
    },
@@ -57,7 +62,14 @@ tinycolor.prototype = {
    },
    toHexString: function(allow3Char) {
       return '#' + this.toHex(allow3Char);
-   }
+   },
+   toHsl: function() {
+      const hsl = rgbToHsl(this._r, this._g, this._b);
+      //return { h: hsl.h * 360, s: hsl.s, l: hsl.l, a: this._a };
+      return { h: hsl.h, s: hsl.s, l: hsl.l, a: this._a };
+  }
 }
+
+const tinycolor = (color, options) => new TinycolorImpl(color, options)
 
 export default tinycolor

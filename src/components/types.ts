@@ -4,7 +4,10 @@ export type { MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
 export type { RefObject } from 'preact';
 export type { StateUpdater } from 'preact/hooks';
 
-export type { TinycolorInstance } from '../tinycolor/types';
+export type { 
+  TinycolorInstance,
+  HSLA 
+} from '../tinycolor/types';
 
 export type EmptyObjType = Record<string, never>
 

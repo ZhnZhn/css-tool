@@ -179,6 +179,48 @@ export function hslToRgb(h, s, l) {
    };
 }
 
+const mathMax = Math.max
+, mathMin = Math.min
+, mathRound = Math.round
+// `rgbToHsl`
+// Converts an RGB color value to HSL.
+// *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
+// *Returns:* { h, s, l } in [0,1]
+export function rgbToHsl(r, g, b) {
+
+    r = bound01(r, 255);
+    g = bound01(g, 255);
+    b = bound01(b, 255);
+
+    const max = mathMax(r, g, b)
+    , min = mathMin(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if(max == min) {
+        h = s = 0; // achromatic
+    }
+    else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+            default: break;
+        }
+
+        h /= 6;
+    }
+
+   //return { h: h, s: s, l: l };
+   //console.log(h)
+   return { 
+       h: mathRound(h*360),
+       s: mathRound(100*s),
+       l: mathRound(100*l)
+    };
+}
+
 export function boundAlpha(a) {
    a = parseFloat(a);
    if (isNaN(a) || a < 0 || a > 1) {
