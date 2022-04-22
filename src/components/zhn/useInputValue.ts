@@ -69,8 +69,8 @@ export function useInputValue<T>(
        , _value = getValue(value)      
        setValue(_value)
        onChange(_value)
-    }, [getValue]); 
-    // setValue, onChange   
+    }, [getValue, onChange]); 
+    // setValue   
  
     useImperativeHandle(innerRef!, () => ({
       setValue: (nextValue: unknown) => setValue(getValue(nextValue))
