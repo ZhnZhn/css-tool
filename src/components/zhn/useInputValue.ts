@@ -1,5 +1,5 @@
 import type { 
-  RefObject, 
+  Ref,
   KeyboardEvent,
   ChangeEvent 
 } from '../types';
@@ -14,10 +14,11 @@ import crId from '../../utils/crId';
 
 export const CL_INPUT = 'input-text box-shadow'
 
-type InputType = {
+export type InputType = {
   setValue: (initValue: any) => void
 }
-export type InputInnerRefType = RefObject<InputType>
+export type InputInnerRefType = Ref<InputType>
+
 type PropsType<T> = {
   innerRef?: InputInnerRefType,
   id?: string,
@@ -33,7 +34,6 @@ type UseInputTupleType<T> = [
   hInputChange: (event: ChangeEvent<HTMLInputElement>) => void
 ]
  
-
 type GetValueType<T> = (value: unknown) => T
 
 const _FN_NOOP = () => {};

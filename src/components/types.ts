@@ -1,8 +1,16 @@
-export type { CSSProperties } from 'react';
-export type { MouseEvent, KeyboardEvent, ChangeEvent } from 'react'
+export type { 
+  CSSProperties,
+  MouseEvent, 
+  KeyboardEvent, 
+  ChangeEvent 
+} from 'react'
 
 export type { RefObject } from 'preact';
-export type { StateUpdater } from 'preact/hooks';
+export type { 
+  Ref, 
+  MutableRef, 
+  StateUpdater 
+} from 'preact/hooks';
 
 export type { 
   TinycolorInstance,
