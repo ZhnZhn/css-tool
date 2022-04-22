@@ -8,6 +8,9 @@
   width: 32px;
   border-radius: 2px;  
 }
+.box-color:focus {
+  border: 2px solid #fdb316;
+}
 
 .input-text {
   display: inline;

@@ -19,6 +19,7 @@ html {
 button {
   appearance: none;
   border: none;
+  outline: 0;
   background-color: transparent;
   font-size: inherit;
   -webkit-appearance: none;
