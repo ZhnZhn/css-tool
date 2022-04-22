@@ -1,4 +1,3 @@
-import type { RefObject } from './types';
 /* 
 export { 
   useState, 
@@ -12,7 +11,8 @@ export {
 
 export { 
   useState, 
-  useCallback, 
+  useCallback,
+  useMemo, 
   useReducer, 
   useEffect, 
   useRef, 
