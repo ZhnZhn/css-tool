@@ -1,3 +1,4 @@
+import { Ref } from './types';
 /* 
 export { 
   useState, 
@@ -20,3 +21,7 @@ export {
 } from 'preact/hooks';
 
 export { Component, createRef } from 'preact';
+
+export function getRefValue<T> (ref: Ref<T>) {
+  return ref.current;
+}
