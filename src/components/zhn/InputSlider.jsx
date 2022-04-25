@@ -5,14 +5,12 @@ import {
   round10,
   toPercent
 } from '../../utils/math'
-import has from '../has';
+import { HAS_TOUCH_EVENTS } from '../has';
 
 /*
  Mostly from old version Material-UI
  https://github.com/callemall/material-ui/blob/master/src/Slider/Slider.js
 */
-
-const { HAS_TOUCH } = has;
 
 const S_ROOT = {
   position: 'relative',
@@ -117,13 +115,13 @@ const _crLeftPercent = (percent) => ({
   left: `${percent}%`
 });
 
-const _crEventNames = () => HAS_TOUCH
+const _crEventNames = () => HAS_TOUCH_EVENTS
  ? { moveEvent: 'touchmove', upEvent: 'touchend' }
  : { moveEvent: 'mousemove', upEvent: 'mouseup' };
 
-const _isTouchNode = (node) => HAS_TOUCH && node;
+const _isTouchNode = (node) => HAS_TOUCH_EVENTS && node;
 
-const _getClientX = event => HAS_TOUCH
+const _getClientX = event => HAS_TOUCH_EVENTS
   ? event.changedTouches[0]?.clientX
   : event.clientX;
 
@@ -196,7 +194,7 @@ class InputSlider extends Component {
   }
   _hMouseDown = (event) => {
     // Cancel text selection
-    if (!HAS_TOUCH) {
+    if (!HAS_TOUCH_EVENTS) {
       event.preventDefault()
     }
 
@@ -325,20 +323,20 @@ class InputSlider extends Component {
         'aria-valuemin': min,
         'aria-valuenow': value
       }
-    , _mouseSlider = HAS_TOUCH
-        ? void 0
-        : {
-          ..._sliderProps,
-          onMouseDown: this._hMouseDown,
-          onMouseEnter: this._hMouseEnter,
-          onMouseLeave: this._hMouseLeave,
-          onKeyDown: this._hKeyDownTrack,
-          onFocus: this._hFocusTrack,
-          onBlur: this._hBlurTrack
-        }
-    , _touchSlider = HAS_TOUCH
-        ? _sliderProps
-        : void 0;
+    , [ 
+      _mouseSlider, 
+      _touchSlider
+    ] = HAS_TOUCH_EVENTS 
+     ? [void 0, _sliderProps]
+     : [{
+         ..._sliderProps,
+         onMouseDown: this._hMouseDown,
+         onMouseEnter: this._hMouseEnter,
+         onMouseLeave: this._hMouseLeave,
+         onKeyDown: this._hKeyDownTrack,
+         onFocus: this._hFocusTrack,
+         onBlur: this._hBlurTrack
+       }, void 0];        
 
     return (
       <div style={S_ROOT}>

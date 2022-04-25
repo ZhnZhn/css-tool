@@ -4,12 +4,10 @@ import {
   useRef, 
   useCallback 
 } from '../uiApi';
-import has from '../has';
+import { HAS_TOUCH_EVENTS } from '../has';
 import crCn from '../crCn';
 
 import CaptionInput from './CaptionInput';
-
-const { HAS_TOUCH } = has;
 
 const CL_BT = 'bt-flat'
 , CL_BT_DIV = 'bt-flat__div'
@@ -56,7 +54,7 @@ const FlatButton: FC<FlatButtonProps> = ({
        ? {...style, ...S_PRIMARY }
        : style
   , _className = crCn(CL_BT, className)       
-  , _accessKey = HAS_TOUCH
+  , _accessKey = HAS_TOUCH_EVENTS
        ? void 0
        : accessKey
   , _title = _accessKey
