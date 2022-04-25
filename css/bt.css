@@ -1,15 +1,14 @@
 .chb {
   display: inline-block;
-  width: 23px;
-  height: 23px;
+  width: 22px;
+  height: 22px;
   padding: 1px;
   border-radius: 2px;
-  border: 2px solid transparent;
   cursor: pointer;
 }
 .chb:focus {
-  outline: 0;
-  border: 2px solid #fdb316;
+  outline: 2px solid #fdb316;
+  outline-offset: 1px;
 }
 
 .bt-chb {

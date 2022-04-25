@@ -53,6 +53,7 @@
   width: 2.5rem;
   height: 3rem;
 }
-.header__github-link:hover {
-  fill: #80c040;
+.header__github-link:hover,
+.header__github-link:focus {
+  fill: #00bcd4;
 }

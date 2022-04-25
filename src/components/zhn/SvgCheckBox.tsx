@@ -6,7 +6,6 @@ import useKeyEnter from '../hooks/useKeyEnter';
 import C from '../styles/Color';
 
 const CL_CHB = 'chb'
-, S_DIV: CSSProperties = { transform: 'scale(1.2)' }
 , S_SVG: CSSProperties = { display: 'inline-block' };
 
 interface SvgCheckedProps {
@@ -67,7 +66,7 @@ const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({
        tabIndex={0}
        aria-checked={value}
        className={CL_CHB}
-       style={{ ...S_DIV, ...style }}
+       style={style}
        onClick={_hClick}
        onKeyDown={_hKeyDown}
     >

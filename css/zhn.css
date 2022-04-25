@@ -9,7 +9,8 @@
   border-radius: 2px;  
 }
 .box-color:focus {
-  border: 2px solid #fdb316;
+  outline: 2px solid #fdb316;
+  outline-offset: 2px;
 }
 
 .input-text {
