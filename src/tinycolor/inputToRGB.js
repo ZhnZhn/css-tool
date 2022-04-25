@@ -32,7 +32,7 @@ function inputToRGB(color) {
        if (_isRgbFormat(color)) {
           rgb = rgbToRgb(color.r, color.g, color.b);
           ok = true;
-          format = String(color.r).substring(-1) === "%" ? "prgb" : "rgb";
+          format = String(color.r).slice(-1) === "%" ? "prgb" : "rgb";
        }
        else if (_isHsFormat(color)) {
           if (isValidCSSUnit(color.v)) {
@@ -50,8 +50,7 @@ function inputToRGB(color) {
             format = "hsl";
           }
        }
-          
-       //if (color.hasOwnProperty("a")) {
+                 
        if (_hasOwnProperty.call(color, "a")) {    
          a = color.a;
        }

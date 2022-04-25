@@ -28,9 +28,9 @@ const CaptionWithHotKey: FC<CaptionWithHotKeyProps> = ({
   const index = _crHotKeyIndex(caption, hotKey);
   if (index === -1) { return <>{caption}</>; }
 
-  const _before = caption.substring(0, index)
-  , _key = caption.substring(index, index+1)
-  , _after = caption.substring(index+1);
+  const _before = caption.slice(0, index)
+  , _key = caption.slice(index, index+1)
+  , _after = caption.slice(index+1);
   return (
     <>
      <span>{_before}</span>
