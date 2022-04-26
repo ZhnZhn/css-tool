@@ -61,7 +61,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   inputId,  
   onChange=_FN_NOOP
 }) => {
-  const _refInputNumber = useRef<InputType>()
+  const _refInputNumber = useRef<InputType>(null)
   , _refSliderComp = useRef<InputType>()
   , _refStepExp = useRef(_crStepExp(step))
   , _hChangeSlider = useCallback((value: number) => {
@@ -100,12 +100,12 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
         {/*eslint-enable jsx-a11y/label-has-for*/}
         <ShowHide is={isShowSlider}>
           <InputSlider
-             ref={_refSliderComp}           
-             inputId={inputId}
+             key={`sl-${inputId}`}
+             innerRef={_refSliderComp}     
+             initialValue={initValue}                   
              step={step}
              min={min}
-             max={max}
-             initValue={initValue}
+             max={max}            
              onChange={_hChangeSlider}          
           />
         </ShowHide>

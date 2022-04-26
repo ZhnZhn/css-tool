@@ -20,8 +20,6 @@ export {
   useImperativeHandle 
 } from 'preact/hooks';
 
-export { Component, createRef } from 'preact';
-
 export function getRefValue<T> (ref: Ref<T>) {
   return ref.current;
 }
