@@ -15,7 +15,7 @@ const [
 
 const useDragMouseDown = (
   setValueFromPosition: (evt: MouseOrTouchEvent) => void
-) => {
+): [ boolean, (evt: MouseOrTouchEvent) => void ] => {
     const [isDragged, setDraggedTrue, setDraggedFalse] = useBool(false)
     , _refDragRunning = useRef(false)
     , _hDragMouseMove = (evt: MouseOrTouchEvent) => {
@@ -37,7 +37,7 @@ const useDragMouseDown = (
       // Cancel text selection
       if (!HAS_TOUCH_EVENTS) {
         evt.preventDefault()
-      }
+      }      
       document.addEventListener(EVENT_NAME_MOVE, _hDragMouseMove)
       document.addEventListener(EVENT_NAME_UP, _hDragMouseUp)
       setDraggedTrue()

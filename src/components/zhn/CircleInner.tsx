@@ -22,8 +22,8 @@ const S_CIRCLE_INNER: CSSProperties = {
 
 export interface CircleInnerProps {
   is: boolean;
-  circleStyle: CSSProperties;
-  emberStyle: CSSProperties;
+  circleStyle?: CSSProperties;
+  emberStyle?: CSSProperties;
 }
 
 const CircleInner: FC<CircleInnerProps, false> = ({ 

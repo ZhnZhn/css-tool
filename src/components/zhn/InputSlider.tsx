@@ -1,3 +1,13 @@
+import type { 
+  CSSProperties,
+  FC,
+  Ref,
+  MouseEvent,
+  TouchEvent,
+  KeyboardEvent,
+  MouseOrTouchEvent 
+} from '../types';
+
 import { 
   useRef, 
   useState,
@@ -17,7 +27,7 @@ import {
 import CircleInner from './CircleInner';
 //import PropTypes from "prop-types";
 
-const S_ROOT = {
+const S_ROOT: CSSProperties = {
   position: 'relative',
   width: '100%',
   height: 18,
@@ -25,14 +35,14 @@ const S_ROOT = {
   userSelect : 'none',
   cursor: 'default'
 }
-, S_ROOT_LINE = {
+, S_ROOT_LINE: CSSProperties = {
   position: 'absolute',
   top: 8,
   left: 0,
   width: '100%',
   height: 2
 }
-, S_LINE_BEFORE = {
+, S_LINE_BEFORE: CSSProperties = {
   position: 'absolute',
   left: 0,
   width: 'calc(15%)',
@@ -41,7 +51,7 @@ const S_ROOT = {
   backgroundColor: '#00bcd4',
   transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
 }
-, S_LINE_AFTER = {
+, S_LINE_AFTER: CSSProperties = {
   position: 'absolute',
   right: 0,
   width: 'calc(85%)',
@@ -50,12 +60,13 @@ const S_ROOT = {
   backgroundColor: '#bdbdbd',
   transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
 }
-, S_LINE_AFTER_HOVERED = {
+, S_LINE_AFTER_HOVERED: CSSProperties = {
   ...S_LINE_AFTER,
   backgroundColor: '#9e9e9e',
 }
-, S_ROOT_CIRCLE = {
-  boxSizing: 'borderBox',
+, S_ROOT_CIRCLE: CSSProperties = {
+  //boxSizing: 'borderBox',
+  boxSizing: 'border-box',
   zIndex: '1',
   position: 'absolute',
   top: 0,
@@ -74,11 +85,11 @@ const S_ROOT = {
   outline: 'none',
   transition: 'background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
 }
-, S_CIRCLE_DRAGGED = {
+, S_CIRCLE_DRAGGED: CSSProperties = {
   width: 20,
   height: 20
 }
-, S_EMBER = {
+, S_EMBER: CSSProperties = {
   top: -12,
   left: -12,
   width: '220%',
@@ -86,48 +97,72 @@ const S_ROOT = {
   border: '1px solid #4caf50'
 };
 
-const _noopFn = (n) => {}
-, _checkValueInMinMax = (min, max, value) => value > max
+// eslint-disable-next-line
+const _NOOP_FN = (n: number) => {}
+, _checkValueInMinMax = (
+  min: number, 
+  max: number, 
+  value: number
+  ): number => value > max
     ? max
     : value < min ? min : value
-, _crWidthStyle = value => ({
+, _crWidthStyle = (value: number) => ({
     width: `calc(${value}%)`
 })
-, _crLeftStyle = value => ({
+, _crLeftStyle = (value: number) => ({
    left: `${value}%`
 })
 , _getClienX = HAS_TOUCH_EVENTS
-  ? evt => (((evt || {}).touches || [])[0] || {}).clientX || 0
-  : evt => evt.clientX
-, _isUp = keyCode => keyCode === 39 || keyCode === 38
-, _isDown = keyCode => keyCode === 37 || keyCode === 40
-, _calcValueByKeyCode = (value, step, keyCode) => _isUp(keyCode)
+  ? (evt: TouchEvent) => (((evt || {}).touches || [])[0] || {}).clientX || 0
+  : (evt: MouseEvent) => evt.clientX
+, _isUp = (keyCode: number) => keyCode === 39 || keyCode === 38
+, _isDown = (keyCode: number) => keyCode === 37 || keyCode === 40
+, _calcValueByKeyCode = (
+  value: number,
+  step: number,
+  keyCode: number
+  ): number | void => _isUp(keyCode)
     ? value + step
-    : _isDown(keyCode) ? value - step : void 0;
+    : _isDown(keyCode) ? value - step : void 0
+, _isNumber = (n: unknown): n is number => typeof n === 'number'
+    && n - n === 0;
 
+type InputType = {
+  setValue: (value: number) => void
+}
+type InputInnerRefType = Ref<InputType>
 
-const InputSlider = ({
+export interface InputSliderProps {
+  innerRef?: InputInnerRefType;
+  initialValue?: number;
+  step?: number;
+  min?: number;
+  max?: number;
+  onChange: (n: number) => void
+}
+
+const InputSlider: FC<InputSliderProps, false> = ({
   innerRef,
   initialValue=4,
   step=1,
   min=0,
   max=20,
-  onChange=_noopFn
+  onChange=_NOOP_FN
 }) => {
   const _refExp = useRefInit(() => {
     const arr = (''+step).split('.')
     return arr[1] ? -1 * arr[1].length : 0;
   })
-  , _refTrack = useRef()
+  , _refTrack = useRef<HTMLDivElement>(null)
   , [isHovered, setHoveredTrue, setHoveredFalse] = useBool(false)
   , [value, setValue] = useState(initialValue)
 
-  , _updateValue = (value) => {
+  , _updateValue = (value: number) => {
     const _value = _checkValueInMinMax(min, max, value);
     setValue(_value)    
     onChange(_value)
   }
-  , _hKeyDown = (evt) => {
+  , _hKeyDown = (evt: KeyboardEvent) => {
     const { keyCode } = evt
     , _value = _calcValueByKeyCode(value, step, keyCode);
     if (_value != null) {
@@ -135,33 +170,35 @@ const InputSlider = ({
       _updateValue(_value)
     }
   }
-  , _calcPositionFromEvent = (evt) => {
+  , _calcPositionFromEvent = (evt: MouseOrTouchEvent): number => {
     const _trackOffset = getRefValue(_refTrack)?.getBoundingClientRect().left
     return _getClienX(evt) - _trackOffset;
   }
-  , _setValueFromPosition = (evt) => {
-    const positionMax = getRefValue(_refTrack).clientWidth;
+  , _setValueFromPosition = (evt: MouseOrTouchEvent) => {
+    const positionMax = getRefValue(_refTrack)?.clientWidth;
     let position = _calcPositionFromEvent(evt);
-    if (position < 0) {
-      position = 0;
-    } else if (position > positionMax) {
-      position = positionMax
+    if (_isNumber(positionMax) && _isNumber(position)) {
+      if (position < 0) {
+        position = 0;
+      } else if (position > positionMax) {
+        position = positionMax
+      }
+  
+      let v;
+      v = position/positionMax * (max - min)
+      v = Math.round(v / step) * step + min
+      v = round10(v, getRefValue(_refExp))
+  
+      _updateValue(v)
     }
-
-    let v;
-    v = position/positionMax * (max - min)
-    v = Math.round(v / step) * step + min
-    v = round10(v, getRefValue(_refExp))
-
-    _updateValue(v)
   }
   , [isDragged, _hMouseDown] = useDragMouseDown(_setValueFromPosition);
 
-  useImperativeHandle(innerRef, () => ({
+  useImperativeHandle(innerRef!, () => ({
     setValue
   }), []) 
 
-  const [ _sliderHandlers, _btHandlers ] = HAS_TOUCH_EVENTS
+  const [_sliderHandlers, _btHandlers] = HAS_TOUCH_EVENTS
     ? [{onTouchStart: _hMouseDown}, void 0]
     : [{
         onMouseDown: _hMouseDown,
