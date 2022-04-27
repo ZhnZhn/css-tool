@@ -11,7 +11,7 @@ import {
 } from './useInputValue';
 import getNumberValue from './getNumberValue';
 
-type NumberType = number
+type NumberType = number | string
 export interface InputTextProps {
   style?: CSSProperties;  
   id?: string;
