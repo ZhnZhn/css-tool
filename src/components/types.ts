@@ -1,9 +1,12 @@
 export type { 
   CSSProperties,
   MouseEvent, 
+  TouchEvent,
   KeyboardEvent, 
-  ChangeEvent 
-} from 'react'
+  ChangeEvent
+} from 'react';
+
+export type MouseOrTouchEvent = MouseEvent | TouchEvent
 
 export type { RefObject } from 'preact';
 export type { 

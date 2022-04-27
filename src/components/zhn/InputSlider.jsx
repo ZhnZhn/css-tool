@@ -7,6 +7,7 @@ import {
 
 import useRefInit from '../hooks/useRefInit';
 import useBool from '../hooks/useBool';
+import useDragMouseDown from './useDragMouseDown';
 import { HAS_TOUCH_EVENTS } from '../has';
 import { 
   toPercent,
@@ -86,55 +87,24 @@ const S_ROOT = {
 };
 
 const _noopFn = (n) => {}
-, EVENT_NAME_MOVE = HAS_TOUCH_EVENTS ? 'touchmove' : 'mousemove'
-, EVENT_NAME_UP = HAS_TOUCH_EVENTS ? 'touchend' : 'mouseup'
 , _checkValueInMinMax = (min, max, value) => value > max
     ? max
     : value < min ? min : value
-, _crWidthStyle = percent => ({
-    width: `calc(${percent}%)`
+, _crWidthStyle = value => ({
+    width: `calc(${value}%)`
 })
-, _crLeftStyle = percent => ({
-   left: `${percent}%`
+, _crLeftStyle = value => ({
+   left: `${value}%`
 })
 , _getClienX = HAS_TOUCH_EVENTS
   ? evt => (((evt || {}).touches || [])[0] || {}).clientX || 0
   : evt => evt.clientX
 , _isUp = keyCode => keyCode === 39 || keyCode === 38
 , _isDown = keyCode => keyCode === 37 || keyCode === 40
-, _calcNewValueByKeyCode = (value, step, keyCode) => _isUp(keyCode)
+, _calcValueByKeyCode = (value, step, keyCode) => _isUp(keyCode)
     ? value + step
     : _isDown(keyCode) ? value - step : void 0;
 
-const _useMouseDown = (setValueFromPosition) => {
-  const [isDragged, setDraggedTrue, setDraggedFalse] = useBool(false)
-  , _refDragRunning = useRef(false)
-  , _hDragMouseMove = (evt) => {
-    if (getRefValue(_refDragRunning)) {
-      return;
-    }
-    _refDragRunning.current = true;
-    requestAnimationFrame(() => {
-      _refDragRunning.current = false;
-      setValueFromPosition(evt)
-    })
-  }
-  , _hDragMouseUp = () => {
-     document.removeEventListener(EVENT_NAME_MOVE, _hDragMouseMove)
-     document.removeEventListener(EVENT_NAME_UP, _hDragMouseUp)
-     setDraggedFalse()
-  },
-  _hMouseDown = (evt) => {
-    // Cancel text selection
-    if (!HAS_TOUCH_EVENTS) {
-      evt.preventDefault()
-    }
-    document.addEventListener(EVENT_NAME_MOVE, _hDragMouseMove)
-    document.addEventListener(EVENT_NAME_UP, _hDragMouseUp)
-    setDraggedTrue()
-  };
-  return [isDragged, _hMouseDown];
-};
 
 const InputSlider = ({
   innerRef,
@@ -159,7 +129,7 @@ const InputSlider = ({
   }
   , _hKeyDown = (evt) => {
     const { keyCode } = evt
-    , _value = _calcNewValueByKeyCode(value, step, keyCode);
+    , _value = _calcValueByKeyCode(value, step, keyCode);
     if (_value != null) {
       evt.preventDefault()
       _updateValue(_value)
@@ -185,7 +155,7 @@ const InputSlider = ({
 
     _updateValue(v)
   }
-  , [isDragged, _hMouseDown] = _useMouseDown(_setValueFromPosition);
+  , [isDragged, _hMouseDown] = useDragMouseDown(_setValueFromPosition);
 
   useImperativeHandle(innerRef, () => ({
     setValue
