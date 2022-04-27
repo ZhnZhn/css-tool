@@ -1,9 +1,7 @@
 
-type NumberOrString = number | string
-
 type Round10Type = (
-  v: NumberOrString, 
-  exp: NumberOrString
+  v: number | string, 
+  exp: number | string | null 
 ) => number
 type ToPercentType = (
   value: number, 
@@ -14,6 +12,9 @@ type ToPercentType = (
 const _isNaN = Number.isNaN || isNaN;
 
 export const round10: Round10Type = (value, exp) => {
+  if (exp === null) {
+    return NaN;
+  }
   value = +value;
   exp = +exp;
   // If the value is not a number or the exp is not an integer...
