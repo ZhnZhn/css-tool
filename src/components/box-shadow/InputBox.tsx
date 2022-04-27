@@ -45,19 +45,19 @@ const InputBox: FC<InputBoxProps, false> = ({
          styleInput={S_BOX_INPUT}
          caption="Background"
          initValue={bgColor}
-         onEnter={_hEnter.bind(null, 'bgColor')}
+         onEnter={(value) => _hEnter('bgColor', value)}
       />
       <RowInputType3         
          styleInput={S_BOX_INPUT}
          caption="Box Background"
          initValue={boxColor}
-         onEnter={_hEnter.bind(null, 'boxColor')}
+         onEnter={(value) => _hEnter('boxColor', value)}
       />
       <RowInputType2         
          styleInput={S_BOX_INPUT}
          caption="Box Border Radius"
          initValue={boxBorderRadius}
-         onEnter={_hEnter.bind(null, 'boxBorderRadius')}
+         onEnter={(value) => _hEnter('boxBorderRadius', value)}
       />
    </div>);
 };

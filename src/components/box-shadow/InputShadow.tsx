@@ -112,25 +112,25 @@ const InputShadow: FC<InputShadowProps, false> = ({
          {...INPUT_ROWS[0]}
           inputId={id}
           initValue={gLength}
-          onChange={_changeInput.bind(null, 'gLength')}
+          onChange={(value) => _changeInput('gLength', value)}
       />
       <RowInputType1
          {...INPUT_ROWS[1]}
          inputId={id}
          initValue={vLength}
-         onChange={_changeInput.bind(null, 'vLength')}
+         onChange={(value) => _changeInput('vLength', value)}
       />
       <RowInputType1
          {...INPUT_ROWS[2]}
          inputId={id}
          initValue={blurR}
-         onChange={_changeInput.bind(null, 'blurR')}
+         onChange={(value) => _changeInput('blurR', value)}
       />
       <RowInputType1
          {...INPUT_ROWS[3]}
          inputId={id}
          initValue={spreadR}
-         onChange={_changeInput.bind(null, 'spreadR')}
+         onChange={(value) => _changeInput('spreadR', value)}
       />
       <RowInputType3
          //key={`${id}-sc`}
@@ -143,7 +143,7 @@ const InputShadow: FC<InputShadowProps, false> = ({
          {...INPUT_ROWS[4]}
          inputId={id}
          initValue={opacity}
-         onChange={_changeInput.bind(null, 'opacity')}
+         onChange={(value) => _changeInput('opacity', value)}
       />
       <RowCheckBox
         id="inset"
