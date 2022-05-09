@@ -3,7 +3,7 @@ import type { PageStateType, PageActionType } from './pageConfig';
 
 import crId from '../../utils/crId';
 import imArr from '../../utils/im-arr';
-import imObj from '../../utils/im-obj';
+import { imObjUpdate } from '../../utils/im-obj';
 
 import {
   SET_CURRENT_SHADOW,
@@ -42,7 +42,7 @@ const pageReducer: PageReducer = (state, action) => {
       if (!_isNumber(fromIndex)) { return state; }
 
       const { boxShadows, currentIndex } = state
-      , _initValue = imObj.create(boxShadows[fromIndex])
+      , _initValue = {...boxShadows[fromIndex]}
       , _index = currentIndex + 1;
       _initValue.id = crId(''+_index)
       return {
@@ -72,7 +72,7 @@ const pageReducer: PageReducer = (state, action) => {
       const { configStyle } = state;
       return {
         ...state,
-        configStyle: imObj.update(configStyle, propName, value)
+        configStyle: imObjUpdate(configStyle, propName, value)
       };
     }
     default: throw new Error('Unsupported action type: ' + action.type);
