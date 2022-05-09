@@ -2,8 +2,6 @@ import type {
   CSSProperties,
   FC,
   Ref,
-  MouseEvent,
-  TouchEvent,
   KeyboardEvent,
   MouseOrTouchEvent 
 } from '../types';
@@ -25,6 +23,7 @@ import {
 } from '../../utils/math'
 
 import CircleInner from './CircleInner';
+import { MouseEventHandler, TouchEventHandler } from 'react';
 //import PropTypes from "prop-types";
 
 const S_ROOT: CSSProperties = {
@@ -113,8 +112,10 @@ const _NOOP_FN = (n: number) => {}
    left: `${value}%`
 })
 , _getClienX = HAS_TOUCH_EVENTS
-  ? (evt: TouchEvent) => (((evt || {}).touches || [])[0] || {}).clientX || 0
-  : (evt: MouseEvent) => evt.clientX
+  ? (evt: MouseOrTouchEvent) => (((evt as unknown as TouchEvent || {})
+      .touches || [])[0] || {}).clientX || 0
+  : (evt: MouseOrTouchEvent) => (evt as unknown as MouseEvent)
+      .clientX
 , _isUp = (keyCode: number) => keyCode === 39 || keyCode === 38
 , _isDown = (keyCode: number) => keyCode === 37 || keyCode === 40
 , _calcValueByKeyCode = (
@@ -172,7 +173,9 @@ const InputSlider: FC<InputSliderProps, false> = ({
   }
   , _calcPositionFromEvent = (evt: MouseOrTouchEvent): number => {
     const _trackOffset = getRefValue(_refTrack)?.getBoundingClientRect().left
-    return _getClienX(evt) - _trackOffset;
+    return _isNumber(_trackOffset)
+      ? _getClienX(evt) - _trackOffset
+      : NaN;
   }
   , _setValueFromPosition = (evt: MouseOrTouchEvent) => {
     const positionMax = getRefValue(_refTrack)?.clientWidth;
@@ -199,9 +202,9 @@ const InputSlider: FC<InputSliderProps, false> = ({
   }), []) 
 
   const [_sliderHandlers, _btHandlers] = HAS_TOUCH_EVENTS
-    ? [{onTouchStart: _hMouseDown}, void 0]
+    ? [{onTouchStart: _hMouseDown as unknown as TouchEventHandler<HTMLDivElement>}, void 0]
     : [{
-        onMouseDown: _hMouseDown,
+        onMouseDown: _hMouseDown as unknown as MouseEventHandler<HTMLDivElement>,
         onMouseEnter: setHoveredTrue,
         onMouseLeave: setHoveredFalse
        },{
@@ -260,16 +263,5 @@ const InputSlider: FC<InputSliderProps, false> = ({
     </div>
   );
 }
-
-/*
-InputSlider.propTypes = {
-  innerRef : PropTypes.ref,
-  initialValue : PropTypes.number,
-  step : PropTypes.number,
-  min : PropTypes.number,
-  max : PropTypes.number,
-  onChange : PropTypes.func
-}
-*/
 
 export default InputSlider

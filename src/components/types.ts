@@ -1,7 +1,5 @@
 export type { 
   CSSProperties,
-  MouseEvent, 
-  TouchEvent,
   KeyboardEvent, 
   ChangeEvent
 } from 'react';
