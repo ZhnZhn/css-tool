@@ -2,7 +2,11 @@ import type { ReducerType } from '../types';
 import type { PageStateType, PageActionType } from './pageConfig';
 
 import crId from '../../utils/crId';
-import imArr from '../../utils/im-arr';
+import {
+  imArrInsert,
+  imArrUpdate,
+  imArrRemove 
+} from '../../utils/im-arr';
 import { imObjUpdate } from '../../utils/im-obj';
 
 import {
@@ -34,7 +38,7 @@ const pageReducer: PageReducer = (state, action) => {
       const { boxShadows, currentIndex } = state;
       return {
         ...state,
-        boxShadows: imArr.update(boxShadows, currentIndex, boxShadow)
+        boxShadows: imArrUpdate(boxShadows, currentIndex, boxShadow)
       };
     }
     case ADD_SHADOW: {
@@ -48,7 +52,7 @@ const pageReducer: PageReducer = (state, action) => {
       return {
         ...state,
         currentIndex: _index,
-        boxShadows: imArr.insert(boxShadows, _index, _initValue)
+        boxShadows: imArrInsert(boxShadows, _index, _initValue)
       };
     }
     case REMOVE_SHADOW: {
@@ -62,7 +66,7 @@ const pageReducer: PageReducer = (state, action) => {
       return {
         ...state,
         currentIndex: _index,
-        boxShadows: imArr.remove(boxShadows, removeIndex)
+        boxShadows: imArrRemove(boxShadows, removeIndex)
       };
     }
     case UPDATE_CONFIG: {
