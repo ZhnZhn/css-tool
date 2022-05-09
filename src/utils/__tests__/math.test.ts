@@ -1,9 +1,7 @@
-import math from '../math';
-
-const {
+import {
   round10,
   toPercent
-} = math;
+} from '../math';
 
 describe('math', ()=>{
     test('round10 should return value by string args', ()=>{
