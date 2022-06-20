@@ -40,7 +40,7 @@ const InputNumber: FC<InputTextProps, false> = (props) => {
      id,
      value, 
      hKeyDown,
-     hInputChange
+     hInput
   ] = useInputValue<NumberType>(props, _getValue);     
   
   return (
@@ -53,8 +53,8 @@ const InputNumber: FC<InputTextProps, false> = (props) => {
       min={min}
       max={max}
       step={step}
-      //onChange={_hInputChange}
-      onInput={hInputChange}
+      //onChange={hInput} 
+      onInput={hInput}     
       onKeyDown={hKeyDown}
     />
   );

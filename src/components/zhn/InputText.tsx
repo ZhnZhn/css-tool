@@ -28,7 +28,7 @@ const InputText: FC<InputTextProps, false> = (props) => {
     id,
     value, 
     hKeyDown,
-    hInputChange
+    hInput
   ] = useInputValue<TextType>(props);
   
   return (
@@ -43,8 +43,8 @@ const InputText: FC<InputTextProps, false> = (props) => {
       spellCheck="false"
       translate="no"
       maxLength={25}
-      //onChange={_hInputChange}
-      onInput={hInputChange}
+      //onChange={hInput}    
+      onInput={hInput}  
       onKeyDown={hKeyDown}
     />
   );
