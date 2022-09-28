@@ -27,22 +27,27 @@ export declare function memo<T extends ComponentType<any>>(
 
 
 function assign(obj, props) {
-	for (let i in props) obj[i] = props[i];
+	for (const i in props) obj[i] = props[i];
 	return (obj);
 }
 
 function shallowDiffers(a, b) {
-	for (let i in a) if (i !== '__source' && !(i in b)) return true;
-	for (let i in b) if (i !== '__source' && a[i] !== b[i]) return true;
+	for (const i in a) if (i !== '__source' && !(i in b)) return true;
+	for (const i in b) if (i !== '__source' && a[i] !== b[i]) return true;
 	return false;
 }
 
 export default function memo<T>(c: T, comparer): T {
 	function shouldUpdate(nextProps) {
-		let ref = this.props.ref;
-		let updateRef = ref == nextProps.ref;
+		const ref = this.props.ref;
+		const updateRef = ref == nextProps.ref;
 		if (!updateRef && ref) {
-			ref.call ? ref(null) : (ref.current = null);
+			if (ref.call) {
+				ref(null)
+			} else {
+				ref.current = null
+			}
+			//ref.call ? ref(null) : (ref.current = null);
 		}
 
 		if (!comparer) {
