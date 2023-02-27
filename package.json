@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.21.0",
-    "preact": "^10.12.1",
+    "preact": "^10.13.0",
     "tinycolor2": "^1.4.2"
   },
   "jest": {
