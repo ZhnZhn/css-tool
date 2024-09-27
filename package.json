@@ -69,6 +69,6 @@
     }
   },
   "dependencies": {
-    "preact": "^10.24.0"
+    "preact": "^10.24.1"
   }
 }
