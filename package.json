@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.0",
-    "preact": "^10.25.3"
+    "preact": "^10.25.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
