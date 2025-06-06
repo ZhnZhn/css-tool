@@ -1,4 +1,4 @@
-import type { FC, CSSProperties } from '../types';
+import type { CSSProperties } from '../types';
 
 import InputText from '../zhn/InputText';
 import { 
@@ -14,12 +14,12 @@ export interface RowInputType2Props {
   onEnter?: (v: string) => void; 
 }
 
-const RowInputType2: FC<RowInputType2Props, false> = ({
+const RowInputType2 = ({
   styleInput,
   caption, 
   initValue,
   onEnter
-}) => (
+}: RowInputType2Props) => (
   <div className={CL_ROW}>
      {/*eslint-disable jsx-a11y/label-has-for*/}
      <label className={CL_CAPTION}>

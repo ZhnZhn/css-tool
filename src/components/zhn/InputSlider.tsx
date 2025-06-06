@@ -1,6 +1,5 @@
 import type { 
   CSSProperties,
-  FC,
   Ref,
   KeyboardEvent,
   MouseOrTouchEvent 
@@ -142,14 +141,14 @@ export interface InputSliderProps {
   onChange: (n: number) => void
 }
 
-const InputSlider: FC<InputSliderProps, false> = ({
+const InputSlider = ({
   innerRef,
   initialValue=4,
   step=1,
   min=0,
   max=20,
   onChange=_NOOP_FN
-}) => {
+}: InputSliderProps) => {
   const _refExp = useRefInit(() => {
     const arr = (''+step).split('.')
     return arr[1] ? -1 * arr[1].length : 0;

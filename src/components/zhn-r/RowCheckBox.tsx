@@ -1,4 +1,4 @@
-import type { FC, CSSProperties } from '../types';
+import type { CSSProperties } from '../types';
 import { useCallback } from '../uiApi';
 
 import SvgCheckBox from '../zhn/SvgCheckBox';
@@ -20,13 +20,13 @@ const S_ROW: CSSProperties = {
   marginTop: 6
 }
 
-const RowCheckBox: FC<RowCheckBoxProps, false> = ({
+const RowCheckBox = ({
   id,
   value,
   caption,  
   onCheck,
   onUnCheck
-}) => {
+}: RowCheckBoxProps) => {
   const _toggleValue = useCallback(()=>{
     if (value) { onUnCheck() }
     else { onCheck() }

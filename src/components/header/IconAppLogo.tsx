@@ -1,5 +1,3 @@
-import type { FC } from '../types';
-
 interface IconAppLogoProps {
   className?: string; 
   title: string;
@@ -25,10 +23,10 @@ const _crRect = (
   />
 );
 
-const IconAppLogo: FC<IconAppLogoProps, false> = ({ 
+const IconAppLogo = ({ 
   className, 
   title 
-}) => (
+}: IconAppLogoProps) => (
   <span
      className={className}
      title={title}

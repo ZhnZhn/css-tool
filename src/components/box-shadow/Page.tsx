@@ -1,5 +1,3 @@
-import type { FC } from '../types';
-
 import usePageState from './usePageState';
 
 import InputBox from './InputBox';
@@ -15,10 +13,10 @@ interface PageProps {
   isBox: boolean;
 }
 
-const Page: FC<PageProps, false> = ({ 
+const Page = ({ 
   isShadow, 
   isBox 
-}) => {
+}: PageProps) => {
   const [
     state,
     _updateShadows,

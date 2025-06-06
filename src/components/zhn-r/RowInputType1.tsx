@@ -1,4 +1,4 @@
-import type { CSSProperties, FC } from '../types';
+import type { CSSProperties } from '../types';
 import { 
   useCallback, 
   useRef 
@@ -42,14 +42,14 @@ const _crStepExp = (step: number) => {
 
 const _crNumberValue = (
   stepExp: number, 
-  value: number
-) => stepExp !== 0
-  ? round10(parseFloat(''+value), stepExp)
-  : value;
-
+  value: number | string
+) => stepExp === 0
+  ? parseFloat(''+value)
+  : round10(parseFloat(''+value), stepExp)
+  
 const _FN_NOOP = () => {}
 
-const RowInputType1: FC<RowInputType1Props, false> = ({
+const RowInputType1 = ({
   id,
   unit='px',     
   step=1,
@@ -60,7 +60,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
   initValue, 
   inputId,  
   onChange=_FN_NOOP
-}) => {
+}: RowInputType1Props) => {
   const _refInputNumber = useRef<InputType>(null)
   , _refSliderComp = useRef<InputType>()
   , _refStepExp = useRef(_crStepExp(step))
@@ -68,7 +68,7 @@ const RowInputType1: FC<RowInputType1Props, false> = ({
     _refInputNumber.current?.setValue(value)
     onChange(''+value)
   }, [onChange])
-  , _hChangeNumber = useCallback((value: number) => {    
+  , _hChangeNumber = useCallback((value: number | string) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
     if ( _value>=min && _value<=max ){      
       _refSliderComp.current?.setValue(_value)

@@ -1,4 +1,4 @@
-import type { FC, CSSProperties } from '../types';
+import type { CSSProperties } from '../types';
 
 export interface ColorProps {
   style: CSSProperties;
@@ -8,11 +8,11 @@ export interface ColorProps {
 
 const CL_BOX_COLOR = 'box-color box-shadow';
 
-const Color: FC<ColorProps, false> = ({ 
+const Color = ({ 
   style, 
   value,
   onClick 
-}) => {
+}: ColorProps) => {
   const _style = value
     ? { backgroundColor: value }
     : null;

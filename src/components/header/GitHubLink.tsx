@@ -1,16 +1,14 @@
-import type { FC } from '../types';
-
 interface GitHubLinkProps {
   className?: string;
   title?: string;
   href: string;  
 }
 
-const GitHubLink: FC<GitHubLinkProps, false> = ({ 
+const GitHubLink = ({ 
   className, 
   title, 
   href 
-}) => (
+}: GitHubLinkProps) => (
   <a
     className={className}
     title={title}

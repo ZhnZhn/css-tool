@@ -1,4 +1,7 @@
-import type { FC, CSSProperties } from "../types";
+import type { 
+  PropsWithChildren, 
+  CSSProperties 
+} from "../types";
 
 const S_BLOCK: CSSProperties = { display: 'block' };
 const S_NONE: CSSProperties = { display: 'none' };
@@ -8,17 +11,14 @@ export interface ShowHideProps {
   style?: CSSProperties;
 } 
 
-const ShowHide:FC<ShowHideProps> = ({
+const ShowHide = ({
   is,
   style,
   children
-}) => {
-   const _style = is ? S_BLOCK : S_NONE;  
-   return (
-    <div style={{...style, ..._style}}>
-      {children}
-    </div>
-   );
-};
+}: PropsWithChildren<ShowHideProps>) => (
+  <div style={{...style, ...(is ? S_BLOCK : S_NONE)}}>
+    {children}
+  </div>
+);
 
 export default ShowHide

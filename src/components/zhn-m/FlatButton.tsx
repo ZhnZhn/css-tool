@@ -1,4 +1,8 @@
-import type { CSSProperties, FC, MouseEvent } from '../types';
+import type { 
+  PropsWithChildren,
+  CSSProperties, 
+  MouseEvent 
+} from '../types';
 
 import { 
   useRef, 
@@ -29,13 +33,18 @@ export interface FlatButtonProps {
   onClick: (evt: MouseEvent) => void;  
 }
 
-const FlatButton: FC<FlatButtonProps> = ({
-  className, style, clDiv=CL_BT_DIV, 
-  isPrimary, title='', caption, accessKey,
+const FlatButton = ({
+  className, 
+  style, 
+  clDiv=CL_BT_DIV, 
+  isPrimary, 
+  title='', 
+  caption, 
+  accessKey,
   timeout=3000,
   onClick,
   children
-}) => {
+}: PropsWithChildren<FlatButtonProps>) => {
   const _refBt = useRef<HTMLButtonElement>(null)
   , _refTimeStamp = useRef<number>(0)  
   , _hClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {        

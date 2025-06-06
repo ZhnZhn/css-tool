@@ -1,4 +1,4 @@
-import type { CSSProperties, FC } from '../types';
+import type { CSSProperties } from '../types';
 
 interface AppLabelProps {
   className?: string;
@@ -6,11 +6,11 @@ interface AppLabelProps {
   caption: string; 
 }
 
-const AppLabel: FC<AppLabelProps, false> = ({ 
+const AppLabel = ({ 
   className, 
   style, 
   caption 
-}) => (
+}: AppLabelProps) => (
   <span className={className} style={style}>
     {caption}
   </span>

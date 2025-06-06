@@ -1,4 +1,4 @@
-import type { FC, CSSProperties } from '../types';
+import type { CSSProperties } from '../types';
 
 import { useCallback } from '../uiApi';
 import useKeyEnter from '../hooks/useKeyEnter';
@@ -12,9 +12,9 @@ interface SvgCheckedProps {
   stroke: string;
 }
 
-const SvgChecked: FC<SvgCheckedProps, false> = ({ 
+const SvgChecked = ({ 
   stroke 
-}) => (
+}: SvgCheckedProps) => (
   <path
      d="M 2,5 L 8,14 14,1"     
      stroke={stroke}
@@ -35,7 +35,7 @@ export interface SvgCheckBoxProps {
 
 const _fnNoop = () => {}
 
-const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({  
+const SvgCheckBox = ({  
   id,
   style,
   checkedRestStroke=C.INPUT_BLUE,
@@ -44,7 +44,7 @@ const SvgCheckBox: FC<SvgCheckBoxProps, false> = ({
   value,
   onCheck=_fnNoop,
   onUnCheck=_fnNoop
-}) => {
+}: SvgCheckBoxProps) => {
   const _hClick = useCallback(() => {
     const _setValue = value 
       ? onUnCheck

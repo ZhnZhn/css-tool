@@ -1,4 +1,7 @@
-import type { CSSProperties, FC } from '../types';
+import type { 
+  PropsWithChildren, 
+  CSSProperties
+} from '../types';
 
 interface CaptionInputProps {
   className?: string;   
@@ -21,10 +24,10 @@ const _crHotKeyIndex = (
   ? caption.toLowerCase().indexOf(hotKey)
   : -1;
 
-const CaptionWithHotKey: FC<CaptionWithHotKeyProps> = ({ 
+const CaptionWithHotKey = ({ 
   caption, 
   hotKey 
-}) => {
+}: CaptionWithHotKeyProps) => {
   const index = _crHotKeyIndex(caption, hotKey);
   if (index === -1) { return <>{caption}</>; }
 
@@ -40,23 +43,19 @@ const CaptionWithHotKey: FC<CaptionWithHotKeyProps> = ({
   );
 };
 
-const CaptionInput: FC<CaptionInputProps> = ({
+const CaptionInput = ({
   className,   
   caption, 
   hotKey,
   children
-}) => {
-  if (!caption) { return null; }
-
-  return (
-    <span className={className}>
-      <CaptionWithHotKey 
-        caption={caption}
-        hotKey={hotKey}        
-      />       
-      {children}
-    </span>
-  );  
-};
+}: PropsWithChildren<CaptionInputProps>) => caption ? (
+  <span className={className}>
+    <CaptionWithHotKey 
+      caption={caption}
+      hotKey={hotKey}        
+    />       
+    {children}
+  </span>
+) : null;  
 
 export default CaptionInput

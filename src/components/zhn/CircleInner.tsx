@@ -1,4 +1,4 @@
-import type { FC, CSSProperties } from "../types";
+import type { CSSProperties } from "../types";
 
 const S_CIRCLE_INNER: CSSProperties = {    
   position: 'absolute',
@@ -26,11 +26,11 @@ export interface CircleInnerProps {
   emberStyle?: CSSProperties;
 }
 
-const CircleInner: FC<CircleInnerProps, false> = ({ 
+const CircleInner = ({ 
    is,
    circleStyle,
    emberStyle
-}) => (
+}: CircleInnerProps) => (
   <div style={{...S_CIRCLE_INNER, ...circleStyle}}>
     {is
       ? <div style={{...S_CIRCLE_INNER_EL, ...emberStyle}} />

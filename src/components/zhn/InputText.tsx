@@ -1,7 +1,4 @@
-import type { 
-  FC, 
-  CSSProperties
-} from '../types';
+import type { CSSProperties } from '../types';
 import type { InputInnerRefType } from './useInputValue';
 
 import {
@@ -20,7 +17,7 @@ export interface InputTextProps {
   onEnter?: (value: string) => void;
 }
 
-const InputText: FC<InputTextProps, false> = (props) => {
+const InputText = (props: InputTextProps) => {
   const {        
     style    
   } = props

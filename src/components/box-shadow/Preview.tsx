@@ -1,4 +1,3 @@
-import type { FC } from '../types';
 import type { ShadowType, ConfigStyleType } from './types';
 
 import { toCssValue } from './helpers/fn';
@@ -15,12 +14,16 @@ const _crBoxShadowStyle = (boxShadows: ShadowType[]) => ({
   boxShadow: boxShadows.map(toCssValue).join(',')
 });
 
-const Preview: FC<PreviewProps, false> = ({ 
+const Preview = ({ 
   boxShadows=[], 
-  configStyle={} 
-}) => {
+  configStyle
+}: PreviewProps) => {
    const _style = _crBoxShadowStyle(boxShadows)
-   , { bgColor, boxColor, boxBorderRadius } = configStyle
+   , { 
+     bgColor, 
+     boxColor, 
+     boxBorderRadius 
+   } = configStyle || {}
    , _rootStyle = { backgroundColor: bgColor }
    , _boxStyle = {
         backgroundColor: boxColor,

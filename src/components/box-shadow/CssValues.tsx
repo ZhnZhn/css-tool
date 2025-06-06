@@ -1,4 +1,4 @@
-import type { CSSProperties, FC } from '../types';
+import type { CSSProperties } from '../types';
 import type { ShadowType } from './types';
 
 import CssValue from './CssValue';
@@ -65,7 +65,9 @@ const _renderValues = (props: CssValueProps) => {
   })
 };
 
-const CssValues: FC<CssValueProps, false> = props => (
+const CssValues = (
+  props: CssValueProps
+) => (
   <div className={CL_PAGE_SB_CSS}>
     <div className={CL_CSS_PROPERTY}>BOX-SHADOW:</div>
     {_renderValues(props)}

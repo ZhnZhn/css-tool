@@ -1,4 +1,7 @@
-import { CSSProperties, FC, IsNotShouldUpdate } from '../types';
+import { 
+  CSSProperties, 
+  IsNotShouldUpdate 
+} from '../types';
 import { ConfigStyleType } from './types';
 
 import { useCallback } from '../uiApi';
@@ -21,11 +24,11 @@ interface InputBoxProps {
   onEnter?: (pn: keyof ConfigStyleType, v: string) => void
 }
 
-const InputBox: FC<InputBoxProps, false> = ({
+const InputBox = ({
   isBox,
   configStyle,
   onEnter=_fnNoop
-}) => {
+}: InputBoxProps) => {
   /*eslint-disable react-hooks/exhaustive-deps */
   const _hEnter = useCallback((propName: keyof ConfigStyleType, value: string) => {
       onEnter(propName, value)

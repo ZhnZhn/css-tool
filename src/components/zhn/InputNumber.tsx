@@ -1,7 +1,4 @@
-import type { 
-  FC, 
-  CSSProperties
-} from '../types';
+import type { CSSProperties } from '../types';
 import type { InputInnerRefType } from './useInputValue';
  
 import { useCallback } from '../uiApi';
@@ -24,8 +21,7 @@ export interface InputTextProps {
   onEnter?: (value: string) => void;
 }
 
-
-const InputNumber: FC<InputTextProps, false> = (props) => {
+const InputNumber = (props: InputTextProps) => {
   const {  
     style,      
     step=1,

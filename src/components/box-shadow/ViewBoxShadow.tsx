@@ -1,4 +1,4 @@
-import type { FC, IsNotShouldUpdate } from '../types';
+import type { IsNotShouldUpdate } from '../types';
 import type { ShadowType, ConfigStyleType } from './types';
 
 import memo from '../memo';
@@ -15,11 +15,14 @@ interface ViewBoxShadowProps {
   onRemove: (index: number) => void;
 }
 
-const ViewBoxShadow: FC<ViewBoxShadowProps, false> = ({
-  boxShadows, currentIndex,
+const ViewBoxShadow = ({
+  boxShadows, 
+  currentIndex,
   configStyle,  
-  onAdd, onEdit, onRemove
-}) => (
+  onAdd, 
+  onEdit, 
+  onRemove
+}: ViewBoxShadowProps) => (
   <>
     <Preview
        boxShadows={boxShadows}

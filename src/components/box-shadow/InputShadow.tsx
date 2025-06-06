@@ -1,5 +1,4 @@
 import type { 
-  FC, 
   IsNotShouldUpdate,
   TinycolorInstance 
 } from '../types';
@@ -69,13 +68,13 @@ const _useChangeValue: UseChangeValue = (fn, propName, value) => useCallback(
 
 const _fnNoop = () => {}
 
-const InputShadow: FC<InputShadowProps, false> = ({
+const InputShadow = ({
   id,
   isShadow,
   isInset,
   initValue,
   onChange=_fnNoop
-}) => {
+}: InputShadowProps) => {
   const _refInput = useRef<Partial<ShadowType>>({})
   /*eslint-disable react-hooks/exhaustive-deps */
   , _changeInput = useCallback((propName: keyof ShadowType, value: any) => {
@@ -102,9 +101,12 @@ const InputShadow: FC<InputShadowProps, false> = ({
   if (!isShadow) {return <div/>;}
 
   const {
-    vLength, gLength,
-    blurR, spreadR,
-    opacity, color
+    vLength, 
+    gLength,
+    blurR, 
+    spreadR,
+    opacity, 
+    color
   } = initValue;
   return (
     <>

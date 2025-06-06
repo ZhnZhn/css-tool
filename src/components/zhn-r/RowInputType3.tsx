@@ -1,7 +1,7 @@
 import type { 
   CSSProperties, 
-  FC,
   MutableRef,
+  Dispatch,
   StateUpdater,
   TinycolorInstance,
   HSLA 
@@ -59,8 +59,8 @@ const _fChangeItem = (
   propName: keyof HSLA,  
   refHsl: MutableRef<HSLA>,
   onEnter: (value: string, color: TinycolorInstance) => void, 
-  setValue: StateUpdater<string>
-  ) => (value: number) => {
+  setValue: Dispatch<StateUpdater<string>>
+  ) => (value: number | string) => {
   const _hsl = getRefValue(refHsl);
     if (_hsl) {  
     _hsl[propName] = value    
@@ -74,14 +74,14 @@ const _fChangeItem = (
 }
 
  
-const RowInputType3: FC<RowInputType3Props, false> = ({   
+const RowInputType3 = ({   
   id,
   styleInput,
   caption,  
   inputId,
   initValue,
   onEnter=_FN_NOOP
-}) => {
+}: RowInputType3Props) => {
   const _refHex = useRef<InputType>(null) 
   , _refH = useRef<InputType>(null)
   , _refS = useRef<InputType>(null)

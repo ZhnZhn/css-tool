@@ -1,4 +1,3 @@
-import type { FC } from '../types';
 import type { ShadowType } from './types';
 
 import { toRgba } from './helpers/fn';
@@ -9,7 +8,10 @@ interface CssValueProps {
   sufix: string;
 }
 
-const CssValue: FC<CssValueProps, false> = ({ item, sufix }) => {
+const CssValue = ({ 
+  item, 
+  sufix 
+}: CssValueProps) => {
  const { 
    isInset,
    gLength, vLength,

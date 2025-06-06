@@ -1,4 +1,4 @@
-import type { FC, MouseEvent } from '../types'
+import type { MouseEvent } from '../types'
 
 import FlatButton from '../zhn-m/FlatButton';
 import IconAppLogo from './IconAppLogo';
@@ -12,10 +12,10 @@ interface HeaderBarProps {
 
 const CAPTION = "CSS Tool v0.2.0";
 
-const HeaderBar: FC<HeaderBarProps, false> = ({
+const HeaderBar = ({
    onShadow, 
    onBox 
-}) => (
+}: HeaderBarProps) => (
  <div className="header" >
     <IconAppLogo
        className="header__icon-app"

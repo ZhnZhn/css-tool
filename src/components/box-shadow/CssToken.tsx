@@ -1,5 +1,3 @@
-import type { FC } from '../types';
-
 const CL_CSS_TOKEN = "css-token";
 
 interface CssTokenProps {
@@ -13,10 +11,10 @@ const _onClick = (name: string) => {
   
   /* eslint-disable jsx-a11y/no-static-element-interactions */ 
   /* eslint-disable jsx-a11y/click-events-have-key-events */ 
-  const CssToken: FC<CssTokenProps, false> = ({ 
+  const CssToken = ({ 
     title, 
     id 
-  }) => ( 
+  }: CssTokenProps) => ( 
     <span 
       tabIndex={-1}
       className={CL_CSS_TOKEN}    
