@@ -1,12 +1,11 @@
 import type { 
   CSSProperties, 
-  MutableRef,
-  Dispatch,
-  StateUpdater,
+  Ref,
+  DispatchStateUpdater,  
   TinycolorInstance,
   HSLA 
 } from '../types';
-import { 
+import type { 
   InputType
 } from '../zhn/useInputValue';
 
@@ -17,9 +16,9 @@ import {
   useMemo,
   getRefValue 
 } from '../uiApi';
+
 import useRefInit from '../hooks/useRefInit';
 import useToggle from '../hooks/useToggle';
-
 
 import InputText from '../zhn/InputText';
 import Color from '../zhn/Color';
@@ -57,14 +56,14 @@ const _FN_NOOP = () => {};
 
 const _fChangeItem = (  
   propName: keyof HSLA,  
-  refHsl: MutableRef<HSLA>,
+  refHsl: Ref<HSLA | undefined>,
   onEnter: (value: string, color: TinycolorInstance) => void, 
-  setValue: Dispatch<StateUpdater<string>>
+  setValue: DispatchStateUpdater<string>
   ) => (value: number | string) => {
   const _hsl = getRefValue(refHsl);
     if (_hsl) {  
-    _hsl[propName] = value    
-    const _color = tinycolor(_hsl) as TinycolorInstance;
+    _hsl[propName] = value        
+    const _color = tinycolor(_hsl);
     if (_color && _color.isValid()){
       const _value = _color.toHexString()      
       onEnter(_value, _color)
@@ -73,7 +72,8 @@ const _fChangeItem = (
   }
 }
 
- 
+type InputTypeOrNull = InputType | null
+
 const RowInputType3 = ({   
   id,
   styleInput,
@@ -82,12 +82,12 @@ const RowInputType3 = ({
   initValue,
   onEnter=_FN_NOOP
 }: RowInputType3Props) => {
-  const _refHex = useRef<InputType>(null) 
-  , _refH = useRef<InputType>(null)
-  , _refS = useRef<InputType>(null)
-  , _refL = useRef<InputType>(null)
-  , _refHsl = useRefInit<HSLA>(() => {
-    const _color = tinycolor(initValue) as TinycolorInstance;    
+  const _refHex = useRef<InputTypeOrNull>(null) 
+  , _refH = useRef<InputTypeOrNull>(null)
+  , _refS = useRef<InputTypeOrNull>(null)
+  , _refL = useRef<InputTypeOrNull>(null)
+  , _refHsl = useRefInit<HSLA>(() => {    
+    const _color = tinycolor(initValue);    
     return _color.toHsl();
   })
   , [
@@ -99,8 +99,8 @@ const RowInputType3 = ({
     setValue
   ] = useState(initValue) 
   /*eslint-disable react-hooks/exhaustive-deps */ 
-  , _hEnter = useMemo(() => (value: string) => {
-    const color = tinycolor(value) as TinycolorInstance;     
+  , _hEnter = useMemo(() => (value: string) => {    
+     const color = tinycolor(value);     
      if (color && color.isValid()){
        const hsl = color.toHsl();
        getRefValue(_refH)?.setValue(hsl.h)
@@ -108,7 +108,7 @@ const RowInputType3 = ({
        getRefValue(_refL)?.setValue(hsl.l)       
        _refHsl.current = hsl       
        onEnter(value, color)
-       setValue( color.toHexString())
+       setValue(color.toHexString())
      }
   }, [onEnter])
   // _refHsl
@@ -125,7 +125,7 @@ const RowInputType3 = ({
   , _hEnterHslColor = useMemo(() => () => {
        _refHex.current?.setValue(value)
   }, [value])  
-  , { h, s, l } = useMemo(() => _refHsl.current, [])
+  , { h, s, l } = useMemo(() => _refHsl.current, []) || {}
   // _refHsl.current
   /*eslint-enable react-hooks/exhaustive-deps */ 
 

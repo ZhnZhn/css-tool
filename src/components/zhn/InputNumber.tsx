@@ -12,7 +12,7 @@ type NumberType = number | string
 export interface InputTextProps {
   style?: CSSProperties;  
   id?: string;
-  initialValue: NumberType;  
+  initialValue?: NumberType;  
   step?: number;
   min: number;
   max: number;

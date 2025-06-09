@@ -3,6 +3,7 @@ import type {
   KeyboardEvent,
   ChangeEvent 
 } from '../types';
+
 import { 
   useRef,
   useState,
@@ -22,14 +23,14 @@ export type InputInnerRefType = Ref<InputType>
 type PropsType<T> = {
   innerRef?: InputInnerRefType,
   id?: string,
-  initialValue: T,
+  initialValue?: T,
   onEnter?: (value: string) => void,
   onChange?: (value: T) => void
 }
 
 type UseInputTupleType<T> = [
   id: string,
-  value: T,
+  value: T | undefined,
   hKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void,
   hInputChange: (event: ChangeEvent<HTMLInputElement>) => void
 ]

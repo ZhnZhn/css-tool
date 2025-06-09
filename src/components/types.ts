@@ -1,3 +1,10 @@
+import {
+  Dispatch,
+  SetStateAction
+} from 'react';
+
+export type DispatchStateUpdater<T> = Dispatch<SetStateAction<T>>
+
 export type { 
   CSSProperties, 
   KeyboardEvent, 
@@ -8,13 +15,6 @@ export type {
 } from 'react';
 
 export type MouseOrTouchEvent = MouseEvent | TouchEvent
-
-export type { RefObject } from 'preact';
-export type { 
-  MutableRef, 
-  Dispatch,
-  StateUpdater 
-} from 'preact/hooks';
 
 export type { 
   TinycolorInstance,
