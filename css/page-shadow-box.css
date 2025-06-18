@@ -4,7 +4,7 @@
 .page-sb__inputs {
   display: inline-block;
   width: 25%;
-  min-width: 325px;
+  min-width: 300px;
   font-weight: bold;
 }
 .page-sb__views {
