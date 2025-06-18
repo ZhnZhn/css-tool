@@ -14,6 +14,9 @@ import  memo  from '../memo';
 import RowInputType1 from '../zhn-r/RowInputType1';
 import RowInputType3 from '../zhn-r/RowInputType3';
 import RowCheckBox from '../zhn-r/RowCheckBox';
+import InputSwitch from '../zhn/InpitSwitch';
+
+import { CL_ROW } from '../zhn-r/style';
 
 interface InputShadowProps {
   id: string;
@@ -146,11 +149,11 @@ const InputShadow = ({
          inputId={id}
          initValue={opacity}
          onChange={(value) => _changeInput('opacity', value)}
-      />
-      <RowCheckBox
-        id="inset"
-        caption="Inset"        
-        value={isInset}
+      />                  
+      <InputSwitch 
+        initialValue={isInset}
+        className={CL_ROW}
+        caption="Inset"
         onCheck={_onChechInset}
         onUnCheck={_onUnCheckInset}
       />
