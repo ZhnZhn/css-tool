@@ -1,16 +1,7 @@
-import { Ref } from './types';
-/* 
-export { 
-  useState, 
-  useCallback, 
-  useReducer, 
-  useEffect, 
-  useRef, 
-  useImperativeHandle 
-} from 'preact/hooks/dist/hooks'
-*/
+import { RefObject } from './types';
 
 export { 
+  useId,
   useState, 
   useCallback,
   useMemo, 
@@ -20,6 +11,6 @@ export {
   useImperativeHandle 
 } from 'preact/hooks';
 
-export function getRefValue<T> (ref: Ref<T>) {
+export function getRefValue<T> (ref: RefObject<T>) {
   return ref.current;
 }

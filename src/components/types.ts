@@ -11,7 +11,8 @@ export type {
   MouseEvent,
   ChangeEvent,
   PropsWithChildren,
-  Ref
+  Ref,
+  RefObject
 } from 'react';
 
 export type MouseOrTouchEvent = MouseEvent | TouchEvent
