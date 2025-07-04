@@ -1,4 +1,5 @@
 import type { 
+  CSSProperties,
   IsNotShouldUpdate,
   TinycolorInstance 
 } from '../types';
@@ -13,10 +14,14 @@ import  memo  from '../memo';
 
 import RowInputType1 from '../zhn-r/RowInputType1';
 import RowInputType3 from '../zhn-r/RowInputType3';
-import RowCheckBox from '../zhn-r/RowCheckBox';
 import InputSwitch from '../zhn/InpitSwitch';
 
 import { CL_ROW } from '../zhn-r/style';
+
+const S_INPUT_SWITCH: CSSProperties = {
+  flexDirection: 'row',
+  width: 'fit-content'
+};
 
 interface InputShadowProps {
   id: string;
@@ -153,6 +158,7 @@ const InputShadow = ({
       <InputSwitch 
         initialValue={isInset}
         className={CL_ROW}
+        style={S_INPUT_SWITCH}
         caption="Inset"
         onCheck={_onChechInset}
         onUnCheck={_onUnCheckInset}
