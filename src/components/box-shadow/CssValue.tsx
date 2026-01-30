@@ -8,6 +8,8 @@ interface CssValueProps {
   sufix: string;
 }
 
+const _crTokenTitle = (s: number) => `${s}px`;
+
 const CssValue = ({ 
   item, 
   sufix 
@@ -22,19 +24,19 @@ const CssValue = ({
   <>
     {isInset && <CssToken title="inset" id="inset"/>}                      
     <CssToken 
-      title={gLength + 'px'}
+      title={_crTokenTitle(gLength)}
       id="horizontal-length"             
     />            
     <CssToken 
-      title={vLength + 'px'}
+      title={_crTokenTitle(vLength)}
       id="vertical-length"             
     />            
     <CssToken 
-      title={blurR + 'px'}
+      title={_crTokenTitle(blurR)}
       id="blur-radius"
     />            
     <CssToken 
-      title={spreadR + 'px'}
+      title={_crTokenTitle(spreadR)}
       id="spread-radius"             
     />            
     <CssToken 
