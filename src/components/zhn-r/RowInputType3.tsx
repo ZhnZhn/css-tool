@@ -1,6 +1,5 @@
 import type { 
   CSSProperties, 
-  Ref,
   DispatchStateUpdater,  
   TinycolorInstance,
   HSLA 
@@ -31,6 +30,7 @@ import {
   S_TEXT,
   S_COLOR
 } from './style';
+import type { RefObject } from 'preact';
 
 const S_HSL: CSSProperties = { 
   paddingTop: 12,
@@ -56,13 +56,13 @@ const _FN_NOOP = () => {};
 
 const _fChangeItem = (  
   propName: keyof HSLA,  
-  refHsl: Ref<HSLA | undefined>,
+  refHsl: RefObject<HSLA | null>,
   onEnter: (value: string, color: TinycolorInstance) => void, 
   setValue: DispatchStateUpdater<string>
   ) => (value: number | string) => {
   const _hsl = getRefValue(refHsl);
     if (_hsl) {  
-    _hsl[propName] = value        
+    _hsl[propName] = parseInt('' + value, 10)        
     const _color = tinycolor(_hsl);
     if (_color && _color.isValid()){
       const _value = _color.toHexString()      
@@ -130,8 +130,7 @@ const RowInputType3 = ({
   /*eslint-enable react-hooks/exhaustive-deps */ 
 
   return (
-   <div className={CL_ROW}>
-      {/*eslint-disable jsx-a11y/label-has-for*/}
+   <div className={CL_ROW}>      
       <label className={CL_CAPTION}>
         <span>{caption}</span>
         <InputText
@@ -147,8 +146,7 @@ const RowInputType3 = ({
            value={value}
            onClick={toggleIsHsl}
          />
-      </label>
-      {/*eslint-enable jsx-a11y/label-has-for*/}
+      </label>      
       <ShowHide is={isHsl}>
         <div style={S_HSL}>
          <span style={S_HSL_CAPTION}>HSL</span>

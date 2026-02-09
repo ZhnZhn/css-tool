@@ -26,6 +26,7 @@ const HeaderBar = ({
       className="header__label-app"
       caption={CAPTION}
     />
+    {/*eslint-disable jsx-a11y/no-access-key*/}
     <FlatButton
       caption="Box"
       title="Click to toggle css box inputs"
@@ -40,6 +41,7 @@ const HeaderBar = ({
       timeout={0}
       onClick={onShadow}
     />
+    {/*eslint-enable jsx-a11y/no-access-key*/}
     <GitHubLink
       className="header__github-link"
       title="GitHub Repository"

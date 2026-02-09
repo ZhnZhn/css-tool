@@ -5,18 +5,15 @@ import InputShadow from './InputShadow';
 import ViewBoxShadow from './ViewBoxShadow';
 
 const CL_PAGE = "page-sb"
-, CL_INPUTS = "page-sb__inputs"
-, CL_VIEWS = "page-sb__views";
+, CL_INPUTS = `${CL_PAGE}__inputs`
+, CL_VIEWS = `${CL_PAGE}__views`;
 
 interface PageProps {
   isShadow: boolean; 
   isBox: boolean;
 }
 
-const Page = ({ 
-  isShadow, 
-  isBox 
-}: PageProps) => {
+const Page = (props: PageProps) => {
   const [
     state,
     _updateShadows,
@@ -41,14 +38,14 @@ const Page = ({
       <div className={CL_INPUTS}>
         <InputBox
           key="input-box"
-          isBox={isBox}
+          isBox={props.isBox}
           configStyle={configStyle}
           onEnter={_updateConfig}
         />
         <InputShadow
           key="input-shadow"
           id={id}
-          isShadow={isShadow}
+          isShadow={props.isShadow}
           isInset={isInset}
           initValue={_currentValue}
           onChange={_updateShadows}

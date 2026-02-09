@@ -1,7 +1,7 @@
 
 type Round10Type = (
   v: number | string, 
-  exp: number | string | null 
+  exp: number | string | null | undefined
 ) => number
 type ToPercentType = (
   value: number, 
@@ -12,7 +12,7 @@ type ToPercentType = (
 const _isNaN = Number.isNaN || isNaN;
 
 export const round10: Round10Type = (value, exp) => {
-  if (exp === null) {
+  if (exp == null) {
     return NaN;
   }
   value = +value;

@@ -11,16 +11,13 @@ const _onClick = (name: string) => {
   
   /* eslint-disable jsx-a11y/no-static-element-interactions */ 
   /* eslint-disable jsx-a11y/click-events-have-key-events */ 
-  const CssToken = ({ 
-    title, 
-    id 
-  }: CssTokenProps) => ( 
+  const CssToken = (props: CssTokenProps) => ( 
     <span 
       tabIndex={-1}
       className={CL_CSS_TOKEN}    
-      onClick={() => _onClick(id)}
+      onClick={() => _onClick(props.id)}
     >
-       {title}
+       {props.title}
     </span>
   )
   /* eslint-enable jsx-a11y/no-static-element-interactions */ 

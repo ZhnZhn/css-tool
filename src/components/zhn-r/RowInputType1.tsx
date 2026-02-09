@@ -62,7 +62,7 @@ const RowInputType1 = ({
   onChange=_FN_NOOP
 }: RowInputType1Props) => {
   const _refInputNumber = useRef<InputType>(null)
-  , _refSliderComp = useRef<InputType>()
+  , _refSliderComp = useRef<InputType>(null)
   , _refStepExp = useRef(_crStepExp(step))
   , _hChangeSlider = useCallback((value: number) => {
     _refInputNumber.current?.setValue(value)
@@ -79,8 +79,7 @@ const RowInputType1 = ({
 
   
   return (
-    <div className={CL_ROW}>
-        {/*eslint-disable jsx-a11y/label-has-for*/}
+    <div className={CL_ROW}>        
         <label className={CL_CAPTION}>
           <span>{caption}</span>
           <span style={S_RIGHT}>{unit}</span>
@@ -96,8 +95,7 @@ const RowInputType1 = ({
              onChange={_hChangeNumber}
              onEnter={toggleIsShowSlider}
           />
-        </label>
-        {/*eslint-enable jsx-a11y/label-has-for*/}
+        </label>        
         <ShowHide is={isShowSlider}>
           <InputSlider
              key={`sl-${inputId}`}

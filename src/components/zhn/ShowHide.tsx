@@ -11,13 +11,9 @@ export interface ShowHideProps {
   style?: CSSProperties;
 } 
 
-const ShowHide = ({
-  is,
-  style,
-  children
-}: PropsWithChildren<ShowHideProps>) => (
-  <div style={{...style, ...(is ? S_BLOCK : S_NONE)}}>
-    {children}
+const ShowHide = (props: PropsWithChildren<ShowHideProps>) => (
+  <div style={{...props.style, ...(props.is ? S_BLOCK : S_NONE)}}>
+    {props.children}
   </div>
 );
 

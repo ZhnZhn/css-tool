@@ -16,7 +16,7 @@ import crId from '../../utils/crId';
 export const CL_INPUT = 'input-text box-shadow'
 
 export type InputType = {
-  setValue: (initValue: any) => void
+  setValue: (initValue: unknown) => void
 }
 export type InputInnerRefType = Ref<InputType>
 

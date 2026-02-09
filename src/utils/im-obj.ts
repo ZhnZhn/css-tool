@@ -2,7 +2,7 @@
 type ImObjUpdateFn = <T>(
   obj: T, 
   propName: keyof T, 
-  propValue: any
+  propValue: T[keyof T]
 ) => T
 
 export const imObjUpdate: ImObjUpdateFn = (

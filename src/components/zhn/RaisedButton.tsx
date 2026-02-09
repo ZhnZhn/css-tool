@@ -8,18 +8,15 @@ export interface RaisedButtonProps {
   onClick?: () => void
 }
 
-const RaisedButton = ({
-  caption,
-  onClick
-}: RaisedButtonProps) => (
+const RaisedButton = (props: RaisedButtonProps) => (
   <div className={CL_WRAPPER_BT_RAISED}>
     <button
       className={CL_BT_RAISED}
-      onClick={onClick}
+      onClick={props.onClick}
     >
       <div className={CL_BT_RAISED_DIV}>
         <span className={CL_BT_RAISED_CAPTION}>
-          {caption}
+          {props.caption}
         </span>
       </div>
     </button>

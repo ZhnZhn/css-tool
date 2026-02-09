@@ -69,7 +69,8 @@ const FlatButton = ({
   , _title = _accessKey
        ? `${title} [${accessKey}]`
        : title;
-  return (
+  /*eslint-disable jsx-a11y/no-access-key*/
+  return (    
     <button
       ref = {_refBt}      
       className={_className}
@@ -79,6 +80,7 @@ const FlatButton = ({
       title={_title}
       onClick={_hClick}
     >
+    {/*eslint-enable jsx-a11y/no-access-key*/}  
       <div className={clDiv}>
         <CaptionInput
           className={CL_BT_SPAN}

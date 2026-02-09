@@ -5,11 +5,11 @@ const mathMin = Math.min
 , mathAbs = Math.abs;
 
 export const parseIntFromHex = (
-  val: any
-) => parseInt(val, 16)
+  val: unknown
+) => parseInt('' + val, 16)
 
 export const convertHexToDecimal = (
-  h: any
+  h: unknown
 ) => parseIntFromHex(h) / 255
 
 // Check to see if string passed in is a percentage

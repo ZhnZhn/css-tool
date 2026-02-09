@@ -8,8 +8,7 @@ import { HAS_TOUCH_EVENTS  } from '../has';
 const [
   EVENT_NAME_MOVE,
   EVENT_NAME_UP
-]: [keyof DocumentEventMap, keyof DocumentEventMap] 
-  = HAS_TOUCH_EVENTS 
+]: [string, string] = HAS_TOUCH_EVENTS 
    ? ['touchmove', 'touchend']
    : ['mousemove', 'mouseup'];
 
@@ -18,7 +17,7 @@ const useDragMouseDown = (
 ): [ boolean, (evt: MouseOrTouchEvent) => void ] => {
     const [isDragged, setDraggedTrue, setDraggedFalse] = useBool(false)
     , _refDragRunning = useRef(false)
-    , _hDragMouseMove = (evt: MouseOrTouchEvent) => {
+    , _hDragMouseMove = (evt: MouseOrTouchEvent) => {    
       if (getRefValue(_refDragRunning)) {
         return;
       }

@@ -10,16 +10,15 @@ interface CssValueProps {
 
 const _crTokenTitle = (s: number) => `${s}px`;
 
-const CssValue = ({ 
-  item, 
-  sufix 
-}: CssValueProps) => {
+const CssValue = (props: CssValueProps) => {
  const { 
    isInset,
-   gLength, vLength,
-   blurR, spreadR,
+   gLength, 
+   vLength,
+   blurR, 
+   spreadR,
    opacity
- } = item;   
+ } = props.item;   
  return (
   <>
     {isInset && <CssToken title="inset" id="inset"/>}                      
@@ -40,11 +39,11 @@ const CssValue = ({
       id="spread-radius"             
     />            
     <CssToken 
-      title={toRgba(item)}
+      title={toRgba(props.item)}
       id="shadow-color"             
     />            
     <CssToken 
-      title={`${opacity})${sufix}`}
+      title={`${opacity})${props.sufix}`}
       id="opacity"             
     />                       
   </>

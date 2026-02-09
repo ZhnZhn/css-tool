@@ -19,8 +19,8 @@ import {
 
 type PageReducer = ReducerType<PageStateType, PageActionType>
 
-const _isNumber = (n: any): n is number => typeof n === 'number'; 
-const _isStr = (str: any): str is string => typeof str === 'string'; 
+const _isNumber = (n: unknown): n is number => typeof n === 'number'; 
+const _isStr = (str: unknown): str is string => typeof str === 'string'; 
 
 const pageReducer: PageReducer = (state, action) => {
   switch(action.type){

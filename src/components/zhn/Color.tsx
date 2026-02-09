@@ -2,25 +2,22 @@ import type { CSSProperties } from '../types';
 
 export interface ColorProps {
   style: CSSProperties;
-  value: string;
+  value?: string;
   onClick?: () => void;
 }
 
 const CL_BOX_COLOR = 'box-color box-shadow';
 
-const Color = ({ 
-  style, 
-  value,
-  onClick 
-}: ColorProps) => {
-  const _style = value
-    ? { backgroundColor: value }
+const Color = (props: ColorProps) => {
+  const _style = props.value
+    ? { backgroundColor: props.value }
     : null;
   return (
     <button       
+      type="button"
       className={CL_BOX_COLOR} 
-      style={{...style, ..._style}} 
-      onClick={onClick}
+      style={{...props.style, ..._style}} 
+      onClick={props.onClick}
     />
   );
 }

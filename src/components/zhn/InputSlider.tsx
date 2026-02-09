@@ -2,7 +2,9 @@ import type {
   CSSProperties,
   Ref,
   KeyboardEvent,
-  MouseOrTouchEvent 
+  MouseOrTouchEvent,
+  MouseEvent,
+  TouchEvent 
 } from '../types';
 
 import { 
@@ -95,8 +97,7 @@ const S_ROOT: CSSProperties = {
   border: '1px solid #4caf50'
 };
 
-// eslint-disable-next-line
-const _NOOP_FN = (n: number) => {}
+const _NOOP_FN = () => {}
 , _checkValueInMinMax = (
   min: number, 
   max: number, 
@@ -130,10 +131,9 @@ const _NOOP_FN = (n: number) => {}
 type InputType = {
   setValue: (value: number) => void
 }
-type InputInnerRefType = Ref<InputType>
 
 export interface InputSliderProps {
-  innerRef?: InputInnerRefType;
+  innerRef?: Ref<InputType | null>;  
   initialValue?: number;
   step?: number;
   min?: number;

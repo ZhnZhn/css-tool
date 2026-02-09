@@ -22,7 +22,7 @@ export type PageActionType = {
   boxShadow?: ShadowType;
 
   propName?: keyof ConfigStyleType; 
-  value?: any;
+  value?: unknown;
 
   fromIndex?: number;
   editIndex?: number;

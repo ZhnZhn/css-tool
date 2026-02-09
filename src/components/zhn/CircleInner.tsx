@@ -26,14 +26,10 @@ export interface CircleInnerProps {
   emberStyle?: CSSProperties;
 }
 
-const CircleInner = ({ 
-   is,
-   circleStyle,
-   emberStyle
-}: CircleInnerProps) => (
-  <div style={{...S_CIRCLE_INNER, ...circleStyle}}>
-    {is
-      ? <div style={{...S_CIRCLE_INNER_EL, ...emberStyle}} />
+const CircleInner = (props: CircleInnerProps) => (
+  <div style={{...S_CIRCLE_INNER, ...props.circleStyle}}>
+    {props.is
+      ? <div style={{...S_CIRCLE_INNER_EL, ...props.emberStyle}} />
       : null
     }    
   </div>

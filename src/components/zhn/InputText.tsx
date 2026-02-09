@@ -18,10 +18,7 @@ export interface InputTextProps {
 }
 
 const InputText = (props: InputTextProps) => {
-  const {        
-    style    
-  } = props
-  , [
+  const [
     id,
     value, 
     hKeyDown,
@@ -33,7 +30,7 @@ const InputText = (props: InputTextProps) => {
       type="text"
       id={id}      
       className={CL_INPUT}
-      style={style}
+      style={props.style}
       value={value}
       autoCorrect="off"
       autoCapitalize="off"

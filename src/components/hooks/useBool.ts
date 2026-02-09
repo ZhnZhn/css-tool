@@ -1,6 +1,6 @@
 import { useState, useMemo } from '../uiApi';
 
-const useBool = (initialValue: any): [
+const useBool = (initialValue: unknown): [
   boolean, 
   () => void, 
   () => void

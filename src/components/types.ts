@@ -1,6 +1,8 @@
-import {
+import type {
   Dispatch,
-  SetStateAction
+  SetStateAction,
+  MouseEvent,
+  TouchEvent
 } from 'react';
 
 export type DispatchStateUpdater<T> = Dispatch<SetStateAction<T>>
@@ -9,6 +11,7 @@ export type {
   CSSProperties, 
   KeyboardEvent, 
   MouseEvent,
+  TouchEvent,
   ChangeEvent,
   PropsWithChildren,
   Ref,

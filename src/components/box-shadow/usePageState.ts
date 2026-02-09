@@ -21,7 +21,7 @@ import pageReducer from './pageReducer';
 
 type Handlers = [
   (boxShadow: ShadowType) => void,
-  (propName: keyof ConfigStyleType, value: any) => void,
+  (propName: keyof ConfigStyleType, value: unknown) => void,
   (fromIndex: number) => void,
   (editIndex: number) => void, 
   (removeIndex: number) => void
@@ -42,7 +42,7 @@ const usePageState = (): UsePageStateType => {
           type: UPDATE_SHADOWS, 
           boxShadow
         }),
-        (propName: keyof ConfigStyleType, value: any) => dispatch({
+        (propName: keyof ConfigStyleType, value: unknown) => dispatch({
           type: UPDATE_CONFIG, 
           propName, 
           value

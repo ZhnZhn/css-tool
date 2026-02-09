@@ -28,7 +28,7 @@ interface InputShadowProps {
   isShadow: boolean;
   isInset: boolean;
   initValue: ShadowType;
-  onChange? : (v: any) => void
+  onChange? : (v: Partial<ShadowType>) => void
 }
 
 type CrIdType = {
@@ -62,14 +62,18 @@ const INPUT_ROWS = [
 }));
 
 type FnChangeInputType = {
-  (propName: keyof ShadowType, value: any): void
+  (propName: keyof ShadowType, value: unknown): void
 }
 type UseChangeValue = {
-  (fn: FnChangeInputType, propName: keyof ShadowType, value: any ): () => void
+  (fn: FnChangeInputType, propName: keyof ShadowType, value: unknown): () => void
 }
 
 /*eslint-disable react-hooks/exhaustive-deps */
-const _useChangeValue: UseChangeValue = (fn, propName, value) => useCallback(
+const useChangeValue: UseChangeValue = (
+  fn, 
+  propName, 
+  value
+  ) => useCallback(
   fn.bind(null, propName, value), []
 );
 /*eslint-enable react-hooks/exhaustive-deps */  
@@ -88,16 +92,15 @@ const InputShadow = ({
   , _changeInput = useCallback((propName: keyof ShadowType, value: any) => {
       _refInput.current[propName] = value
       onChange(_refInput.current)
-    }, [])
- //, _enterColor = useCallback((value: string, color: tinycolor.Instance) => {
-   , _enterColor = useCallback((value: string, color: TinycolorInstance) => {     
+    }, []) 
+   , _enterColor = useCallback((_value: string, color: TinycolorInstance) => {     
       _refInput.current.color = color.toHexString()
       onChange(_refInput.current)
    }, [])
   //onChange 
  /*eslint-enable react-hooks/exhaustive-deps */  
-, _onChechInset = _useChangeValue(_changeInput, 'isInset', true)
-, _onUnCheckInset = _useChangeValue(_changeInput, 'isInset', false)
+, _onChechInset = useChangeValue(_changeInput, 'isInset', true)
+, _onUnCheckInset = useChangeValue(_changeInput, 'isInset', false)
 
  /*eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {

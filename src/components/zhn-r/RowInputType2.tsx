@@ -20,8 +20,7 @@ const RowInputType2 = ({
   initValue,
   onEnter
 }: RowInputType2Props) => (
-  <div className={CL_ROW}>
-     {/*eslint-disable jsx-a11y/label-has-for*/}
+  <div className={CL_ROW}>     
      <label className={CL_CAPTION}>
        <span>{caption}</span>
        <InputText
@@ -29,8 +28,7 @@ const RowInputType2 = ({
          initialValue={initValue}
          onEnter={onEnter}
         />
-     </label>
-     {/*eslint-enable jsx-a11y/label-has-for*/}
+     </label>     
   </div>
 );
 
