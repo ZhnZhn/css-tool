@@ -1,3 +1,8 @@
+import {
+   isStr,
+   isObj
+} from "../utils/isTypeFn";
+
 import { 
   stringInputToObject,
   isValidCSSUnit,
@@ -25,10 +30,10 @@ function inputToRGB(color) {
    , l = null
    , ok = false
    , format = false;   
-   if (typeof color == "string") {
+   if (isStr(color)) {
       color = stringInputToObject(color);
    }   
-   if (typeof color == "object") {
+   if (isObj(color)) {
        if (_isRgbFormat(color)) {
           rgb = rgbToRgb(color.r, color.g, color.b);
           ok = true;

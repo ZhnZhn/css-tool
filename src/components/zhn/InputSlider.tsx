@@ -7,6 +7,20 @@ import type {
   TouchEvent 
 } from '../types';
 
+import type { 
+  MouseEventHandler, 
+  TouchEventHandler 
+} from 'react';
+
+import { 
+  isNumber 
+} from '../../utils/isTypeFn';
+
+import { 
+  toPercent,
+  round10 
+} from '../../utils/math'
+
 import { 
   useRef, 
   useState,
@@ -18,14 +32,8 @@ import useRefInit from '../hooks/useRefInit';
 import useBool from '../hooks/useBool';
 import useDragMouseDown from './useDragMouseDown';
 import { HAS_TOUCH_EVENTS } from '../has';
-import { 
-  toPercent,
-  round10 
-} from '../../utils/math'
 
 import CircleInner from './CircleInner';
-import { MouseEventHandler, TouchEventHandler } from 'react';
-//import PropTypes from "prop-types";
 
 const S_ROOT: CSSProperties = {
   position: 'relative',
@@ -122,11 +130,10 @@ const _NOOP_FN = () => {}
   value: number,
   step: number,
   keyCode: number
-  ): number | void => _isUp(keyCode)
+): number | void => _isUp(keyCode)
     ? value + step
-    : _isDown(keyCode) ? value - step : void 0
-, _isNumber = (n: unknown): n is number => typeof n === 'number'
-    && n - n === 0;
+    : _isDown(keyCode) ? value - step : void 0;
+
 
 type InputType = {
   setValue: (value: number) => void
@@ -172,14 +179,14 @@ const InputSlider = ({
   }
   , _calcPositionFromEvent = (evt: MouseOrTouchEvent): number => {
     const _trackOffset = getRefValue(_refTrack)?.getBoundingClientRect().left
-    return _isNumber(_trackOffset)
+    return isNumber(_trackOffset)
       ? _getClienX(evt) - _trackOffset
       : NaN;
   }
   , _setValueFromPosition = (evt: MouseOrTouchEvent) => {
     const positionMax = getRefValue(_refTrack)?.clientWidth;
     let position = _calcPositionFromEvent(evt);
-    if (_isNumber(positionMax) && _isNumber(position)) {
+    if (isNumber(positionMax) && isNumber(position)) {
       if (position < 0) {
         position = 0;
       } else if (position > positionMax) {

@@ -1,6 +1,11 @@
 import type { ReducerType } from '../types';
 import type { PageStateType, PageActionType } from './pageConfig';
 
+import {
+  isNumber,
+  isStr
+} from '../../utils/isTypeFn';
+
 import crId from '../../utils/crId';
 import {
   imArrInsert,
@@ -19,14 +24,12 @@ import {
 
 type PageReducer = ReducerType<PageStateType, PageActionType>
 
-const _isNumber = (n: unknown): n is number => typeof n === 'number'; 
-const _isStr = (str: unknown): str is string => typeof str === 'string'; 
 
 const pageReducer: PageReducer = (state, action) => {
   switch(action.type){
     case SET_CURRENT_SHADOW: {
       const { editIndex } = action;
-      return _isNumber(editIndex) ? {
+      return isNumber(editIndex) ? {
         ...state,
         currentIndex: editIndex        
       } : state;
@@ -43,7 +46,7 @@ const pageReducer: PageReducer = (state, action) => {
     }
     case ADD_SHADOW: {
       const { fromIndex } = action
-      if (!_isNumber(fromIndex)) { return state; }
+      if (!isNumber(fromIndex)) { return state; }
 
       const { boxShadows, currentIndex } = state
       , _initValue = {...boxShadows[fromIndex]}
@@ -57,7 +60,7 @@ const pageReducer: PageReducer = (state, action) => {
     }
     case REMOVE_SHADOW: {
       const { removeIndex } = action;
-      if (!_isNumber(removeIndex) || removeIndex === 0 ) { 
+      if (!isNumber(removeIndex) || removeIndex === 0 ) { 
         return state; 
       }
       
@@ -71,7 +74,9 @@ const pageReducer: PageReducer = (state, action) => {
     }
     case UPDATE_CONFIG: {
       const { propName, value } = action
-      if (!_isStr(propName)) { return state; }
+      if (!isStr(propName) || !isStr(value)) { 
+        return state; 
+      }
 
       const { configStyle } = state;
       return {
