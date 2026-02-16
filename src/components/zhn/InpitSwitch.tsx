@@ -21,7 +21,7 @@ const CL_SWITCH = "switch"
 , THUMB_POS_X = "4px"
 , LABEL_COLOR = "#c6c3c3";
 
-const _crSwicthStyle = (
+const _crSwitchStyle = (
   isChecked: boolean
 ) => {
   const [
@@ -53,24 +53,17 @@ export interface InputSwitchProps {
   onUnCheck?: () => void; 
 }
 
-const InputSwitch = ({
-  initialValue,
-  className,
-  style,
-  caption,
-  onCheck = FN_NOOP,
-  onUnCheck = FN_NOOP,
-}: InputSwitchProps) => {
+const InputSwitch = (props: InputSwitchProps) => {
   const _inputId = useId()
   , [
     _isChecked,
     _setIsChecked
-  ] = useState(initialValue)
+  ] = useState(props.initialValue)
   , _hChange = () => {
       const _nextValue = !_isChecked
-      , _onChange = _nextValue
-         ? onCheck
-         : onUnCheck;
+      , _onChange = (_nextValue
+         ? props.onCheck
+         : props.onUnCheck) || FN_NOOP;
       _onChange()
       _setIsChecked(_nextValue);
     }
@@ -78,12 +71,12 @@ const InputSwitch = ({
     _trackStyle,
     _thumbStyle,
     _labelStyle
-  ] = _crSwicthStyle(_isChecked);
+  ] = _crSwitchStyle(_isChecked);
   
   return (
     <label
-      className={crCn(CL_LABEL_SWITCH, className)}
-      style={style}      
+      className={crCn(CL_LABEL_SWITCH, props.className)}
+      style={props.style}      
       htmlFor={_inputId}
     >    
       <input
@@ -109,7 +102,7 @@ const InputSwitch = ({
         className={CL_SWITCH_LABEL}
         style={_labelStyle}
       >
-       {caption}
+       {props.caption}
       </span>
     </label>
   );
