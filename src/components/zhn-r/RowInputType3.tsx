@@ -2,11 +2,11 @@ import type {
   CSSProperties, 
   DispatchStateUpdater,  
   TinycolorInstance,
-  HSLA 
+  HSLA,
+  MutableRef 
 } from '../types';
-import type { 
-  InputType
-} from '../zhn/useInputValue';
+import type { InputNumberRef } from '../zhn/InputNumber';
+import type { InputTextRef } from '../zhn/InputText';
 
 import tinycolor from '../../tinycolor/tinycolor';
 import { 
@@ -30,7 +30,6 @@ import {
   S_TEXT,
   S_COLOR
 } from './style';
-import type { RefObject } from 'preact';
 
 const S_HSL: CSSProperties = { 
   paddingTop: 12,
@@ -56,7 +55,7 @@ const _FN_NOOP = () => {};
 
 const _fChangeItem = (  
   propName: keyof HSLA,  
-  refHsl: RefObject<HSLA | null>,
+  refHsl: MutableRef<HSLA | null>,
   onEnter: (value: string, color: TinycolorInstance) => void, 
   setValue: DispatchStateUpdater<string>
   ) => (value: number | string) => {
@@ -72,8 +71,6 @@ const _fChangeItem = (
   }
 }
 
-type InputTypeOrNull = InputType | null
-
 const RowInputType3 = ({   
   id,
   styleInput,
@@ -82,10 +79,10 @@ const RowInputType3 = ({
   initValue,
   onEnter=_FN_NOOP
 }: RowInputType3Props) => {
-  const _refHex = useRef<InputTypeOrNull>(null) 
-  , _refH = useRef<InputTypeOrNull>(null)
-  , _refS = useRef<InputTypeOrNull>(null)
-  , _refL = useRef<InputTypeOrNull>(null)
+  const _refHex: InputTextRef = useRef(null) 
+  , _refH: InputNumberRef = useRef(null)
+  , _refS: InputNumberRef = useRef(null)
+  , _refL: InputNumberRef = useRef(null)
   , _refHsl = useRefInit<HSLA>(() => {    
     const _color = tinycolor(initValue);    
     return _color.toHsl();

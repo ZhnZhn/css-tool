@@ -13,10 +13,12 @@ export type {
   MouseEvent,
   TouchEvent,
   ChangeEvent,
-  PropsWithChildren,
-  Ref,
-  RefObject
+  PropsWithChildren
 } from 'react';
+
+export interface MutableRef<T> {
+	current: T;
+}
 
 export type MouseOrTouchEvent = MouseEvent | TouchEvent
 

@@ -1,5 +1,5 @@
 import type { 
-  Ref,
+  MutableRef,
   KeyboardEvent,
   ChangeEvent 
 } from '../types';
@@ -15,13 +15,13 @@ import crId from '../../utils/crId';
 
 export const CL_INPUT = 'input-text box-shadow'
 
-export type InputType = {
-  setValue: (initValue: unknown) => void
+export type InputType<T> = {
+  setValue: (initValue: T) => void
 }
-export type InputInnerRefType = Ref<InputType>
+export type InputInnerRef<T> = MutableRef<InputType<T> | null>
 
 type PropsType<T> = {
-  innerRef?: InputInnerRefType,
+  innerRef?: InputInnerRef<T>,
   id?: string,
   initialValue?: T,
   onEnter?: (value: string) => void,

@@ -1,19 +1,19 @@
 import type { CSSProperties } from '../types';
-import type { InputInnerRefType } from './useInputValue';
+import type { InputInnerRef } from './useInputValue';
 
 import {
   CL_INPUT, 
   useInputValue 
 } from './useInputValue';
 
-type TextType = string | undefined 
-
+type InputTextType = string | undefined 
+export type InputTextRef = InputInnerRef<InputTextType>
 export interface InputTextProps {
   style?: CSSProperties;  
   id?: string;    
-  initialValue: TextType;
-  innerRef?: InputInnerRefType;
-  onChange?: (value: TextType) => void;
+  initialValue: InputTextType;
+  innerRef?: InputTextRef;
+  onChange?: (value: InputTextType) => void;
   onEnter?: (value: string) => void;
 }
 
@@ -23,7 +23,7 @@ const InputText = (props: InputTextProps) => {
     value, 
     hKeyDown,
     hInput
-  ] = useInputValue<TextType>(props);
+  ] = useInputValue<InputTextType>(props);
   
   return (
     <input

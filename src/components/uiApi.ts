@@ -1,4 +1,4 @@
-import { RefObject } from './types';
+import type { MutableRef } from './types';
 
 export { 
   useId,
@@ -11,6 +11,6 @@ export {
   useImperativeHandle 
 } from 'preact/hooks';
 
-export function getRefValue<T> (ref: RefObject<T>) {
+export function getRefValue<T> (ref: MutableRef<T>) {
   return ref.current;
 }

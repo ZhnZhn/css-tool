@@ -1,11 +1,13 @@
 import type { 
   CSSProperties,
-  Ref,
   KeyboardEvent,
   MouseOrTouchEvent,
   MouseEvent,
   TouchEvent 
 } from '../types';
+import type { 
+  InputInnerRef 
+} from './useInputValue';
 
 import type { 
   MouseEventHandler, 
@@ -135,17 +137,15 @@ const _NOOP_FN = () => {}
     : _isDown(keyCode) ? value - step : void 0;
 
 
-type InputType = {
-  setValue: (value: number) => void
-}
-
+type InputSliderType = number;
+export type InputSliderRef = InputInnerRef<InputSliderType>;
 export interface InputSliderProps {
-  innerRef?: Ref<InputType | null>;  
-  initialValue?: number;
+  innerRef?: InputSliderRef;  
+  initialValue?: InputSliderType;
   step?: number;
   min?: number;
   max?: number;
-  onChange: (n: number) => void
+  onChange: (n: number) => void;
 }
 
 const InputSlider = ({

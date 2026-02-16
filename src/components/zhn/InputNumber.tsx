@@ -1,5 +1,5 @@
 import type { CSSProperties } from '../types';
-import type { InputInnerRefType } from './useInputValue';
+import type { InputInnerRef } from './useInputValue';
  
 import { useCallback } from '../uiApi';
 import {
@@ -8,16 +8,17 @@ import {
 } from './useInputValue';
 import getNumberValue from './getNumberValue';
 
-type NumberType = number | string
+export type InputNumberType = number | string
+export type InputNumberRef = InputInnerRef<InputNumberType>
 export interface InputTextProps {
   style?: CSSProperties;  
   id?: string;
-  initialValue?: NumberType;  
+  initialValue?: InputNumberType;  
   step?: number;
   min: number;
   max: number;
-  innerRef?: InputInnerRefType;
-  onChange?: (value: NumberType) => void;
+  innerRef?: InputNumberRef;
+  onChange?: (value: InputNumberType) => void;
   onEnter?: (value: string) => void;
 }
 
@@ -37,7 +38,7 @@ const InputNumber = (props: InputTextProps) => {
      value, 
      hKeyDown,
      hInput
-  ] = useInputValue<NumberType>(props, _getValue);     
+  ] = useInputValue<InputNumberType>(props, _getValue);     
   
   return (
     <input

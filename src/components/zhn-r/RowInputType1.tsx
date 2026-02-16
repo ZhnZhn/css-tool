@@ -1,4 +1,7 @@
 import type { CSSProperties } from '../types';
+import type { InputNumberType, InputNumberRef } from '../zhn/InputNumber';
+import type { InputSliderRef } from '../zhn/InputSlider';
+
 import { 
   useCallback, 
   useRef 
@@ -18,10 +21,6 @@ import {
   S_RIGHT
 } from './style';
 
-type InputType = {
-  setValue(v: number): void
-}
-
 export interface RowInputType1Props {
   id?: string;
   unit?: string;     
@@ -35,14 +34,14 @@ export interface RowInputType1Props {
   onChange?: (v: string) => void
 }
 
-const _crStepExp = (step: number) => {
+const _crStepExp = (step: number): number => {
   const _arr = (''+step).split('.');
   return _arr[1] ? -1 * _arr[1].length : 0;
 }  
 
 const _crNumberValue = (
   stepExp: number, 
-  value: number | string
+  value: InputNumberType
 ) => stepExp === 0
   ? parseFloat(''+value)
   : round10(parseFloat(''+value), stepExp)
@@ -61,14 +60,14 @@ const RowInputType1 = ({
   inputId,  
   onChange=_FN_NOOP
 }: RowInputType1Props) => {
-  const _refInputNumber = useRef<InputType>(null)
-  , _refSliderComp = useRef<InputType>(null)
+  const _refInputNumber: InputNumberRef = useRef(null)
+  , _refSliderComp: InputSliderRef = useRef(null)
   , _refStepExp = useRef(_crStepExp(step))
   , _hChangeSlider = useCallback((value: number) => {
     _refInputNumber.current?.setValue(value)
     onChange(''+value)
   }, [onChange])
-  , _hChangeNumber = useCallback((value: number | string) => {    
+  , _hChangeNumber = useCallback((value: InputNumberType) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
     if ( _value>=min && _value<=max ){      
       _refSliderComp.current?.setValue(_value)
