@@ -1,7 +1,6 @@
 
 //preact/compat memo.js
-import { createElement } from 'preact';
-
+//import { createElement } from 'preact';
 
 //https://github.com/preactjs/preact/blob/master/compat/src/index.d.ts
 /*
@@ -25,11 +24,12 @@ export declare function memo<T extends ComponentType<any>>(
 ): MemoExoticComponent<T>;
 */
 
-
+/*
 function assign(obj, props) {
 	for (const i in props) obj[i] = props[i];
 	return (obj);
 }
+*/
 
 function shallowDiffers(a, b) {
 	for (const i in a) if (i !== '__source' && !(i in b)) return true;
@@ -37,7 +37,7 @@ function shallowDiffers(a, b) {
 	return false;
 }
 
-export default function memo<T>(c: T, comparer): T {
+export default function memo<T>(Comp: T, comparer): T {
 	function shouldUpdate(nextProps) {
 		const ref = this.props.ref;
 		const updateRef = ref == nextProps.ref;
@@ -58,11 +58,12 @@ export default function memo<T>(c: T, comparer): T {
 	}
 
 	function Memoed(props) {
-		this.shouldComponentUpdate = shouldUpdate;
-		return createElement(c, assign({}, props));
+		this.shouldComponentUpdate = shouldUpdate;		
+		return <Comp {...props} />;
+		//return createElement(c, assign({}, props));
 	}
 	Memoed.prototype.isReactComponent = true;
-	Memoed.displayName = 'Memo(' + (c.displayName || c.name) + ')';
-	Memoed._forwarded = true;
+	//Memoed.displayName = 'Memo(' + (Comp.displayName || Comp.name) + ')';
+	//Memoed._forwarded = true;
 	return Memoed;
 }
