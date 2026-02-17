@@ -27,12 +27,7 @@ const Page = (props: PageProps) => {
       boxShadows,
       configStyle
     } = state
-  , _currentValue = boxShadows[currentIndex]
-  , { 
-    id, 
-    isInset 
-  } = _currentValue;
-  
+  , _boxShadowCurrent = boxShadows[currentIndex];    
   return (
     <div className={CL_PAGE} >
       <div className={CL_INPUTS}>
@@ -42,14 +37,11 @@ const Page = (props: PageProps) => {
           configStyle={configStyle}
           onEnter={_updateConfig}
         />
-        <InputShadow
-          key="input-shadow"
-          id={id}
-          isShadow={props.isShadow}
-          isInset={isInset}
-          initValue={_currentValue}
+        {props.isShadow ? <InputShadow             
+          id={_boxShadowCurrent.id}                
+          initialValue={_boxShadowCurrent}
           onChange={_updateShadows}
-        />
+        />: null}
       </div>
       <div className={CL_VIEWS}>
         <ViewBoxShadow

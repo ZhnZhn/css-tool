@@ -35,14 +35,19 @@ const pageReducer: PageReducer = (state, action) => {
       } : state;
     }
     case UPDATE_SHADOWS: {
-      const { boxShadow } = action
-      if (!boxShadow) { return state; }
+      const { pn, value } = action
+      if (!isStr(pn)) { return state; }
 
-      const { boxShadows, currentIndex } = state;
+      const { 
+        boxShadows, 
+        currentIndex 
+      } = state
+      , boxShadow = state.boxShadows[state.currentIndex]
+      boxShadow[pn] = value
       return {
         ...state,
         boxShadows: imArrUpdate(boxShadows, currentIndex, boxShadow)
-      };
+      };      
     }
     case ADD_SHADOW: {
       const { fromIndex } = action

@@ -20,7 +20,7 @@ import {
 import pageReducer from './pageReducer';
 
 type Handlers = [
-  (boxShadow: ShadowType) => void,
+  (propName: keyof ShadowType, value: unknown) => void,
   (propName: keyof ConfigStyleType, value: unknown) => void,
   (fromIndex: number) => void,
   (editIndex: number) => void, 
@@ -38,9 +38,10 @@ const usePageState = (): UsePageStateType => {
         dispatch
     ] = useReducer(pageReducer, INITIAL_STATE)
     , _handlers: Handlers = useMemo(() => [
-        (boxShadow: ShadowType) => dispatch({
+        (pn: keyof ShadowType, value: unknown) => dispatch({
           type: UPDATE_SHADOWS, 
-          boxShadow
+          pn,
+          value
         }),
         (propName: keyof ConfigStyleType, value: unknown) => dispatch({
           type: UPDATE_CONFIG, 

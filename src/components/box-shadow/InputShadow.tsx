@@ -1,16 +1,8 @@
 import type { 
   CSSProperties,
-  IsNotShouldUpdate,
   TinycolorInstance 
 } from '../types';
 import { ShadowType } from './types';
-
-import { 
-  useRef, 
-  useCallback, 
-  useEffect 
-} from '../uiApi';
-import  memo  from '../memo';
 
 import RowInputType1 from '../zhn-r/RowInputType1';
 import RowInputType3 from '../zhn-r/RowInputType3';
@@ -25,18 +17,15 @@ const S_INPUT_SWITCH: CSSProperties = {
 
 interface InputShadowProps {
   id: string;
-  isShadow: boolean;
-  isInset: boolean;
-  initValue: ShadowType;
-  onChange? : (v: Partial<ShadowType>) => void
+  initialValue: ShadowType;
+  onChange? : (propName: keyof ShadowType, value: unknown) => void  
 }
 
-type CrIdType = {
-  ({caption}: {caption: string}): string
-}
-
-const _crId: CrIdType = ({ caption }) => caption
- .toLowerCase().replace(' ', '-');
+const _crId = (
+  caption: string
+) => caption
+  .toLowerCase()
+  .replace(' ', '-');
 
 const INPUT_ROWS = [
   {
@@ -57,60 +46,17 @@ const INPUT_ROWS = [
     min: 0, max: 1, step: 0.01, unit: ''
   }
 ].map(item => ({
-  id: _crId(item),
+  id: _crId(item.caption),
   ...item
 }));
 
-type FnChangeInputType = {
-  (propName: keyof ShadowType, value: unknown): void
-}
-type UseChangeValue = {
-  (fn: FnChangeInputType, propName: keyof ShadowType, value: unknown): () => void
-}
-
-/*eslint-disable react-hooks/exhaustive-deps */
-const useChangeValue: UseChangeValue = (
-  fn, 
-  propName, 
-  value
-  ) => useCallback(
-  fn.bind(null, propName, value), []
-);
-/*eslint-enable react-hooks/exhaustive-deps */  
-
-const _fnNoop = () => {}
+const _fnNoop = () => {};
 
 const InputShadow = ({
   id,
-  isShadow,
-  isInset,
-  initValue,
+  initialValue,
   onChange=_fnNoop
-}: InputShadowProps) => {
-  const _refInput = useRef<Partial<ShadowType>>({})
-  /*eslint-disable react-hooks/exhaustive-deps */
-  , _changeInput = useCallback((propName: keyof ShadowType, value: any) => {
-      _refInput.current[propName] = value
-      onChange(_refInput.current)
-    }, []) 
-   , _enterColor = useCallback((_value: string, color: TinycolorInstance) => {     
-      _refInput.current.color = color.toHexString()
-      onChange(_refInput.current)
-   }, [])
-  //onChange 
- /*eslint-enable react-hooks/exhaustive-deps */  
-, _onChechInset = useChangeValue(_changeInput, 'isInset', true)
-, _onUnCheckInset = useChangeValue(_changeInput, 'isInset', false)
-
- /*eslint-disable react-hooks/exhaustive-deps */
-  useEffect(() => {
-    _refInput.current = initValue
-  }, [id, isInset])
- // initValue
- /*eslint-enable react-hooks/exhaustive-deps */    
-
-  if (!isShadow) {return <div/>;}
-
+}: InputShadowProps) => {  
   const {
     vLength, 
     gLength,
@@ -118,67 +64,57 @@ const InputShadow = ({
     spreadR,
     opacity, 
     color
-  } = initValue;
+  } = initialValue;
   return (
     <>
       <RowInputType1
          {...INPUT_ROWS[0]}
           inputId={id}
           initValue={gLength}
-          onChange={(value) => _changeInput('gLength', value)}
+          onChange={value => onChange('gLength', value)}          
       />
       <RowInputType1
          {...INPUT_ROWS[1]}
          inputId={id}
          initValue={vLength}
-         onChange={(value) => _changeInput('vLength', value)}
+         onChange={value => onChange('vLength', value)}         
       />
       <RowInputType1
          {...INPUT_ROWS[2]}
          inputId={id}
          initValue={blurR}
-         onChange={(value) => _changeInput('blurR', value)}
+         onChange={value => onChange('blurR', value)}         
       />
       <RowInputType1
          {...INPUT_ROWS[3]}
          inputId={id}
          initValue={spreadR}
-         onChange={(value) => _changeInput('spreadR', value)}
+         onChange={value => onChange('spreadR', value)}         
       />
-      <RowInputType3
-         //key={`${id}-sc`}
+      <RowInputType3         
+         key={id}
          id="shadow-color"
          caption="Shadow Color"         
          initValue={color}
-         onEnter={_enterColor}
+         onEnter={(_value: string, color: TinycolorInstance) => onChange('color', color.toHexString())}         
       />
       <RowInputType1
          {...INPUT_ROWS[4]}
          inputId={id}
          initValue={opacity}
-         onChange={(value) => _changeInput('opacity', value)}
+         onChange={value => onChange('opacity', value)}         
       />                  
       <InputSwitch 
-        initialValue={isInset}
+        key={id}
+        initialValue={initialValue.isInset}
         className={CL_ROW}
         style={S_INPUT_SWITCH}
         caption="Inset"
-        onCheck={_onChechInset}
-        onUnCheck={_onUnCheckInset}
+        onCheck={() => onChange('isInset', true)}
+        onUnCheck={() => onChange('isInset', false)}        
       />
     </>
   );
 }
 
-const _isNotShouldUpdate: IsNotShouldUpdate<InputShadowProps> = ({
- isShadow, id, isInset
-}, nextProps
-) => {
-  return id === nextProps.id
-  && isInset === nextProps.isInset
-  && isShadow === nextProps.isShadow
-   ? true
-   : false;
-};
-
-export default memo(InputShadow, _isNotShouldUpdate)
+export default InputShadow

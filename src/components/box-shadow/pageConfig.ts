@@ -20,6 +20,7 @@ export type PageActionType = {
   type: ActionType;
 
   boxShadow?: ShadowType;
+  pn?: keyof ShadowType;
 
   propName?: keyof ConfigStyleType; 
   value?: unknown;
