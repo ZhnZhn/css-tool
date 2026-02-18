@@ -6,7 +6,7 @@ import { ShadowType } from './types';
 
 import RowInputType1 from '../zhn-r/RowInputType1';
 import RowInputType3 from '../zhn-r/RowInputType3';
-import InputSwitch from '../zhn/InpitSwitch';
+import InputSwitch from '../zhn/InputSwitch';
 
 import { CL_ROW } from '../zhn-r/style';
 

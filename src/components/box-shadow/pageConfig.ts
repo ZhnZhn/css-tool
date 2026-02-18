@@ -1,5 +1,8 @@
 
-import type { ShadowType, ConfigStyleType } from './types';
+import type { 
+  ShadowType, 
+  ConfigStyleType 
+} from './types';
 
 import crId from '../../utils/crId';
 
@@ -9,26 +12,34 @@ export const ADD_SHADOW = 'ADD_SHADOW'
 export const REMOVE_SHADOW = 'REMOVE_SHADOW'
 export const UPDATE_CONFIG = 'UPDATE_CONFIG'
 
-type ActionType = typeof SET_CURRENT_SHADOW
-  | typeof UPDATE_SHADOWS
-  | typeof ADD_SHADOW
-  | typeof REMOVE_SHADOW
-  | typeof UPDATE_CONFIG
-
-
-export type PageActionType = {
-  type: ActionType;
-
-  boxShadow?: ShadowType;
-  pn?: keyof ShadowType;
-
-  propName?: keyof ConfigStyleType; 
-  value?: unknown;
-
-  fromIndex?: number;
-  editIndex?: number;
-  removeIndex?: number;
+interface ActionUpdateShadows {
+  type: typeof UPDATE_SHADOWS;
+  propName: keyof ShadowType;
+  value: unknown;
+}  
+interface ActionUpdateConfig {
+  type: typeof UPDATE_CONFIG;
+  propName: keyof ConfigStyleType;
+  value: unknown;
 }
+interface ActionSetCurrentShadow {
+  type: typeof SET_CURRENT_SHADOW;
+  bsIndex: number
+}
+interface ActionAddShadow {
+  type: typeof ADD_SHADOW;
+  bsIndex: number;
+}
+interface ActionRemoveShadow {
+  type: typeof REMOVE_SHADOW;
+  bsIndex: number;
+}
+
+export type PageActionType = ActionUpdateShadows
+ | ActionUpdateConfig
+ | ActionSetCurrentShadow
+ | ActionAddShadow
+ | ActionRemoveShadow
 
 const DF_SHADOW: ShadowType = {
    isInset: false,
@@ -51,8 +62,8 @@ export const INITIAL_STATE: PageStateType = {
   currentIndex: 0,
   boxShadows: [ DF_SHADOW ],
   configStyle: {
-    bgColor: 'gray',
+    bgColor: 'grey',
     boxColor: '#e7a61a',
     boxBorderRadius: '0px'
   }
-};
+}

@@ -19,12 +19,14 @@ import {
 } from './pageConfig';
 import pageReducer from './pageReducer';
 
+type CreateUpdateByPropNameActionFn<T> = (propName: keyof T, value: unknown) => void
+type CreateConfigActionFn = (bsIndex: number) => void
 type Handlers = [
-  (propName: keyof ShadowType, value: unknown) => void,
-  (propName: keyof ConfigStyleType, value: unknown) => void,
-  (fromIndex: number) => void,
-  (editIndex: number) => void, 
-  (removeIndex: number) => void
+  CreateUpdateByPropNameActionFn<ShadowType>,
+  CreateUpdateByPropNameActionFn<ConfigStyleType>,   
+  CreateConfigActionFn,
+  CreateConfigActionFn,
+  CreateConfigActionFn  
 ]
 
 type UsePageStateType = [
@@ -38,9 +40,9 @@ const usePageState = (): UsePageStateType => {
         dispatch
     ] = useReducer(pageReducer, INITIAL_STATE)
     , _handlers: Handlers = useMemo(() => [
-        (pn: keyof ShadowType, value: unknown) => dispatch({
+        (propName: keyof ShadowType, value: unknown) => dispatch({
           type: UPDATE_SHADOWS, 
-          pn,
+          propName,
           value
         }),
         (propName: keyof ConfigStyleType, value: unknown) => dispatch({
@@ -48,17 +50,17 @@ const usePageState = (): UsePageStateType => {
           propName, 
           value
         }),
-        (fromIndex: number) => dispatch({
+        (bsIndex: number) => dispatch({
           type: ADD_SHADOW, 
-          fromIndex
+          bsIndex
         }),
-        (editIndex: number) => dispatch({
+        (bsIndex: number) => dispatch({
           type: SET_CURRENT_SHADOW, 
-          editIndex
+          bsIndex
         }),
-        (removeIndex: number) => dispatch({
+        (bsIndex: number) => dispatch({
           type: REMOVE_SHADOW, 
-          removeIndex
+          bsIndex
         })
      ], []);
     return [

@@ -24,37 +24,39 @@ import {
 
 type PageReducer = ReducerType<PageStateType, PageActionType>
 
-
-const pageReducer: PageReducer = (state, action) => {
+const pageReducer: PageReducer = (
+  state, 
+  action
+) => {
   switch(action.type){
     case SET_CURRENT_SHADOW: {
-      const { editIndex } = action;
-      return isNumber(editIndex) ? {
+      const { bsIndex } = action;
+      return isNumber(bsIndex) ? {
         ...state,
-        currentIndex: editIndex        
+        currentIndex: bsIndex        
       } : state;
     }
     case UPDATE_SHADOWS: {
-      const { pn, value } = action
-      if (!isStr(pn)) { return state; }
+      const { propName, value } = action
+      if (!isStr(propName)) { return state; }
 
       const { 
         boxShadows, 
         currentIndex 
       } = state
       , boxShadow = state.boxShadows[state.currentIndex]
-      boxShadow[pn] = value
+      boxShadow[propName] = value
       return {
         ...state,
         boxShadows: imArrUpdate(boxShadows, currentIndex, boxShadow)
       };      
     }
     case ADD_SHADOW: {
-      const { fromIndex } = action
-      if (!isNumber(fromIndex)) { return state; }
+      const { bsIndex } = action
+      if (!isNumber(bsIndex)) { return state; }
 
       const { boxShadows, currentIndex } = state
-      , _initValue = {...boxShadows[fromIndex]}
+      , _initValue = {...boxShadows[bsIndex]}
       , _index = currentIndex + 1;
       _initValue.id = crId(''+_index)
       return {
@@ -63,18 +65,17 @@ const pageReducer: PageReducer = (state, action) => {
         boxShadows: imArrInsert(boxShadows, _index, _initValue)
       };
     }
-    case REMOVE_SHADOW: {
-      const { removeIndex } = action;
-      if (!isNumber(removeIndex) || removeIndex === 0 ) { 
+    case REMOVE_SHADOW: {      
+      const { bsIndex } = action;
+      if (!isNumber(bsIndex) || bsIndex === 0 ) { 
         return state; 
       }
-      
       const { boxShadows } = state
-      , _index = removeIndex - 1;
+      , _index = bsIndex - 1;
       return {
         ...state,
         currentIndex: _index,
-        boxShadows: imArrRemove(boxShadows, removeIndex)
+        boxShadows: imArrRemove(boxShadows, bsIndex)
       };
     }
     case UPDATE_CONFIG: {
@@ -82,14 +83,14 @@ const pageReducer: PageReducer = (state, action) => {
       if (!isStr(propName) || !isStr(value)) { 
         return state; 
       }
-
+      
       const { configStyle } = state;
       return {
         ...state,
         configStyle: imObjUpdate(configStyle, propName, value)
       };
     }
-    default: throw new Error('Unsupported action type: ' + action.type);
+    default: return state;    
   }
 };
 
