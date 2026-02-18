@@ -4,14 +4,15 @@ import type {
   ChangeEvent 
 } from '../types';
 
+import crId from '../../utils/crId';
+
 import { 
   useRef,
-  useState,
   useCallback,
   useImperativeHandle 
 } from '../uiApi';
 
-import crId from '../../utils/crId';
+import useObjValue from '../hooks/useObjValue';
 
 export const CL_INPUT = 'input-text box-shadow'
 
@@ -51,22 +52,20 @@ export function useInputValue<T>(
       onEnter=_FN_NOOP,
       onChange=_FN_NOOP
     } = props
+    , _innerRef = useRef()
     , _refId = useRef<string>(id || crId()) 
     , [
-        { value },
-        _setValue
-      ] = useState(() => ({ value: initialValue}))
-    , setValue = useCallback(
-         (value: T) => _setValue({ value })
-      , [])
-    , hKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.keyCode === 13){                
-          onEnter(event.currentTarget.value)
+      value, 
+      setValue
+    ] = useObjValue<T | undefined>(initialValue)    
+    , hKeyDown = useCallback((evt: KeyboardEvent<HTMLInputElement>) => {
+        if (evt.keyCode === 13){                
+          onEnter(evt.currentTarget.value)
         }
     }, [onEnter])
     /*eslint-disable react-hooks/exhaustive-deps */ 
-    , hInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-       const { value } = event.currentTarget
+    , hInputChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
+       const { value } = evt.currentTarget
        , [_value, isOnChange] = getValue(value)      
        setValue(_value)
        if (isOnChange) {
@@ -75,7 +74,7 @@ export function useInputValue<T>(
     }, [getValue, onChange]); 
     // setValue   
  
-    useImperativeHandle(innerRef!, () => ({
+    useImperativeHandle(innerRef || _innerRef, () => ({
       setValue: (nextValue: unknown) => {
         const [value, isOnChange] = getValue(nextValue)
         if (isOnChange) {
