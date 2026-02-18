@@ -26,7 +26,7 @@ import {
 import { 
   useRef, 
   useState,
-  useImperativeHandle,
+  useImperativeHandleOr,
   getRefValue 
 } from '../uiApi';
 
@@ -132,9 +132,11 @@ const _NOOP_FN = () => {}
   value: number,
   step: number,
   keyCode: number
-): number | void => _isUp(keyCode)
+): number => _isUp(keyCode)
     ? value + step
-    : _isDown(keyCode) ? value - step : void 0;
+    : _isDown(keyCode) 
+    ? value - step 
+    : value;
 
 
 type InputSliderType = number;
@@ -170,9 +172,12 @@ const InputSlider = ({
     onChange(_value)
   }
   , _hKeyDown = (evt: KeyboardEvent) => {
-    const { keyCode } = evt
-    , _value = _calcValueByKeyCode(value, step, keyCode);
-    if (_value != null) {
+    const _value = _calcValueByKeyCode(
+      value, 
+      step, 
+      evt.keyCode
+    );
+    if (_value !== value) {
       evt.preventDefault()
       _updateValue(_value)
     }
@@ -203,7 +208,7 @@ const InputSlider = ({
   }
   , [isDragged, _hMouseDown] = useDragMouseDown(_setValueFromPosition);
 
-  useImperativeHandle(innerRef!, () => ({
+  useImperativeHandleOr(innerRef, () => ({
     setValue
   }), []) 
 

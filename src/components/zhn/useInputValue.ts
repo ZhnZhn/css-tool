@@ -9,7 +9,7 @@ import crId from '../../utils/crId';
 import { 
   useRef,
   useCallback,
-  useImperativeHandle 
+  useImperativeHandleOr 
 } from '../uiApi';
 
 import useObjValue from '../hooks/useObjValue';
@@ -51,8 +51,7 @@ export function useInputValue<T>(
       initialValue,
       onEnter=_FN_NOOP,
       onChange=_FN_NOOP
-    } = props
-    , _innerRef = useRef()
+    } = props  
     , _refId = useRef<string>(id || crId()) 
     , [
       value, 
@@ -74,7 +73,7 @@ export function useInputValue<T>(
     }, [getValue, onChange]); 
     // setValue   
  
-    useImperativeHandle(innerRef || _innerRef, () => ({
+    useImperativeHandleOr(innerRef, () => ({
       setValue: (nextValue: unknown) => {
         const [value, isOnChange] = getValue(nextValue)
         if (isOnChange) {
