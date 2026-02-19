@@ -16,11 +16,11 @@ interface PageProps {
 const Page = (props: PageProps) => {
   const [
     state,
-    _updateShadows,
-    _updateConfig,
-    _addShadow,
-    _setCurrentShadow,
-    _removeShadow
+    updateShadows,
+    updateConfig,
+    addShadow,
+    setCurrentShadow,
+    removeShadow
   ] = usePageState()  
   , {
       currentIndex,
@@ -31,16 +31,14 @@ const Page = (props: PageProps) => {
   return (
     <div className={CL_PAGE} >
       <div className={CL_INPUTS}>
-        <InputBox
-          key="input-box"
-          isBox={props.isBox}
+        {props.isBox ? <InputBox          
           configStyle={configStyle}
-          onEnter={_updateConfig}
-        />
+          onEnter={updateConfig}
+        /> : null}
         {props.isShadow ? <InputShadow             
           id={_boxShadowCurrent.id}                
           initialValue={_boxShadowCurrent}
-          onChange={_updateShadows}
+          onChange={updateShadows}
         />: null}
       </div>
       <div className={CL_VIEWS}>
@@ -48,9 +46,9 @@ const Page = (props: PageProps) => {
            currentIndex={currentIndex}
            boxShadows={boxShadows}
            configStyle={configStyle}
-           onAdd={_addShadow}
-           onEdit={_setCurrentShadow}
-           onRemove={_removeShadow}
+           onAdd={addShadow}
+           onEdit={setCurrentShadow}
+           onRemove={removeShadow}
         />
       </div>
     </div>
