@@ -1,6 +1,13 @@
-import type { CSSProperties } from '../types';
-import type { InputNumberType, InputNumberRef } from '../zhn/InputNumber';
-import type { InputSliderRef } from '../zhn/InputSlider';
+import type { 
+  CSSProperties 
+} from '../types';
+import type { 
+  InputNumberType, 
+  InputNumberRef 
+} from '../zhn/InputNumber';
+import type { 
+  InputSliderRef 
+} from '../zhn/InputSlider';
 
 import { 
   useCallback, 
@@ -21,23 +28,25 @@ import {
   S_RIGHT
 } from './style';
 
-export interface RowInputType1Props {
-  id?: string;
-  unit?: string;     
-  initValue: number;
-  step?: number;
-  min: number; 
-  max: number;  
-  styleInput?: CSSProperties;     
+export interface RowInputType1Props {  
   caption: string;
   inputId: string;  
-  onChange?: (v: string) => void
+  initValue: number;  
+  min: number; 
+  max: number;  
+  step?: number;
+  id?: string;
+  unit?: string;     
+  styleInput?: CSSProperties;       
+  onChange?: (value: number) => void;
 }
 
 const _crStepExp = (step: number): number => {
   const _arr = (''+step).split('.');
-  return _arr[1] ? -1 * _arr[1].length : 0;
-}  
+  return _arr[1] 
+    ? -1 * _arr[1].length 
+    : 0;
+};  
 
 const _crNumberValue = (
   stepExp: number, 
@@ -65,17 +74,19 @@ const RowInputType1 = ({
   , _refStepExp = useRef(_crStepExp(step))
   , _hChangeSlider = useCallback((value: number) => {
     _refInputNumber.current?.setValue(value)
-    onChange(''+value)
+    onChange(value)
   }, [onChange])
   , _hChangeNumber = useCallback((value: InputNumberType) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
     if ( _value>=min && _value<=max ){      
-      _refSliderComp.current?.setValue(_value)
-      onChange(''+value)
+      _refSliderComp.current?.setValue(_value)      
+      onChange(_value)
     }
   }, [min, max, onChange])
-  , [isShowSlider, toggleIsShowSlider] = useToggle()
-
+  , [
+    isShowSlider, 
+    toggleIsShowSlider
+  ] = useToggle();
   
   return (
     <div className={CL_ROW}>        
