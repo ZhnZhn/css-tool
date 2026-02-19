@@ -1,18 +1,27 @@
-import type { ReducerType } from '../types';
-import type { PageStateType, PageActionType } from './pageConfig';
+import type { 
+  ReducerType 
+} from '../types';
+import type { 
+  PageStateType, 
+  PageActionType 
+} from './pageConfig';
+import {
+  ShadowType
+} from './types';
 
+import crId from '../../utils/crId';
 import {
   isNumber,
   isStr
 } from '../../utils/isTypeFn';
-
-import crId from '../../utils/crId';
 import {
   imArrInsert,
   imArrUpdate,
   imArrRemove 
 } from '../../utils/im-arr';
-import { imObjUpdate } from '../../utils/im-obj';
+import { 
+  imObjUpdate 
+} from '../../utils/im-obj';
 
 import {
   SET_CURRENT_SHADOW,
@@ -24,11 +33,24 @@ import {
 
 type PageReducer = ReducerType<PageStateType, PageActionType>
 
+function updateBoxShadow<K extends keyof ShadowType>(
+  boxShadow: ShadowType,
+  propName: K,
+  value: ShadowType[K]
+){
+  /*
+  if (typeof value !== typeof boxShadow[propName]) {
+    throw new Error(`Invalid type for property ${propName}`);
+  }*/
+  boxShadow[propName] = value
+}
+
 const pageReducer: PageReducer = (
   state, 
   action
 ) => {
-  switch(action.type){
+  const actionType = action.type;
+  switch(actionType) {
     case SET_CURRENT_SHADOW: {
       const { bsIndex } = action;
       return isNumber(bsIndex) ? {
@@ -37,7 +59,10 @@ const pageReducer: PageReducer = (
       } : state;
     }
     case UPDATE_SHADOWS: {
-      const { propName, value } = action
+      const { 
+        propName, 
+        value 
+      } = action
       if (!isStr(propName)) { return state; }
 
       const { 
@@ -45,7 +70,7 @@ const pageReducer: PageReducer = (
         currentIndex 
       } = state
       , boxShadow = state.boxShadows[state.currentIndex]
-      boxShadow[propName] = value
+      updateBoxShadow(boxShadow, propName, value)            
       return {
         ...state,
         boxShadows: imArrUpdate(boxShadows, currentIndex, boxShadow)
@@ -89,8 +114,11 @@ const pageReducer: PageReducer = (
         ...state,
         configStyle: imObjUpdate(configStyle, propName, value)
       };
-    }
-    default: return state;    
+    }    
+    default: {    
+      const _neverActionType: never = actionType;      
+      throw new Error('Unsupported action type: ' + _neverActionType);
+    } 
   }
 };
 

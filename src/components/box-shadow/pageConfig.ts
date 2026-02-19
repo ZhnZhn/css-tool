@@ -1,4 +1,3 @@
-
 import type { 
   ShadowType, 
   ConfigStyleType 
@@ -12,15 +11,15 @@ export const ADD_SHADOW = 'ADD_SHADOW'
 export const REMOVE_SHADOW = 'REMOVE_SHADOW'
 export const UPDATE_CONFIG = 'UPDATE_CONFIG'
 
-interface ActionUpdateShadows {
+interface ActionUpdateShadows<K extends keyof ShadowType> {
   type: typeof UPDATE_SHADOWS;
-  propName: keyof ShadowType;
-  value: unknown;
+  propName: K;
+  value: ShadowType[K];
 }  
-interface ActionUpdateConfig {
+interface ActionUpdateConfig<K extends keyof ConfigStyleType> {
   type: typeof UPDATE_CONFIG;
-  propName: keyof ConfigStyleType;
-  value: unknown;
+  propName: K;
+  value: ConfigStyleType[K];
 }
 interface ActionSetCurrentShadow {
   type: typeof SET_CURRENT_SHADOW;
@@ -35,8 +34,9 @@ interface ActionRemoveShadow {
   bsIndex: number;
 }
 
-export type PageActionType = ActionUpdateShadows
- | ActionUpdateConfig
+export type PageActionType = 
+ | ActionUpdateShadows<keyof ShadowType>
+ | ActionUpdateConfig<keyof ConfigStyleType>
  | ActionSetCurrentShadow
  | ActionAddShadow
  | ActionRemoveShadow
