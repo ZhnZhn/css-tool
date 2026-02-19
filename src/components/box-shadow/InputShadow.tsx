@@ -2,7 +2,10 @@ import type {
   CSSProperties,
   TinycolorInstance 
 } from '../types';
-import { ShadowType } from './types';
+import { 
+  ShadowType,
+  UpdateShadowFn 
+} from './types';
 
 import RowInputType1 from '../zhn-r/RowInputType1';
 import RowInputType3 from '../zhn-r/RowInputType3';
@@ -18,7 +21,7 @@ const S_INPUT_SWITCH: CSSProperties = {
 interface InputShadowProps {
   id: string;
   initialValue: ShadowType;
-  onChange? : (propName: keyof ShadowType, value: unknown) => void  
+  onChange? : UpdateShadowFn;
 }
 
 const _crId = (
