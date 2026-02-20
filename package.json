@@ -7,9 +7,11 @@
     "dev": "webpack serve --config webpack.dev.js",
     "transpile": "babel ./src --out-dir ./js --source-maps --ignore test.js",
     "transpile:all": "babel ./src --out-dir ./js --source-maps",
-    "lint:one": "eslint -c eslint.config.js",    
+    "lint:one": "eslint -c eslint.config.js",
+    "tsc:check": "tsc --noEmit",
     "build:dll": "webpack --color --progress --config webpack.dll.js",
     "build:dll-tsx": "webpack --color --progress --config webpack.dll-tsx.js",
+    "build:prod": "npm run build:dll && npm run build:dll-tsx",
     "css:min": "node css-min.js",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -26,7 +28,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
-    "preact": "^10.28.3"
+    "preact": "^10.28.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
@@ -39,7 +41,7 @@
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@types/jest": "^30.0.0",
-    "@types/react": "^18.3.27",
+    "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "@types/tinycolor2": "^1.4.6",
     "babel-loader": "^10.0.0",
@@ -54,8 +56,8 @@
     "ts-jest": "^29.4.6",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0",
-    "webpack": "^5.105.0",
+    "typescript-eslint": "^8.56.0",
+    "webpack": "^5.105.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.3"
   },
