@@ -9,6 +9,7 @@ export type DispatchStateUpdater<T> = Dispatch<SetStateAction<T>>
 
 export type { 
   CSSProperties, 
+  SVGProps,
   KeyboardEvent, 
   MouseEvent,
   TouchEvent,

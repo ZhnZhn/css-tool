@@ -1,3 +1,5 @@
+import Svg from '../zhn/Svg';
+
 interface IconAppLogoProps {
   className?: string; 
   title: string;
@@ -23,26 +25,20 @@ const _crRect = (
   />
 );
 
-const IconAppLogo = ({ 
-  className, 
-  title 
-}: IconAppLogoProps) => (
+const IconAppLogo = (props: IconAppLogoProps) => (
   <span
-     className={className}
-     title={title}
+     className={props.className}
+     title={props.title}
   >
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      stroke-linejoin="round"
+    <Svg 
+      w="32"      
       stroke-miterlimit="2"
       stroke-width="2"
-    >
-      <title>{title}</title>
+    >      
       {_crRect(194, 1.5, 19, 12.5, 11, "#8ecc2d")}
       {_crRect(204.5, 17.5, 9, 13.5, 18, "#232f3b")}
       {_crRect(204.5, 3.5, 2.5, 11, 10, "#a487d4")}      
-    </svg>
+    </Svg>
   </span>
 );
 

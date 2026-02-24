@@ -23,7 +23,9 @@ module.exports = defineConfig([
       HTMLElement: true,
       HTMLDivElement: true,
       HTMLButtonElement: true,     
-      HTMLInputElement: true      
+      HTMLInputElement: true,
+
+      SVGSVGElement: true      
     },   
     parser: tseslint.parser,
     parserOptions: {
