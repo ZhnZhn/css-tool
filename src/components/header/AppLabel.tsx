@@ -6,16 +6,10 @@ interface AppLabelProps {
   caption: string; 
 }
 
-const AppLabel = ({ 
-  className, 
-  style, 
-  caption 
-}: AppLabelProps) => (
-  <span className={className} style={style}>
-    {caption}
+const AppLabel = (props: AppLabelProps) => (
+  <span className={props.className} style={props.style}>
+    {props.caption}
   </span>
 );
-
-
 
 export default AppLabel

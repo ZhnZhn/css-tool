@@ -37,9 +37,7 @@ const _isNotShouldUpdate: IsNotShouldUpdate<ViewBoxShadowProps> = (
   nextProps
 ) => prevProps.boxShadows === nextProps.boxShadows
   && prevProps.currentIndex === nextProps.currentIndex
-  && prevProps.configStyle === nextProps.configStyle
-  ? true
-  : false;
-
+  && prevProps.configStyle === nextProps.configStyle;
+  
 export default memo(ViewBoxShadow, _isNotShouldUpdate) 
 
