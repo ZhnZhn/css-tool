@@ -31,3 +31,11 @@ export function useImperativeHandleOr<T, R extends T>(
   useImperativeHandle(ref || _ref, create, inputs)
   /* eslint-enable react-hooks/exhaustive-deps */
 }
+
+const _isArr = Array.isArray;
+export const safeMap = <T, U>(
+  arrOr: unknown, 
+  fn: (value: T, index: number, array: T[]) => U
+) => _isArr(arrOr) 
+  ? arrOr.map(fn)
+  : []  

@@ -1,8 +1,12 @@
 import type { 
+  CSSProperties 
+} from '../types';
+import type { 
   ShadowType, 
   ConfigStyleType 
 } from './types';
 
+import { safeMap } from '../uiApi';
 import { toCssValue } from './helpers/fn';
 
 interface PreviewProps {
@@ -14,30 +18,31 @@ const CL_PREVIEW = "page-sb__preview"
 , CL_INNER = `${CL_PREVIEW}__inner`;
 
 const _crBoxShadowStyle = (
-  boxShadows: ShadowType[]
-) => ({
-  boxShadow: boxShadows.map(toCssValue).join(',')
+  boxShadows?: ShadowType[]
+): CSSProperties => ({  
+  boxShadow: safeMap(boxShadows, toCssValue).join(',')
 });
 
-const Preview = (props: PreviewProps) => {
-  const _style = _crBoxShadowStyle(props.boxShadows || [])
-  , { 
+const Preview = (props: PreviewProps) => {  
+  const { 
      bgColor, 
      boxColor, 
      boxBorderRadius 
-  } = props.configStyle || {}
-  , _rootStyle = { 
-     backgroundColor: bgColor 
-  }
-  , _boxStyle = {
-     backgroundColor: boxColor,
-     borderRadius: boxBorderRadius
-  };
+  } = props.configStyle || {}; 
   return (
-     <div className={CL_PREVIEW} style={_rootStyle}>
-       <div className={CL_INNER} style={{ ..._boxStyle, ..._style }} />
-     </div>
-   );
+    <div 
+      className={CL_PREVIEW} 
+      style={{ backgroundColor: bgColor }}>
+        <div 
+          className={CL_INNER} 
+          style={{
+            backgroundColor: boxColor,
+            borderRadius: boxBorderRadius,
+            ..._crBoxShadowStyle(props.boxShadows)
+          }}         
+        />
+    </div>
+  );
 };
 
 export default Preview
