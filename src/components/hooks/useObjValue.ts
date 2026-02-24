@@ -1,9 +1,12 @@
 import { 
   useState, 
-  useCallback 
+  useCallback,
+  useEffect 
 } from '../uiApi';
 
-function useObjValue<T>(initialValue: T): [T, (value: T) => void] {
+type UseObjValueType = <T>(initialValue: T) => [T, (value: T) => void]
+
+const useObjValue: UseObjValueType = <T>(initialValue: T) => {
   const [
     { value }, 
     setValue
@@ -12,6 +15,13 @@ function useObjValue<T>(initialValue: T): [T, (value: T) => void] {
     (value: T) => setValue({ value }), 
     []
   );
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    _setValue(initialValue)
+  }, [initialValue]);
+  /* eslint-enable react-hooks/exhaustive-deps */
+  
   return [
     value,
     _setValue
