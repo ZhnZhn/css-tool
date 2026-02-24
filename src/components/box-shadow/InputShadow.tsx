@@ -7,8 +7,8 @@ import {
   UpdateShadowFn 
 } from './types';
 
-import RowInputType1 from '../zhn-r/RowInputType1';
-import RowInputType3 from '../zhn-r/RowInputType3';
+import RowInputNumber from '../zhn-r/RowInputNumber';
+import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
 import InputSwitch from '../zhn/InputSwitch';
 
 import { CL_ROW } from '../zhn-r/style';
@@ -70,38 +70,38 @@ const InputShadow = ({
   } = initialValue;
   return (
     <>
-      <RowInputType1
+      <RowInputNumber
          {...INPUT_ROWS[0]}
           inputId={id}
           initValue={gLength}
           onChange={value => onChange('gLength', value)}          
       />
-      <RowInputType1
+      <RowInputNumber
          {...INPUT_ROWS[1]}
          inputId={id}
          initValue={vLength}
          onChange={value => onChange('vLength', value)}         
       />
-      <RowInputType1
+      <RowInputNumber
          {...INPUT_ROWS[2]}
          inputId={id}
          initValue={blurR}
          onChange={value => onChange('blurR', value)}         
       />
-      <RowInputType1
+      <RowInputNumber
          {...INPUT_ROWS[3]}
          inputId={id}
          initValue={spreadR}
          onChange={value => onChange('spreadR', value)}         
       />
-      <RowInputType3         
+      <RowInputColorHsl   
          key={id}
          id="shadow-color"
          caption="Shadow Color"         
          initValue={color}
          onEnter={(_value: string, color: TinycolorInstance) => onChange('color', color.toHexString())}         
       />
-      <RowInputType1
+      <RowInputNumber
          {...INPUT_ROWS[4]}
          inputId={id}
          initValue={opacity}

@@ -1,20 +1,16 @@
 import type { 
-  CSSProperties 
+  CSSProperties,
+  IsNotShouldUpdate  
 } from '../types';
-import type { 
-  InputNumberType, 
-  InputNumberRef 
-} from '../zhn/InputNumber';
-import type { 
-  InputSliderRef 
-} from '../zhn/InputSlider';
+import type { InputNumberType } from '../zhn/InputNumber';
+
+import { round10 } from '../../utils/math';
 
 import { 
   useCallback, 
   useRef 
 } from '../uiApi';
-
-import { round10 } from '../../utils/math';
+import memo from '../memo';
 
 import useToggle from '../hooks/useToggle';
 
@@ -28,7 +24,7 @@ import {
   S_RIGHT
 } from './style';
 
-export interface RowInputType1Props {  
+export interface RowInputNumberProps {  
   caption: string;
   inputId: string;  
   initValue: number;  
@@ -57,7 +53,7 @@ const _crNumberValue = (
   
 const _FN_NOOP = () => {}
 
-const RowInputType1 = ({
+const RowInputNumber = ({
   id,
   unit='px',     
   step=1,
@@ -68,18 +64,11 @@ const RowInputType1 = ({
   initValue, 
   inputId,  
   onChange=_FN_NOOP
-}: RowInputType1Props) => {
-  const _refInputNumber: InputNumberRef = useRef(null)
-  , _refSliderComp: InputSliderRef = useRef(null)
-  , _refStepExp = useRef(_crStepExp(step))
-  , _hChangeSlider = useCallback((value: number) => {
-    _refInputNumber.current?.setValue(value)
-    onChange(value)
-  }, [onChange])
+}: RowInputNumberProps) => {    
+  const _refStepExp = useRef(_crStepExp(step))  
   , _hChangeNumber = useCallback((value: InputNumberType) => {    
     const _value = _crNumberValue(_refStepExp.current, value);
-    if ( _value>=min && _value<=max ){      
-      _refSliderComp.current?.setValue(_value)      
+    if ( _value>=min && _value<=max ){          
       onChange(_value)
     }
   }, [min, max, onChange])
@@ -95,8 +84,7 @@ const RowInputType1 = ({
           <span style={S_RIGHT}>{unit}</span>
           <InputNumber
              key={inputId}
-             id={id}
-             innerRef={_refInputNumber}
+             id={id}             
              style={{...S_RIGHT, ...styleInput}}                                      
              initialValue={initValue}
              step={step}
@@ -108,18 +96,22 @@ const RowInputType1 = ({
         </label>        
         <ShowHide is={isShowSlider}>
           <InputSlider
-             key={`sl-${inputId}`}
-             innerRef={_refSliderComp}     
+             key={`sl-${inputId}`}             
              initialValue={initValue}                   
              step={step}
              min={min}
              max={max}            
-             onChange={_hChangeSlider}          
+             onChange={_hChangeNumber}          
           />
         </ShowHide>
       </div>
   );
 }
 
+const _isNotShouldUpdate: IsNotShouldUpdate<RowInputNumberProps> = (
+  prevProps,
+  nextProps
+) => prevProps.initValue === nextProps.initValue
+  && prevProps.inputId === nextProps.inputId
 
-export default RowInputType1
+export default memo(RowInputNumber, _isNotShouldUpdate)
