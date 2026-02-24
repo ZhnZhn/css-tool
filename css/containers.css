@@ -1,5 +1,5 @@
-.header {
-  position: relative;
+.header {  
+  display: flex;
   width: 100%;
   background-color: rgba(77, 77, 77, 1);
   min-height: 46px;
@@ -13,24 +13,17 @@
   z-index: 50;
 }
 .header__icon-app {
-  display: inline-block;
-  position: absolute;
-  top: 7px;
-  left: 16px;
+  display: inline-block;  
   width: 32px;
   height: 32px;
+  margin-right: 10px;
   cursor: default;
-}
-.header__icon-gap {
-  display: inline-block;
-  width: 45px;
 }
 .header__label-app {
   display: inline-block;
   color: #80c040;
-  padding-top: 6px;
-  padding-right: 10px;
-  font-size: 16px;
+  margin-top: 9px;
+  margin-right: 6px;
   font-weight: bold;
 }
 
