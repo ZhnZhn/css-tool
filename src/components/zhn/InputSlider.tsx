@@ -25,13 +25,13 @@ import {
 
 import { 
   useRef, 
-  useState,
   useImperativeHandleOr,
   getRefValue 
 } from '../uiApi';
 
 import useRefInit from '../hooks/useRefInit';
 import useBool from '../hooks/useBool';
+import useObjValue from '../hooks/useObjValue';
 import useDragMouseDown from './useDragMouseDown';
 import { HAS_TOUCH_EVENTS } from '../has';
 
@@ -163,8 +163,15 @@ const InputSlider = ({
     return arr[1] ? -1 * arr[1].length : 0;
   })
   , _refTrack = useRef<HTMLDivElement>(null)
-  , [isHovered, setHoveredTrue, setHoveredFalse] = useBool(false)
-  , [value, setValue] = useState(initialValue)
+  , [
+    isHovered, 
+    setHoveredTrue, 
+    setHoveredFalse
+  ] = useBool(false)  
+  , [
+    value, 
+    setValue
+  ] = useObjValue(initialValue)    
 
   , _updateValue = (value: number) => {
     const _value = _checkValueInMinMax(min, max, value);
