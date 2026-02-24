@@ -20,8 +20,8 @@ describe('round10', ()=>{
   test('should return rounded value by exponential string args', ()=>{
     expect(fn('1.04444e+1', 0)).toBe(10)
     expect(fn('1.04444e+1', '0')).toBe(10)
-    expect(fn('1.05555e+1', 0)).toBe(10)
-    expect(fn('1.05555e+1', '0')).toBe(10)
+    expect(fn('1.05555e+1', 0)).toBe(11)
+    expect(fn('1.05555e+1', '0')).toBe(11)
   })
 
 })  
