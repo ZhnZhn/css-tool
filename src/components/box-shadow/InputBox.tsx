@@ -9,8 +9,8 @@ import {
 
 import memo  from '../memo';
 
-import RowInputType2 from '../zhn-r/RowInputType2';
-import RowInputType3 from '../zhn-r/RowInputType3';
+import RowInputText from '../zhn-r/RowInputText';
+import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
 
 const S_DIV: CSSProperties = {
   marginBottom: 32
@@ -36,19 +36,19 @@ const InputBox = ({
   } = configStyle;
   return (
     <div style={S_DIV}>
-      <RowInputType3         
+      <RowInputColorHsl      
          styleInput={S_BOX_INPUT}
          caption="Background"
          initValue={bgColor}
          onEnter={value => onEnter('bgColor', value)}
       />
-      <RowInputType3         
+      <RowInputColorHsl      
          styleInput={S_BOX_INPUT}
          caption="Box Background"
          initValue={boxColor}
          onEnter={value => onEnter('boxColor', value)}
       />
-      <RowInputType2         
+      <RowInputText         
          styleInput={S_BOX_INPUT}
          caption="Box Border Radius"
          initValue={boxBorderRadius}

@@ -42,7 +42,7 @@ const S_HSL: CSSProperties = {
 }
 , S_INPUT_NUMBER: CSSProperties = { width: 50 };
 
-export interface RowInputType3Props {  
+export interface RowInputColorHslProps {  
   id?: string;
   styleInput?: CSSProperties
   caption: string;  
@@ -71,14 +71,14 @@ const _fChangeItem = (
   }
 }
 
-const RowInputType3 = ({   
+const RowInputColorHsl = ({   
   id,
   styleInput,
   caption,  
   inputId,
   initValue,
   onEnter=_FN_NOOP
-}: RowInputType3Props) => {
+}: RowInputColorHslProps) => {
   const _refHex: InputTextRef = useRef(null) 
   , _refH: InputNumberRef = useRef(null)
   , _refS: InputNumberRef = useRef(null)
@@ -180,4 +180,4 @@ const RowInputType3 = ({
   );
 }
 
-export default RowInputType3
+export default RowInputColorHsl
