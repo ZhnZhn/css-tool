@@ -4,9 +4,8 @@
   "description": "Visual tool for css property box-shadow",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config webpack.dev.js",
-    "transpile": "babel ./src --out-dir ./js --source-maps --ignore test.js",
-    "transpile:all": "babel ./src --out-dir ./js --source-maps",
+    "dev": "webpack serve --config webpack.dev.js",   
+    "transpile": "babel ./src --out-dir ./js --source-maps --extensions .ts,.js,.tsx,.jsx",        
     "lint:one": "eslint -c eslint.config.js",
     "tsc:check": "tsc --noEmit",
     "build:dll": "webpack --color --progress --config webpack.dll.js",
@@ -45,33 +44,36 @@
     "@types/react-dom": "^18.3.7",
     "@types/tinycolor2": "^1.4.6",
     "babel-loader": "^10.0.0",
+    "eslint": "^9.39.3",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "html-webpack-plugin": "^5.6.6",
     "jest": "^30.2.0",
     "sass": "^1.97.3",
     "terser-webpack-plugin": "^5.3.16",
-    "ts-jest": "^29.4.6",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
     "webpack": "^5.105.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.3"
   },
   "overrides": {
     "js-yaml": "~4.1.1",
-    "glob": "~11.1.0",
-    "minimatch": "~10.2.2"
+    "glob": "~11.1.0"
   },
   "jest": {
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/utils"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/utils"
     ],
     "testMatch": [
-      "**/__tests__/**/*.+(ts|tsx|js)",
-      "**/?(*.)+(spec|test).+(ts|tsx|js)"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx|js)$": "ts-jest"
-    }
+      "**/__tests__/**/*.+(js)"
+    ]
   }
 }
