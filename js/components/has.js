@@ -1,15 +1,6 @@
 "use strict";
 
 exports.__esModule = true;
-exports["default"] = void 0;
-
-var _isTouchable = function _isTouchable() {
-  return document && 'ontouchstart' in document.documentElement;
-};
-
-var has = {
-  HAS_TOUCH: _isTouchable()
-};
-var _default = has;
-exports["default"] = _default;
-//# sourceMappingURL=has.js.map
+exports.HAS_TOUCH_EVENTS = void 0;
+const _isTouchable = () => document && 'ontouchstart' in document.documentElement;
+const HAS_TOUCH_EVENTS = exports.HAS_TOUCH_EVENTS = _isTouchable();

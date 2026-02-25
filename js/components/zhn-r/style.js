@@ -1,23 +1,17 @@
 "use strict";
 
 exports.__esModule = true;
-exports["default"] = void 0;
-var S = {
-  CL_ROW: 'row',
-  CL_CAPTION: 'row__caption',
-  CL_CHB_BT: 'bt-chb row__caption',
-  RIGHT: {
-    "float": 'right'
-  },
-  COLOR: {
-    "float": 'right',
-    marginRight: 16
-  },
-  TEXT: {
-    "float": 'right',
-    width: 80
-  }
+exports.S_TEXT = exports.S_RIGHT = exports.S_COLOR = exports.CL_ROW = exports.CL_CAPTION = void 0;
+const CL_ROW = exports.CL_ROW = 'row';
+const CL_CAPTION = exports.CL_CAPTION = 'row__caption';
+const S_RIGHT = exports.S_RIGHT = {
+  float: 'right'
 };
-var _default = S;
-exports["default"] = _default;
-//# sourceMappingURL=style.js.map
+const S_COLOR = exports.S_COLOR = {
+  float: 'right',
+  marginRight: 16
+};
+const S_TEXT = exports.S_TEXT = {
+  float: 'right',
+  width: 80
+};

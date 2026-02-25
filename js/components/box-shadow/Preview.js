@@ -1,74 +1,34 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 exports.__esModule = true;
-exports["default"] = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var _fn = _interopRequireDefault(require("./helpers/fn"));
-
+exports.default = void 0;
+var _uiApi = require("../uiApi");
+var _fn = require("./helpers/fn");
 var _jsxRuntime = require("preact/jsx-runtime");
-
-var CL = {
-  PREVIEW: "page-sb__preview",
-  INNER: "page-sb__preview__inner"
-};
-
-var _crBoxShadowStyle = function _crBoxShadowStyle(boxShadows) {
-  return {
-    boxShadow: boxShadows.map(_fn["default"].toCssValue).join(',')
-  };
-};
-
-var Preview = function Preview(_ref) {
-  var _ref$boxShadows = _ref.boxShadows,
-      boxShadows = _ref$boxShadows === void 0 ? [] : _ref$boxShadows,
-      _ref$configStyle = _ref.configStyle,
-      configStyle = _ref$configStyle === void 0 ? {} : _ref$configStyle;
-
-  var _style = _crBoxShadowStyle(boxShadows),
-      bgColor = configStyle.bgColor,
-      boxColor = configStyle.boxColor,
-      boxBorderRadius = configStyle.boxBorderRadius,
-      _rootStyle = {
-    backgroundColor: bgColor
-  },
-      _boxStyle = {
-    backgroundColor: boxColor,
-    borderRadius: boxBorderRadius
-  };
-
+const CL_PREVIEW = "page-sb__preview",
+  CL_INNER = `${CL_PREVIEW}__inner`;
+const _crBoxShadowStyle = boxShadows => ({
+  boxShadow: (0, _uiApi.safeMap)(boxShadows, _fn.toCssValue).join(',')
+});
+const Preview = props => {
+  const {
+    bgColor,
+    boxColor,
+    boxBorderRadius
+  } = props.configStyle || {};
   return (0, _jsxRuntime.jsx)("div", {
-    className: CL.PREVIEW,
-    style: _rootStyle,
+    className: CL_PREVIEW,
+    style: {
+      backgroundColor: bgColor
+    },
     children: (0, _jsxRuntime.jsx)("div", {
-      className: CL.INNER,
-      style: (0, _extends2["default"])({}, _boxStyle, _style)
+      className: CL_INNER,
+      style: {
+        backgroundColor: boxColor,
+        borderRadius: boxBorderRadius,
+        ..._crBoxShadowStyle(props.boxShadows)
+      }
     })
   });
 };
-/*
-Preview.propTypes = {
-  boxShadows: PropTypes.arrayOf(
-    PropTypes.shape({
-      gLength: PropTypes.number,
-      vLength: PropTypes.number,
-      blurR: PropTypes.number,
-      spreadR: PropTypes.number,
-      opacity: PropTypes.number
-    })
-  ),
-  configStyle: PropTypes.shape({
-    bgColor: PropTypes.string,
-    boxColor: PropTypes.string,
-    borderRadius: PropTypes.string
-  })
-}
-*/
-
-
-var _default = Preview;
-exports["default"] = _default;
-//# sourceMappingURL=Preview.js.map
+var _default = exports.default = Preview;

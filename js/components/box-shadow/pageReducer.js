@@ -1,114 +1,116 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 exports.__esModule = true;
-exports["default"] = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
+exports.default = void 0;
 var _crId = _interopRequireDefault(require("../../utils/crId"));
-
-var _imArr = _interopRequireDefault(require("../../utils/im-arr"));
-
-var _imObj = _interopRequireDefault(require("../../utils/im-obj"));
-
-var A = {
-  SET_CURRENT_SHADOW: 'SET_CURRENT_SHADOW',
-  UPATE_SHADOWS: 'UPDATE_SHADOWS',
-  ADD_SHADOW: 'ADD_SHADOW',
-  REMOVE_SHADOW: 'REMOVE_SHADOW',
-  UPDATE_CONFIG: 'UPDATE_CONFIG'
-};
-var DF_INITIAL_VALUE = {
-  isInset: false,
-  gLength: 10,
-  vLength: 10,
-  blurR: 5,
-  spreadR: 0,
-  color: '#000000',
-  opacity: 0.75,
-  id: (0, _crId["default"])()
-};
-var INITIAL_STATE = {
-  currentIndex: 0,
-  boxShadows: [DF_INITIAL_VALUE],
-  configStyle: {
-    bgColor: 'gray',
-    boxColor: '#e7a61a',
-    boxBorderRadius: '0px'
-  }
-};
-
-var pageReducer = function pageReducer(state, action) {
-  switch (action.type) {
-    case A.SET_CURRENT_SHADOW:
+var _isTypeFn = require("../../utils/isTypeFn");
+var _imArr = require("../../utils/im-arr");
+var _imObj = require("../../utils/im-obj");
+var _pageConfig = require("./pageConfig");
+function updateBoxShadow(boxShadow, propName, value) {
+  /*
+  if (typeof value !== typeof boxShadow[propName]) {
+    throw new Error(`Invalid type for property ${propName}`);
+  }*/
+  boxShadow[propName] = value;
+}
+const pageReducer = (state, action) => {
+  const actionType = action.type;
+  switch (actionType) {
+    case _pageConfig.SET_CURRENT_SHADOW:
       {
-        var editIndex = action.editIndex;
-        return (0, _extends2["default"])({}, state, {
-          currentIndex: editIndex
-        });
+        const {
+          bsIndex
+        } = action;
+        return (0, _isTypeFn.isNumber)(bsIndex) ? {
+          ...state,
+          currentIndex: bsIndex
+        } : state;
       }
-
-    case A.UPDATE_SHADOWS:
+    case _pageConfig.UPDATE_SHADOWS:
       {
-        var boxShadow = action.boxShadow,
-            boxShadows = state.boxShadows,
-            currentIndex = state.currentIndex;
-        return (0, _extends2["default"])({}, state, {
-          boxShadows: _imArr["default"].update(boxShadows, currentIndex, boxShadow)
-        });
-      }
-
-    case A.ADD_SHADOW:
-      {
-        var fromIndex = action.fromIndex,
-            _boxShadows = state.boxShadows,
-            _currentIndex = state.currentIndex,
-            _initValue = _imObj["default"].create(_boxShadows[fromIndex]),
-            _index = _currentIndex + 1;
-
-        _initValue.id = (0, _crId["default"])(_index);
-        return (0, _extends2["default"])({}, state, {
-          currentIndex: _index,
-          boxShadows: _imArr["default"].insert(_boxShadows, _index, _initValue)
-        });
-      }
-
-    case A.REMOVE_SHADOW:
-      {
-        var removeIndex = action.removeIndex;
-
-        if (removeIndex === 0) {
+        const {
+          propName,
+          value
+        } = action;
+        if (!(0, _isTypeFn.isStr)(propName)) {
           return state;
         }
-
-        var _boxShadows2 = state.boxShadows,
-            _index2 = removeIndex - 1;
-
-        return (0, _extends2["default"])({}, state, {
-          currentIndex: _index2,
-          boxShadows: _imArr["default"].remove(_boxShadows2, removeIndex)
-        });
+        const {
+            boxShadows,
+            currentIndex
+          } = state,
+          boxShadow = state.boxShadows[state.currentIndex];
+        updateBoxShadow(boxShadow, propName, value);
+        return {
+          ...state,
+          boxShadows: (0, _imArr.imArrUpdate)(boxShadows, currentIndex, boxShadow)
+        };
       }
-
-    case A.UPDATE_CONFIG:
+    case _pageConfig.ADD_SHADOW:
       {
-        var propName = action.propName,
-            value = action.value,
-            configStyle = state.configStyle;
-        return (0, _extends2["default"])({}, state, {
-          configStyle: _imObj["default"].update(configStyle, propName, value)
-        });
+        const {
+          bsIndex
+        } = action;
+        if (!(0, _isTypeFn.isNumber)(bsIndex)) {
+          return state;
+        }
+        const {
+            boxShadows,
+            currentIndex
+          } = state,
+          _initValue = {
+            ...boxShadows[bsIndex]
+          },
+          _index = currentIndex + 1;
+        _initValue.id = (0, _crId.default)('' + _index);
+        return {
+          ...state,
+          currentIndex: _index,
+          boxShadows: (0, _imArr.imArrInsert)(boxShadows, _index, _initValue)
+        };
       }
-
+    case _pageConfig.REMOVE_SHADOW:
+      {
+        const {
+          bsIndex
+        } = action;
+        if (!(0, _isTypeFn.isNumber)(bsIndex) || bsIndex === 0) {
+          return state;
+        }
+        const {
+            boxShadows
+          } = state,
+          _index = bsIndex - 1;
+        return {
+          ...state,
+          currentIndex: _index,
+          boxShadows: (0, _imArr.imArrRemove)(boxShadows, bsIndex)
+        };
+      }
+    case _pageConfig.UPDATE_CONFIG:
+      {
+        const {
+          propName,
+          value
+        } = action;
+        if (!(0, _isTypeFn.isStr)(propName) || !(0, _isTypeFn.isStr)(value)) {
+          return state;
+        }
+        const {
+          configStyle
+        } = state;
+        return {
+          ...state,
+          configStyle: (0, _imObj.imObjUpdate)(configStyle, propName, value)
+        };
+      }
     default:
-      throw new Error('Unsupported action type: ' + action.type);
+      {
+        const _neverActionType = actionType;
+        throw new Error('Unsupported action type: ' + _neverActionType);
+      }
   }
 };
-
-pageReducer.A = A;
-pageReducer.INITIAL_STATE = INITIAL_STATE;
-var _default = pageReducer;
-exports["default"] = _default;
-//# sourceMappingURL=pageReducer.js.map
+var _default = exports.default = pageReducer;

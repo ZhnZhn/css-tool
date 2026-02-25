@@ -1,106 +1,47 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 exports.__esModule = true;
-exports["default"] = void 0;
-
-var _hooks = _interopRequireDefault(require("../hooks"));
-
-var _pageReducer = _interopRequireDefault(require("./pageReducer"));
-
+exports.default = void 0;
+var _usePageState = _interopRequireDefault(require("./usePageState"));
 var _InputBox = _interopRequireDefault(require("./InputBox"));
-
 var _InputShadow = _interopRequireDefault(require("./InputShadow"));
-
 var _ViewBoxShadow = _interopRequireDefault(require("./ViewBoxShadow"));
-
 var _jsxRuntime = require("preact/jsx-runtime");
-
-var useReducer = _hooks["default"].useReducer,
-    useCallback = _hooks["default"].useCallback;
-var CL = {
-  PAGE: "page-sb",
-  INPUTS: "page-sb__inputs",
-  VIEWS: "page-sb__views"
-};
-var A = _pageReducer["default"].A,
-    INITIAL_STATE = _pageReducer["default"].INITIAL_STATE;
-
-var Page = function Page(_ref) {
-  var isShadow = _ref.isShadow,
-      isBox = _ref.isBox;
-
-  var _useReducer = useReducer(_pageReducer["default"], INITIAL_STATE),
-      state = _useReducer[0],
-      dispatch = _useReducer[1],
-      currentIndex = state.currentIndex,
-      boxShadows = state.boxShadows,
-      configStyle = state.configStyle,
-      _currentValue = boxShadows[currentIndex],
-      id = _currentValue.id,
-      isInset = _currentValue.isInset,
-      _updateShadows = useCallback(function (boxShadow) {
-    return dispatch({
-      type: A.UPDATE_SHADOWS,
-      boxShadow: boxShadow
-    });
-  }, []),
-      _updateConfig = useCallback(function (propName, value) {
-    return dispatch({
-      type: A.UPDATE_CONFIG,
-      propName: propName,
-      value: value
-    });
-  }, []),
-      _addShadow = useCallback(function (fromIndex) {
-    return dispatch({
-      type: A.ADD_SHADOW,
-      fromIndex: fromIndex
-    });
-  }, []),
-      _setCurrentShadow = useCallback(function (editIndex) {
-    return dispatch({
-      type: A.SET_CURRENT_SHADOW,
-      editIndex: editIndex
-    });
-  }, []),
-      _removeShadow = useCallback(function (removeIndex) {
-    return dispatch({
-      type: A.REMOVE_SHADOW,
-      removeIndex: removeIndex
-    });
-  }, []);
-
+const CL_PAGE = "page-sb",
+  CL_INPUTS = `${CL_PAGE}__inputs`,
+  CL_VIEWS = `${CL_PAGE}__views`;
+const Page = props => {
+  const [state, updateShadows, updateConfig, addShadow, setCurrentShadow, removeShadow] = (0, _usePageState.default)(),
+    {
+      currentIndex,
+      boxShadows,
+      configStyle
+    } = state,
+    _boxShadowCurrent = boxShadows[currentIndex];
   return (0, _jsxRuntime.jsxs)("div", {
-    className: CL.PAGE,
+    className: CL_PAGE,
     children: [(0, _jsxRuntime.jsxs)("div", {
-      className: CL.INPUTS,
-      children: [(0, _jsxRuntime.jsx)(_InputBox["default"], {
-        isBox: isBox,
+      className: CL_INPUTS,
+      children: [props.isBox ? (0, _jsxRuntime.jsx)(_InputBox.default, {
         configStyle: configStyle,
-        onEnter: _updateConfig
-      }, "input-box"), (0, _jsxRuntime.jsx)(_InputShadow["default"], {
-        id: id,
-        isShadow: isShadow,
-        isInset: isInset,
-        initValue: _currentValue,
-        onChange: _updateShadows
-      }, "input-shadow")]
+        onEnter: updateConfig
+      }) : null, props.isShadow ? (0, _jsxRuntime.jsx)(_InputShadow.default, {
+        id: _boxShadowCurrent.id,
+        initialValue: _boxShadowCurrent,
+        onChange: updateShadows
+      }) : null]
     }), (0, _jsxRuntime.jsx)("div", {
-      className: CL.VIEWS,
-      children: (0, _jsxRuntime.jsx)(_ViewBoxShadow["default"], {
+      className: CL_VIEWS,
+      children: (0, _jsxRuntime.jsx)(_ViewBoxShadow.default, {
         currentIndex: currentIndex,
         boxShadows: boxShadows,
         configStyle: configStyle,
-        onAdd: _addShadow,
-        onEdit: _setCurrentShadow,
-        onRemove: _removeShadow
+        onAdd: addShadow,
+        onEdit: setCurrentShadow,
+        onRemove: removeShadow
       })
     })]
   });
 };
-
-var _default = Page;
-exports["default"] = _default;
-//# sourceMappingURL=Page.js.map
+var _default = exports.default = Page;
