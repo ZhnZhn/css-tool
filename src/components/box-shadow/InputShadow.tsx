@@ -1,5 +1,4 @@
 import type { 
-  CSSProperties,
   TinycolorInstance 
 } from '../types';
 import { 
@@ -11,12 +10,10 @@ import RowInputNumber from '../zhn-r/RowInputNumber';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
 import InputSwitch from '../zhn/InputSwitch';
 
-import { CL_ROW } from '../zhn-r/style';
-
-const S_INPUT_SWITCH: CSSProperties = {
-  flexDirection: 'row',
-  width: 'fit-content'
-};
+import { 
+  CL_ROW,
+  S_INPUT_SWITCH 
+} from '../zhn-r/style';
 
 interface InputShadowProps {
   id: string;
