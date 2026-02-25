@@ -18,10 +18,9 @@ module.exports = {
       library: '[name]_vendor'
   },
   resolve: {
-    modules: ['local_modules','node_modules']
+    modules: ['node_modules']
   },
-  plugins: [    
-    
+  plugins: [        
     new webpack.DllPlugin({
       path: path.join(__dirname, 'dll', '[name]-manifest.json'),
       name: '[name]_vendor'      

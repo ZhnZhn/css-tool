@@ -22,10 +22,9 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        //test: /\.jsx?$/,
+      {       
         test: /\.(ts|js)x?$/,  
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -41,7 +40,7 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ['local_modules','node_modules'],
+    modules: ['node_modules'],
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   plugins : [    
