@@ -27,7 +27,8 @@ const Preview = (props: PreviewProps) => {
   const { 
      bgColor, 
      boxColor, 
-     boxBorderRadius 
+     boxBorderRadius,
+     isBoxResize 
   } = props.configStyle || {}; 
   return (
     <div 
@@ -38,6 +39,7 @@ const Preview = (props: PreviewProps) => {
           style={{
             backgroundColor: boxColor,
             borderRadius: boxBorderRadius,
+            resize: isBoxResize ? 'both' : 'none',
             ..._crBoxShadowStyle(props.boxShadows)
           }}         
         />

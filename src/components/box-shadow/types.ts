@@ -16,6 +16,7 @@ export type ConfigStyleType = {
   bgColor: string;
   boxColor: string;
   boxBorderRadius: string; 
+  isBoxResize: boolean;
 }
 
 export type UpdateConfigStyleFn = <K extends keyof ConfigStyleType>(propName: K, value: ConfigStyleType[K]) => void

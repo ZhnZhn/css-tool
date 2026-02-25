@@ -11,6 +11,12 @@ import memo  from '../memo';
 
 import RowInputText from '../zhn-r/RowInputText';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
+import InputSwitch from '../zhn/InputSwitch';
+
+import { 
+  CL_ROW,
+  S_INPUT_SWITCH 
+} from '../zhn-r/style';
 
 const S_DIV: CSSProperties = {
   marginBottom: 32
@@ -28,34 +34,37 @@ interface InputBoxProps {
 const InputBox = ({
   configStyle,
   onEnter=_fnNoop
-}: InputBoxProps) => {
-  const {
-    bgColor,
-    boxColor, 
-    boxBorderRadius
-  } = configStyle;
-  return (
-    <div style={S_DIV}>
-      <RowInputColorHsl      
-         styleInput={S_BOX_INPUT}
-         caption="Background"
-         initValue={bgColor}
-         onEnter={value => onEnter('bgColor', value)}
-      />
-      <RowInputColorHsl      
-         styleInput={S_BOX_INPUT}
-         caption="Box Background"
-         initValue={boxColor}
-         onEnter={value => onEnter('boxColor', value)}
-      />
-      <RowInputText         
-         styleInput={S_BOX_INPUT}
-         caption="Box Border Radius"
-         initValue={boxBorderRadius}
-         onEnter={value => onEnter('boxBorderRadius', value)}
-      />
-   </div>);
-};
+}: InputBoxProps) => (
+  <div style={S_DIV}>
+    <RowInputColorHsl      
+       styleInput={S_BOX_INPUT}
+       caption="Background"
+       initValue={configStyle.bgColor}
+       onEnter={value => onEnter('bgColor', value)}
+    />
+    <RowInputColorHsl      
+       styleInput={S_BOX_INPUT}
+       caption="Box Background"
+       initValue={configStyle.boxColor}
+       onEnter={value => onEnter('boxColor', value)}
+    />
+    <RowInputText         
+       styleInput={S_BOX_INPUT}
+       caption="Box Border Radius"
+       initValue={configStyle.boxBorderRadius}
+       onEnter={value => onEnter('boxBorderRadius', value)}
+    />
+    <InputSwitch       
+      initialValue={configStyle.isBoxResize}
+      className={CL_ROW}
+      style={S_INPUT_SWITCH}
+      caption="Resize"
+      onCheck={() => onEnter('isBoxResize', true)}
+      onUnCheck={() => onEnter('isBoxResize', false)}        
+    />
+  </div>
+);
+
 
 const _isNotShouldUpdate: IsNotShouldUpdate<InputBoxProps> = (
   prevProps,

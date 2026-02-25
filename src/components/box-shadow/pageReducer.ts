@@ -11,8 +11,9 @@ import {
 
 import crId from '../../utils/crId';
 import {
+  isBool,
   isNumber,
-  isStr
+  isStr,
 } from '../../utils/isTypeFn';
 import {
   imArrInsert,
@@ -105,10 +106,10 @@ const pageReducer: PageReducer = (
     }
     case UPDATE_CONFIG: {
       const { propName, value } = action
-      if (!isStr(propName) || !isStr(value)) { 
+      if (!isStr(propName) 
+       || !(isStr(value) || isBool(value)) ) { 
         return state; 
-      }
-      
+      }      
       const { configStyle } = state;
       return {
         ...state,

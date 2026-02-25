@@ -64,6 +64,7 @@ export const INITIAL_STATE: PageStateType = {
   configStyle: {
     bgColor: 'grey',
     boxColor: '#e7a61a',
-    boxBorderRadius: '0px'
+    boxBorderRadius: '0px',
+    isBoxResize: true
   }
 }
