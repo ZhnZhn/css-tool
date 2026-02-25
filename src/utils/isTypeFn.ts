@@ -1,4 +1,7 @@
 
+export const isBool = (value: unknown): value is boolean => 
+  typeof value === "boolean"
+
 export const _isNaN = Number.isNaN || isNaN
 
 export const isNumber = (value: unknown): value is number => 
