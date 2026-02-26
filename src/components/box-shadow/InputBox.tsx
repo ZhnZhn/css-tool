@@ -33,19 +33,19 @@ const InputBox = ({
   <div style={S_DIV}>
     <RowInputColorHsl      
        styleInput={S_BOX_INPUT}
-       caption="Background"
+       caption="View Background"
        initValue={configStyle.bgColor}
        onEnter={value => onEnter('bgColor', value)}
     />
     <RowInputColorHsl      
        styleInput={S_BOX_INPUT}
-       caption="Box Background"
+       caption="Background"
        initValue={configStyle.boxColor}
        onEnter={value => onEnter('boxColor', value)}
     />
     <RowInputText         
        styleInput={S_BOX_INPUT}
-       caption="Box Border Radius"
+       caption="Border Radius"
        initValue={configStyle.boxBorderRadius}
        onEnter={value => onEnter('boxBorderRadius', value)}
     />
