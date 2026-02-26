@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",   
-    "transpile": "babel ./src --out-dir ./js --source-maps --extensions .ts,.js,.tsx,.jsx",        
+    "transpile": "babel ./src --out-dir ./js --extensions .ts,.js,.tsx,.jsx",        
     "lint:one": "eslint -c eslint.config.js",
     "tsc:check": "tsc --noEmit",
     "build:dll": "webpack --color --progress --config webpack.dll.js",
@@ -66,10 +66,12 @@
   "jest": {
     "roots": [
       "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
     "transformIgnorePatterns": [
       "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
     "testMatch": [

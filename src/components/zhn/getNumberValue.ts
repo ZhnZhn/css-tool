@@ -6,15 +6,20 @@ const getNumberValue = (
   max: number
 ): [number | string, boolean] => {
   if (value === '' || value === '-') {
-    return [value, false];
+    return [
+      value, 
+      false
+    ];
   }
-  const _v = parseFloat(''+value)
-  , _value = _isNaN(_v) 
+  const _v = parseFloat(''+value);  
+  return [_isNaN(_v) 
     ? min 
     : _v > max
-        ? max
-        : _v < min ? min : _v;
-  return [_value, true];
+    ? max
+    : _v < min 
+    ? min : _v, 
+    true
+  ];
 };
 
 export default getNumberValue
