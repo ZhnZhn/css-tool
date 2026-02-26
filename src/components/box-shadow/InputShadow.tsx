@@ -22,28 +22,28 @@ const _crId = (
   .toLowerCase()
   .replace(' ', '-');
 
-const INPUT_ROWS = [
-  {
-    caption: "Horizontal Length",
-    min: -30, max: 30, step:1, shiftTimes: 2, unit: 'px'
-  },{
-    caption: "Vertical Length",
-    min: -30, max: 30, step:1, shiftTimes: 2, unit: 'px'
-  },{
-    caption: "Blur Radius",
-    min: 0, max: 20, step:1, shiftTimes: 2, unit: 'px'
-  },{
-    caption: "Spread Radius",
-    min: -10, max: 20, step:1, shiftTimes: 2, unit: 'px'
-  },{
-    styleInput: { width: 55 },
-    caption: "Opacity",
-    min: 0, max: 1, step: 0.01, shiftTimes: 10, unit: ''
-  }
-].map(item => ({
-  id: _crId(item.caption),
-  ...item
-}));
+const _crRowInputNumberProps = (
+  caption: string,
+  min: number,
+  max = -min,
+  step = 1,
+  shiftTimes = 2,
+  unit = 'px'
+) => ({
+  id: _crId(caption),
+  caption,
+  min,
+  max,
+  step,
+  shiftTimes,
+  unit
+})
+
+const hlProps = _crRowInputNumberProps("Horizontal Length", -30)
+, vlProps = _crRowInputNumberProps("Vertical Length", -30)
+, brProps = _crRowInputNumberProps("Blur Radius", 0, 20)
+, srProps = _crRowInputNumberProps("Spread Radius", -10, 20)
+, opProps = _crRowInputNumberProps("Opacity", 0, 1, 0.01, 10, '')
 
 const _fnNoop = () => {};
 
@@ -62,26 +62,26 @@ const InputShadow = ({
   } = initialValue;
   return (
     <>
-      <RowInputNumber
-         {...INPUT_ROWS[0]}
-          inputId={id}
-          initValue={gLength}
-          onChange={value => onChange('gLength', value)}          
+      <RowInputNumber      
+         {...hlProps}
+         inputId={id}
+         initValue={gLength}
+         onChange={value => onChange('gLength', value)}          
       />
       <RowInputNumber
-         {...INPUT_ROWS[1]}
+         {...vlProps}
          inputId={id}
          initValue={vLength}
          onChange={value => onChange('vLength', value)}         
       />
-      <RowInputNumber
-         {...INPUT_ROWS[2]}
+      <RowInputNumber         
+         {...brProps}
          inputId={id}
          initValue={blurR}
          onChange={value => onChange('blurR', value)}         
       />
-      <RowInputNumber
-         {...INPUT_ROWS[3]}
+      <RowInputNumber        
+         {...srProps}
          inputId={id}
          initValue={spreadR}
          onChange={value => onChange('spreadR', value)}         
@@ -93,8 +93,9 @@ const InputShadow = ({
          initValue={color}
          onEnter={(_value: string, color: TinycolorInstance) => onChange('color', color.toHexString())}         
       />
-      <RowInputNumber
-         {...INPUT_ROWS[4]}
+      <RowInputNumber         
+         {...opProps}
+         styleInput={{ width: 55 }}
          inputId={id}
          initValue={opacity}
          onChange={value => onChange('opacity', value)}         
