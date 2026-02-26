@@ -25,20 +25,20 @@ const _crId = (
 const INPUT_ROWS = [
   {
     caption: "Horizontal Length",
-    min: -30, max: 30, step:1, unit: 'px'
+    min: -30, max: 30, step:1, shiftTimes: 2, unit: 'px'
   },{
     caption: "Vertical Length",
-    min: -30, max: 30, step:1, unit: 'px'
+    min: -30, max: 30, step:1, shiftTimes: 2, unit: 'px'
   },{
     caption: "Blur Radius",
-    min: 0, max: 20, step:1, unit: 'px'
+    min: 0, max: 20, step:1, shiftTimes: 2, unit: 'px'
   },{
     caption: "Spread Radius",
-    min: -10, max: 20, step:1, unit: 'px'
+    min: -10, max: 20, step:1, shiftTimes: 2, unit: 'px'
   },{
     styleInput: { width: 55 },
     caption: "Opacity",
-    min: 0, max: 1, step: 0.01, unit: ''
+    min: 0, max: 1, step: 0.01, shiftTimes: 10, unit: ''
   }
 ].map(item => ({
   id: _crId(item.caption),

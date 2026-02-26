@@ -147,6 +147,7 @@ export interface InputSliderProps {
   step?: number;
   min?: number;
   max?: number;
+  shiftTimes?: number;
   onChange: (n: number) => void;
 }
 
@@ -156,6 +157,7 @@ const InputSlider = ({
   step=1,
   min=0,
   max=20,
+  shiftTimes=1,
   onChange=_NOOP_FN
 }: InputSliderProps) => {
   const _refExp = useRefInit(() => {
@@ -181,9 +183,9 @@ const InputSlider = ({
   , _hKeyDown = (evt: KeyboardEvent) => {
     const _value = _calcValueByKeyCode(
       value, 
-      step, 
+      evt.shiftKey ? shiftTimes * step : step, 
       evt.keyCode
-    );
+    );    
     if (_value !== value) {
       evt.preventDefault()
       _updateValue(_value)

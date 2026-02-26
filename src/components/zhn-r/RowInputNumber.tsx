@@ -31,6 +31,7 @@ export interface RowInputNumberProps {
   min: number; 
   max: number;  
   step?: number;
+  shiftTimes?: number;
   id?: string;
   unit?: string;     
   styleInput?: CSSProperties;       
@@ -57,6 +58,7 @@ const RowInputNumber = ({
   id,
   unit='px',     
   step=1,
+  shiftTimes,
   min, 
   max,
   styleInput,
@@ -89,7 +91,7 @@ const RowInputNumber = ({
              initialValue={initValue}
              step={step}
              min={min}
-             max={max}
+             max={max}             
              onChange={_hChangeNumber}
              onEnter={toggleIsShowSlider}
           />
@@ -101,6 +103,7 @@ const RowInputNumber = ({
              step={step}
              min={min}
              max={max}            
+             shiftTimes={shiftTimes}
              onChange={_hChangeNumber}          
           />
         </ShowHide>
