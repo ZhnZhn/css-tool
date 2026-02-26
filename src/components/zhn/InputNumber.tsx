@@ -39,7 +39,6 @@ const InputNumber = (props: InputTextProps) => {
      hKeyDown,
      hInput
   ] = useInputValue<InputNumberType>(props, _getValue);     
-  
   return (
     <input
       type="number"
@@ -50,6 +49,7 @@ const InputNumber = (props: InputTextProps) => {
       min={min}
       max={max}
       step={step}
+      inputMode={step >=1 ? 'numeric' : 'decimal'}
       //onChange={hInput} 
       onInput={hInput}     
       onKeyDown={hKeyDown}
