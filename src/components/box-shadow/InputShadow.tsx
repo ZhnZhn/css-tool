@@ -100,11 +100,10 @@ const InputShadow = ({
          onChange={value => onChange('opacity', value)}         
       />                  
       <RowInputSwitch 
-        key={id}
-        initialValue={initialValue.isInset}        
-        caption="Inset"
-        onCheck={() => onChange('isInset', true)}
-        onUnCheck={() => onChange('isInset', false)}        
+         key={id}
+         initialValue={initialValue.isInset}        
+         caption="Inset"
+         onToggle={is => onChange('isInset', is)}        
       />
     </>
   );

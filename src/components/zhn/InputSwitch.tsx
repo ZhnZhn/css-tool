@@ -44,13 +44,18 @@ const _crSwitchStyle = (
 
 const FN_NOOP = () => {}
 
+type OnChangeFn = (is: boolean) => void;
+type OnCheckOrUnCheckFn = InputSwitchProps["onToggle"] extends undefined 
+  ? OnChangeFn
+  : undefined;
 export interface InputSwitchProps {
   initialValue: boolean;
+  caption: string;
   className?: string;
   style?: CSSProperties;
-  caption: string;
-  onCheck?: () => void;
-  onUnCheck?: () => void; 
+  onToggle?: OnChangeFn;
+  onCheck?: OnCheckOrUnCheckFn;
+  onUnCheck?: OnCheckOrUnCheckFn; 
 }
 
 const InputSwitch = (props: InputSwitchProps) => {
@@ -61,10 +66,10 @@ const InputSwitch = (props: InputSwitchProps) => {
   ] = useState(props.initialValue)
   , _hChange = () => {
       const _nextValue = !_isChecked
-      , _onChange = (_nextValue
+      , _onChange = props.onToggle || (_nextValue
          ? props.onCheck
          : props.onUnCheck) || FN_NOOP;
-      _onChange()
+      _onChange(_nextValue)
       _setIsChecked(_nextValue);
     }
   , [

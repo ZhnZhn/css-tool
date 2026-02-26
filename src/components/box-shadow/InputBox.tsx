@@ -50,10 +50,9 @@ const InputBox = ({
        onEnter={value => onEnter('boxBorderRadius', value)}
     />
     <RowInputSwitch       
-      initialValue={configStyle.isBoxResize}      
-      caption="Resize"
-      onCheck={() => onEnter('isBoxResize', true)}
-      onUnCheck={() => onEnter('isBoxResize', false)}        
+       initialValue={configStyle.isBoxResize}      
+       caption="Resize"
+       onToggle={is => onEnter('isBoxResize', is)}      
     />
   </div>
 );
