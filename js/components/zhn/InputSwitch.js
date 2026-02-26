@@ -36,8 +36,8 @@ const InputSwitch = props => {
     [_isChecked, _setIsChecked] = (0, _uiApi.useState)(props.initialValue),
     _hChange = () => {
       const _nextValue = !_isChecked,
-        _onChange = (_nextValue ? props.onCheck : props.onUnCheck) || FN_NOOP;
-      _onChange();
+        _onChange = props.onToggle || (_nextValue ? props.onCheck : props.onUnCheck) || FN_NOOP;
+      _onChange(_nextValue);
       _setIsChecked(_nextValue);
     },
     [_trackStyle, _thumbStyle, _labelStyle] = _crSwitchStyle(_isChecked);

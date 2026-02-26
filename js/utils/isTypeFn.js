@@ -1,7 +1,9 @@
 "use strict";
 
 exports.__esModule = true;
-exports.isStr = exports.isObj = exports.isNumber = exports._isNaN = void 0;
+exports.isStr = exports.isObj = exports.isNumber = exports.isBool = exports._isNaN = void 0;
+const isBool = value => typeof value === "boolean";
+exports.isBool = isBool;
 const _isNaN = exports._isNaN = Number.isNaN || isNaN;
 const isNumber = value => typeof value === "number" && value - value === 0;
 exports.isNumber = isNumber;

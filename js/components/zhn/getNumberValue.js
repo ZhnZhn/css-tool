@@ -7,8 +7,7 @@ const getNumberValue = (value, min, max) => {
   if (value === '' || value === '-') {
     return [value, false];
   }
-  const _v = parseFloat('' + value),
-    _value = _isNaN(_v) ? min : _v > max ? max : _v < min ? min : _v;
-  return [_value, true];
+  const _v = parseFloat('' + value);
+  return [isNaN(_v) ? min : _v > max ? max : _v < min ? min : _v, true];
 };
 var _default = exports.default = getNumberValue;

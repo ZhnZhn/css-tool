@@ -95,7 +95,7 @@ const pageReducer = (state, action) => {
           propName,
           value
         } = action;
-        if (!(0, _isTypeFn.isStr)(propName) || !(0, _isTypeFn.isStr)(value)) {
+        if (!(0, _isTypeFn.isStr)(propName) || !((0, _isTypeFn.isStr)(value) || (0, _isTypeFn.isBool)(value))) {
           return state;
         }
         const {

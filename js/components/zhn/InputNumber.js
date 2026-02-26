@@ -24,7 +24,8 @@ const InputNumber = props => {
     value: value,
     min: min,
     max: max,
-    step: step
+    step: step,
+    inputMode: step >= 1 ? 'numeric' : 'decimal'
     //onChange={hInput} 
     ,
     onInput: hInput,

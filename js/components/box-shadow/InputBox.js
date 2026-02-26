@@ -6,6 +6,7 @@ exports.default = void 0;
 var _memo = _interopRequireDefault(require("../memo"));
 var _RowInputText = _interopRequireDefault(require("../zhn-r/RowInputText"));
 var _RowInputColorHsl = _interopRequireDefault(require("../zhn-r/RowInputColorHsl"));
+var _RowInputSwitch = _interopRequireDefault(require("../zhn-r/RowInputSwitch"));
 var _jsxRuntime = require("preact/jsx-runtime");
 const S_DIV = {
     marginBottom: 32
@@ -19,28 +20,27 @@ const InputBox = _ref => {
     configStyle,
     onEnter = _fnNoop
   } = _ref;
-  const {
-    bgColor,
-    boxColor,
-    boxBorderRadius
-  } = configStyle;
   return (0, _jsxRuntime.jsxs)("div", {
     style: S_DIV,
     children: [(0, _jsxRuntime.jsx)(_RowInputColorHsl.default, {
       styleInput: S_BOX_INPUT,
-      caption: "Background",
-      initValue: bgColor,
+      caption: "View Background",
+      initValue: configStyle.bgColor,
       onEnter: value => onEnter('bgColor', value)
     }), (0, _jsxRuntime.jsx)(_RowInputColorHsl.default, {
       styleInput: S_BOX_INPUT,
-      caption: "Box Background",
-      initValue: boxColor,
+      caption: "Background",
+      initValue: configStyle.boxColor,
       onEnter: value => onEnter('boxColor', value)
     }), (0, _jsxRuntime.jsx)(_RowInputText.default, {
       styleInput: S_BOX_INPUT,
-      caption: "Box Border Radius",
-      initValue: boxBorderRadius,
+      caption: "Border Radius",
+      initValue: configStyle.boxBorderRadius,
       onEnter: value => onEnter('boxBorderRadius', value)
+    }), (0, _jsxRuntime.jsx)(_RowInputSwitch.default, {
+      initialValue: configStyle.isBoxResize,
+      caption: "Resize",
+      onToggle: is => onEnter('isBoxResize', is)
     })]
   });
 };

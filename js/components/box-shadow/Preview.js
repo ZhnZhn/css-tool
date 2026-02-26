@@ -14,7 +14,8 @@ const Preview = props => {
   const {
     bgColor,
     boxColor,
-    boxBorderRadius
+    boxBorderRadius,
+    isBoxResize
   } = props.configStyle || {};
   return (0, _jsxRuntime.jsx)("div", {
     className: CL_PREVIEW,
@@ -26,6 +27,7 @@ const Preview = props => {
       style: {
         backgroundColor: boxColor,
         borderRadius: boxBorderRadius,
+        resize: isBoxResize ? 'both' : 'none',
         ..._crBoxShadowStyle(props.boxShadows)
       }
     })

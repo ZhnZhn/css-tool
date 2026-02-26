@@ -5,13 +5,8 @@ exports.__esModule = true;
 exports.default = void 0;
 var _RowInputNumber = _interopRequireDefault(require("../zhn-r/RowInputNumber"));
 var _RowInputColorHsl = _interopRequireDefault(require("../zhn-r/RowInputColorHsl"));
-var _InputSwitch = _interopRequireDefault(require("../zhn/InputSwitch"));
-var _style = require("../zhn-r/style");
+var _RowInputSwitch = _interopRequireDefault(require("../zhn-r/RowInputSwitch"));
 var _jsxRuntime = require("preact/jsx-runtime");
-const S_INPUT_SWITCH = {
-  flexDirection: 'row',
-  width: 'fit-content'
-};
 const _crId = caption => caption.toLowerCase().replace(' ', '-');
 const INPUT_ROWS = [{
   caption: "Horizontal Length",
@@ -96,13 +91,10 @@ const InputShadow = _ref => {
       inputId: id,
       initValue: opacity,
       onChange: value => onChange('opacity', value)
-    }), (0, _jsxRuntime.jsx)(_InputSwitch.default, {
+    }), (0, _jsxRuntime.jsx)(_RowInputSwitch.default, {
       initialValue: initialValue.isInset,
-      className: _style.CL_ROW,
-      style: S_INPUT_SWITCH,
       caption: "Inset",
-      onCheck: () => onChange('isInset', true),
-      onUnCheck: () => onChange('isInset', false)
+      onToggle: is => onChange('isInset', is)
     }, id)]
   });
 };
