@@ -11,12 +11,7 @@ import memo  from '../memo';
 
 import RowInputText from '../zhn-r/RowInputText';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
-import InputSwitch from '../zhn/InputSwitch';
-
-import { 
-  CL_ROW,
-  S_INPUT_SWITCH 
-} from '../zhn-r/style';
+import RowInputSwitch from '../zhn-r/RowInputSwitch';
 
 const S_DIV: CSSProperties = {
   marginBottom: 32
@@ -54,10 +49,8 @@ const InputBox = ({
        initValue={configStyle.boxBorderRadius}
        onEnter={value => onEnter('boxBorderRadius', value)}
     />
-    <InputSwitch       
-      initialValue={configStyle.isBoxResize}
-      className={CL_ROW}
-      style={S_INPUT_SWITCH}
+    <RowInputSwitch       
+      initialValue={configStyle.isBoxResize}      
       caption="Resize"
       onCheck={() => onEnter('isBoxResize', true)}
       onUnCheck={() => onEnter('isBoxResize', false)}        

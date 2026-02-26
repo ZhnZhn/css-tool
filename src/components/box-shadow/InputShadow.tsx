@@ -8,12 +8,7 @@ import {
 
 import RowInputNumber from '../zhn-r/RowInputNumber';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
-import InputSwitch from '../zhn/InputSwitch';
-
-import { 
-  CL_ROW,
-  S_INPUT_SWITCH 
-} from '../zhn-r/style';
+import RowInputSwitch from '../zhn-r/RowInputSwitch';
 
 interface InputShadowProps {
   id: string;
@@ -104,11 +99,9 @@ const InputShadow = ({
          initValue={opacity}
          onChange={value => onChange('opacity', value)}         
       />                  
-      <InputSwitch 
+      <RowInputSwitch 
         key={id}
-        initialValue={initialValue.isInset}
-        className={CL_ROW}
-        style={S_INPUT_SWITCH}
+        initialValue={initialValue.isInset}        
         caption="Inset"
         onCheck={() => onChange('isInset', true)}
         onUnCheck={() => onChange('isInset', false)}        
