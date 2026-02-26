@@ -20,11 +20,11 @@ module.exports = defineConfig([
       document: true,
       requestAnimationFrame: true,
 
+      Event: true,
       HTMLElement: true,
       HTMLDivElement: true,
       HTMLButtonElement: true,     
       HTMLInputElement: true,
-
       SVGSVGElement: true      
     },   
     parser: tseslint.parser,

@@ -3,7 +3,7 @@ import type { MouseOrTouchEvent } from '../types';
 import { useRef, getRefValue } from '../uiApi';
 import useBool from "../hooks/useBool";
 
-import { HAS_TOUCH_EVENTS  } from '../has';
+import { HAS_TOUCH_EVENTS } from '../has';
 
 const [
   EVENT_NAME_MOVE,
@@ -15,16 +15,20 @@ const [
 const useDragMouseDown = (
   setValueFromPosition: (evt: MouseOrTouchEvent) => void
 ): [ boolean, (evt: MouseOrTouchEvent) => void ] => {
-    const [isDragged, setDraggedTrue, setDraggedFalse] = useBool(false)
+    const [
+      isDragged, 
+      setDraggedTrue, 
+      setDraggedFalse
+    ] = useBool(false)
     , _refDragRunning = useRef(false)
-    , _hDragMouseMove = (evt: MouseOrTouchEvent) => {    
+    , _hDragMouseMove = (evt: Event /*MouseOrTouchEvent*/) => {    
       if (getRefValue(_refDragRunning)) {
         return;
       }
       _refDragRunning.current = true;
       requestAnimationFrame(() => {
         _refDragRunning.current = false;
-        setValueFromPosition(evt)
+        setValueFromPosition(evt as unknown as MouseOrTouchEvent)
       })
     }
     , _hDragMouseUp = () => {
