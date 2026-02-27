@@ -1,6 +1,3 @@
-import type { 
-  TinycolorInstance 
-} from '../types';
 import { 
   ShadowType,
   UpdateShadowFn 
@@ -91,7 +88,7 @@ const InputShadow = ({
          id="shadow-color"
          caption="Shadow Color"         
          initValue={color}
-         onEnter={(_value: string, color: TinycolorInstance) => onChange('color', color.toHexString())}         
+         onEnter={colorHex => onChange('color', colorHex)}         
       />
       <RowInputNumber         
          {...opProps}

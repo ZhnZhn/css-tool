@@ -25,7 +25,6 @@ const S_HSL = {
   S_INPUT_NUMBER = {
     width: 50
   };
-const _FN_NOOP = () => {};
 const _fChangeItem = (propName, refHsl, onEnter, setValue) => value => {
   const _hsl = (0, _uiApi.getRefValue)(refHsl);
   if (_hsl) {
@@ -45,7 +44,7 @@ const RowInputColorHsl = _ref => {
     caption,
     inputId,
     initValue,
-    onEnter = _FN_NOOP
+    onEnter
   } = _ref;
   const _refHex = (0, _uiApi.useRef)(null),
     _refH = (0, _uiApi.useRef)(null),
@@ -66,8 +65,9 @@ const RowInputColorHsl = _ref => {
         (0, _uiApi.getRefValue)(_refS)?.setValue(hsl.s);
         (0, _uiApi.getRefValue)(_refL)?.setValue(hsl.l);
         _refHsl.current = hsl;
-        onEnter(value, color);
-        setValue(color.toHexString());
+        const _colorHex = color.toHexString();
+        onEnter(_colorHex);
+        setValue(_colorHex);
       }
     }, [onEnter])
     // _refHsl

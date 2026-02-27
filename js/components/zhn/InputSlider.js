@@ -101,6 +101,7 @@ const InputSlider = _ref => {
     step = 1,
     min = 0,
     max = 20,
+    shiftTimes = 1,
     onChange = _NOOP_FN
   } = _ref;
   const _refExp = (0, _useRefInit.default)(() => {
@@ -116,7 +117,7 @@ const InputSlider = _ref => {
       onChange(_value);
     },
     _hKeyDown = evt => {
-      const _value = _calcValueByKeyCode(value, step, evt.keyCode);
+      const _value = _calcValueByKeyCode(value, evt.shiftKey ? shiftTimes * step : step, evt.keyCode);
       if (_value !== value) {
         evt.preventDefault();
         _updateValue(_value);

@@ -35,13 +35,13 @@ const InputBox = ({
        styleInput={S_BOX_INPUT}
        caption="View Background"
        initValue={configStyle.bgColor}
-       onEnter={value => onEnter('bgColor', value)}
+       onEnter={colorHex => onEnter('bgColor', colorHex)}
     />
     <RowInputColorHsl      
        styleInput={S_BOX_INPUT}
        caption="Background"
        initValue={configStyle.boxColor}
-       onEnter={value => onEnter('boxColor', value)}
+       onEnter={colorHex => onEnter('boxColor', colorHex)}
     />
     <RowInputText         
        styleInput={S_BOX_INPUT}

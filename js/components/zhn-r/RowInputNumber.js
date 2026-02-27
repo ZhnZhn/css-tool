@@ -23,6 +23,7 @@ const RowInputNumber = _ref => {
     id,
     unit = 'px',
     step = 1,
+    shiftTimes,
     min,
     max,
     styleInput,
@@ -68,6 +69,7 @@ const RowInputNumber = _ref => {
         step: step,
         min: min,
         max: max,
+        shiftTimes: shiftTimes,
         onChange: _hChangeNumber
       }, `sl-${inputId}`)
     })]

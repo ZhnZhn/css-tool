@@ -8,6 +8,6 @@ const getNumberValue = (value, min, max) => {
     return [value, false];
   }
   const _v = parseFloat('' + value);
-  return [isNaN(_v) ? min : _v > max ? max : _v < min ? min : _v, true];
+  return [_isNaN(_v) ? min : _v > max ? max : _v < min ? min : _v, true];
 };
 var _default = exports.default = getNumberValue;

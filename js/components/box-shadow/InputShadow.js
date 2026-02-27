@@ -8,43 +8,34 @@ var _RowInputColorHsl = _interopRequireDefault(require("../zhn-r/RowInputColorHs
 var _RowInputSwitch = _interopRequireDefault(require("../zhn-r/RowInputSwitch"));
 var _jsxRuntime = require("preact/jsx-runtime");
 const _crId = caption => caption.toLowerCase().replace(' ', '-');
-const INPUT_ROWS = [{
-  caption: "Horizontal Length",
-  min: -30,
-  max: 30,
-  step: 1,
-  unit: 'px'
-}, {
-  caption: "Vertical Length",
-  min: -30,
-  max: 30,
-  step: 1,
-  unit: 'px'
-}, {
-  caption: "Blur Radius",
-  min: 0,
-  max: 20,
-  step: 1,
-  unit: 'px'
-}, {
-  caption: "Spread Radius",
-  min: -10,
-  max: 20,
-  step: 1,
-  unit: 'px'
-}, {
-  styleInput: {
-    width: 55
-  },
-  caption: "Opacity",
-  min: 0,
-  max: 1,
-  step: 0.01,
-  unit: ''
-}].map(item => ({
-  id: _crId(item.caption),
-  ...item
-}));
+const _crRowInputNumberProps = function (caption, min, max, step, shiftTimes, unit) {
+  if (max === void 0) {
+    max = -min;
+  }
+  if (step === void 0) {
+    step = 1;
+  }
+  if (shiftTimes === void 0) {
+    shiftTimes = 2;
+  }
+  if (unit === void 0) {
+    unit = 'px';
+  }
+  return {
+    id: _crId(caption),
+    caption,
+    min,
+    max,
+    step,
+    shiftTimes,
+    unit
+  };
+};
+const hlProps = _crRowInputNumberProps("Horizontal Length", -30),
+  vlProps = _crRowInputNumberProps("Vertical Length", -30),
+  brProps = _crRowInputNumberProps("Blur Radius", 0, 20),
+  srProps = _crRowInputNumberProps("Spread Radius", -10, 20),
+  opProps = _crRowInputNumberProps("Opacity", 0, 1, 0.01, 10, '');
 const _fnNoop = () => {};
 const InputShadow = _ref => {
   let {
@@ -62,22 +53,22 @@ const InputShadow = _ref => {
   } = initialValue;
   return (0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
     children: [(0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-      ...INPUT_ROWS[0],
+      ...hlProps,
       inputId: id,
       initValue: gLength,
       onChange: value => onChange('gLength', value)
     }), (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-      ...INPUT_ROWS[1],
+      ...vlProps,
       inputId: id,
       initValue: vLength,
       onChange: value => onChange('vLength', value)
     }), (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-      ...INPUT_ROWS[2],
+      ...brProps,
       inputId: id,
       initValue: blurR,
       onChange: value => onChange('blurR', value)
     }), (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-      ...INPUT_ROWS[3],
+      ...srProps,
       inputId: id,
       initValue: spreadR,
       onChange: value => onChange('spreadR', value)
@@ -85,9 +76,12 @@ const InputShadow = _ref => {
       id: "shadow-color",
       caption: "Shadow Color",
       initValue: color,
-      onEnter: (_value, color) => onChange('color', color.toHexString())
+      onEnter: colorHex => onChange('color', colorHex)
     }, id), (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-      ...INPUT_ROWS[4],
+      ...opProps,
+      styleInput: {
+        width: 55
+      },
       inputId: id,
       initValue: opacity,
       onChange: value => onChange('opacity', value)

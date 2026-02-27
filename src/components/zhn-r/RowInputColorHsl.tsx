@@ -43,15 +43,14 @@ const S_HSL: CSSProperties = {
 , S_INPUT_NUMBER: CSSProperties = { width: 50 };
 
 export interface RowInputColorHslProps {  
-  id?: string;
-  styleInput?: CSSProperties
-  caption: string;  
-  inputId?: string;
   initValue: string;  
-  onEnter: (value: string, color: TinycolorInstance) => void
+  caption: string;  
+  id?: string;
+  styleInput?: CSSProperties;
+  inputId?: string;
+  onEnter: (colorHex: string) => void
 }
 
-const _FN_NOOP = () => {};
 
 const _fChangeItem = (  
   propName: keyof HSLA,  
@@ -77,7 +76,7 @@ const RowInputColorHsl = ({
   caption,  
   inputId,
   initValue,
-  onEnter=_FN_NOOP
+  onEnter
 }: RowInputColorHslProps) => {
   const _refHex: InputTextRef = useRef(null) 
   , _refH: InputNumberRef = useRef(null)
@@ -102,10 +101,11 @@ const RowInputColorHsl = ({
        const hsl = color.toHsl();
        getRefValue(_refH)?.setValue(hsl.h)
        getRefValue(_refS)?.setValue(hsl.s)
-       getRefValue(_refL)?.setValue(hsl.l)       
+       getRefValue(_refL)?.setValue(hsl.l)              
        _refHsl.current = hsl       
-       onEnter(value, color)
-       setValue(color.toHexString())
+       const _colorHex = color.toHexString()       
+       onEnter(_colorHex)
+       setValue(_colorHex)
      }
   }, [onEnter])
   // _refHsl

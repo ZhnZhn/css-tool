@@ -26,12 +26,12 @@ const InputBox = _ref => {
       styleInput: S_BOX_INPUT,
       caption: "View Background",
       initValue: configStyle.bgColor,
-      onEnter: value => onEnter('bgColor', value)
+      onEnter: colorHex => onEnter('bgColor', colorHex)
     }), (0, _jsxRuntime.jsx)(_RowInputColorHsl.default, {
       styleInput: S_BOX_INPUT,
       caption: "Background",
       initValue: configStyle.boxColor,
-      onEnter: value => onEnter('boxColor', value)
+      onEnter: colorHex => onEnter('boxColor', colorHex)
     }), (0, _jsxRuntime.jsx)(_RowInputText.default, {
       styleInput: S_BOX_INPUT,
       caption: "Border Radius",
