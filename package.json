@@ -64,14 +64,12 @@
     "glob": "~11.1.0",
     "serialize-javascript": "~7.0.3"
   },
-  "jest": {
-    "roots": [
-      "<rootDir>/js/components/box-shadow/helpers",
+  "jest": {    
+    "roots": [            
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
-    "transformIgnorePatterns": [
-      "<rootDir>/js/components/box-shadow/helpers",
+    "transformIgnorePatterns": [            
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],

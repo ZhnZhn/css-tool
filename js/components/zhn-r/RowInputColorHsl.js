@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
 exports.default = void 0;
-var _tinycolor = _interopRequireDefault(require("../../tinycolor/tinycolor"));
+var _transformFn = require("../../colors/transformFn");
 var _uiApi = require("../uiApi");
 var _useRefInit = _interopRequireDefault(require("../hooks/useRefInit"));
 var _useToggle = _interopRequireDefault(require("../hooks/useToggle"));
@@ -14,8 +14,7 @@ var _InputNumber = _interopRequireDefault(require("../zhn/InputNumber"));
 var _style = require("./style");
 var _jsxRuntime = require("preact/jsx-runtime");
 const S_HSL = {
-    paddingTop: 12,
-    paddingBottom: 12,
+    padding: '12px 0',
     borderBottom: '1px solid rgba(0, 0, 0, 0.2)'
   },
   S_HSL_CAPTION = {
@@ -29,12 +28,9 @@ const _fChangeItem = (propName, refHsl, onEnter, setValue) => value => {
   const _hsl = (0, _uiApi.getRefValue)(refHsl);
   if (_hsl) {
     _hsl[propName] = parseInt('' + value, 10);
-    const _color = (0, _tinycolor.default)(_hsl);
-    if (_color && _color.isValid()) {
-      const _value = _color.toHexString();
-      onEnter(_value, _color);
-      setValue(_value);
-    }
+    const _value = (0, _transformFn.hslToHex)(_hsl.h, _hsl.s, _hsl.l);
+    onEnter(_value);
+    setValue(_value);
   }
 };
 const RowInputColorHsl = _ref => {
@@ -50,22 +46,18 @@ const RowInputColorHsl = _ref => {
     _refH = (0, _uiApi.useRef)(null),
     _refS = (0, _uiApi.useRef)(null),
     _refL = (0, _uiApi.useRef)(null),
-    _refHsl = (0, _useRefInit.default)(() => {
-      const _color = (0, _tinycolor.default)(initValue);
-      return _color.toHsl();
-    }),
+    _refHsl = (0, _useRefInit.default)(() => (0, _transformFn.toHsl)(initValue)),
     [isHsl, toggleIsHsl] = (0, _useToggle.default)(),
     [value, setValue] = (0, _uiApi.useState)(initValue)
     /*eslint-disable react-hooks/exhaustive-deps */,
     _hEnter = (0, _uiApi.useMemo)(() => value => {
-      const color = (0, _tinycolor.default)(value);
-      if (color && color.isValid()) {
-        const hsl = color.toHsl();
+      const hsl = (0, _transformFn.toHsl)(value);
+      if (hsl) {
         (0, _uiApi.getRefValue)(_refH)?.setValue(hsl.h);
         (0, _uiApi.getRefValue)(_refS)?.setValue(hsl.s);
         (0, _uiApi.getRefValue)(_refL)?.setValue(hsl.l);
         _refHsl.current = hsl;
-        const _colorHex = color.toHexString();
+        const _colorHex = (0, _transformFn.toHex)(value);
         onEnter(_colorHex);
         setValue(_colorHex);
       }

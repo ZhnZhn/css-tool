@@ -15,12 +15,17 @@ const _boxShadow: ShadowType = {
    id: 'test'
 };
 
-describe("box-shadow helper fns", ()=>{
-   test("toRgba should return rgba start string from ShadowType", ()=>{     
-     expect(toRgba(_boxShadow)).toBe('rgba(168, 169, 170,')
-   }) 
-   test("toCssValue should return css shadow value string from ShadowType", ()=>{
-      expect(toCssValue(_boxShadow)).toBe('6px 10px 4px 5px rgba(168, 169, 170, 0)')
-      expect(toCssValue({..._boxShadow, isInset: true})).toBe('inset 6px 10px 4px 5px rgba(168, 169, 170, 0)')
+describe("toRgba", ()=>{
+   const fn = toRgba;
+   test("should return rgba start string from ShadowType", ()=>{
+      expect(fn(_boxShadow)).toBe('rgba(168, 169, 170,') 
+   })
+})
+
+describe("toCssValue", ()=>{
+   const fn = toCssValue;
+   test("should return css shadow value string from ShadowType", ()=>{
+      expect(fn(_boxShadow)).toBe('6px 10px 4px 5px rgba(168, 169, 170, 0)')
+      expect(fn({..._boxShadow, isInset: true})).toBe('inset 6px 10px 4px 5px rgba(168, 169, 170, 0)')
    })
 })

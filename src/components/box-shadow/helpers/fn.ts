@@ -1,6 +1,8 @@
 import type { ShadowType } from '../types';
-import tinycolor from '../../../tinycolor/tinycolor'; 
+//import tinycolor from '../../../tinycolor/tinycolor'; 
+import { toRgb } from '../../../colors/transformFn'
 
+/*
 const _toRgb = (
   color: string
 ) => tinycolor(color).toRgb();
@@ -9,6 +11,14 @@ export const toRgba = (
   { color }: ShadowType
 ): string => {    
   const {r, g, b} = _toRgb(color);
+  return `rgba(${r}, ${g}, ${b},`;
+}
+*/
+
+export const toRgba = (
+  { color }: ShadowType
+): string => {    
+  const [r, g, b] = toRgb(color);
   return `rgba(${r}, ${g}, ${b},`;
 }
 
@@ -31,6 +41,7 @@ export const toCssValue = ({
   , _prefix = isInset
       ? 'inset ' + _strCss
       : _strCss
-  , {r, g, b} = _toRgb(color);
+  , [r, g, b] = toRgb(color)    
+  //, {r, g, b} = _toRgb(color);
   return `${_prefix} rgba(${r}, ${g}, ${b}, ${opacity})`;
 }

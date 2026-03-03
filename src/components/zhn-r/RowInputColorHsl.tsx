@@ -1,14 +1,17 @@
 import type { 
   CSSProperties, 
-  DispatchStateUpdater,  
-  TinycolorInstance,
-  HSLA,
+  DispatchStateUpdater, 
+  HSL,
   MutableRef 
 } from '../types';
 import type { InputNumberRef } from '../zhn/InputNumber';
 import type { InputTextRef } from '../zhn/InputText';
 
-import tinycolor from '../../tinycolor/tinycolor';
+import { 
+  toHsl, 
+  toHex,
+  hslToHex 
+} from '../../colors/transformFn';
 import { 
   useRef,
   useState,
@@ -32,8 +35,7 @@ import {
 } from './style';
 
 const S_HSL: CSSProperties = { 
-  paddingTop: 12,
-  paddingBottom: 12,
+  padding: '12px 0',  
   borderBottom: '1px solid rgba(0, 0, 0, 0.2)' 
 }
 , S_HSL_CAPTION: CSSProperties = { 
@@ -51,24 +53,20 @@ export interface RowInputColorHslProps {
   onEnter: (colorHex: string) => void
 }
 
-
 const _fChangeItem = (  
-  propName: keyof HSLA,  
-  refHsl: MutableRef<HSLA | null>,
-  onEnter: (value: string, color: TinycolorInstance) => void, 
+  propName: keyof HSL,  
+  refHsl: MutableRef<HSL | null>,
+  onEnter: (value: string) => void, 
   setValue: DispatchStateUpdater<string>
-  ) => (value: number | string) => {
+) => (value: number | string) => {
   const _hsl = getRefValue(refHsl);
     if (_hsl) {  
-    _hsl[propName] = parseInt('' + value, 10)        
-    const _color = tinycolor(_hsl);
-    if (_color && _color.isValid()){
-      const _value = _color.toHexString()      
-      onEnter(_value, _color)
-      setValue(_value)
-    }  
+      _hsl[propName] = parseInt('' + value, 10)     
+      const _value = hslToHex(_hsl.h, _hsl.s, _hsl.l)
+      onEnter(_value)
+      setValue(_value)    
   }
-}
+};
 
 const RowInputColorHsl = ({   
   id,
@@ -82,10 +80,7 @@ const RowInputColorHsl = ({
   , _refH: InputNumberRef = useRef(null)
   , _refS: InputNumberRef = useRef(null)
   , _refL: InputNumberRef = useRef(null)
-  , _refHsl = useRefInit<HSLA>(() => {    
-    const _color = tinycolor(initValue);    
-    return _color.toHsl();
-  })
+  , _refHsl = useRefInit<HSL>(() => toHsl(initValue))
   , [
     isHsl, 
     toggleIsHsl
@@ -95,15 +90,14 @@ const RowInputColorHsl = ({
     setValue
   ] = useState(initValue) 
   /*eslint-disable react-hooks/exhaustive-deps */ 
-  , _hEnter = useMemo(() => (value: string) => {    
-     const color = tinycolor(value);     
-     if (color && color.isValid()){
-       const hsl = color.toHsl();
+  , _hEnter = useMemo(() => (value: string) => {         
+     const hsl = toHsl(value);     
+     if (hsl) {       
        getRefValue(_refH)?.setValue(hsl.h)
        getRefValue(_refS)?.setValue(hsl.s)
        getRefValue(_refL)?.setValue(hsl.l)              
-       _refHsl.current = hsl       
-       const _colorHex = color.toHexString()       
+       _refHsl.current = hsl             
+       const _colorHex = toHex(value)       
        onEnter(_colorHex)
        setValue(_colorHex)
      }
