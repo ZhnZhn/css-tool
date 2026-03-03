@@ -6,6 +6,7 @@ import type {
 } from 'react';
 
 export type DispatchStateUpdater<T> = Dispatch<SetStateAction<T>>
+export type MouseOrTouchEvent = MouseEvent | TouchEvent
 
 export type { 
   CSSProperties, 
@@ -21,20 +22,16 @@ export interface MutableRef<T> {
 	current: T;
 }
 
-export type MouseOrTouchEvent = MouseEvent | TouchEvent
-
-export type { 
-  TinycolorInstance,
-  HSLA 
-} from '../tinycolor/types';
-
-export type EmptyObjType = Record<string, never>
-
 export type IsNotShouldUpdate<T> = {
-  (prevProps: T, nextProps: T): boolean  
+  (prevProps: T, nextProps: T): boolean;  
 }
 
 export type ReducerType<S, A> = {
-  (state: Readonly<S>, action: A): S
+  (state: Readonly<S>, action: A): S;
 }
 
+export interface HSL {
+  h: number;
+  s: number;
+  l: number;
+}
