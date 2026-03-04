@@ -5,26 +5,26 @@ exports.toRgb = exports.toHsl = exports.toHex = exports.hslToRgb = exports.hslTo
 const mathRound = Math.round,
   mathMax = Math.max,
   mathMin = Math.min;
-const canvas = document.createElement('canvas'),
-  ctx = canvas.getContext('2d', {
+let canvas, ctx;
+const _initCanvasContext = () => {
+  canvas = document.createElement('canvas');
+  canvas.width = 1;
+  canvas.height = 1;
+  return canvas.getContext('2d', {
     willReadFrequently: true
   });
-canvas.width = 1;
-canvas.height = 1;
-let _prevColor;
-const _setColor = strColor => {
-  if (ctx && _prevColor !== strColor) {
-    ctx.fillStyle = strColor;
-    ctx.fillRect(0, 0, 1, 1);
-    _prevColor = strColor;
-  }
 };
+const _getCanvasContext = () => ctx || (ctx = _initCanvasContext());
 
 //[r, g, b]
 const toRgb = strColor => {
-  if (ctx) {
-    _setColor(strColor);
-    return ctx.getImageData(0, 0, 1, 1).data.slice(0, 3);
+  const _ctx = _getCanvasContext();
+  if (_ctx) {
+    if (_ctx.fillStyle !== strColor) {
+      _ctx.fillStyle = strColor;
+      _ctx.fillRect(0, 0, 1, 1);
+    }
+    return _ctx.getImageData(0, 0, 1, 1).data.slice(0, 3);
   }
   return [0, 0, 0];
 };

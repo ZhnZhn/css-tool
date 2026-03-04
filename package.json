@@ -64,12 +64,19 @@
     "glob": "~11.1.0",
     "serialize-javascript": "~7.0.3"
   },
-  "jest": {    
-    "roots": [            
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/js/__tests__/global.setup.js"
+    ],
+    "roots": [
+      "<rootDir>/js/colors",
+      "<rootDir>/js/components/box-shadow/helpers",
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
-    "transformIgnorePatterns": [            
+    "transformIgnorePatterns": [
+      "<rootDir>/js/colors",
+      "<rootDir>/js/components/box-shadow/helpers",
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
