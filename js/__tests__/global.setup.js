@@ -1,5 +1,6 @@
 "use strict";
 
+var _globals = require("@jest/globals");
 const _hmColorRgb = {
   black: [0, 0, 0],
   white: [255, 255, 255],
@@ -10,20 +11,20 @@ const _hmColorRgb = {
   yellow: [255, 255, 0],
   '#a8a9aa': [168, 169, 170]
 };
-const PREV_GLOBAL_DOCUMENT = global.document;
-let ctx;
-ctx = {
+const PREV_GLOBAL_DOCUMENT = globalThis.global.document;
+const ctx = {
   fillStyle: 'black',
-  fillRect: jest.fn(),
-  getImageData: jest.fn(() => {
+  fillRect: _globals.jest.fn(),
+  getImageData: _globals.jest.fn(() => {
     return {
       data: _hmColorRgb[ctx.fillStyle] || []
     };
   })
 };
-global.document = {
+globalThis.global.document = {
   ...PREV_GLOBAL_DOCUMENT,
-  createElement: jest.fn(tagName => tagName === 'canvas' ? {
-    getContext: jest.fn(() => ctx)
+  //@ts-expect-error createElement
+  createElement: _globals.jest.fn(tagName => tagName === 'canvas' ? {
+    getContext: _globals.jest.fn(() => ctx)
   } : PREV_GLOBAL_DOCUMENT.createElement(tagName))
 };

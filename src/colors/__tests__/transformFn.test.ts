@@ -1,3 +1,5 @@
+import { describe, expect, test } from '@jest/globals';
+
 import {
   toRgb,
   toHex,
@@ -8,7 +10,7 @@ import {
   
 describe('toRgb', () => {
   const fn = toRgb;
-  test('should return rgb tuple from str color', ()=>{
+  test('should return rgb tuple from str color', ()=>{    
     expect(fn('black')).toEqual([0, 0, 0])
     expect(fn('white')).toEqual([255, 255, 255])
     expect(fn('red')).toEqual([255, 0, 0])

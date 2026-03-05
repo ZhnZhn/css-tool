@@ -25,6 +25,8 @@ module.exports = defineConfig([
       HTMLDivElement: true,
       HTMLButtonElement: true,     
       HTMLInputElement: true,
+      HTMLCanvasElement: true,
+      CanvasRenderingContext2D: true,
       SVGSVGElement: true      
     },   
     parser: tseslint.parser,
@@ -78,12 +80,7 @@ module.exports = defineConfig([
     "jsx-a11y/label-has-for": 0    
   }
  },{
-    languageOptions: {
-      globals: {
-        describe: true,
-        test: true,                   
-        expect: true                         
-      },      
+    languageOptions: {      
       parser: tseslint.parser,
       parserOptions: {
         ecmaFeatures: {

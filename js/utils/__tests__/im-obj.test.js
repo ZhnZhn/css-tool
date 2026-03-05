@@ -1,15 +1,16 @@
 "use strict";
 
+var _globals = require("@jest/globals");
 var _imObj = require("../im-obj");
-describe('imObjUpdate', () => {
-  test('should immutable update object by propName', () => {
+(0, _globals.describe)('imObjUpdate', () => {
+  (0, _globals.test)('should immutable update object by propName', () => {
     const _objIn = {
         a: 'text'
       },
       _objOut = (0, _imObj.imObjUpdate)(_objIn, 'a', 'textUpdated');
-    expect(_objOut).toEqual({
+    (0, _globals.expect)(_objOut).toEqual({
       a: 'textUpdated'
     });
-    expect(_objOut).not.toBe(_objIn);
+    (0, _globals.expect)(_objOut).not.toBe(_objIn);
   });
 });

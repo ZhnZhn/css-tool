@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 const _hmColorRgb = {
   black: [0, 0, 0], 
   white: [255, 255, 255],
@@ -15,10 +17,9 @@ type CanvasContextMock = {
   getImageData: () => number[]
 }
 
-const PREV_GLOBAL_DOCUMENT = global.document;
-let ctx: CanvasContextMock;  
+const PREV_GLOBAL_DOCUMENT = globalThis.global.document;
 
-ctx = {     
+const ctx: CanvasContextMock = {     
   fillStyle: 'black',
   fillRect: jest.fn(),
   getImageData: jest.fn(() => {                  
@@ -27,9 +28,10 @@ ctx = {
     };
   })
 } as unknown as CanvasContextMock                           
-global.document = {       
+globalThis.global.document = {       
   ...PREV_GLOBAL_DOCUMENT,
-  createElement: jest.fn(tagName => tagName === 'canvas'
+  //@ts-expect-error createElement
+  createElement: jest.fn((tagName: string) => tagName === 'canvas'
     ? { getContext: jest.fn(() => ctx) }
     : PREV_GLOBAL_DOCUMENT.createElement(tagName)
   )
