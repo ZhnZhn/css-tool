@@ -12,6 +12,9 @@ var _transformFn = require("../transformFn");
     (0, _globals.expect)(fn('blue')).toEqual([0, 0, 255]);
     (0, _globals.expect)(fn('cyan')).toEqual([0, 255, 255]);
     (0, _globals.expect)(fn('yellow')).toEqual([255, 255, 0]);
+    (0, _globals.expect)(fn('#a7a8a9')).toEqual([167, 168, 169]);
+    (0, _globals.expect)(fn('#a8a9aa')).toEqual([168, 169, 170]);
+    (0, _globals.expect)(fn('#a9aaab')).toEqual([169, 170, 171]);
   });
 });
 (0, _globals.describe)('toHex', () => {
@@ -24,6 +27,9 @@ var _transformFn = require("../transformFn");
     (0, _globals.expect)(fn('blue')).toBe('#0000ff');
     (0, _globals.expect)(fn('cyan')).toBe('#00ffff');
     (0, _globals.expect)(fn('yellow')).toBe('#ffff00');
+    (0, _globals.expect)(fn('#a7a8a9')).toBe('#a7a8a9');
+    (0, _globals.expect)(fn('#a8a9aa')).toBe('#a8a9aa');
+    (0, _globals.expect)(fn('#a9aaab')).toBe('#a9aaab');
   });
 });
 (0, _globals.describe)('toHsl', () => {
@@ -64,6 +70,21 @@ var _transformFn = require("../transformFn");
       s: 100,
       l: 50
     });
+    (0, _globals.expect)(fn('#a7a8a9')).toEqual({
+      h: 210,
+      s: 1,
+      l: 66
+    });
+    (0, _globals.expect)(fn('#a8a9aa')).toEqual({
+      h: 210,
+      s: 1,
+      l: 66
+    });
+    (0, _globals.expect)(fn('#a9aaab')).toEqual({
+      h: 210,
+      s: 1,
+      l: 67
+    });
   });
 });
 (0, _globals.describe)('hslToRgb', () => {
@@ -76,6 +97,8 @@ var _transformFn = require("../transformFn");
     (0, _globals.expect)(fn(240, 100, 50)).toEqual([0, 0, 255]);
     (0, _globals.expect)(fn(180, 100, 50)).toEqual([0, 255, 255]);
     (0, _globals.expect)(fn(60, 100, 50)).toEqual([255, 255, 0]);
+    (0, _globals.expect)(fn(210, 1, 66)).toEqual([167, 168, 169]);
+    (0, _globals.expect)(fn(210, 1, 67)).toEqual([170, 171, 172]);
   });
 });
 (0, _globals.describe)('hslToHex', () => {
@@ -88,5 +111,7 @@ var _transformFn = require("../transformFn");
     (0, _globals.expect)(fn(240, 100, 50)).toBe('#0000ff');
     (0, _globals.expect)(fn(180, 100, 50)).toBe('#00ffff');
     (0, _globals.expect)(fn(60, 100, 50)).toBe('#ffff00');
+    (0, _globals.expect)(fn(210, 1, 66)).toBe('#a7a8a9');
+    (0, _globals.expect)(fn(210, 1, 67)).toBe('#aaabac');
   });
 });

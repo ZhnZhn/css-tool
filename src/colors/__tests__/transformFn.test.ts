@@ -18,6 +18,10 @@ describe('toRgb', () => {
     expect(fn('blue')).toEqual([0, 0, 255])
     expect(fn('cyan')).toEqual([0, 255, 255])
     expect(fn('yellow')).toEqual([255, 255, 0])
+
+    expect(fn('#a7a8a9')).toEqual([167, 168, 169]) 
+    expect(fn('#a8a9aa')).toEqual([168, 169, 170])    
+    expect(fn('#a9aaab')).toEqual([169, 170, 171])              
   })
 })
 
@@ -31,6 +35,10 @@ describe('toHex', ()=>{
     expect(fn('blue')).toBe('#0000ff')
     expect(fn('cyan')).toBe('#00ffff')
     expect(fn('yellow')).toBe('#ffff00')
+
+    expect(fn('#a7a8a9')).toBe('#a7a8a9') 
+    expect(fn('#a8a9aa')).toBe('#a8a9aa')
+    expect(fn('#a9aaab')).toBe('#a9aaab')    
   })
 })
 
@@ -44,6 +52,10 @@ describe('toHsl', ()=>{
     expect(fn('blue')).toEqual({h:240, s:100, l:50})
     expect(fn('cyan')).toEqual({h:180, s:100, l:50})
     expect(fn('yellow')).toEqual({h:60, s:100, l:50})      
+
+    expect(fn('#a7a8a9')).toEqual({h: 210, s:1, l:66})
+    expect(fn('#a8a9aa')).toEqual({h: 210, s:1, l:66})
+    expect(fn('#a9aaab')).toEqual({h: 210, s:1, l:67})    
   })
 })
 
@@ -56,7 +68,10 @@ describe('hslToRgb', ()=>{
     expect(fn(120, 100, 25)).toEqual([0, 128, 0])
     expect(fn(240, 100, 50)).toEqual([0, 0, 255])
     expect(fn(180, 100, 50)).toEqual([0, 255, 255])
-    expect(fn(60, 100, 50)).toEqual([255, 255, 0])                                                            
+    expect(fn(60, 100, 50)).toEqual([255, 255, 0])    
+
+    expect(fn(210, 1, 66)).toEqual([167, 168, 169])       
+    expect(fn(210, 1, 67)).toEqual([170, 171, 172])                                                     
   })
 })
 
@@ -69,6 +84,9 @@ describe('hslToHex', ()=>{
     expect(fn(120, 100, 25)).toBe('#008000')
     expect(fn(240, 100, 50)).toBe('#0000ff')
     expect(fn(180, 100, 50)).toBe('#00ffff')
-    expect(fn(60, 100, 50)).toBe('#ffff00')                                                                                  
+    expect(fn(60, 100, 50)).toBe('#ffff00')
+
+    expect(fn(210, 1, 66)).toBe('#a7a8a9')
+    expect(fn(210, 1, 67)).toBe('#aaabac')
   })
 })

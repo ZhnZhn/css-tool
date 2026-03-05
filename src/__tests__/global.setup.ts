@@ -8,7 +8,9 @@ const _hmColorRgb = {
   blue: [0, 0, 255],
   cyan: [0, 255, 255],
   yellow: [255, 255, 0],
-  '#a8a9aa': [168, 169, 170]
+  '#a7a8a9': [167, 168, 169],
+  '#a8a9aa': [168, 169, 170],
+  '#a9aaab': [169, 170, 171]
 };
   
 type CanvasContextMock = {
