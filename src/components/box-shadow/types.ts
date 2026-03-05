@@ -16,6 +16,8 @@ export type ConfigStyleType = {
   bgColor: string;
   boxColor: string;
   boxBorderRadius: string; 
+  width?: number;
+  height?: number;
   isBoxResize: boolean;
 }
 

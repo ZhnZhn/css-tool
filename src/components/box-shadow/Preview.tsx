@@ -7,15 +7,16 @@ import type {
 } from './types';
 
 import { safeMap } from '../uiApi';
-import { toCssValue } from './cssFn';
+import { 
+  CL_PREVIEW,
+  CL_PREVIEW_INNER,
+  toCssValue 
+} from './cssFn';
 
 interface PreviewProps {
   boxShadows?: ShadowType[];
   configStyle?: ConfigStyleType
 }
-
-const CL_PREVIEW = "page-sb__preview"
-, CL_INNER = `${CL_PREVIEW}__inner`;
 
 const _crBoxShadowStyle = (
   boxShadows?: ShadowType[]
@@ -28,6 +29,8 @@ const Preview = (props: PreviewProps) => {
      bgColor, 
      boxColor, 
      boxBorderRadius,
+     width,
+     height,
      isBoxResize 
   } = props.configStyle || {}; 
   return (
@@ -35,13 +38,15 @@ const Preview = (props: PreviewProps) => {
       className={CL_PREVIEW} 
       style={{ backgroundColor: bgColor }}>
         <div 
-          className={CL_INNER} 
+          className={CL_PREVIEW_INNER} 
           style={{
+            width,
+            height,
             backgroundColor: boxColor,
-            borderRadius: boxBorderRadius,
+            borderRadius: boxBorderRadius,            
             resize: isBoxResize ? 'both' : 'none',
             ..._crBoxShadowStyle(props.boxShadows)
-          }}         
+          }}                   
         />
     </div>
   );

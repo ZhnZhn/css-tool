@@ -105,12 +105,17 @@ const pageReducer: PageReducer = (
       };
     }
     case UPDATE_CONFIG: {
-      const { propName, value } = action
+      const { propName, value } = action      
       if (!isStr(propName) 
-       || !(isStr(value) || isBool(value)) ) { 
+       || !(isStr(value) || isBool(value) || isNumber(value)) ) { 
         return state; 
       }      
       const { configStyle } = state;
+      if (propName === 'isBoxResize' && value) {
+        configStyle.width = void 0
+        configStyle.height = void 0
+      }
+      
       return {
         ...state,
         configStyle: imObjUpdate(configStyle, propName, value)

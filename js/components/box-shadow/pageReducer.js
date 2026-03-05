@@ -95,12 +95,16 @@ const pageReducer = (state, action) => {
           propName,
           value
         } = action;
-        if (!(0, _isTypeFn.isStr)(propName) || !((0, _isTypeFn.isStr)(value) || (0, _isTypeFn.isBool)(value))) {
+        if (!(0, _isTypeFn.isStr)(propName) || !((0, _isTypeFn.isStr)(value) || (0, _isTypeFn.isBool)(value) || (0, _isTypeFn.isNumber)(value))) {
           return state;
         }
         const {
           configStyle
         } = state;
+        if (propName === 'isBoxResize' && value) {
+          configStyle.width = void 0;
+          configStyle.height = void 0;
+        }
         return {
           ...state,
           configStyle: (0, _imObj.imObjUpdate)(configStyle, propName, value)
