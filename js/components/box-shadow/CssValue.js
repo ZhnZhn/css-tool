@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
 exports.default = void 0;
-var _fn = require("./helpers/fn");
+var _cssFn = require("./cssFn");
 var _CssToken = _interopRequireDefault(require("./CssToken"));
 var _jsxRuntime = require("preact/jsx-runtime");
 const _crTokenTitle = s => `${s}px`;
@@ -14,7 +14,8 @@ const CssValue = props => {
     vLength,
     blurR,
     spreadR,
-    opacity
+    opacity,
+    color
   } = props.item;
   return (0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
     children: [isInset && (0, _jsxRuntime.jsx)(_CssToken.default, {
@@ -33,7 +34,7 @@ const CssValue = props => {
       title: _crTokenTitle(spreadR),
       id: "spread-radius"
     }), (0, _jsxRuntime.jsx)(_CssToken.default, {
-      title: (0, _fn.toRgba)(props.item),
+      title: (0, _cssFn.toRgba)(color),
       id: "shadow-color"
     }), (0, _jsxRuntime.jsx)(_CssToken.default, {
       title: `${opacity})${props.sufix}`,

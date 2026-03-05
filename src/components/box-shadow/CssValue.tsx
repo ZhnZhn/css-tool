@@ -1,6 +1,6 @@
 import type { ShadowType } from './types';
 
-import { toRgba } from './helpers/fn';
+import { toRgba } from './cssFn';
 import CssToken from './CssToken';
 
 interface CssValueProps {
@@ -17,7 +17,8 @@ const CssValue = (props: CssValueProps) => {
    vLength,
    blurR, 
    spreadR,
-   opacity
+   opacity,
+   color
  } = props.item;   
  return (
   <>
@@ -39,7 +40,7 @@ const CssValue = (props: CssValueProps) => {
       id="spread-radius"             
     />            
     <CssToken 
-      title={toRgba(props.item)}
+      title={toRgba(color)}
       id="shadow-color"             
     />            
     <CssToken 

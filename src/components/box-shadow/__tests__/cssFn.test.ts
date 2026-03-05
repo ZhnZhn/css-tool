@@ -1,10 +1,10 @@
 import { describe, expect, test } from '@jest/globals';
 
-import type { ShadowType } from '../../types';
+import type { ShadowType } from '../types';
 import { 
    toRgba,
    toCssValue 
-} from '../fn';
+} from '../cssFn';
 
 const _boxShadow: ShadowType = {
    isInset: false,
@@ -20,7 +20,7 @@ const _boxShadow: ShadowType = {
 describe("toRgba", ()=>{
    const fn = toRgba;
    test("should return rgba start string from ShadowType", ()=>{
-      expect(fn(_boxShadow)).toBe('rgba(168, 169, 170,') 
+      expect(fn(_boxShadow.color)).toBe('rgba(168, 169, 170,') 
    })
 })
 

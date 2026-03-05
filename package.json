@@ -70,13 +70,13 @@
     ],
     "roots": [
       "<rootDir>/js/colors",
-      "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/components/box-shadow",
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],
     "transformIgnorePatterns": [
       "<rootDir>/js/colors",
-      "<rootDir>/js/components/box-shadow/helpers",
+      "<rootDir>/js/components/box-shadow",
       "<rootDir>/js/components/zhn",
       "<rootDir>/js/utils"
     ],

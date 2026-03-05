@@ -7,7 +7,7 @@ import type {
 } from './types';
 
 import { safeMap } from '../uiApi';
-import { toCssValue } from './helpers/fn';
+import { toCssValue } from './cssFn';
 
 interface PreviewProps {
   boxShadows?: ShadowType[];
