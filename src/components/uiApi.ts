@@ -39,3 +39,15 @@ export const safeMap = <T, U>(
 ) => _isArr(arrOr) 
   ? arrOr.map(fn)
   : []  
+
+const mathRound = Math.round;  
+export const calcDimensionByClassName = (className: string) => {
+  const node = document.querySelector("." + className);
+  if (node) {
+    const { width, height } = node.getBoundingClientRect();
+    return [
+      mathRound(width), 
+      mathRound(height)
+    ];
+  } 
+}  

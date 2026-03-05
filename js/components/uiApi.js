@@ -1,6 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
+exports.calcDimensionByClassName = void 0;
 exports.getRefValue = getRefValue;
 exports.useId = exports.useEffect = exports.useCallback = exports.safeMap = void 0;
 exports.useImperativeHandleOr = useImperativeHandleOr;
@@ -25,3 +26,15 @@ function useImperativeHandleOr(ref, create, inputs) {
 const _isArr = Array.isArray;
 const safeMap = (arrOr, fn) => _isArr(arrOr) ? arrOr.map(fn) : [];
 exports.safeMap = safeMap;
+const mathRound = Math.round;
+const calcDimensionByClassName = className => {
+  const node = document.querySelector("." + className);
+  if (node) {
+    const {
+      width,
+      height
+    } = node.getBoundingClientRect();
+    return [mathRound(width), mathRound(height)];
+  }
+};
+exports.calcDimensionByClassName = calcDimensionByClassName;
