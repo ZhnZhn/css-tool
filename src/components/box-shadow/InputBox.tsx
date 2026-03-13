@@ -9,7 +9,7 @@ import {
 
 import { 
   calcDimensionByClassName,
-  getRefValue 
+  getRefValue
 } from '../uiApi';
 import memo  from '../memo';
 
@@ -17,7 +17,7 @@ import useRefInit from '../hooks/useRefInit';
 
 import RowInputText from '../zhn-r/RowInputText';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
-import RowInputNumber from '../zhn-r/RowInputNumber';
+import RowInputNumber, { RowInputNumberProps } from '../zhn-r/RowInputNumber';
 import RowInputSwitch from '../zhn-r/RowInputSwitch';
 
 import {
@@ -37,6 +37,18 @@ interface InputBoxProps {
   configStyle: ConfigStyleType;
   onEnter: UpdateConfigStyleFn;
 }
+
+const RowInputDimension = (
+  props: Omit<RowInputNumberProps, "min" | "inputId">
+) => (
+  <RowInputNumber    
+    inputId={"sd" + props.caption}
+    styleInput={S_INPUT_DIMENSION}     
+    min={16} 
+    shiftTimes={5}     
+    {...props}      
+  />
+);
 
 const InputBox = ({
   configStyle,
@@ -67,24 +79,16 @@ const InputBox = ({
          onEnter={value => onEnter("boxBorderRadius", value)}
       />
       {!configStyle.isBoxResize && <>
-      <RowInputNumber      
-         inputId="sb-width"
-         styleInput={S_INPUT_DIMENSION}
-         caption="Width"
-         min={16}
+      <RowInputDimension                
+         caption="Width"         
          max={_maxDimension[0]}       
-         initValue={configStyle.width || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[0]}
-         shiftTimes={5}
+         initValue={configStyle.width || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[0]}         
          onChange={value => onEnter("width", value)}          
       />
-      <RowInputNumber      
-         inputId="sb-height"
-         styleInput={S_INPUT_DIMENSION}
-         caption="Height"
-         min={16}
+      <RowInputDimension              
+         caption="Height"        
          max={_maxDimension[1]}       
-         initValue={configStyle.height || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[1]}
-         shiftTimes={5}
+         initValue={configStyle.height || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[1]}        
          onChange={value => onEnter("height", value)}          
       /></>}
       <RowInputSwitch       
