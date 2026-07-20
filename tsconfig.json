@@ -14,8 +14,8 @@
 
     "strict": true, 
     "forceConsistentCasingInFileNames": true, 
-    "module": "nodenext", 
-    "moduleResolution": "nodenext", 
+    "module": "esnext", 
+    "moduleResolution": "bundler", 
     "resolveJsonModule": true,     
     "jsx": "react-jsx", 
     "sourceMap": true, 
