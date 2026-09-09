@@ -1,28 +1,28 @@
-'use strict'
+"use strict"
 
-const path = require('path')
-, HtmlWebpackPlugin = require('html-webpack-plugin')
-, babelConfig = require('./babel.config')
-, { rspack } = require('@rspack/core');
+const path = require("path")
+, HtmlWebpackPlugin = require("html-webpack-plugin")
+, babelConfig = require("./babel.config")
+, { rspack } = require("@rspack/core");
 
 
 module.exports = {
   mode: "production",
   cache: true,
   entry: {
-    app: {
-      import: path.resolve('src', 'index.tsx'),
-      dependOn: 'lib'
-    },
     lib: [
-       "preact"       
+      "preact"       
     ],
+    app: {
+      import: path.resolve("src", "index.tsx"),
+      dependOn: "lib"
+    }
   },
   output: {
-      path: path.resolve('app'),
+      path: path.resolve("app"),
       filename: "[name]_[chunkhash].js",
       chunkFilename: "[name]_[chunkhash].js",
-      publicPath: 'app/'
+      publicPath: "app/"
   },
   module: {
     rules: [
@@ -30,7 +30,7 @@ module.exports = {
         test: /\.(ts|js)x?$/,  
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
              cacheDirectory: true,
              ...babelConfig
@@ -44,14 +44,19 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ['node_modules'],  
-    extensions: ['.tsx', '.ts', '.js', '.jsx']    
+    modules: ["node_modules"],  
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
+    alias: { 
+      "react": "preact/compat",      
+      "react-dom": "preact/compat",
+      "react/jsx-runtime": "preact/jsx-runtime"      
+    }        
   },
   plugins : [    
     new HtmlWebpackPlugin({
       minify: false,
-      filename: path.resolve('index.html'),
-      template: path.resolve('template', 'index.ejs'),
+      filename: path.resolve("index.html"),
+      template: path.resolve("template", "index.ejs"),
       inject: false
     })
   ],
