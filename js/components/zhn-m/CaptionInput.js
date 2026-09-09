@@ -7,11 +7,10 @@ const S_HOT_KEY = {
   textDecoration: 'underline'
 };
 const _crHotKeyIndex = (caption, hotKey) => hotKey ? caption.toLowerCase().indexOf(hotKey) : -1;
-const CaptionWithHotKey = _ref => {
-  let {
-    caption,
-    hotKey
-  } = _ref;
+const CaptionWithHotKey = ({
+  caption,
+  hotKey
+}) => {
   const index = _crHotKeyIndex(caption, hotKey);
   if (index === -1) {
     return (0, _jsxRuntime.jsx)(_jsxRuntime.Fragment, {
@@ -32,19 +31,16 @@ const CaptionWithHotKey = _ref => {
     })]
   });
 };
-const CaptionInput = _ref2 => {
-  let {
-    className,
-    caption,
-    hotKey,
-    children
-  } = _ref2;
-  return caption ? (0, _jsxRuntime.jsxs)("span", {
-    className: className,
-    children: [(0, _jsxRuntime.jsx)(CaptionWithHotKey, {
-      caption: caption,
-      hotKey: hotKey
-    }), children]
-  }) : null;
-};
+const CaptionInput = ({
+  className,
+  caption,
+  hotKey,
+  children
+}) => caption ? (0, _jsxRuntime.jsxs)("span", {
+  className: className,
+  children: [(0, _jsxRuntime.jsx)(CaptionWithHotKey, {
+    caption: caption,
+    hotKey: hotKey
+  }), children]
+}) : null;
 var _default = exports.default = CaptionInput;

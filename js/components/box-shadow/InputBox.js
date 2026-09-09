@@ -21,11 +21,17 @@ const S_DIV = {
   S_INPUT_DIMENSION = {
     width: 62
   };
-const InputBox = _ref => {
-  let {
-    configStyle,
-    onEnter
-  } = _ref;
+const RowInputDimension = props => (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
+  inputId: "sd" + props.caption,
+  styleInput: S_INPUT_DIMENSION,
+  min: 16,
+  shiftTimes: 5,
+  ...props
+});
+const InputBox = ({
+  configStyle,
+  onEnter
+}) => {
   const _refMaxDimension = (0, _useRefInit.default)(() => (0, _uiApi.calcDimensionByClassName)(_cssFn.CL_PREVIEW)),
     _maxDimension = (0, _uiApi.getRefValue)(_refMaxDimension) || [100, 100];
   return (0, _jsxRuntime.jsxs)("div", {
@@ -46,23 +52,15 @@ const InputBox = _ref => {
       initValue: configStyle.boxBorderRadius,
       onEnter: value => onEnter("boxBorderRadius", value)
     }), !configStyle.isBoxResize && (0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-      children: [(0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-        inputId: "sb-width",
-        styleInput: S_INPUT_DIMENSION,
+      children: [(0, _jsxRuntime.jsx)(RowInputDimension, {
         caption: "Width",
-        min: 16,
         max: _maxDimension[0],
         initValue: configStyle.width || ((0, _uiApi.calcDimensionByClassName)(_cssFn.CL_PREVIEW_INNER) || [])[0],
-        shiftTimes: 5,
         onChange: value => onEnter("width", value)
-      }), (0, _jsxRuntime.jsx)(_RowInputNumber.default, {
-        inputId: "sb-height",
-        styleInput: S_INPUT_DIMENSION,
+      }), (0, _jsxRuntime.jsx)(RowInputDimension, {
         caption: "Height",
-        min: 16,
         max: _maxDimension[1],
         initValue: configStyle.height || ((0, _uiApi.calcDimensionByClassName)(_cssFn.CL_PREVIEW_INNER) || [])[1],
-        shiftTimes: 5,
         onChange: value => onEnter("height", value)
       })]
     }), (0, _jsxRuntime.jsx)(_RowInputSwitch.default, {

@@ -10,10 +10,7 @@ var _useObjValue = _interopRequireDefault(require("../hooks/useObjValue"));
 const CL_INPUT = exports.CL_INPUT = 'input-text box-shadow';
 const _FN_NOOP = () => {};
 const _DF_GET_VALUE = v => [v, true];
-function useInputValue(props, getValue) {
-  if (getValue === void 0) {
-    getValue = _DF_GET_VALUE;
-  }
+function useInputValue(props, getValue = _DF_GET_VALUE) {
   const {
       innerRef,
       id,

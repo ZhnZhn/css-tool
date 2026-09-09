@@ -18,20 +18,19 @@ const _crStepExp = step => {
 };
 const _crNumberValue = (stepExp, value) => stepExp === 0 ? parseFloat('' + value) : (0, _math.round10)(parseFloat('' + value), stepExp);
 const _FN_NOOP = () => {};
-const RowInputNumber = _ref => {
-  let {
-    id,
-    unit = 'px',
-    step = 1,
-    shiftTimes,
-    min,
-    max,
-    styleInput,
-    caption,
-    initValue,
-    inputId,
-    onChange = _FN_NOOP
-  } = _ref;
+const RowInputNumber = ({
+  id,
+  unit = 'px',
+  step = 1,
+  shiftTimes,
+  min,
+  max,
+  styleInput,
+  caption,
+  initValue,
+  inputId,
+  onChange = _FN_NOOP
+}) => {
   const _refStepExp = (0, _uiApi.useRef)(_crStepExp(step)),
     _hChangeNumber = (0, _uiApi.useCallback)(value => {
       const _value = _crNumberValue(_refStepExp.current, value);

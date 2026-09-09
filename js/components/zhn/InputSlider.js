@@ -94,16 +94,15 @@ const _NOOP_FN = () => {},
   _isUp = keyCode => keyCode === 39 || keyCode === 38,
   _isDown = keyCode => keyCode === 37 || keyCode === 40,
   _calcValueByKeyCode = (value, step, keyCode) => _isUp(keyCode) ? value + step : _isDown(keyCode) ? value - step : value;
-const InputSlider = _ref => {
-  let {
-    innerRef,
-    initialValue = 4,
-    step = 1,
-    min = 0,
-    max = 20,
-    shiftTimes = 1,
-    onChange = _NOOP_FN
-  } = _ref;
+const InputSlider = ({
+  innerRef,
+  initialValue = 4,
+  step = 1,
+  min = 0,
+  max = 20,
+  shiftTimes = 1,
+  onChange = _NOOP_FN
+}) => {
   const _refExp = (0, _useRefInit.default)(() => {
       const arr = ('' + step).split('.');
       return arr[1] ? -1 * arr[1].length : 0;

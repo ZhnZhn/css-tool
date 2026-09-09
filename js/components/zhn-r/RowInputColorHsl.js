@@ -33,15 +33,14 @@ const _fChangeItem = (propName, refHsl, onEnter, setValue) => value => {
     setValue(_value);
   }
 };
-const RowInputColorHsl = _ref => {
-  let {
-    id,
-    styleInput,
-    caption,
-    inputId,
-    initValue,
-    onEnter
-  } = _ref;
+const RowInputColorHsl = ({
+  id,
+  styleInput,
+  caption,
+  inputId,
+  initValue,
+  onEnter
+}) => {
   const _refHex = (0, _uiApi.useRef)(null),
     _refH = (0, _uiApi.useRef)(null),
     _refS = (0, _uiApi.useRef)(null),

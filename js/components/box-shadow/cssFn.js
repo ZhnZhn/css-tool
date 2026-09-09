@@ -10,16 +10,15 @@ const toRgba = color => {
   return `rgba(${r}, ${g}, ${b},`;
 };
 exports.toRgba = toRgba;
-const toCssValue = _ref => {
-  let {
-    isInset,
-    vLength,
-    gLength,
-    blurR,
-    spreadR,
-    color,
-    opacity
-  } = _ref;
+const toCssValue = ({
+  isInset,
+  vLength,
+  gLength,
+  blurR,
+  spreadR,
+  color,
+  opacity
+}) => {
   const _strCss = [gLength, vLength, blurR, spreadR].join('px ') + 'px',
     _prefix = isInset ? 'inset ' + _strCss : _strCss;
   return `${_prefix} ${toRgba(color)} ${opacity})`;

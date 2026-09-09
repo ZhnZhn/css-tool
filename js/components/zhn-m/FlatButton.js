@@ -14,19 +14,18 @@ const CL_BT = 'bt-flat',
 const S_PRIMARY = {
   color: '#607d8b'
 };
-const FlatButton = _ref => {
-  let {
-    className,
-    style,
-    clDiv = CL_BT_DIV,
-    isPrimary,
-    title = '',
-    caption,
-    accessKey,
-    timeout = 3000,
-    onClick,
-    children
-  } = _ref;
+const FlatButton = ({
+  className,
+  style,
+  clDiv = CL_BT_DIV,
+  isPrimary,
+  title = '',
+  caption,
+  accessKey,
+  timeout = 3000,
+  onClick,
+  children
+}) => {
   const _refBt = (0, _uiApi.useRef)(null),
     _refTimeStamp = (0, _uiApi.useRef)(0),
     _hClick = (0, _uiApi.useCallback)(event => {

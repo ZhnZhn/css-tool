@@ -8,41 +8,26 @@ var _RowInputColorHsl = _interopRequireDefault(require("../zhn-r/RowInputColorHs
 var _RowInputSwitch = _interopRequireDefault(require("../zhn-r/RowInputSwitch"));
 var _jsxRuntime = require("preact/jsx-runtime");
 const _crId = caption => caption.toLowerCase().replace(' ', '-');
-const _crRowInputNumberProps = function (caption, min, max, step, shiftTimes, unit) {
-  if (max === void 0) {
-    max = -min;
-  }
-  if (step === void 0) {
-    step = 1;
-  }
-  if (shiftTimes === void 0) {
-    shiftTimes = 2;
-  }
-  if (unit === void 0) {
-    unit = 'px';
-  }
-  return {
-    id: _crId(caption),
-    caption,
-    min,
-    max,
-    step,
-    shiftTimes,
-    unit
-  };
-};
+const _crRowInputNumberProps = (caption, min, max = -min, step = 1, shiftTimes = 2, unit = 'px') => ({
+  id: _crId(caption),
+  caption,
+  min,
+  max,
+  step,
+  shiftTimes,
+  unit
+});
 const hlProps = _crRowInputNumberProps("Horizontal Length", -30),
   vlProps = _crRowInputNumberProps("Vertical Length", -30),
   brProps = _crRowInputNumberProps("Blur Radius", 0, 20),
   srProps = _crRowInputNumberProps("Spread Radius", -10, 20),
   opProps = _crRowInputNumberProps("Opacity", 0, 1, 0.01, 10, '');
 const _fnNoop = () => {};
-const InputShadow = _ref => {
-  let {
-    id,
-    initialValue,
-    onChange = _fnNoop
-  } = _ref;
+const InputShadow = ({
+  id,
+  initialValue,
+  onChange = _fnNoop
+}) => {
   const {
     vLength,
     gLength,
