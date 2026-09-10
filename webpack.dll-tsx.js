@@ -1,24 +1,24 @@
-'use strict'
+"use strict"
 
-const path = require('path')
-    , webpack = require('webpack')
-    , HtmlWebpackPlugin = require('html-webpack-plugin')
-    , postProcessing = require('./plugins/post-processing')
-    , HtmlProcessingWebpackPlugin = require('./plugins/html-processing-webpack-plugin')
-    , babelConfig = require('./babel.config')
-    , TerserPlugin = require('terser-webpack-plugin');
+const path = require("path")
+    , webpack = require("webpack")
+    , HtmlWebpackPlugin = require("html-webpack-plugin")
+    , postProcessing = require("./plugins/post-processing")
+    , HtmlProcessingWebpackPlugin = require("./plugins/html-processing-webpack-plugin")
+    , babelConfig = require("./babel.config")
+    , TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "production",
   cache: true,
   entry: {
-    app: path.resolve('src', 'index.tsx')
+    app: path.resolve("src", "index.tsx")
   },
   output: {
-      path: path.resolve('app'),
+      path: path.resolve("app"),
       filename: "[name]_[contenthash].js",
       chunkFilename: "[name]_[contenthash].js",
-      publicPath: 'app/'      
+      publicPath: "app/"      
   },
   module: {
     rules: [
@@ -26,7 +26,7 @@ module.exports = {
         test: /\.(ts|js)x?$/,  
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
              cacheDirectory: true,
              ...babelConfig  
@@ -40,18 +40,18 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ['node_modules'],
-    extensions: ['.tsx', '.ts', '.js', '.jsx']
+    modules: ["node_modules"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"]
   },
   plugins : [    
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./dll/lib-manifest.json')
+      manifest: require("./dll/lib-manifest.json")
     }), 
     new HtmlWebpackPlugin({
         minify: false,
-        filename: path.resolve('index.html'),
-        template: path.resolve('template', 'index.ejs'),
+        filename: path.resolve("index.html"),
+        template: path.resolve("template", "index.ejs"),
         inject: false,    
         postProcessing: postProcessing    
     }),

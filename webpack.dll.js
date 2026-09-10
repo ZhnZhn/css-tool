@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const path = require('path')
-    , webpack = require('webpack')
-    , WriteDllStatsPlugin = require('./plugins/write-dll-stats-plugin')
-    , TerserPlugin = require('terser-webpack-plugin');
+const path = require("path")
+    , webpack = require("webpack")
+    , WriteDllStatsPlugin = require("./plugins/write-dll-stats-plugin")
+    , TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -13,17 +13,17 @@ module.exports = {
           ]
   },
   output: {
-      path: path.resolve('app'),
+      path: path.resolve("app"),
       filename: "[name]_[chunkhash].js",
-      library: '[name]_vendor'
+      library: "[name]_vendor"
   },
   resolve: {
-    modules: ['node_modules']
+    modules: ["node_modules"]
   },
   plugins: [        
     new webpack.DllPlugin({
-      path: path.join(__dirname, 'dll', '[name]-manifest.json'),
-      name: '[name]_vendor'      
+      path: path.join(__dirname, "dll", "[name]-manifest.json"),
+      name: "[name]_vendor"      
     }),       
     new WriteDllStatsPlugin()
   ],
