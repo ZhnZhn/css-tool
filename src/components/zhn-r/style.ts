@@ -9,10 +9,10 @@ const crFloatRightCss = (style?: CSSProperties): CSSProperties => ({
 });
 export const S_RIGHT = crFloatRightCss()
 export const S_COLOR = crFloatRightCss({
-  marginRight: 16
+  marginRight: '16px'
 })
 export const S_TEXT= crFloatRightCss({
-  width: 80
+  width: '80px'
 })
 
 export const S_INPUT_SWITCH: CSSProperties = {

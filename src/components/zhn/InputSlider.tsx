@@ -40,17 +40,17 @@ import CircleInner from './CircleInner';
 const S_ROOT: CSSProperties = {
   position: 'relative',
   width: '100%',
-  height: 18,
+  height: '18px',
   margin: '8px 0',
   userSelect : 'none',
   cursor: 'default'
 }
 , S_ROOT_LINE: CSSProperties = {
   position: 'absolute',
-  top: 8,
+  top: '8px',
   left: 0,
   width: '100%',
-  height: 2
+  height: '2px'
 }
 , S_LINE_BEFORE: CSSProperties = {
   position: 'absolute',
@@ -66,7 +66,7 @@ const S_ROOT: CSSProperties = {
   right: 0,
   width: 'calc(85%)',
   height: '100%',
-  marginLeft: 6,
+  marginLeft: '6px',
   backgroundColor: '#bdbdbd',
   transition: 'margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
 }
@@ -81,8 +81,8 @@ const S_ROOT: CSSProperties = {
   position: 'absolute',
   top: 0,
   left: '15%',
-  width: 12,
-  height: 12,
+  width: '12px',
+  height: '12px',
   cursor: 'pointer',
   pointerEvents: 'inherit',
   margin: '1px 0px 0px',
@@ -96,14 +96,14 @@ const S_ROOT: CSSProperties = {
   transition: 'background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
 }
 , S_CIRCLE_DRAGGED: CSSProperties = {
-  width: 20,
-  height: 20
+  width: '20px',
+  height: '20px'
 }
 , S_EMBER: CSSProperties = {
-  top: -12,
-  left: -12,
+  top: '-12px',
+  left: '-12px',
   width: '220%',
-  height: 44,
+  height: '44px',
   border: '1px solid #4caf50'
 };
 

@@ -40,9 +40,11 @@ const S_HSL: CSSProperties = {
 }
 , S_HSL_CAPTION: CSSProperties = { 
   color: 'rgba(0, 0, 0, 0.5)',
-  paddingRight: 14
+  paddingRight: '14px'
 }
-, S_INPUT_NUMBER: CSSProperties = { width: 50 };
+, S_INPUT_NUMBER: CSSProperties = { 
+  width: '50px' 
+};
 
 export interface RowInputColorHslProps {  
   initValue: string;  
