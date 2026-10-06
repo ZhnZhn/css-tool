@@ -61,8 +61,8 @@ const InputShadow = ({
   onChange=_fnNoop
 }: InputShadowProps) => {  
   const [
-    onChangeGLength,
-    onChangeVLength,
+    onChangeHorizontalLength,
+    onChangeVerticalLength,
     onChangeBlurR,
     onChangeSpreadR,
     onEnterShadowColor,
@@ -91,13 +91,13 @@ const InputShadow = ({
          {...hlProps}
          inputId={id}
          initValue={gLength}
-         onChange={onChangeGLength}         
+         onChange={onChangeHorizontalLength}         
       />
       <RowInputNumber
          {...vlProps}
          inputId={id}
          initValue={vLength}
-         onChange={onChangeVLength}         
+         onChange={onChangeVerticalLength}         
       />
       <RowInputNumber         
          {...brProps}
@@ -110,7 +110,7 @@ const InputShadow = ({
          inputId={id}
          initValue={spreadR}
          onChange={onChangeSpreadR}         
-      />
+      />      
       <RowInputColorHsl   
          key={id}
          id="shadow-color"
