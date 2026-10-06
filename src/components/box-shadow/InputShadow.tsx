@@ -1,11 +1,22 @@
 import { 
+  CSSProperties
+} from '../types';
+import {
   ShadowType,
   UpdateShadowFn 
 } from './types';
 
+import {
+  useMemo
+} from '../uiApi';
+
 import RowInputNumber from '../zhn-r/RowInputNumber';
 import RowInputColorHsl from '../zhn-r/RowInputColorHsl';
 import RowInputSwitch from '../zhn-r/RowInputSwitch';
+
+const S_INPUT_OPACITY: CSSProperties = { 
+  width: '55px' 
+};
 
 interface InputShadowProps {
   id: string;
@@ -49,7 +60,24 @@ const InputShadow = ({
   initialValue,
   onChange=_fnNoop
 }: InputShadowProps) => {  
-  const {
+  const [
+    onChangeGLength,
+    onChangeVLength,
+    onChangeBlurR,
+    onChangeSpreadR,
+    onEnterShadowColor,
+    onChangeOpacity,
+    onToggleInset
+  ] = useMemo(() => [
+    (value: number) => onChange('gLength', value),
+    (value: number) => onChange('vLength', value),
+    (value: number) => onChange('blurR', value),
+    (value: number) => onChange('spreadR', value),
+    (colorHex: string) => onChange('color', colorHex),
+    (value: number) => onChange('opacity', value),
+    (is: boolean) => onChange('isInset', is)
+  ], [onChange])
+  , {
     vLength, 
     gLength,
     blurR, 
@@ -63,45 +91,45 @@ const InputShadow = ({
          {...hlProps}
          inputId={id}
          initValue={gLength}
-         onChange={value => onChange('gLength', value)}          
+         onChange={onChangeGLength}         
       />
       <RowInputNumber
          {...vlProps}
          inputId={id}
          initValue={vLength}
-         onChange={value => onChange('vLength', value)}         
+         onChange={onChangeVLength}         
       />
       <RowInputNumber         
          {...brProps}
          inputId={id}
          initValue={blurR}
-         onChange={value => onChange('blurR', value)}         
+         onChange={onChangeBlurR}         
       />
       <RowInputNumber        
          {...srProps}
          inputId={id}
          initValue={spreadR}
-         onChange={value => onChange('spreadR', value)}         
+         onChange={onChangeSpreadR}         
       />
       <RowInputColorHsl   
          key={id}
          id="shadow-color"
          caption="Shadow Color"         
          initValue={color}
-         onEnter={colorHex => onChange('color', colorHex)}         
+         onEnter={onEnterShadowColor}         
       />
       <RowInputNumber         
          {...opProps}
-         styleInput={{ width: 55 }}
+         styleInput={S_INPUT_OPACITY}
          inputId={id}
          initValue={opacity}
-         onChange={value => onChange('opacity', value)}         
+         onChange={onChangeOpacity}         
       />                  
       <RowInputSwitch 
          key={id}
          initialValue={initialValue.isInset}        
          caption="Inset"
-         onToggle={is => onChange('isInset', is)}        
+         onToggle={onToggleInset}         
       />
     </>
   );
