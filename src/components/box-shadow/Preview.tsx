@@ -7,6 +7,7 @@ import type {
 } from './types';
 
 import { safeMap } from '../uiApi';
+import { crUnitPx } from '../styleFn';
 import { 
   CL_PREVIEW,
   CL_PREVIEW_INNER,
@@ -40,8 +41,8 @@ const Preview = (props: PreviewProps) => {
         <div 
           className={CL_PREVIEW_INNER} 
           style={{
-            width,
-            height,
+            width: crUnitPx(width),
+            height: crUnitPx(height),
             backgroundColor: boxColor,
             borderRadius: boxBorderRadius,            
             resize: isBoxResize ? 'both' : 'none',
