@@ -8,6 +8,7 @@ import {
 } from './types';
 
 import { 
+  useMemo,
   calcDimensionByClassName,
   getRefValue
 } from '../uiApi';
@@ -26,11 +27,11 @@ import {
 } from './cssFn'
 
 const S_DIV: CSSProperties = {
-  marginBottom: 32
+  marginBottom: '32px'
 }, S_BOX_INPUT: CSSProperties = {
   color: "brown"
 }, S_INPUT_DIMENSION: CSSProperties = {
-  width: 62
+  width: '62px'
 };
 
 interface InputBoxProps {
@@ -57,44 +58,59 @@ const InputBox = ({
   const _refMaxDimension = useRefInit(
     () => calcDimensionByClassName(CL_PREVIEW)
   )  
-  , _maxDimension = getRefValue(_refMaxDimension) || [100, 100];
+  , _maxDimension = getRefValue(_refMaxDimension) || [100, 100]
+  , [
+    onEnterViewBackgroundColor,
+    onEnterBackgroundColor,
+    onEnterBorderRadius,
+    onChangeWidth,
+    onChangeHeight,
+    onToggleResize
+  ] =  useMemo(() => [
+    (colorHex: string) => onEnter("bgColor", colorHex),
+    (colorHex: string) => onEnter("boxColor", colorHex),
+    (value: string) => onEnter("boxBorderRadius", value),
+    (value: number) => onEnter("width", value),
+    (value: number) => onEnter("height", value),
+    (is: boolean) => onEnter("isBoxResize", is)
+  ], [onEnter]);
   return (
     <div style={S_DIV}>
       <RowInputColorHsl      
          styleInput={S_BOX_INPUT}
          caption="View Background"
          initValue={configStyle.bgColor}
-         onEnter={colorHex => onEnter("bgColor", colorHex)}
+         onEnter={onEnterViewBackgroundColor}         
       />
       <RowInputColorHsl      
          styleInput={S_BOX_INPUT}
          caption="Background"
          initValue={configStyle.boxColor}
-         onEnter={colorHex => onEnter("boxColor", colorHex)}
+         onEnter={onEnterBackgroundColor}         
       />
       <RowInputText         
          styleInput={S_BOX_INPUT}
          caption="Border Radius"
          initValue={configStyle.boxBorderRadius}
-         onEnter={value => onEnter("boxBorderRadius", value)}
+         onEnter={onEnterBorderRadius}         
       />
       {!configStyle.isBoxResize && <>
       <RowInputDimension                
          caption="Width"         
          max={_maxDimension[0]}       
          initValue={configStyle.width || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[0]}         
-         onChange={value => onEnter("width", value)}          
+         onChange={onChangeWidth}         
       />
       <RowInputDimension              
          caption="Height"        
          max={_maxDimension[1]}       
          initValue={configStyle.height || (calcDimensionByClassName(CL_PREVIEW_INNER) || [])[1]}        
-         onChange={value => onEnter("height", value)}          
+         onChange={onChangeHeight}         
       /></>}
       <RowInputSwitch       
          initialValue={configStyle.isBoxResize}      
          caption="Resize"
-         onToggle={is => onEnter("isBoxResize", is)}      
+         onToggle={onToggleResize}         
       />
     </div>
   );
