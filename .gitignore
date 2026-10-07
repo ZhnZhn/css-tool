@@ -8,4 +8,5 @@ dev
 webpack.dev.js
 template/index-dev.ejs
 css-min.js
+rspack.dev.js
 

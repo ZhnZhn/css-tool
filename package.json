@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
+    "dev:rspack": "rspack serve --config rspack.dev.js",
     "transpile": "babel ./src --out-dir ./js --extensions .ts,.js,.tsx,.jsx",
     "lint:one": "eslint -c eslint.config.js",
     "lint:biome": "npx @biomejs/biome lint ./src > _lint.txt 2>&1",
@@ -43,6 +44,9 @@
     "@biomejs/biome": "^2.5.15",
     "@rspack/cli": "^2.2.8",
     "@rspack/core": "^2.2.8",
+    "@rspack/dev-server": "^2.2.1",
+    "@rspack/plugin-preact-refresh": "^2.0.1",
+    "@swc/helpers": "^0.5.23",
     "@types/jest": "^30.0.0",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
