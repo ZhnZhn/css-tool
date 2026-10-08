@@ -1,6 +1,5 @@
 import type { 
-  PropsWithChildren, 
-  CSSProperties
+  PropsWithChildren
 } from '../types';
 
 interface CaptionInputProps {
@@ -13,9 +12,7 @@ interface CaptionWithHotKeyProps {
   hotKey?: string;  
 }
 
-const S_HOT_KEY: CSSProperties = {  
-  textDecoration: 'underline'  
-};
+const CL_BT_HOT_KEY = "bt-hot-key";
 
 const _crHotKeyIndex = (
   caption: string,
@@ -37,7 +34,7 @@ const CaptionWithHotKey = ({
   return (
     <>
      <span>{_before}</span>
-     <span style={S_HOT_KEY}>{_key}</span>
+     <span className={CL_BT_HOT_KEY}>{_key}</span>
      <span>{_after}</span>
     </>
   );
