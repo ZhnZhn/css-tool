@@ -41,11 +41,12 @@
     "@babel/preset-env": "^7.29.7",
     "@babel/preset-react": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
-    "@biomejs/biome": "^2.6.3",
+    "@biomejs/biome": "^2.6.4",
     "@rspack/cli": "^2.2.9",
     "@rspack/core": "^2.2.9",
     "@rspack/dev-server": "^2.2.2",
     "@rspack/plugin-preact-refresh": "^2.0.1",
+    "@rstest/core": "^0.12.5",
     "@swc/helpers": "^0.5.23",
     "@types/jest": "^30.0.0",
     "@types/react": "^18.3.31",
@@ -66,8 +67,8 @@
     "webpack-cli": "^7.2.3"
   },
   "overrides": {
-    "glob": "~13.0.6",
-    "uuid": "~14.0.0"
+    "glob": "~14.0.3",
+    "minimatch": "~11.0.3"
   },
   "jest": {
     "setupFilesAfterEnv": [
