@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from '../../__tests__/setupHelpers.test';
 
 import { imObjUpdate } from '../im-obj';
 
