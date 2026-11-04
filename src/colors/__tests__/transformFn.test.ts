@@ -1,4 +1,4 @@
-import { describe, expect, test } from '../../__tests__/setupHelpers.test';
+import { describe, expect, test } from '@testHelpers';
 
 import {
   toRgb,

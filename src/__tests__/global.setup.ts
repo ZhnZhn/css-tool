@@ -1,6 +1,4 @@
-import { jest } from '@jest/globals';
-
-import { crTestFn } from './setupHelpers.test';
+import { crTestFn } from '@testHelpers';
 
 const _hmColorRgb = {
   black: [0, 0, 0], 

@@ -13,5 +13,11 @@ export default defineConfig({
     'components/zhn',    
     'colors',
     'utils'
-  )    
+  ),
+
+  resolve: {
+    alias: {
+      '@testHelpers': './src/__tests__/setupHelpers.test.ts'
+    }
+  }        
 });
