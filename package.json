@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.10",
-    "preact": "^11.0.2"
+    "preact": "^11.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -47,7 +47,7 @@
     "@rspack/dev-server": "^2.2.2",
     "@rspack/plugin-preact-refresh": "^2.0.1",
     "@rstest/core": "^0.12.5",
-    "@swc/helpers": "^0.5.23",
+    "@swc/helpers": "^0.5.24",
     "@types/jest": "^30.0.0",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
